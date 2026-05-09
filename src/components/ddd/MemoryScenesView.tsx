@@ -22,26 +22,37 @@ function shuffle<T>(a: T[]): T[] {
   return r;
 }
 
-/** Render description with **Word** segments bolded. */
-function RichDescription({ text, tone }: { text: string; tone: Article }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+function speak(text: string) {
+  if (typeof window === "undefined" || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "de-DE";
+  u.rate = 0.95;
+  window.speechSynthesis.speak(u);
+}
+
+function SceneImage({ scene }: { scene: MemoryScene }) {
+  const [failed, setFailed] = useState(false);
+  const m = ARTICLE_META[scene.tone];
+  if (failed) {
+    return (
+      <div
+        className="flex h-[300px] w-full flex-col items-center justify-center rounded-xl"
+        style={{ backgroundColor: `var(--${m.soft})`, color: `var(--${m.color})` }}
+      >
+        <div className="px-6 text-center text-lg font-extrabold">{scene.title}</div>
+        <div className="mt-2 text-xs font-semibold opacity-70">🎨 Illustration coming soon</div>
+      </div>
+    );
+  }
   return (
-    <p className="text-[15px] italic leading-relaxed">
-      {parts.map((p, i) => {
-        if (p.startsWith("**") && p.endsWith("**")) {
-          return (
-            <strong
-              key={i}
-              className="not-italic font-extrabold"
-              style={{ color: `var(--${ARTICLE_META[tone].color})` }}
-            >
-              {p.slice(2, -2)}
-            </strong>
-          );
-        }
-        return <span key={i}>{p}</span>;
-      })}
-    </p>
+    <img
+      src={scene.image}
+      alt={scene.title}
+      onError={() => setFailed(true)}
+      className="h-[300px] w-full rounded-xl object-cover"
+      loading="lazy"
+    />
   );
 }
 
