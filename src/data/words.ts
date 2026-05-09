@@ -7,12 +7,28 @@ export interface Word {
   emoji?: string;
 }
 
+export interface SuffixException {
+  ironclad?: boolean;
+  mnemonic?: string;
+  illustration?: string[];
+  words?: Word[];
+  note?: string;
+  noteTone?: Article;
+}
+
+export interface SuffixEntry {
+  suffix: string;
+  example: Word;
+  examples?: Word[];
+  exceptions?: SuffixException;
+}
+
 export interface RuleGroup {
   article: Article;
   title: string;
   emoji: string;
   words: Word[];
-  suffixes?: { suffix: string; example: Word }[];
+  suffixes?: SuffixEntry[];
   note?: string;
 }
 
