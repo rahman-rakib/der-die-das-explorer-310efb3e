@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 
-export type TabId = "rules" | "mnemonics" | "practice" | "progress";
+export type TabId = "rules" | "scenes" | "mnemonics" | "practice" | "progress";
 
 const TABS: { id: TabId; label: string; icon: string }[] = [
   { id: "rules",     label: "Rules",     icon: "📖" },
-  { id: "mnemonics", label: "Stories",   icon: "🎨" },
+  { id: "scenes",    label: "Scenes",    icon: "🎨" },
+  { id: "mnemonics", label: "Stories",   icon: "✨" },
   { id: "practice",  label: "Practice",  icon: "🎯" },
   { id: "progress",  label: "Progress",  icon: "📊" },
 ];
@@ -12,14 +13,14 @@ const TABS: { id: TabId; label: string; icon: string }[] = [
 export function BottomNav({ active, onChange }: { active: TabId; onChange: (t: TabId) => void }) {
   return (
     <nav className="sticky bottom-0 z-30 border-t bg-background/95 backdrop-blur">
-      <div className="mx-auto grid max-w-[480px] grid-cols-4">
+      <div className="mx-auto grid max-w-[480px] grid-cols-5">
         {TABS.map(t => {
           const isActive = t.id === active;
           return (
             <button
               key={t.id}
               onClick={() => onChange(t.id)}
-              className="relative flex flex-col items-center gap-0.5 py-2.5 text-[11px] font-bold"
+              className="relative flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-bold"
               style={{ color: isActive ? "var(--primary)" : "var(--muted-foreground)" }}
             >
               {isActive && (
