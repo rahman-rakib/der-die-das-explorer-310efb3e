@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import confetti from "canvas-confetti";
-import { ARTICLE_META, PRACTICE_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
+import { ARTICLE_META, PRACTICE_WORDS, SUFFIX_EXCEPTION_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
 import { recordAnswer } from "@/lib/progress";
 import { ArticleBadge } from "./ArticleBadge";
 
