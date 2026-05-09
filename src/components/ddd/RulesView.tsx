@@ -112,3 +112,122 @@ export function RulesView() {
     </div>
   );
 }
+
+function SuffixCard({ entry, parentArticle }: { entry: SuffixEntry; parentArticle: Article }) {
+  const [open, setOpen] = useState(false);
+  const meta = ARTICLE_META[parentArticle];
+  const ex = entry.exceptions;
+  const ironclad = ex?.ironclad;
+  const exceptionWords = ex?.words ?? [];
+  const exCount = exceptionWords.length;
+  const examples = entry.examples ?? [entry.example];
+
+  // Group exception words by article
+  const grouped: Record<Article, typeof exceptionWords> = { der: [], die: [], das: [] };
+  exceptionWords.forEach(w => grouped[w.article].push(w));
+
+  return (
+    <div className="overflow-hidden rounded-2xl border bg-muted/30">
+      <div className="p-3">
+        <div className="flex items-center justify-between gap-2">
+          <div
+            className="inline-block rounded-md px-2 py-0.5 text-sm font-extrabold"
+            style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
+          >
+            {entry.suffix}
+          </div>
+          {ironclad ? (
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+              🔒 Ironclad
+            </span>
+          ) : (
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {exCount > 0 ? `~${exCount} exception${exCount === 1 ? "" : "s"}` : "0 exceptions 🔒"}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {examples.map(w => (
+            <WordPill key={w.word} article={w.article} word={w.word} english={w.english} />
+          ))}
+        </div>
+
+        {ironclad && (
+          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-emerald-100">
+            <div className="h-full w-full bg-emerald-500" />
+          </div>
+        )}
+      </div>
+
+      {ironclad ? (
+        <div className="border-t bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800">
+          ✅ No exceptions — this rule is rock solid!
+          {ex?.note && <div className="mt-1 font-normal italic text-emerald-900/80">⚠️ {ex.note}</div>}
+        </div>
+      ) : ex && (exceptionWords.length > 0 || ex.mnemonic) ? (
+        <>
+          <button
+            onClick={() => setOpen(o => !o)}
+            className="flex w-full items-center justify-between border-t bg-amber-50 px-3 py-2 text-xs font-bold text-amber-900 transition hover:bg-amber-100"
+          >
+            <span>⚠️ Exceptions {exCount > 0 && `(${exCount})`}</span>
+            <span className="text-base">{open ? "▴" : "▾"}</span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden bg-amber-50/70"
+              >
+                <div className="space-y-3 px-3 py-3">
+                  {ex.illustration && (
+                    <div className="flex justify-center gap-2 text-3xl" aria-hidden>
+                      {ex.illustration.map((e, i) => <span key={i}>{e}</span>)}
+                    </div>
+                  )}
+                  {ex.mnemonic && (
+                    <p className="text-xs italic leading-relaxed text-amber-950">{ex.mnemonic}</p>
+                  )}
+                  {(["der","die","das"] as Article[]).map(a => grouped[a].length > 0 && (
+                    <div key={a}>
+                      <div className="mb-1.5 flex items-center gap-2">
+                        <ArticleBadge article={a} size="sm" />
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          exceptions
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {grouped[a].map(w => (
+                          <WordPill key={w.word} article={w.article} word={w.word} english={w.english} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  {ex.note && (
+                    <div
+                      className="rounded-xl border-l-4 px-3 py-2 text-xs font-medium"
+                      style={{
+                        borderColor: `var(--${ARTICLE_META[ex.noteTone ?? "das"].color})`,
+                        backgroundColor: `var(--${ARTICLE_META[ex.noteTone ?? "das"].soft})`,
+                      }}
+                    >
+                      💡 {ex.note}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      ) : (
+        <div className="border-t bg-muted/40 px-3 py-2 text-[11px] italic text-muted-foreground">
+          A few exceptions exist — learn this one mostly by feel.
+        </div>
+      )}
+    </div>
+  );
+}
