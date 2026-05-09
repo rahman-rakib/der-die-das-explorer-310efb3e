@@ -99,19 +99,9 @@ export function RulesView() {
                 </div>
               )}
               {g.suffixes && (
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-2">
                   {g.suffixes.map(s => (
-                    <div key={s.suffix} className="rounded-xl border bg-muted/30 p-2">
-                      <div
-                        className="inline-block rounded-md px-2 py-0.5 text-xs font-extrabold"
-                        style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
-                      >
-                        {s.suffix}
-                      </div>
-                      <div className="mt-1.5">
-                        <WordPill article={s.example.article} word={s.example.word} english={s.example.english} />
-                      </div>
-                    </div>
+                    <SuffixCard key={s.suffix} entry={s} parentArticle={g.article} />
                   ))}
                 </div>
               )}
