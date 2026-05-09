@@ -301,6 +301,109 @@ export const SCENES: Scene[] = [
   },
 ];
 
+export interface MemoryScene {
+  id: string;
+  tone: Article;
+  title: string;
+  illustration: string[];
+  description: string; // German nouns wrapped as **Wort**
+  words: Word[];
+  note?: string;
+}
+
+export const MEMORY_SCENES: MemoryScene[] = [
+  // ---- DAS ----
+  {
+    id: "das-rooftop", tone: "das", title: "The Rooftop",
+    illustration: ["🏠","🧒","👧","🔪","💧","🩸"],
+    description: "A **Kind** and a small **Mädchen** sit on a **Dach**. **Wasser** streams from the child's eye. The child clutches a **Messer** and **Blut** drips from the girl's hand.",
+    words: [w("das","Dach","roof"), w("das","Kind","child"), w("das","Mädchen","girl"), w("das","Wasser","water"), w("das","Messer","knife"), w("das","Blut","blood")],
+  },
+  {
+    id: "das-ghost-horse", tone: "das", title: "The Ghost Horse",
+    illustration: ["🐴","👻","😱","⚖️","💡","🗡️","🕸️"],
+    description: "A **Gespenst** rides a **Pferd** through the **Licht**. The horse's **Gesicht** is frozen in terror. It carries a heavy **Gewicht** in one hoof and swings a **Schwert** in the other, tangled in a **Netz** of cobwebs.",
+    words: [w("das","Pferd","horse"), w("das","Gespenst","ghost"), w("das","Gesicht","face"), w("das","Licht","light"), w("das","Gewicht","weight"), w("das","Schwert","sword"), w("das","Netz","net")],
+  },
+  {
+    id: "das-farmyard", tone: "das", title: "The Farmyard",
+    illustration: ["🐑","🐖","🐔","🐄","🐣","🦌"],
+    description: "All the young animals gathered in one field — a **Schaf**, a **Schwein**, a **Huhn**, a **Kalb**, a **Küken** and a **Reh** — all staring blankly at the sky. None of them knows what gender they are.",
+    words: [w("das","Schaf","sheep"), w("das","Schwein","pig"), w("das","Huhn","chicken"), w("das","Kalb","calf"), w("das","Küken","chick"), w("das","Reh","fawn"), w("das","Tier","animal")],
+    note: "Young animals and animals in general → strongly tend to DAS",
+  },
+  {
+    id: "das-midnight-kitchen", tone: "das", title: "The Midnight Kitchen",
+    illustration: ["🍞","🥚","🥩","🧂","🛢️","🔥"],
+    description: "At midnight, a **Feuer** erupts in the kitchen. **Brot** flies off the shelf, an **Ei** explodes, **Fleisch** sizzles on its own, **Salz** rains from the ceiling and **Öl** pours across the floor.",
+    words: [w("das","Brot","bread"), w("das","Ei","egg"), w("das","Fleisch","meat"), w("das","Salz","salt"), w("das","Öl","oil"), w("das","Feuer","fire")],
+  },
+  {
+    id: "das-poisoned-gift", tone: "das", title: "The Poisoned Gift",
+    illustration: ["🎁","☠️","⚖️","📜","💊","🏛️"],
+    description: "A beautifully wrapped **Geschenk** sits in a courtroom. Inside is **Gift**. A judge reads the **Recht**, a doctor prescribes **Medikament** and a witness signs a **Dokument**. Everything looks innocent — nothing is.",
+    words: [w("das","Geschenk","gift"), w("das","Gift","poison"), w("das","Recht","law/right"), w("das","Medikament","medicine"), w("das","Dokument","document"), w("das","Gesetz","law")],
+    note: "⚠️ das Gift = poison (not 'gift'!) — the most dangerous false friend in German",
+  },
+
+  // ---- DER ----
+  {
+    id: "der-jungle-dream", tone: "der", title: "The Jungle Dream",
+    illustration: ["🦁","🧀","🐒","🐰","🧟‍♂️","🌿"],
+    description: "A **Riese** stomps through the jungle. A **Löwe** gnaws on a wheel of **Käse**. An **Affe** snatches a **Hase** and runs into the trees. Everyone is dreaming — or perhaps they ARE the **Traum**.",
+    words: [w("der","Riese","giant"), w("der","Löwe","lion"), w("der","Käse","cheese"), w("der","Affe","monkey"), w("der","Hase","hare"), w("der","Traum","dream")],
+    note: "All end in -e but are DER — the classic weak masculine noun trap",
+  },
+  {
+    id: "der-stormy-wanderer", tone: "der", title: "The Stormy Wanderer",
+    illustration: ["🌕","😣","📢","🍽️","💧","😤"],
+    description: "Under a full **Mond**, a man writhes in **Schmerz**. He hears deafening **Lärm** from the storm. He is desperately starving with **Hunger** and **Durst**. Yet somehow he marches on with **Mut**.",
+    words: [w("der","Mond","moon"), w("der","Schmerz","pain"), w("der","Lärm","noise"), w("der","Hunger","hunger"), w("der","Durst","thirst"), w("der","Mut","courage")],
+    note: "Abstract feelings of suffering → often DER",
+  },
+  {
+    id: "der-strange-cafe", tone: "der", title: "The Strange Café",
+    illustration: ["☕","🧱","🔑","💰","🚪","🪑"],
+    description: "In a strange café, a **Stein** sits in a chair. A **Schlüssel** hangs on the wall. A **Preis** is written on a chalkboard and a **Beutel** of money rests on the floor. The waiter is a giant **Löffel**. No one finds this odd.",
+    words: [w("der","Stein","stone"), w("der","Schlüssel","key"), w("der","Preis","price"), w("der","Beutel","bag"), w("der","Löffel","spoon"), w("der","Stuhl","chair")],
+  },
+  {
+    id: "der-angry-weather", tone: "der", title: "The Angry Weather",
+    illustration: ["🌧️","🌬️","⛈️","⚡","🌪️","🌊"],
+    description: "**Regen** lashes down. **Wind** howls. **Donner** shakes the ground. **Blitz** strikes a **Tümpel**. A massive **Hagel** storm begins. **Nebel** rolls in and the **Sturm** rages — all of it is DER.",
+    words: [w("der","Regen","rain"), w("der","Wind","wind"), w("der","Donner","thunder"), w("der","Blitz","lightning"), w("der","Hagel","hail"), w("der","Nebel","fog"), w("der","Sturm","storm")],
+    note: "Weather forces → almost always DER",
+  },
+
+  // ---- DIE ----
+  {
+    id: "die-invisible-powers", tone: "die", title: "The Invisible Powers",
+    illustration: ["⏳","💪","🌬️","🌍","🌑","😰"],
+    description: "At **Nacht**, invisible forces fill the **Luft**. **Zeit** pulls in one direction. **Kraft** pulls in another. The **Welt** spins. **Schuld** whispers. **Pflicht** calls. All are female, all are unseen.",
+    words: [w("die","Zeit","time"), w("die","Kraft","strength"), w("die","Luft","air"), w("die","Welt","world"), w("die","Nacht","night"), w("die","Schuld","guilt"), w("die","Pflicht","duty")],
+    note: "Abstract forces of the universe → strongly DIE",
+  },
+  {
+    id: "die-kitchen-rebellion", tone: "die", title: "The Kitchen Rebellion",
+    illustration: ["🧈","🥛","👩","👩‍👧","👩‍👩‍👧"],
+    description: "A **Mutter**, her **Tochter** and **Schwester** stage a kitchen rebellion. They pour **Milch** on the floor and throw **Butter** at the ceiling. All end in -er — but all are DIE.",
+    words: [w("die","Mutter","mother"), w("die","Tochter","daughter"), w("die","Schwester","sister"), w("die","Milch","milk"), w("die","Butter","butter")],
+    note: "These -er words break the DER rule — learn them as a family",
+  },
+  {
+    id: "die-body-alarm", tone: "die", title: "The Body Alarm",
+    illustration: ["🤚","👃","👅","💪","🦴","🫀"],
+    description: "A **Hand** slaps a **Wand**. A **Nase** smells something wrong. A **Zunge** tastes danger. A **Schulter** tenses. A **Rippe** aches. Even the **Stirn** sweats — the whole body is screaming.",
+    words: [w("die","Hand","hand"), w("die","Wand","wall"), w("die","Nase","nose"), w("die","Zunge","tongue"), w("die","Schulter","shoulder"), w("die","Rippe","rib"), w("die","Stirn","forehead")],
+  },
+  {
+    id: "die-clockwork-city", tone: "die", title: "The Clockwork City",
+    illustration: ["🕰️","🚪","🪟","🛗","🌆","🔢"],
+    description: "In a **Stadt** built from clocks, every **Tür** is a clock face. Every **Scheibe** ticks. The **Treppe** goes up, a **Zahl** flashes on every wall, and the **Wahl** of where to go is endless — all running on the great **Uhr**.",
+    words: [w("die","Uhr","clock"), w("die","Tür","door"), w("die","Zahl","number"), w("die","Wahl","choice/election"), w("die","Scheibe","pane/disc"), w("die","Treppe","stairs"), w("die","Stadt","city")],
+  },
+];
+
 // Practice pool — flat list of words across all categories
 export const SUFFIX_EXCEPTION_WORDS: Word[] = (() => {
   const seen = new Set<string>();
