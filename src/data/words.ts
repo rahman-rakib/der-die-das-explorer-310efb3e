@@ -191,15 +191,36 @@ export const RULES: RuleGroup[] = [
     article: "das", title: "Word endings → DAS", emoji: "🔤",
     words: [],
     suffixes: [
-      { suffix: "-chen", example: w("das","Mädchen","girl") },
-      { suffix: "-lein", example: w("das","Fräulein","Miss") },
+      {
+        suffix: "-chen", example: w("das","Mädchen","girl"),
+        exceptions: { ironclad: true, note: "das Mädchen and das Fräulein are DAS even though they refer to girls/women!", noteTone: "das" },
+      },
+      {
+        suffix: "-lein", example: w("das","Fräulein","Miss"),
+        exceptions: { ironclad: true, note: "Always DAS — grammar overrules biology." },
+      },
       { suffix: "-um", example: w("das","Museum","museum") },
-      { suffix: "-ium", example: w("das","Aquarium","aquarium") },
+      { suffix: "-ium", example: w("das","Aquarium","aquarium"), exceptions: { ironclad: true } },
       { suffix: "-ment", example: w("das","Argument","argument") },
-      { suffix: "-tum", example: w("das","Wachstum","growth") },
+      { suffix: "-tum", example: w("das","Wachstum","growth"), exceptions: { mnemonic: "Almost always DAS — but two famous DER rebels.", illustration: ["💰","💎"], words: [w("der","Reichtum","wealth"), w("der","Irrtum","error")] } },
       { suffix: "-ma", example: w("das","Thema","topic") },
       { suffix: "-o", example: w("das","Auto","car") },
-      { suffix: "-nis", example: w("das","Ergebnis","result") },
+      { suffix: "-nis", example: w("das","Ergebnis","result"), exceptions: { mnemonic: "Mostly DAS, but a few feminine -nis nouns sneak in.", illustration: ["💚","🚧"], words: [w("die","Erlaubnis","permission"), w("die","Kenntnis","knowledge"), w("die","Finsternis","darkness")] } },
+      {
+        suffix: "-en (real nouns)", example: w("das","Essen","eating/food"),
+        examples: [w("das","Essen","food"), w("das","Leben","life"), w("das","Schreiben","writing"), w("das","Lachen","laughter"), w("das","Laufen","running")],
+        exceptions: {
+          mnemonic: "Rain (Regen), car (Wagen), harbour (Hafen), garden (Garten), oven (Ofen) — the men of the house are all DER.",
+          illustration: ["🌧️","🚗","⚓","🌿","🔥"],
+          words: [
+            w("der","Regen","rain"), w("der","Wagen","car/cart"), w("der","Hafen","harbour"), w("der","Boden","floor/ground"),
+            w("der","Ofen","oven"), w("der","Garten","garden"), w("der","Faden","thread"), w("der","Laden","shop"),
+            w("der","Samen","seed"), w("der","Kuchen","cake"), w("der","Haken","hook"),
+          ],
+          note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER.",
+          noteTone: "der",
+        },
+      },
     ],
   },
 ];
