@@ -79,6 +79,17 @@ export function ProgressView() {
             words learned{nextMilestone && ` · next 🎉 at ${nextMilestone}`}
           </div>
         </div>
+        <div className="col-span-2 rounded-2xl border bg-card p-4 shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="text-3xl">⭐</span>
+            <div>
+              <div className="text-2xl font-extrabold leading-none">
+                {p.scenesMastered.length} <span className="text-base text-muted-foreground">/ {MEMORY_SCENES.length}</span>
+              </div>
+              <div className="text-xs text-muted-foreground">memory scenes mastered</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="mt-5 rounded-3xl border bg-card p-4 shadow-sm">
