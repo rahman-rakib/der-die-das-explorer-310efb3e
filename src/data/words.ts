@@ -301,7 +301,8 @@ export const SCENES: Scene[] = [
   },
 ];
 
-export { MEMORY_SCENES, type MemoryScene } from "./scenes";
+import { MEMORY_SCENES, type MemoryScene } from "./scenes";
+export { MEMORY_SCENES, type MemoryScene };
 
 // Practice pool — flat list of words across all categories
 export const SUFFIX_EXCEPTION_WORDS: Word[] = (() => {
