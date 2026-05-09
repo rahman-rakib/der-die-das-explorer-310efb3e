@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "DerDieDasso" },
+      { name: "description", content: "Learn German articles \"der,\" \"die,\" and \"das\" with a fun, visual web app." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "DerDieDasso" },
+      { property: "og:description", content: "Learn German articles \"der,\" \"die,\" and \"das\" with a fun, visual web app." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "DerDieDasso" },
+      { name: "twitter:description", content: "Learn German articles \"der,\" \"die,\" and \"das\" with a fun, visual web app." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d66a1d7c-a965-4079-ba92-fcbd5b6b0f9d/id-preview-89d27cc3--2efc07b7-98bc-4d96-8844-b87b5d802aa8.lovable.app-1778326008214.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d66a1d7c-a965-4079-ba92-fcbd5b6b0f9d/id-preview-89d27cc3--2efc07b7-98bc-4d96-8844-b87b5d802aa8.lovable.app-1778326008214.png" },
     ],
     links: [
       {
