@@ -60,6 +60,7 @@ function Index() {
               transition={{ duration: 0.22 }}
             >
               {tab === "rules" && <RulesView />}
+              {tab === "scenes" && <MemoryScenesView />}
               {tab === "mnemonics" && <MnemonicsView />}
               {tab === "practice" && <PracticeView />}
               {tab === "progress" && <ProgressView />}
