@@ -59,3 +59,12 @@ export function recordAnswer(article: Article, word: string, correct: boolean) {
 export function resetProgress() {
   if (typeof window !== "undefined") localStorage.removeItem(KEY);
 }
+
+export function markSceneMastered(id: string) {
+  const p = loadProgress();
+  if (!p.scenesMastered.includes(id)) {
+    p.scenesMastered.push(id);
+    saveProgress(p);
+  }
+  return p;
+}
