@@ -70,6 +70,7 @@ function SceneCard({
   onDrill: () => void;
 }) {
   const m = ARTICLE_META[scene.tone];
+  const [showTranslation, setShowTranslation] = useState(false);
   return (
     <article
       className="overflow-hidden rounded-3xl border bg-card shadow-md"
@@ -86,29 +87,51 @@ function SceneCard({
         </div>
       </div>
 
-      <div
-        className="flex flex-wrap items-center justify-center gap-x-[-4px] gap-y-1 px-4 py-6"
-        style={{ backgroundColor: `var(--${m.soft})` }}
-      >
-        {scene.illustration.map((e, i) => (
-          <motion.span
-            key={i}
-            initial={{ scale: 0.5, opacity: 0, y: 10 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 * i, type: "spring", stiffness: 220 }}
-            className="-mx-1 inline-block"
-            style={{ fontSize: "2.5rem", lineHeight: 1 }}
-          >
-            {e}
-          </motion.span>
-        ))}
+      <div className="px-3 pt-3">
+        <SceneImage scene={scene} />
       </div>
 
       <div className="px-5 pt-4">
-        <h2 className="text-xl font-extrabold leading-tight">{scene.title}</h2>
-        <div className="mt-2">
-          <RichDescription text={scene.description} tone={scene.tone} />
+        <h2 className="text-[22px] font-extrabold leading-tight">{scene.title}</h2>
+
+        <div className="mt-3 flex items-start gap-2">
+          <p
+            className="flex-1 text-[16px] font-medium"
+            style={{ lineHeight: 1.7 }}
+          >
+            {scene.narrativeDe}
+          </p>
+          <button
+            onClick={() => speak(scene.narrativeDe)}
+            aria-label="Anhören"
+            title="Anhören"
+            className="shrink-0 rounded-full border bg-card p-2 text-base shadow-sm"
+            style={{ borderColor: `var(--${m.color})` }}
+          >
+            🔊
+          </button>
         </div>
+
+        <button
+          onClick={() => setShowTranslation(v => !v)}
+          className="mt-3 rounded-full border bg-card px-3 py-1.5 text-xs font-bold shadow-sm"
+        >
+          🇬🇧 {showTranslation ? "Hide translation" : "Show translation"}
+        </button>
+
+        <AnimatePresence initial={false}>
+          {showTranslation && (
+            <motion.p
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="mt-2 overflow-hidden text-[14px] italic text-muted-foreground"
+              style={{ lineHeight: 1.6 }}
+            >
+              {scene.narrativeEn}
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="flex flex-wrap gap-2 px-5 pt-4">
@@ -127,7 +150,7 @@ function SceneCard({
           className="w-full rounded-full py-3 text-sm font-extrabold text-white shadow-md"
           style={{ backgroundColor: `var(--${m.color})` }}
         >
-          🔍 Drill this scene
+          🔍 Diese Szene üben
         </button>
       </div>
     </article>
