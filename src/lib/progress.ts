@@ -9,6 +9,7 @@ export interface Progress {
   totalSeen: number;
   streak: number;
   lastDay: string | null;
+  scenesMastered: string[];
 }
 
 const empty = (): Progress => ({
@@ -17,6 +18,7 @@ const empty = (): Progress => ({
   totalSeen: 0,
   streak: 0,
   lastDay: null,
+  scenesMastered: [],
 });
 
 export function loadProgress(): Progress {
