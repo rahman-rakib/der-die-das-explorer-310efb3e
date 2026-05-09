@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import confetti from "canvas-confetti";
-import { ARTICLE_META, PRACTICE_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
+import { ARTICLE_META, PRACTICE_WORDS, SUFFIX_EXCEPTION_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
 import { recordAnswer } from "@/lib/progress";
 import { ArticleBadge } from "./ArticleBadge";
 
@@ -53,8 +53,11 @@ function ArticleButtons({ onPick, disabled, correctReveal }: {
 }
 
 /* ---------- FLASHCARDS ---------- */
-function Flashcards({ onExit }: { onExit: () => void }) {
-  const deck = useMemo(() => shuffle(PRACTICE_WORDS).slice(0, 10), []);
+function Flashcards({ onExit, exceptionsOnly }: { onExit: () => void; exceptionsOnly: boolean }) {
+  const deck = useMemo(
+    () => shuffle(exceptionsOnly ? SUFFIX_EXCEPTION_WORDS : PRACTICE_WORDS).slice(0, 10),
+    [exceptionsOnly],
+  );
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState<"right" | "wrong" | null>(null);
@@ -281,13 +284,14 @@ function FillGap({ onExit }: { onExit: () => void }) {
 /* ---------- MENU ---------- */
 export function PracticeView() {
   const [mode, setMode] = useState<Mode>(null);
+  const [exceptionsOnly, setExceptionsOnly] = useState(false);
 
-  if (mode === "flash") return <Wrap><Flashcards onExit={() => setMode(null)} /></Wrap>;
+  if (mode === "flash") return <Wrap><Flashcards onExit={() => setMode(null)} exceptionsOnly={exceptionsOnly} /></Wrap>;
   if (mode === "speed") return <Wrap><SpeedRound onExit={() => setMode(null)} /></Wrap>;
   if (mode === "fill") return <Wrap><FillGap onExit={() => setMode(null)} /></Wrap>;
 
   const tiles: { id: Exclude<Mode, null>; emoji: string; title: string; sub: string; bg: string }[] = [
-    { id: "flash", emoji: "🃏", title: "Flashcards", sub: "10 words · tap the article", bg: "var(--der-soft)" },
+    { id: "flash", emoji: "🃏", title: "Flashcards", sub: exceptionsOnly ? "10 tricky exception words" : "10 words · tap the article", bg: "var(--der-soft)" },
     { id: "speed", emoji: "⚡", title: "Speed Round", sub: "30 seconds · go fast", bg: "var(--die-soft)" },
     { id: "fill", emoji: "🧩", title: "Fill the Gap", sub: "15 sentences", bg: "var(--das-soft)" },
   ];
@@ -296,6 +300,26 @@ export function PracticeView() {
     <div className="px-4 pb-8 pt-6">
       <h1 className="text-3xl font-extrabold">Practice</h1>
       <p className="mt-1 text-sm text-muted-foreground">Pick a game and get those genders right.</p>
+
+      <label className="mt-4 flex cursor-pointer items-center justify-between rounded-2xl border bg-amber-50 px-4 py-3">
+        <span className="flex flex-col">
+          <span className="text-sm font-bold text-amber-900">⚠️ Include suffix exceptions</span>
+          <span className="text-[11px] text-amber-800/80">
+            Flashcards will draw only from tricky exception words ({SUFFIX_EXCEPTION_WORDS.length} words)
+          </span>
+        </span>
+        <span
+          className="relative inline-block h-6 w-11 rounded-full transition"
+          style={{ backgroundColor: exceptionsOnly ? "var(--das)" : "var(--muted)" }}
+          onClick={e => { e.preventDefault(); setExceptionsOnly(v => !v); }}
+        >
+          <span
+            className="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all"
+            style={{ left: exceptionsOnly ? "1.375rem" : "0.125rem" }}
+          />
+        </span>
+        <input type="checkbox" className="sr-only" checked={exceptionsOnly} onChange={e => setExceptionsOnly(e.target.checked)} />
+      </label>
 
       <div className="mt-5 space-y-3">
         {tiles.map(t => (
