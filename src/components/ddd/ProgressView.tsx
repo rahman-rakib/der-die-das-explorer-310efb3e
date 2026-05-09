@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ARTICLE_META, PRACTICE_WORDS, type Article } from "@/data/words";
+import { ARTICLE_META, MEMORY_SCENES, PRACTICE_WORDS, type Article } from "@/data/words";
 import { loadProgress, resetProgress, type Progress } from "@/lib/progress";
 import { ArticleBadge } from "./ArticleBadge";
 
