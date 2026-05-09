@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { ARTICLE_META, RULES, type Article } from "@/data/words";
+import { AnimatePresence, motion } from "framer-motion";
+import { ARTICLE_META, RULES, type Article, type SuffixEntry } from "@/data/words";
 import { ArticleBadge, WordPill } from "./ArticleBadge";
 import { useState } from "react";
 
