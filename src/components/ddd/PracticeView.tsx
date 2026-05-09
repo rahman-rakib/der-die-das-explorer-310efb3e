@@ -53,8 +53,11 @@ function ArticleButtons({ onPick, disabled, correctReveal }: {
 }
 
 /* ---------- FLASHCARDS ---------- */
-function Flashcards({ onExit }: { onExit: () => void }) {
-  const deck = useMemo(() => shuffle(PRACTICE_WORDS).slice(0, 10), []);
+function Flashcards({ onExit, exceptionsOnly }: { onExit: () => void; exceptionsOnly: boolean }) {
+  const deck = useMemo(
+    () => shuffle(exceptionsOnly ? SUFFIX_EXCEPTION_WORDS : PRACTICE_WORDS).slice(0, 10),
+    [exceptionsOnly],
+  );
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState<"right" | "wrong" | null>(null);
