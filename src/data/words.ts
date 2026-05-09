@@ -302,6 +302,20 @@ export const SCENES: Scene[] = [
 ];
 
 // Practice pool — flat list of words across all categories
+export const SUFFIX_EXCEPTION_WORDS: Word[] = (() => {
+  const seen = new Set<string>();
+  const all: Word[] = [];
+  RULES.forEach(r => r.suffixes?.forEach(s => {
+    s.exceptions?.words?.forEach(x => {
+      const k = x.article + ":" + x.word;
+      if (seen.has(k)) return;
+      seen.add(k);
+      all.push(x);
+    });
+  }));
+  return all;
+})();
+
 export const PRACTICE_WORDS: Word[] = (() => {
   const seen = new Set<string>();
   const all: Word[] = [];
@@ -313,7 +327,11 @@ export const PRACTICE_WORDS: Word[] = (() => {
   };
   RULES.forEach(r => {
     r.words.forEach(push);
-    r.suffixes?.forEach(s => push(s.example));
+    r.suffixes?.forEach(s => {
+      push(s.example);
+      s.examples?.forEach(push);
+      s.exceptions?.words?.forEach(push);
+    });
   });
   SCENES.forEach(s => s.words.forEach(push));
   return all;
