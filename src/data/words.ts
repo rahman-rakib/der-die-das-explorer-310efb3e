@@ -437,6 +437,7 @@ export const PRACTICE_WORDS: Word[] = (() => {
     });
   });
   SCENES.forEach(s => s.words.forEach(push));
+  MEMORY_SCENES.forEach(s => s.words.forEach(push));
   return all;
 })();
 
