@@ -9,6 +9,7 @@ export interface Progress {
   totalSeen: number;
   streak: number;
   lastDay: string | null;
+  scenesMastered: string[];
 }
 
 const empty = (): Progress => ({
@@ -17,6 +18,7 @@ const empty = (): Progress => ({
   totalSeen: 0,
   streak: 0,
   lastDay: null,
+  scenesMastered: [],
 });
 
 export function loadProgress(): Progress {
@@ -56,4 +58,13 @@ export function recordAnswer(article: Article, word: string, correct: boolean) {
 
 export function resetProgress() {
   if (typeof window !== "undefined") localStorage.removeItem(KEY);
+}
+
+export function markSceneMastered(id: string) {
+  const p = loadProgress();
+  if (!p.scenesMastered.includes(id)) {
+    p.scenesMastered.push(id);
+    saveProgress(p);
+  }
+  return p;
 }
