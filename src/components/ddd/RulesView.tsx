@@ -58,6 +58,7 @@ const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: st
 
 export function RulesView() {
   const [tab, setTab] = useState<Article>("der");
+  const [view, setView] = useState<"thematic" | "suffix">("thematic");
   const meta = ARTICLE_META[tab];
   const rules = RULES.filter(r => r.article === tab).slice().sort((a, b) => b.accuracy - a.accuracy);
 
@@ -70,7 +71,7 @@ export function RulesView() {
         </p>
       </div>
 
-      <div className="sticky top-0 z-20 mt-4 bg-background/85 px-4 py-3 backdrop-blur">
+      <div className="sticky top-0 z-20 mt-4 space-y-2 bg-background/85 px-4 py-3 backdrop-blur">
         <div className="grid grid-cols-3 gap-2 rounded-2xl bg-muted p-1">
           {TABS.map(t => {
             const active = t === tab;
@@ -97,6 +98,33 @@ export function RulesView() {
             );
           })}
         </div>
+
+        <div className="grid grid-cols-2 gap-1.5 rounded-xl bg-muted p-1">
+          {([
+            { id: "thematic", label: "🎨 Thematic" },
+            { id: "suffix", label: "🔤 Suffix" },
+          ] as const).map(v => {
+            const active = view === v.id;
+            return (
+              <button
+                key={v.id}
+                onClick={() => setView(v.id)}
+                className="relative rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition"
+                style={{ color: active ? `var(--${meta.fg})` : undefined }}
+              >
+                {active && (
+                  <motion.div
+                    layoutId="rulesViewPill"
+                    className="absolute inset-0 rounded-lg shadow-sm"
+                    style={{ backgroundColor: `var(--${meta.color})` }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative">{v.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div
@@ -104,36 +132,32 @@ export function RulesView() {
         style={{ backgroundColor: `var(--${meta.soft})` }}
       >
         <p className="text-sm font-semibold" style={{ color: `var(--${meta.color})` }}>
-          {meta.icon} {meta.label.toUpperCase()} — suffix rules, strongest first
+          {meta.icon} {meta.label.toUpperCase()} —{" "}
+          {view === "thematic" ? "thematic groups" : "suffix rules, strongest first"}
         </p>
       </div>
 
-      <ThematicGroups article={tab} />
-
-      <div className="mx-4 mt-6 mb-2 flex items-center gap-2">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-          Suffix rules
-        </span>
-        <span className="h-px flex-1 bg-border" />
-      </div>
-
-      <div className="mt-2 space-y-3 px-4">
-        {rules.map((r, i) => (
-          <motion.div
-            key={r.suffix}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.03 }}
-          >
-            <RuleCard rule={r} />
-          </motion.div>
-        ))}
-        {rules.length === 0 && (
-          <p className="rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
-            No suffix rules in dataset for this gender.
-          </p>
-        )}
-      </div>
+      {view === "thematic" ? (
+        <ThematicGroups article={tab} />
+      ) : (
+        <div className="mt-4 space-y-3 px-4">
+          {rules.map((r, i) => (
+            <motion.div
+              key={r.suffix}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.03 }}
+            >
+              <RuleCard rule={r} />
+            </motion.div>
+          ))}
+          {rules.length === 0 && (
+            <p className="rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+              No suffix rules in dataset for this gender.
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
