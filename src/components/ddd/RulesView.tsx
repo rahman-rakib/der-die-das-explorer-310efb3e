@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import rulesData from "@/data/rules.json";
-import { ARTICLE_META, type Article } from "@/data/words";
+import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
 
 type Tier = "ironclad" | "strong" | "weak";
@@ -108,7 +108,16 @@ export function RulesView() {
         </p>
       </div>
 
-      <div className="mt-4 space-y-3 px-4">
+      <ThematicGroups article={tab} />
+
+      <div className="mx-4 mt-6 mb-2 flex items-center gap-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+          Suffix rules
+        </span>
+        <span className="h-px flex-1 bg-border" />
+      </div>
+
+      <div className="mt-2 space-y-3 px-4">
         {rules.map((r, i) => (
           <motion.div
             key={r.suffix}
@@ -124,6 +133,63 @@ export function RulesView() {
             No suffix rules in dataset for this gender.
           </p>
         )}
+      </div>
+    </div>
+  );
+}
+
+function ThematicGroups({ article }: { article: Article }) {
+  const meta = ARTICLE_META[article];
+  const groups = THEMATIC_RULES.filter(g => g.article === article && !g.suffixes);
+  if (groups.length === 0) return null;
+  return (
+    <div className="mt-5 px-4">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+          Thematic groups
+        </span>
+        <span className="h-px flex-1 bg-border" />
+      </div>
+      <div className="space-y-3">
+        {groups.map((g, i) => (
+          <motion.div
+            key={g.title}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.03 }}
+            className="overflow-hidden rounded-3xl border bg-card shadow-sm"
+            style={{ borderColor: `var(--${meta.color})` }}
+          >
+            <div
+              className="flex items-center gap-3 px-4 py-3"
+              style={{ backgroundColor: `var(--${meta.soft})` }}
+            >
+              <span className="text-3xl">{g.emoji}</span>
+              <h3 className="text-base font-bold leading-tight">{g.title}</h3>
+            </div>
+            <div className="space-y-2 p-4">
+              {g.note && (
+                <p className="rounded-xl bg-muted px-3 py-2 text-xs italic">💡 {g.note}</p>
+              )}
+              {g.words.length > 0 && (
+                <div className="grid grid-cols-1 gap-2">
+                  {g.words.map(word => (
+                    <div key={word.word} className="flex items-center gap-3 rounded-xl bg-muted/40 px-3 py-2">
+                      <span className="text-2xl">{word.emoji ?? meta.icon}</span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <ArticleBadge article={word.article} size="sm" />
+                          <span className="truncate font-bold">{word.word}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{word.english}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
