@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import rulesData from "@/data/rules.json";
-import { ARTICLE_META, type Article } from "@/data/words";
+import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
 
 type Tier = "ironclad" | "strong" | "weak";
