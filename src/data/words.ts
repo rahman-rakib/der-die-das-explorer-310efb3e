@@ -251,6 +251,10 @@ export const RULES: RuleGroup[] = [
     words: [w("das","Deutsch","German","🇩🇪"), w("das","Englisch","English","🇬🇧"), w("das","A","letter A","🅰️"), w("das","B","letter B","🅱️")],
   },
   {
+    article: "das", title: "Colours", emoji: "🎨",
+    words: [w("das","Rot","red","🔴"), w("das","Gelb","yellow","🟡"), w("das","Blau","blue","🔵")],
+  },
+  {
     article: "das", title: "Infinitives used as nouns", emoji: "🏃",
     note: "Any verb infinitive (ending in -en) used as a noun is ALWAYS das. Real -en nouns (not from verbs) like der Garten are DER — see the der tab.",
     words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤"), w("das","Lachen","laughter","😂"), w("das","Schreiben","writing","✍️")],
