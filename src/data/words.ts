@@ -119,14 +119,6 @@ export const RULES: RuleGroup[] = [
       { suffix: "-ant", example: w("der","Elefant","elephant") },
       { suffix: "-ent", example: w("der","Student","student") },
   {
-    article: "das", title: "Year, age & long time periods", emoji: "🗓️",
-    note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Common exceptions are borrowed or Latinate terms.",
-    words: [
-      w("das","Jahr","year","📅"), w("das","Jahrzehnt","decade","🔟"), w("das","Jahrtausend","millennium","💎"),
-      w("das","Zeitalter","age/era","🏛️"), w("das","Mittelalter","Middle Ages","⚔️"),
-    ],
-  },
-  {
         suffix: "-or", example: w("der","Doktor","doctor"),
         examples: [w("der","Doktor","doctor"), w("der","Motor","motor"), w("der","Faktor","factor"), w("der","Reaktor","reactor")],
         exceptions: {
