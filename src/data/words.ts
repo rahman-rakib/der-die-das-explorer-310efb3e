@@ -165,6 +165,13 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Motorcycle brands", emoji: "🏍️",
+    note: "Motorcycle brands are feminine — even BMW when it's a motorbike!",
+    words: [
+      w("die","Harley-Davidson","Harley-Davidson","🏍️"), w("die","Yamaha","Yamaha"), w("die","BMW","BMW (motorcycle)"),
+    ],
+  },
+  {
     article: "die", title: "Word endings → DIE", emoji: "🔤",
     words: [],
     suffixes: [
