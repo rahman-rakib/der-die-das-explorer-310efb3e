@@ -40,7 +40,7 @@ export const RULES: RuleGroup[] = [
   // DER
   {
     article: "der", title: "Male people & animals", emoji: "🧔",
-    words: [w("der","Mann","man","🧔"), w("der","Stier","bull","🐂"), w("der","König","king","👑"), w("der","Vater","father","👨"), w("der","Hahn","rooster","🐓"), w("der","Löwe","lion","🦁")],
+    words: [w("der","Mann","man","🧔"), w("der","Stier","bull","🐂"), w("der","König","king","👑"), w("der","Vater","father","👨"), w("der","Hahn","rooster","🐓"), w("der","Löwe","lion","🦁"), w("der","Riese","giant","👹")],
   },
   {
     article: "der", title: "Professions, occupations & roles", emoji: "👨‍💼",
