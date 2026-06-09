@@ -30,6 +30,7 @@ export interface RuleGroup {
   words: Word[];
   suffixes?: SuffixEntry[];
   note?: string;
+  image?: string;
 }
 
 const w = (article: Article, word: string, english: string, emoji?: string): Word => ({
