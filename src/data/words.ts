@@ -227,7 +227,7 @@ export const RULES: RuleGroup[] = [
 
   {
     article: "das", title: "Year, age & long time periods", emoji: "🗓️",
-    note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Common exceptions are borrowed or Latinate terms.",
+    note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Exceptions: die Dekade (decade), die Epoche (epoch), die Ära (era).",
     words: [
       w("das","Jahr","year","📅"), w("das","Jahrzehnt","decade","🔟"), w("das","Jahrtausend","millennium","💎"),
       w("das","Zeitalter","age/era","🏛️"), w("das","Mittelalter","Middle Ages","⚔️"),
