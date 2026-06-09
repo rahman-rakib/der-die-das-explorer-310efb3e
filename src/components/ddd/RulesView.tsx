@@ -195,16 +195,6 @@ function ThematicGroups({ article }: { article: Article }) {
               {g.note && (
                 <p className="rounded-xl bg-muted px-3 py-2 text-xs italic">💡 {g.note}</p>
               )}
-              {g.image && (
-                <img
-                  src={THEMATIC_IMAGES[g.image]}
-                  alt={g.title}
-                  className="w-full rounded-2xl object-cover"
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                />
-              )}
               {g.words.length > 0 && (
                 <div className="grid grid-cols-1 gap-2">
                   {g.words.map(word => (
