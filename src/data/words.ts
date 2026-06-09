@@ -43,6 +43,14 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Mann","man","🧔"), w("der","Stier","bull","🐂"), w("der","Arzt","doctor","👨‍⚕️"), w("der","Vater","father","👨"), w("der","Hahn","rooster","🐓")],
   },
   {
+    article: "der", title: "Professions, occupations & roles", emoji: "👨‍💼",
+    note: "Professions, occupations, roles, and many function titles are grammatically masculine by default.",
+    words: [
+      w("der","Arzt","doctor","👨‍⚕️"), w("der","Pilot","pilot","✈️"), w("der","Ingenieur","engineer","⚙️"),
+      w("der","Professor","professor","🎓"), w("der","Politiker","politician","🏛️"),
+    ],
+  },
+  {
     article: "der", title: "Days, months & seasons", emoji: "📅",
     words: [w("der","Montag","Monday","📅"), w("der","April","April","🌸"), w("der","Sommer","summer","☀️"), w("der","Winter","winter","❄️"), w("der","Freitag","Friday","🗓")],
   },
