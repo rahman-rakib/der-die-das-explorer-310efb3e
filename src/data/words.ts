@@ -30,6 +30,7 @@ export interface RuleGroup {
   words: Word[];
   suffixes?: SuffixEntry[];
   note?: string;
+  image?: string;
 }
 
 const w = (article: Article, word: string, english: string, emoji?: string): Word => ({
@@ -181,6 +182,7 @@ export const RULES: RuleGroup[] = [
   {
     article: "die", title: "Plural nouns — always die!", emoji: "🔢",
     note: "In the plural, ALL nouns use the definite article die, regardless of their singular gender.",
+    image: "plural-rule",
     words: [
       w("die","Männer","plural of der Mann → the men","👨"), w("die","Frauen","plural of die Frau → the women","👩"),
       w("die","Kinder","plural of das Kind → the children","🧒"), w("die","Tische","plural of der Tisch → the tables","🪑"),
