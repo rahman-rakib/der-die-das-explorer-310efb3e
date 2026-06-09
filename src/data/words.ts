@@ -58,10 +58,8 @@ export const RULES: RuleGroup[] = [
     article: "der", title: "Real nouns ending in -en", emoji: "🌿",
     note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
     words: [
-      w("der","Regen","rain","🌧"), w("der","Wagen","car/cart","🚗"), w("der","Hafen","harbour","⚓"),
       w("der","Garten","garden","🌿"), w("der","Ofen","oven","🔥"), w("der","Boden","floor/ground","🪵"),
-      w("der","Faden","thread","🧵"), w("der","Laden","shop","🏪"), w("der","Samen","seed","🌱"),
-      w("der","Kuchen","cake","🍰"), w("der","Haken","hook","🪝"),
+      w("der","Laden","shop","🏪"), w("der","Kuchen","cake","🍰"),
     ],
   },
   {
