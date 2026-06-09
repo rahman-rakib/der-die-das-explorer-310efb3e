@@ -269,6 +269,13 @@ export const RULES: RuleGroup[] = [
   },
 
   {
+    article: "das", title: "Fractions", emoji: "📐",
+    note: "Most fractions are neuter. Exception: die Hälfte (half).",
+    words: [
+      w("das","Drittel","third (⅓)","📐"), w("das","Viertel","quarter (¼)","📏"),
+    ],
+  },
+  {
     article: "das", title: "Year, age & long time periods", emoji: "🗓️",
     note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Exceptions: die Dekade (decade), die Epoche (epoch), die Ära (era).",
     words: [
