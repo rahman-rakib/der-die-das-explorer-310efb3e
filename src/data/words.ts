@@ -68,6 +68,15 @@ export const RULES: RuleGroup[] = [
     article: "der", title: "Car brands", emoji: "🚗",
     words: [w("der","BMW","BMW","🚗"), w("der","Mercedes","Mercedes"), w("der","Porsche","Porsche"), w("der","VW","Volkswagen")],
   },
+  {
+    article: "der", title: "Electronic devices & appliances", emoji: "🔌",
+    note: "Most electronic devices and appliances are DER. Common exceptions: das Handy (mobile phone), das Tablet, das Radio; die Lampe (lamp), die Waschmaschine (washing machine).",
+    words: [
+      w("der","Computer","computer","💻"), w("der","Monitor","monitor","🖥️"), w("der","Drucker","printer","🖨️"),
+      w("der","Fernseher","TV","📺"), w("der","Laptop","laptop","💻"), w("der","Kühlschrank","fridge","❄️"),
+      w("der","Herd","stove","🔥"), w("der","Toaster","toaster","🍞"), w("der","Föhn","hair dryer","💨"),
+    ],
+  },
 
   {
     article: "der", title: "Word endings → DER", emoji: "🔤",
