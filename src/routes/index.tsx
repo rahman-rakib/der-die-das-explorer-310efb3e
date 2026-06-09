@@ -7,6 +7,7 @@ import { MnemonicsView } from "@/components/ddd/MnemonicsView";
 import { PracticeView } from "@/components/ddd/PracticeView";
 import { ProgressView } from "@/components/ddd/ProgressView";
 import { MemoryScenesView } from "@/components/ddd/MemoryScenesView";
+import { SpecialCasesView } from "@/components/ddd/SpecialCasesView";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -62,6 +63,7 @@ function Index() {
               {tab === "rules" && <RulesView />}
               {tab === "scenes" && <MemoryScenesView />}
               {tab === "mnemonics" && <MnemonicsView />}
+              {tab === "special" && <SpecialCasesView />}
               {tab === "practice" && <PracticeView />}
               {tab === "progress" && <ProgressView />}
             </motion.div>
