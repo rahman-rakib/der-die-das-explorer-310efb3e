@@ -148,6 +148,14 @@ export const RULES: RuleGroup[] = [
     words: [w("die","Eins","one","1️⃣"), w("die","Zwei","two","2️⃣"), w("die","Million","million","🔢"), w("die","Milliarde","billion")],
   },
   {
+    article: "die", title: "Clock units & time measurement", emoji: "⏰",
+    note: "Units of time on a clock — hour, minute, second — are mostly feminine.",
+    words: [
+      w("die","Stunde","hour","⏰"), w("die","Minute","minute","🕐"), w("die","Sekunde","second","⏱️"),
+      w("die","Uhr","clock/watch","🕰️"),
+    ],
+  },
+  {
     article: "die", title: "Word endings → DIE", emoji: "🔤",
     words: [],
     suffixes: [
