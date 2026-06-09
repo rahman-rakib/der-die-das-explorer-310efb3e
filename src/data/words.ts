@@ -118,7 +118,7 @@ export const RULES: RuleGroup[] = [
       { suffix: "-ist", example: w("der","Pianist","pianist"), exceptions: { ironclad: true } },
       { suffix: "-ant", example: w("der","Elefant","elephant") },
       { suffix: "-ent", example: w("der","Student","student") },
-      {
+  {
         suffix: "-or", example: w("der","Doktor","doctor"),
         examples: [w("der","Doktor","doctor"), w("der","Motor","motor"), w("der","Faktor","factor"), w("der","Reaktor","reactor")],
         exceptions: {
@@ -225,6 +225,14 @@ export const RULES: RuleGroup[] = [
     words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤"), w("das","Lachen","laughter","😂"), w("das","Schreiben","writing","✍️")],
   },
 
+  {
+    article: "das", title: "Year, age & long time periods", emoji: "🗓️",
+    note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Exceptions: die Dekade (decade), die Epoche (epoch), die Ära (era).",
+    words: [
+      w("das","Jahr","year","📅"), w("das","Jahrzehnt","decade","🔟"), w("das","Jahrtausend","millennium","💎"),
+      w("das","Zeitalter","age/era","🏛️"), w("das","Mittelalter","Middle Ages","⚔️"),
+    ],
+  },
   {
     article: "das", title: "Non-agent -er nouns", emoji: "🪟",
     note: "Not all -er nouns are agents (people who do the action). When -er is part of the root word — not a verb-derived agent suffix — the noun is usually DAS.",
