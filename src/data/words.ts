@@ -226,6 +226,14 @@ export const RULES: RuleGroup[] = [
   },
 
   {
+    article: "das", title: "Year, age & long time periods", emoji: "🗓️",
+    note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Common exceptions are borrowed or Latinate terms.",
+    words: [
+      w("das","Jahr","year","📅"), w("das","Jahrzehnt","decade","🔟"), w("das","Jahrtausend","millennium","💎"),
+      w("das","Zeitalter","age/era","🏛️"), w("das","Mittelalter","Middle Ages","⚔️"),
+    ],
+  },
+  {
     article: "das", title: "Non-agent -er nouns", emoji: "🪟",
     note: "Not all -er nouns are agents (people who do the action). When -er is part of the root word — not a verb-derived agent suffix — the noun is usually DAS.",
     words: [
