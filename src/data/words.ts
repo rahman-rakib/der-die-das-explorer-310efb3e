@@ -179,6 +179,15 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Plural nouns — always die!", emoji: "🔢",
+    note: "In the plural, ALL nouns use the definite article die, regardless of their singular gender.",
+    words: [
+      w("die","Männer","plural of der Mann → the men","👨"), w("die","Frauen","plural of die Frau → the women","👩"),
+      w("die","Kinder","plural of das Kind → the children","🧒"), w("die","Tische","plural of der Tisch → the tables","🪑"),
+      w("die","Lehrer","plural of der Lehrer → the teachers","👨‍🏫"), w("die","Autos","plural of das Auto → the cars","🚗"),
+    ],
+  },
+  {
     article: "die", title: "Word endings → DIE", emoji: "🔤",
     words: [],
     suffixes: [
