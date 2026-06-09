@@ -70,7 +70,7 @@ export const RULES: RuleGroup[] = [
     article: "der", title: "Electronic devices & appliances", emoji: "🔌",
     note: "Most electronic devices and appliances are DER. Common exceptions: das Handy (mobile phone), das Tablet, das Radio; die Lampe (lamp), die Waschmaschine (washing machine).",
     words: [
-      w("der","Computer","computer","💻"), w("der","Monitor","monitor","🖥️"), w("der","Drucker","printer","🖨️"),
+      w("der","Computer","computer","💻"), w("der","Monitor","monitor","🖥️"),
       w("der","Fernseher","TV","📺"), w("der","Laptop","laptop","💻"), w("der","Kühlschrank","fridge","❄️"),
       w("der","Herd","stove","🔥"), w("der","Toaster","toaster","🍞"), w("der","Föhn","hair dryer","💨"),
     ],
@@ -79,10 +79,10 @@ export const RULES: RuleGroup[] = [
   {
     article: "der", title: "Nouns from verbs ending in -er", emoji: "🔧",
     words: [
-      w("der","Lehrer","teacher","👨‍🏫"), w("der","Fahrer","driver","🚗"), w("der","Schüler","pupil","🎒"),
-      w("der","Bäcker","baker","🥖"), w("der","Fischer","fisherman","🎣"), w("der","Maler","painter","🎨"),
-      w("der","Sänger","singer","🎤"), w("der","Schwimmer","swimmer","🏊"), w("der","Denker","thinker","🤔"),
-      w("der","Drucker","printer","🖨️"),
+      w("der","Lehrer","teacher","👨‍🏫"), w("der","Fahrer","driver","🚗"),
+      w("der","Bäcker","baker","🥖"), w("der","Fischer","fisherman","🎣"),
+      w("der","Sänger","singer","🎤"), w("der","Drucker","printer","🖨️"),
+      w("der","Staubsauger","vacuum cleaner","🧹"),
     ],
   },
 
