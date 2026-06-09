@@ -79,6 +79,16 @@ export const RULES: RuleGroup[] = [
   },
 
   {
+    article: "der", title: "Nouns from verbs ending in -er", emoji: "🔧",
+    note: "Nouns formed by adding -er to a verb (the person or thing that does the action) are almost always DER.",
+    words: [
+      w("der","Lehrer","teacher","👨‍🏫"), w("der","Fahrer","driver","🚗"), w("der","Schüler","pupil","🎒"),
+      w("der","Bäcker","baker","🥖"), w("der","Fischer","fisherman","🎣"), w("der","Maler","painter","🎨"),
+      w("der","Sänger","singer","🎤"), w("der","Schwimmer","swimmer","🏊"), w("der","Denker","thinker","🤔"),
+    ],
+  },
+
+  {
     article: "der", title: "Word endings → DER", emoji: "🔤",
     words: [],
     suffixes: [
