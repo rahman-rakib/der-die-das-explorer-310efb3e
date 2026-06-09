@@ -3,11 +3,6 @@ import { useState } from "react";
 import rulesData from "@/data/rules.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
-import pluralRuleImage from "@/assets/plural-rule.png";
-
-const THEMATIC_IMAGES: Record<string, string> = {
-  "plural-rule": pluralRuleImage,
-};
 
 type Tier = "ironclad" | "strong" | "weak";
 
@@ -199,16 +194,6 @@ function ThematicGroups({ article }: { article: Article }) {
             <div className="space-y-2 p-4">
               {g.note && (
                 <p className="rounded-xl bg-muted px-3 py-2 text-xs italic">💡 {g.note}</p>
-              )}
-              {g.image && (
-                <img
-                  src={THEMATIC_IMAGES[g.image]}
-                  alt={g.title}
-                  className="w-full rounded-2xl object-cover"
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                />
               )}
               {g.words.length > 0 && (
                 <div className="grid grid-cols-1 gap-2">
