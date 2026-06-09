@@ -55,9 +55,20 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Norden","north","🧭"), w("der","Süden","south"), w("der","Osten","east"), w("der","Westen","west")],
   },
   {
+    article: "der", title: "Real nouns ending in -en", emoji: "🌿",
+    note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
+    words: [
+      w("der","Regen","rain","🌧"), w("der","Wagen","car/cart","🚗"), w("der","Hafen","harbour","⚓"),
+      w("der","Garten","garden","🌿"), w("der","Ofen","oven","🔥"), w("der","Boden","floor/ground","🪵"),
+      w("der","Faden","thread","🧵"), w("der","Laden","shop","🏪"), w("der","Samen","seed","🌱"),
+      w("der","Kuchen","cake","🍰"), w("der","Haken","hook","🪝"),
+    ],
+  },
+  {
     article: "der", title: "Car brands", emoji: "🚗",
     words: [w("der","BMW","BMW","🚗"), w("der","Mercedes","Mercedes"), w("der","Porsche","Porsche"), w("der","VW","Volkswagen")],
   },
+
   {
     article: "der", title: "Word endings → DER", emoji: "🔤",
     words: [],
@@ -185,8 +196,10 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "das", title: "Infinitives used as nouns", emoji: "🏃",
-    words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤")],
+    note: "Any verb infinitive (ending in -en) used as a noun is ALWAYS das. Real -en nouns (not from verbs) like der Garten are DER — see the der tab.",
+    words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤"), w("das","Lachen","laughter","😂"), w("das","Schreiben","writing","✍️")],
   },
+
   {
     article: "das", title: "Word endings → DAS", emoji: "🔤",
     words: [],
@@ -206,21 +219,8 @@ export const RULES: RuleGroup[] = [
       { suffix: "-ma", example: w("das","Thema","topic") },
       { suffix: "-o", example: w("das","Auto","car") },
       { suffix: "-nis", example: w("das","Ergebnis","result"), exceptions: { mnemonic: "Mostly DAS, but a few feminine -nis nouns sneak in.", illustration: ["💚","🚧"], words: [w("die","Erlaubnis","permission"), w("die","Kenntnis","knowledge"), w("die","Finsternis","darkness")] } },
-      {
-        suffix: "-en (real nouns)", example: w("das","Essen","eating/food"),
-        examples: [w("das","Essen","food"), w("das","Leben","life"), w("das","Schreiben","writing"), w("das","Lachen","laughter"), w("das","Laufen","running")],
-        exceptions: {
-          mnemonic: "Rain (Regen), car (Wagen), harbour (Hafen), garden (Garten), oven (Ofen) — the men of the house are all DER.",
-          illustration: ["🌧️","🚗","⚓","🌿","🔥"],
-          words: [
-            w("der","Regen","rain"), w("der","Wagen","car/cart"), w("der","Hafen","harbour"), w("der","Boden","floor/ground"),
-            w("der","Ofen","oven"), w("der","Garten","garden"), w("der","Faden","thread"), w("der","Laden","shop"),
-            w("der","Samen","seed"), w("der","Kuchen","cake"), w("der","Haken","hook"),
-          ],
-          note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER.",
-          noteTone: "der",
-        },
-      },
+
+
     ],
   },
 ];
