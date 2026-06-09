@@ -155,6 +155,7 @@ export const RULES: RuleGroup[] = [
       w("die","Uhr","clock/watch","🕰️"),
     ],
   },
+  {
     article: "die", title: "Word endings → DIE", emoji: "🔤",
     words: [],
     suffixes: [
