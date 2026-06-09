@@ -3,11 +3,6 @@ import { useState } from "react";
 import rulesData from "@/data/rules.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
-import pluralRuleImage from "@/assets/plural-rule.png";
-
-const THEMATIC_IMAGES: Record<string, string> = {
-  "plural-rule": pluralRuleImage,
-};
 
 type Tier = "ironclad" | "strong" | "weak";
 
