@@ -185,7 +185,7 @@ export const RULES: RuleGroup[] = [
     words: [
       w("die","Männer","plural of der Mann → the men","👨"), w("die","Frauen","plural of die Frau → the women","👩"),
       w("die","Kinder","plural of das Kind → the children","🧒"), w("die","Tische","plural of der Tisch → the tables","🪑"),
-      w("die","Lehrer","plural of der Lehrer → the teachers","👨‍🏫"), w("die","Autos","plural of das Auto → the cars","🚗"),
+      w("die","Lehrer","plural of der Lehrer → the teachers","🎓"), w("die","Autos","plural of das Auto → the cars","🚗"),
     ],
   },
   {
