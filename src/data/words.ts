@@ -165,6 +165,13 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Ships & vessels", emoji: "🚢",
+    note: "Ships and vessels are always feminine, even when named after men.",
+    words: [
+      w("die","Titanic","Titanic (RMS Titanic)","🚢"), w("die","Bismarck","German battleship"), w("die","Queen Mary 2","ocean liner"),
+    ],
+  },
+  {
     article: "die", title: "Motorcycle brands", emoji: "🏍️",
     note: "Motorcycle brands are feminine — even BMW when it's a motorbike!",
     words: [
