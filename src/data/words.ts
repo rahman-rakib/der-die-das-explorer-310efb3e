@@ -150,7 +150,7 @@ export const RULES: RuleGroup[] = [
     words: [w("die","Frau","woman","👩"), w("die","Mutter","mother","👩‍🦰"), w("die","Tochter","daughter","👧"), w("die","Ärztin","doctor (f)","👩‍⚕️"), w("die","Friseuse","hairdresser (f)","💇‍♀️"), w("die","Henne","hen","🐔"), w("die","Kuh","cow","🐄")],
   },
   {
-    article: "die", title: "Most flowers, trees & plants", emoji: "🌹",
+    article: "die", title: "Flowers, trees & plants", emoji: "🌹",
     note: "Exceptions to remember:\n\n🌳 der Ahorn, der Bambus, der Kaktus\n\n🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Tulpe","tulip","🌷"), w("die","Birke","birch","🌲"), w("die","Sonnenblume","sunflower","🌻")],
   },
