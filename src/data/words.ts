@@ -155,7 +155,10 @@ export const RULES: RuleGroup[] = [
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🪻"), w("die","Distel","thistle","🌵")],
   },
   {
-    article: "die", title: "Numbers used as nouns", emoji: "🔢",
+    article: "die", title: "European rivers", emoji: "🌊",
+    note: "Exceptions: der Rhein, der Main, der Neckar",
+    words: [w("die","Donau","Danube","🌊"), w("die","Elbe","Elbe","🌊"), w("die","Oder","Oder","🌊"), w("die","Seine","Seine","🌊")],
+  },
     words: [w("die","Eins","one","1️⃣"), w("die","Zwei","two","2️⃣"), w("die","Million","million","🔢"), w("die","Milliarde","billion")],
   },
   {
