@@ -296,22 +296,27 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "das", title: "Young animals & children", emoji: "👶",
+    note: "Young animals and the general words for child or baby are neuter.",
     words: [w("das","Baby","baby","👶"), w("das","Kind","child","🧒"), w("das","Lamm","lamb","🐑"), w("das","Küken","chick","🐥"), w("das","Kalb","calf","🐮")],
   },
   {
     article: "das", title: "Metals & chemical elements", emoji: "⚗️",
+    note: "Metals and chemical elements are neuter.",
     words: [w("das","Gold","gold","🥇"), w("das","Silber","silver","🥈"), w("das","Eisen","iron","⛓"), w("das","Kupfer","copper","🟠")],
   },
   {
     article: "das", title: "Languages & letters", emoji: "🌍",
+    note: "Names of languages and individual letters of the alphabet are neuter.",
     words: [w("das","Deutsch","German","🇩🇪"), w("das","Englisch","English","🇬🇧"), w("das","A","letter A","🅰️"), w("das","B","letter B","🅱️")],
   },
   {
     article: "das", title: "Colours", emoji: "🎨",
+    note: "Colour names used as nouns (the colour itself) are neuter.",
     words: [w("das","Rot","red","🔴"), w("das","Gelb","yellow","🟡"), w("das","Blau","blue","🔵")],
   },
   {
     article: "das", title: "Beer & beer variants", emoji: "🍺",
+    note: "Beer and its variants are neuter.",
     words: [w("das","Bier","beer","🍺"), w("das","Pils","pilsner","🍺"), w("das","Lager","lager","🍺"), w("das","Ale","ale","🍺"), w("das","Radler","shandy/radler","🍺")],
   },
   {
@@ -330,14 +335,16 @@ export const RULES: RuleGroup[] = [
 
   {
     article: "das", title: "Fractions", emoji: "📐",
-    note: "Most fractions are neuter. Exception: die Hälfte (half).",
+    note: "Most fractions are neuter.",
+    exceptions: "die Hälfte (half)",
     words: [
       w("das","Drittel","third (⅓)","📐"), w("das","Viertel","quarter (¼)","📏"),
     ],
   },
   {
     article: "das", title: "Year, age & long time periods", emoji: "🗓️",
-    note: "Year and its multiples, and 'age' as a measurement of time, are neuter. Exceptions: die Dekade (decade), die Epoche (epoch), die Ära (era).",
+    note: "Year and its multiples, and 'age' as a measurement of time, are neuter.",
+    exceptions: "die Dekade (decade), die Epoche (epoch), die Ära (era)",
     words: [
       w("das","Jahr","year","📅"), w("das","Jahrzehnt","decade","🔟"), w("das","Jahrtausend","millennium","💎"),
       w("das","Zeitalter","age/era","🏛️"), w("das","Mittelalter","Middle Ages","⚔️"),
