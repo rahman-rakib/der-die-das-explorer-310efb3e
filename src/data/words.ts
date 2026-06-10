@@ -42,6 +42,7 @@ export const RULES: RuleGroup[] = [
   // DER
   {
     article: "der", title: "Male people & animals", emoji: "🧔",
+    note: "Words referring to male humans and male animals are masculine.",
     words: [w("der","Mann","man","🧔"), w("der","Vater","father","👨"), w("der","König","king","👑"), w("der","Hahn","rooster","🐓"), w("der","Stier","bull","🐂"), w("der","Löwe","lion","🦁"), w("der","Riese","giant","👹")],
   },
   {
@@ -54,29 +55,35 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "der", title: "Days, months & seasons", emoji: "📅",
+    note: "Days of the week, months of the year, and seasons are all masculine.",
     words: [w("der","Montag","Monday","📅"), w("der","April","April","🌸"), w("der","Sommer","summer","☀️"), w("der","Winter","winter","❄️"), w("der","Freitag","Friday","🗓")],
   },
   {
     article: "der", title: "Weather & nature forces", emoji: "🌧",
+    note: "Weather phenomena and natural forces are typically masculine.",
     words: [w("der","Regen","rain","🌧"), w("der","Wind","wind","💨"), w("der","Schnee","snow","⛄"), w("der","Blitz","lightning","⚡"), w("der","Donner","thunder","🌩")],
   },
   {
     article: "der", title: "Compass directions", emoji: "🧭",
+    note: "The four compass directions are masculine.",
     words: [w("der","Norden","north","🧭"), w("der","Süden","south"), w("der","Osten","east"), w("der","Westen","west")],
   },
   {
     article: "der", title: "Mountains & mountain peaks", emoji: "🏔️",
-    note: "Exceptions: die Zugspitze, die Marmolada",
+    note: "Mountains and mountain peaks are usually masculine.",
+    exceptions: "die Zugspitze, die Marmolada",
     words: [w("der","Everest","Everest","🏔️"), w("der","Kilimandscharo","Kilimanjaro","🏔️"), w("der","Mont Blanc","Mont Blanc","🏔️")],
   },
   {
     article: "der", title: "Non-European rivers", emoji: "🌏",
-    note: "Exceptions: die Wolga, die Lena, die Jangtsekiang",
+    note: "Rivers outside Europe are generally masculine.",
+    exceptions: "die Wolga, die Lena, die Jangtsekiang",
     words: [w("der","Amazonas","Amazon","🌏"), w("der","Mississippi","Mississippi","🌏"), w("der","Nil","Nile","🌏"), w("der","Ganges","Ganges","🌏")],
   },
   {
     article: "der", title: "Wine-based drinks and spirits", emoji: "🍷",
-    note: "Exceptions: die Weinschorle, die Bowle, die Margarita",
+    note: "Wines and strong spirits are masculine.",
+    exceptions: "die Weinschorle, die Bowle, die Margarita",
     words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
   },
   {
@@ -89,11 +96,13 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "der", title: "Car brands", emoji: "🚗",
+    note: "Car brands are masculine (think: der Wagen — the car).",
     words: [w("der","BMW","BMW","🚗"), w("der","Mercedes","Mercedes"), w("der","Porsche","Porsche"), w("der","VW","Volkswagen")],
   },
   {
     article: "der", title: "Electronic devices & appliances", emoji: "🔌",
-    note: "Most electronic devices and appliances are DER. Common exceptions: das Handy (mobile phone), das Tablet, das Radio; die Lampe (lamp), die Waschmaschine (washing machine).",
+    note: "Most electronic devices and appliances are masculine.",
+    exceptions: "das Handy (mobile phone), das Tablet, das Radio; die Lampe (lamp), die Waschmaschine (washing machine)",
     words: [
       w("der","Computer","computer","💻"), w("der","Monitor","monitor","🖥️"),
       w("der","Fernseher","TV","📺"), w("der","Laptop","laptop","💻"), w("der","Kühlschrank","fridge","❄️"),
@@ -103,6 +112,7 @@ export const RULES: RuleGroup[] = [
 
   {
     article: "der", title: "Nouns from verbs ending in -er", emoji: "🔧",
+    note: "Agent nouns formed from verbs with the -er suffix (the person/thing that does the action) are masculine.",
     words: [
       w("der","Lehrer","teacher","👨‍🏫"), w("der","Fahrer","driver","🚗"),
       w("der","Bäcker","baker","🥖"), w("der","Fischer","fisherman","🎣"),
