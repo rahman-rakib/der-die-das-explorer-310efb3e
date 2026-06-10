@@ -70,6 +70,7 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "der", title: "Alcoholic beverages", emoji: "🍷",
+    note: "Exceptions: beer is neuter (das Bier, das Pils, das Lager). Mixed drinks are feminine (die Schorle, die Margarita).",
     words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
   },
   {
@@ -195,6 +196,10 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Mixed drinks", emoji: "🍹",
+    words: [w("die","Schorle","spritzer","🍹"), w("die","Margarita","margarita","🍹")],
+  },
+  {
     article: "die", title: "Plural nouns — always die!", emoji: "👥",
     note: "In the plural, ALL nouns use the definite article die, regardless of their singular gender.",
     words: [
@@ -270,6 +275,10 @@ export const RULES: RuleGroup[] = [
   {
     article: "das", title: "Metals & chemical elements", emoji: "⚗️",
     words: [w("das","Gold","gold","🥇"), w("das","Silber","silver","🥈"), w("das","Eisen","iron","⛓"), w("das","Kupfer","copper","🟠")],
+  },
+  {
+    article: "das", title: "Beer", emoji: "🍺",
+    words: [w("das","Bier","beer","🍺"), w("das","Pils","pilsner","🍺"), w("das","Lager","lager","🍺")],
   },
   {
     article: "das", title: "Languages & letters", emoji: "🌍",
