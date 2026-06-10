@@ -70,6 +70,7 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "der", title: "Wine-based drinks and spirits", emoji: "🍷",
+    note: "Exceptions: die Weinschorle, die Margarita",
     words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
   },
   {
@@ -193,6 +194,10 @@ export const RULES: RuleGroup[] = [
     words: [
       w("die","Harley-Davidson","Harley-Davidson","🏍️"), w("die","Yamaha","Yamaha"), w("die","BMW","BMW (motorcycle)"),
     ],
+  },
+  {
+    article: "die", title: "Mixed drinks", emoji: "🍹",
+    words: [w("die","Weinschorle","wine spritzer","🍹"), w("die","Margarita","margarita","🍹")],
   },
   {
     article: "die", title: "Plural nouns — always die!", emoji: "👥",
