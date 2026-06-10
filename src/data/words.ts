@@ -285,6 +285,10 @@ export const RULES: RuleGroup[] = [
     words: [w("das","Rot","red","🔴"), w("das","Gelb","yellow","🟡"), w("das","Blau","blue","🔵")],
   },
   {
+    article: "das", title: "Beer & beer variants", emoji: "🍺",
+    words: [w("das","Bier","beer","🍺"), w("das","Pils","pilsner","🍺"), w("das","Lager","lager","🍺"), w("das","Ale","ale","🍺"), w("das","Radler","shandy/radler","🍺")],
+  },
+  {
     article: "das", title: "Nouns from adjectives (substantivized)", emoji: "✨",
     note: "When an adjective is turned into a noun to mean 'the [adjective] thing/concept', it is always neuter.",
     words: [
