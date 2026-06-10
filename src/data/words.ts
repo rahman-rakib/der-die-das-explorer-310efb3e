@@ -196,6 +196,10 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Mixed drinks", emoji: "🍹",
+    words: [w("die","Schorle","spritzer","🍹"), w("die","Margarita","margarita","🍹")],
+  },
+  {
     article: "die", title: "Plural nouns — always die!", emoji: "👥",
     note: "In the plural, ALL nouns use the definite article die, regardless of their singular gender.",
     words: [
