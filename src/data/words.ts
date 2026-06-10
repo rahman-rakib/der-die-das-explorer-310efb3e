@@ -30,6 +30,7 @@ export interface RuleGroup {
   words: Word[];
   suffixes?: SuffixEntry[];
   note?: string;
+  exceptions?: string;
   image?: string;
 }
 
