@@ -180,6 +180,15 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Academic subjects ending in -ie / -ik", emoji: "🎓",
+    note: "School and university subjects that end in -ie or -ik are feminine.",
+    words: [
+      w("die","Biologie","biology","🧬"), w("die","Philosophie","philosophy","🤔"),
+      w("die","Soziologie","sociology","🏘️"), w("die","Linguistik","linguistics","🗣️"),
+      w("die","Mathematik","mathematics","📐"),
+    ],
+  },
+  {
     article: "die", title: "Plural nouns — always die!", emoji: "👥",
     note: "In the plural, ALL nouns use the definite article die, regardless of their singular gender.",
     words: [
