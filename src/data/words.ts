@@ -277,6 +277,10 @@ export const RULES: RuleGroup[] = [
     words: [w("das","Gold","gold","🥇"), w("das","Silber","silver","🥈"), w("das","Eisen","iron","⛓"), w("das","Kupfer","copper","🟠")],
   },
   {
+    article: "das", title: "Beer", emoji: "🍺",
+    words: [w("das","Bier","beer","🍺"), w("das","Pils","pilsner","🍺"), w("das","Lager","lager","🍺")],
+  },
+  {
     article: "das", title: "Languages & letters", emoji: "🌍",
     words: [w("das","Deutsch","German","🇩🇪"), w("das","Englisch","English","🇬🇧"), w("das","A","letter A","🅰️"), w("das","B","letter B","🅱️")],
   },
