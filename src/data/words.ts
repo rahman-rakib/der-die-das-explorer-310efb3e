@@ -151,6 +151,7 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "die", title: "Most flowers, trees & plants", emoji: "🌹",
+    note: "Exceptions to remember:\n\n🌳 der Ahorn, der Bambus, der Kaktus\n\n🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Tulpe","tulip","🌷"), w("die","Birke","birch","🌲"), w("die","Sonnenblume","sunflower","🌻")],
   },
   {
