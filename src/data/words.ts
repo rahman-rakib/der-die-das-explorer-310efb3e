@@ -156,8 +156,8 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "die", title: "European rivers", emoji: "🌊",
-    note: "Exceptions: der Rhein, der Main, der Neckar",
-    words: [w("die","Donau","Danube","🌊"), w("die","Elbe","Elbe","🌊"), w("die","Oder","Oder","🌊"), w("die","Seine","Seine","🌊")],
+    note: "Exceptions: der Rhein, der Main, der Neckar, der Inn",
+    words: [w("die","Donau","Danube","🌊"), w("die","Elbe","Elbe","🌊"), w("die","Oder","Oder","🌊"), w("die","Havel","Havel","🌊")],
   },
   {
     article: "die", title: "Numbers used as nouns", emoji: "🔢",
