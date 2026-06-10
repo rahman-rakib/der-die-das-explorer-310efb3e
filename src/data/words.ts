@@ -152,7 +152,7 @@ export const RULES: RuleGroup[] = [
   {
     article: "die", title: "Flowers, trees & plants", emoji: "🌹",
     note: "Exceptions to remember:\n\n🌳 der Ahorn, der Bambus, der Kaktus\n\n🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
-    words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Tulpe","tulip","🌷"), w("die","Birke","birch","🌲"), w("die","Sonnenblume","sunflower","🌻")],
+    words: [w("die","Rose","rose","🌹"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🌺"), w("die","Distel","thistle","🌵"), w("die","Sonnenblume","sunflower","🌻")],
   },
   {
     article: "die", title: "Numbers used as nouns", emoji: "🔢",
