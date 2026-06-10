@@ -64,6 +64,12 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Norden","north","🧭"), w("der","Süden","south"), w("der","Osten","east"), w("der","Westen","west")],
   },
   {
+    article: "der", title: "Non-European rivers", emoji: "🌏",
+    note: "Exceptions: die Wolga, die Lena, die Jangtsekiang",
+    words: [w("der","Amazonas","Amazon","🌏"), w("der","Mississippi","Mississippi","🌏"), w("der","Nil","Nile","🌏"), w("der","Ganges","Ganges","🌏")],
+  },
+  {
+  {
     article: "der", title: "Real nouns ending in -en", emoji: "🌿",
     note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
     words: [
