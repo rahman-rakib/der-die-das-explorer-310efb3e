@@ -201,6 +201,10 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Mountain peaks (exceptions)", emoji: "🏔️",
+    words: [w("die","Zugspitze","Zugspitze","🏔️"), w("die","Marmolada","Marmolada","🏔️")],
+  },
+  {
     article: "die", title: "Mixed drinks", emoji: "🍹",
     words: [w("die","Weinschorle","wine spritzer","🍹"), w("die","Bowle","punch/bowl","🍹"), w("die","Margarita","margarita","🍹")],
   },
