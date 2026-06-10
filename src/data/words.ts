@@ -64,6 +64,11 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Norden","north","🧭"), w("der","Süden","south"), w("der","Osten","east"), w("der","Westen","west")],
   },
   {
+    article: "der", title: "Mountains & mountain peaks", emoji: "🏔️",
+    note: "Exceptions: die Zugspitze, die Marmolada",
+    words: [w("der","Everest","Everest","🏔️"), w("der","Kilimandscharo","Kilimanjaro","🏔️"), w("der","Mont Blanc","Mont Blanc","🏔️")],
+  },
+  {
     article: "der", title: "Non-European rivers", emoji: "🌏",
     note: "Exceptions: die Wolga, die Lena, die Jangtsekiang",
     words: [w("der","Amazonas","Amazon","🌏"), w("der","Mississippi","Mississippi","🌏"), w("der","Nil","Nile","🌏"), w("der","Ganges","Ganges","🌏")],
@@ -194,6 +199,10 @@ export const RULES: RuleGroup[] = [
     words: [
       w("die","Harley-Davidson","Harley-Davidson","🏍️"), w("die","Yamaha","Yamaha"), w("die","BMW","BMW (motorcycle)"),
     ],
+  },
+  {
+    article: "die", title: "Mountain peaks (exceptions)", emoji: "🏔️",
+    words: [w("die","Zugspitze","Zugspitze","🏔️"), w("die","Marmolada","Marmolada","🏔️")],
   },
   {
     article: "die", title: "Mixed drinks", emoji: "🍹",
