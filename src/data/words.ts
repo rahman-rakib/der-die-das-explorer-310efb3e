@@ -173,20 +173,24 @@ export const RULES: RuleGroup[] = [
   // DIE
   {
     article: "die", title: "Female people & animals", emoji: "👩",
+    note: "Words referring to female humans and female animals are feminine.",
     words: [w("die","Frau","woman","👩"), w("die","Mutter","mother","👩‍🦰"), w("die","Tochter","daughter","👧"), w("die","Ärztin","doctor (f)","👩‍⚕️"), w("die","Friseuse","hairdresser (f)","💇‍♀️"), w("die","Henne","hen","🐔"), w("die","Kuh","cow","🐄")],
   },
   {
     article: "die", title: "Flowers, trees & plants", emoji: "🌹",
-    note: "Exceptions to remember:\n\n🌳 der Ahorn, der Bambus, der Kaktus\n\n🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
+    note: "Most flowers, trees, and plants are feminine.",
+    exceptions: "🌳 der Ahorn, der Bambus, der Kaktus — 🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🪻"), w("die","Distel","thistle","🌵")],
   },
   {
     article: "die", title: "European rivers", emoji: "🌊",
-    note: "Exceptions: der Rhein, der Main, der Neckar, der Inn",
+    note: "Most European rivers are feminine.",
+    exceptions: "der Rhein, der Main, der Neckar, der Inn",
     words: [w("die","Donau","Danube","🌊"), w("die","Elbe","Elbe","🌊"), w("die","Oder","Oder","🌊"), w("die","Havel","Havel","🌊")],
   },
   {
     article: "die", title: "Numbers used as nouns", emoji: "🔢",
+    note: "Cardinal numbers used as nouns (the digit itself) are feminine.",
     words: [w("die","Eins","one","1️⃣"), w("die","Zwei","two","2️⃣"), w("die","Million","million","🔢"), w("die","Milliarde","billion")],
   },
   {
@@ -213,10 +217,12 @@ export const RULES: RuleGroup[] = [
   },
   {
     article: "die", title: "Mountain peaks (exceptions)", emoji: "🏔️",
+    note: "A small set of famous peaks break the masculine-mountain rule and take die.",
     words: [w("die","Zugspitze","Zugspitze","🏔️"), w("die","Marmolada","Marmolada","🏔️")],
   },
   {
     article: "die", title: "Mixed drinks", emoji: "🍹",
+    note: "Mixed and cocktail-style drinks tend to be feminine, breaking the masculine rule for wines and spirits.",
     words: [w("die","Weinschorle","wine spritzer","🍹"), w("die","Bowle","punch/bowl","🍹"), w("die","Margarita","margarita","🍹")],
   },
   {
