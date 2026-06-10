@@ -69,6 +69,10 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Amazonas","Amazon","🌏"), w("der","Mississippi","Mississippi","🌏"), w("der","Nil","Nile","🌏"), w("der","Ganges","Ganges","🌏")],
   },
   {
+    article: "der", title: "Alcoholic beverages", emoji: "🍷",
+    words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
+  },
+  {
     article: "der", title: "Real nouns ending in -en", emoji: "🌿",
     note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
     words: [
