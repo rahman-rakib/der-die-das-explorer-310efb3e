@@ -163,6 +163,7 @@ export const RULES: RuleGroup[] = [
     article: "die", title: "Numbers used as nouns", emoji: "🔢",
     words: [w("die","Eins","one","1️⃣"), w("die","Zwei","two","2️⃣"), w("die","Million","million","🔢"), w("die","Milliarde","billion")],
   },
+  {
     article: "die", title: "Clock units & time measurement", emoji: "⏰",
     note: "Units of time on a clock — hour, minute, second — are mostly feminine.",
     words: [
