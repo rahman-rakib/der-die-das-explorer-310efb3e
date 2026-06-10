@@ -159,11 +159,10 @@ export const RULES: RuleGroup[] = [
     note: "Exceptions: der Rhein, der Main, der Neckar",
     words: [w("die","Donau","Danube","🌊"), w("die","Elbe","Elbe","🌊"), w("die","Oder","Oder","🌊"), w("die","Seine","Seine","🌊")],
   },
-  },
   {
     article: "die", title: "Numbers used as nouns", emoji: "🔢",
     words: [w("die","Eins","one","1️⃣"), w("die","Zwei","two","2️⃣"), w("die","Million","million","🔢"), w("die","Milliarde","billion")],
-  {
+  },
     article: "die", title: "Clock units & time measurement", emoji: "⏰",
     note: "Units of time on a clock — hour, minute, second — are mostly feminine.",
     words: [
