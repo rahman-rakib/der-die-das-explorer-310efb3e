@@ -59,7 +59,7 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Montag","Monday","📅"), w("der","April","April","🌸"), w("der","Sommer","summer","☀️"), w("der","Winter","winter","❄️"), w("der","Freitag","Friday","🗓")],
   },
   {
-    article: "der", title: "times / parts of the day", emoji: "🌅",
+    article: "der", title: "parts of the day", emoji: "🌅",
     note: "Parts of the day are masculine.",
     exceptions: "die Nacht",
     words: [w("der","Morgen","morning","🌅"), w("der","Vormittag","late morning","🌄"), w("der","Mittag","noon/midday","☀️"), w("der","Nachmittag","afternoon","🌇"), w("der","Abend","evening","🌆")],
