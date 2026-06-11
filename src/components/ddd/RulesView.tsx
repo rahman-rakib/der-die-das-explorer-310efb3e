@@ -174,25 +174,8 @@ export function RulesView() {
 
       {view === "thematic" && <ThematicGroups article={tab} />}
       {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
-      {view === "suffix" && (
-        <div className="mt-4 space-y-3 px-4">
-          {rules.map((r, i) => (
-            <motion.div
-              key={r.suffix}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.03 }}
-            >
-              <RuleCard rule={r} />
-            </motion.div>
-          ))}
-          {rules.length === 0 && (
-            <p className="rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
-              No suffix rules in dataset for this gender.
-            </p>
-          )}
-        </div>
-      )}
+      {view === "suffix" && <SuffixBubbles article={tab} rules={rules} />}
+
     </div>
   );
 }
