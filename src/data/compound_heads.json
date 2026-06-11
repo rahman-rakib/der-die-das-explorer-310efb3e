@@ -15,10 +15,26 @@
         "count": 262,
         "exceptions": "das Schalttag (rare)",
         "examples": [
-          "Montag",
-          "Geburtstag",
-          "Feiertag",
-          "Alltag"
+          {
+            "word": "Montag",
+            "meaning": "Monday"
+          },
+          {
+            "word": "Geburtstag",
+            "meaning": "birthday"
+          },
+          {
+            "word": "Feiertag",
+            "meaning": "public holiday"
+          },
+          {
+            "word": "Alltag",
+            "meaning": "everyday life"
+          },
+          {
+            "word": "Sonntag",
+            "meaning": "Sunday"
+          }
         ]
       },
       {
@@ -26,10 +42,26 @@
         "accuracy": 100.0,
         "count": 225,
         "examples": [
-          "Zustand",
-          "Umstand",
-          "Verstand",
-          "Vorstand"
+          {
+            "word": "Zustand",
+            "meaning": "condition, state"
+          },
+          {
+            "word": "Umstand",
+            "meaning": "circumstance"
+          },
+          {
+            "word": "Verstand",
+            "meaning": "reason, intellect"
+          },
+          {
+            "word": "Vorstand",
+            "meaning": "executive board"
+          },
+          {
+            "word": "Widerstand",
+            "meaning": "resistance"
+          }
         ]
       },
       {
@@ -37,10 +69,26 @@
         "accuracy": 99.5,
         "count": 200,
         "examples": [
-          "Anzug",
-          "Bezug",
-          "Auszug",
-          "Vorzug"
+          {
+            "word": "Anzug",
+            "meaning": "suit"
+          },
+          {
+            "word": "Bezug",
+            "meaning": "reference, cover"
+          },
+          {
+            "word": "Auszug",
+            "meaning": "excerpt, moving out"
+          },
+          {
+            "word": "Vorzug",
+            "meaning": "advantage, preference"
+          },
+          {
+            "word": "Aufzug",
+            "meaning": "lift, elevator"
+          }
         ]
       },
       {
@@ -48,10 +96,26 @@
         "accuracy": 100.0,
         "count": 187,
         "examples": [
-          "Eingang",
-          "Ausgang",
-          "Übergang",
-          "Untergang"
+          {
+            "word": "Eingang",
+            "meaning": "entrance"
+          },
+          {
+            "word": "Ausgang",
+            "meaning": "exit"
+          },
+          {
+            "word": "Übergang",
+            "meaning": "transition, crossing"
+          },
+          {
+            "word": "Untergang",
+            "meaning": "downfall, sinking"
+          },
+          {
+            "word": "Spaziergang",
+            "meaning": "walk, stroll"
+          }
         ]
       },
       {
@@ -59,10 +123,26 @@
         "accuracy": 99.5,
         "count": 187,
         "examples": [
-          "Unfall",
-          "Notfall",
-          "Zufall",
-          "Wasserfall"
+          {
+            "word": "Unfall",
+            "meaning": "accident"
+          },
+          {
+            "word": "Notfall",
+            "meaning": "emergency"
+          },
+          {
+            "word": "Zufall",
+            "meaning": "coincidence"
+          },
+          {
+            "word": "Wasserfall",
+            "meaning": "waterfall"
+          },
+          {
+            "word": "Vorfall",
+            "meaning": "incident"
+          }
         ]
       },
       {
@@ -70,10 +150,26 @@
         "accuracy": 100.0,
         "count": 177,
         "examples": [
-          "Spielraum",
-          "Weltraum",
-          "Wohnraum",
-          "Zeitraum"
+          {
+            "word": "Spielraum",
+            "meaning": "leeway, scope"
+          },
+          {
+            "word": "Weltraum",
+            "meaning": "outer space"
+          },
+          {
+            "word": "Wohnraum",
+            "meaning": "living space"
+          },
+          {
+            "word": "Zeitraum",
+            "meaning": "period of time"
+          },
+          {
+            "word": "Kofferraum",
+            "meaning": "car boot, trunk"
+          }
         ]
       },
       {
@@ -81,10 +177,26 @@
         "accuracy": 100.0,
         "count": 176,
         "examples": [
-          "Einsatz",
-          "Umsatz",
-          "Gegensatz",
-          "Ersatz"
+          {
+            "word": "Einsatz",
+            "meaning": "deployment, use"
+          },
+          {
+            "word": "Umsatz",
+            "meaning": "turnover, revenue"
+          },
+          {
+            "word": "Gegensatz",
+            "meaning": "contrast, opposite"
+          },
+          {
+            "word": "Ersatz",
+            "meaning": "replacement, substitute"
+          },
+          {
+            "word": "Grundsatz",
+            "meaning": "principle"
+          }
         ]
       },
       {
@@ -92,10 +204,26 @@
         "accuracy": 100.0,
         "count": 153,
         "examples": [
-          "Aufbau",
-          "Ausbau",
-          "Neubau",
-          "Anbau"
+          {
+            "word": "Aufbau",
+            "meaning": "structure, setup"
+          },
+          {
+            "word": "Ausbau",
+            "meaning": "expansion"
+          },
+          {
+            "word": "Neubau",
+            "meaning": "new building"
+          },
+          {
+            "word": "Anbau",
+            "meaning": "extension, cultivation"
+          },
+          {
+            "word": "Bergbau",
+            "meaning": "mining"
+          }
         ]
       },
       {
@@ -104,10 +232,26 @@
         "count": 153,
         "exceptions": "Plural is die/das: die Männer, das Mannsbild",
         "examples": [
-          "Ehemann",
-          "Kaufmann",
-          "Fachmann",
-          "Hauptmann"
+          {
+            "word": "Ehemann",
+            "meaning": "husband"
+          },
+          {
+            "word": "Kaufmann",
+            "meaning": "merchant"
+          },
+          {
+            "word": "Fachmann",
+            "meaning": "expert"
+          },
+          {
+            "word": "Hauptmann",
+            "meaning": "captain"
+          },
+          {
+            "word": "Geschäftsmann",
+            "meaning": "businessman"
+          }
         ]
       },
       {
@@ -115,10 +259,26 @@
         "accuracy": 100.0,
         "count": 129,
         "examples": [
-          "Parkplatz",
-          "Arbeitsplatz",
-          "Marktplatz",
-          "Spielplatz"
+          {
+            "word": "Parkplatz",
+            "meaning": "parking space"
+          },
+          {
+            "word": "Arbeitsplatz",
+            "meaning": "workplace"
+          },
+          {
+            "word": "Marktplatz",
+            "meaning": "marketplace"
+          },
+          {
+            "word": "Spielplatz",
+            "meaning": "playground"
+          },
+          {
+            "word": "Sportplatz",
+            "meaning": "sports field"
+          }
         ]
       },
       {
@@ -126,10 +286,26 @@
         "accuracy": 100.0,
         "count": 112,
         "examples": [
-          "Kaufpreis",
-          "Nobelpreis",
-          "Sonderpreis",
-          "Eintrittspreis"
+          {
+            "word": "Kaufpreis",
+            "meaning": "purchase price"
+          },
+          {
+            "word": "Nobelpreis",
+            "meaning": "Nobel Prize"
+          },
+          {
+            "word": "Sonderpreis",
+            "meaning": "special price"
+          },
+          {
+            "word": "Eintrittspreis",
+            "meaning": "admission price"
+          },
+          {
+            "word": "Aufpreis",
+            "meaning": "surcharge"
+          }
         ]
       },
       {
@@ -137,10 +313,26 @@
         "accuracy": 100.0,
         "count": 102,
         "examples": [
-          "Zeitpunkt",
-          "Mittelpunkt",
-          "Standpunkt",
-          "Höhepunkt"
+          {
+            "word": "Zeitpunkt",
+            "meaning": "point in time"
+          },
+          {
+            "word": "Mittelpunkt",
+            "meaning": "centre, focal point"
+          },
+          {
+            "word": "Standpunkt",
+            "meaning": "viewpoint"
+          },
+          {
+            "word": "Höhepunkt",
+            "meaning": "climax, highlight"
+          },
+          {
+            "word": "Treffpunkt",
+            "meaning": "meeting point"
+          }
         ]
       },
       {
@@ -148,10 +340,26 @@
         "accuracy": 100.0,
         "count": 99,
         "examples": [
-          "Radweg",
-          "Ausweg",
-          "Heimweg",
-          "Rückweg"
+          {
+            "word": "Radweg",
+            "meaning": "cycle path"
+          },
+          {
+            "word": "Ausweg",
+            "meaning": "way out"
+          },
+          {
+            "word": "Heimweg",
+            "meaning": "way home"
+          },
+          {
+            "word": "Rückweg",
+            "meaning": "way back"
+          },
+          {
+            "word": "Fußweg",
+            "meaning": "footpath"
+          }
         ]
       },
       {
@@ -159,10 +367,26 @@
         "accuracy": 100.0,
         "count": 84,
         "examples": [
-          "Bahnhof",
-          "Friedhof",
-          "Innenhof",
-          "Hinterhof"
+          {
+            "word": "Bahnhof",
+            "meaning": "train station"
+          },
+          {
+            "word": "Friedhof",
+            "meaning": "cemetery"
+          },
+          {
+            "word": "Innenhof",
+            "meaning": "inner courtyard"
+          },
+          {
+            "word": "Hinterhof",
+            "meaning": "backyard"
+          },
+          {
+            "word": "Bauernhof",
+            "meaning": "farm"
+          }
         ]
       },
       {
@@ -170,10 +394,26 @@
         "accuracy": 98.8,
         "count": 84,
         "examples": [
-          "Dummkopf",
-          "Hinterkopf",
-          "Kehlkopf",
-          "Schweinekopf"
+          {
+            "word": "Dummkopf",
+            "meaning": "fool, idiot"
+          },
+          {
+            "word": "Hinterkopf",
+            "meaning": "back of the head"
+          },
+          {
+            "word": "Kehlkopf",
+            "meaning": "larynx"
+          },
+          {
+            "word": "Schweinekopf",
+            "meaning": "pig's head"
+          },
+          {
+            "word": "Totenkopf",
+            "meaning": "skull"
+          }
         ]
       },
       {
@@ -181,10 +421,26 @@
         "accuracy": 100.0,
         "count": 54,
         "examples": [
-          "Supermarkt",
-          "Arbeitsmarkt",
-          "Wochenmarkt",
-          "Flohmarkt"
+          {
+            "word": "Supermarkt",
+            "meaning": "supermarket"
+          },
+          {
+            "word": "Arbeitsmarkt",
+            "meaning": "job market"
+          },
+          {
+            "word": "Wochenmarkt",
+            "meaning": "weekly market"
+          },
+          {
+            "word": "Flohmarkt",
+            "meaning": "flea market"
+          },
+          {
+            "word": "Weihnachtsmarkt",
+            "meaning": "Christmas market"
+          }
         ]
       },
       {
@@ -192,9 +448,26 @@
         "accuracy": 100.0,
         "count": 52,
         "examples": [
-          "Anfang",
-          "Empfang",
-          "Fischfang"
+          {
+            "word": "Anfang",
+            "meaning": "beginning"
+          },
+          {
+            "word": "Empfang",
+            "meaning": "reception"
+          },
+          {
+            "word": "Fischfang",
+            "meaning": "fishing, catch"
+          },
+          {
+            "word": "Neuanfang",
+            "meaning": "fresh start"
+          },
+          {
+            "word": "Umfang",
+            "meaning": "extent, scope"
+          }
         ]
       },
       {
@@ -202,10 +475,26 @@
         "accuracy": 100.0,
         "count": 49,
         "examples": [
-          "Kindergarten",
-          "Biergarten",
-          "Vorgarten",
-          "Tiergarten"
+          {
+            "word": "Kindergarten",
+            "meaning": "kindergarten"
+          },
+          {
+            "word": "Biergarten",
+            "meaning": "beer garden"
+          },
+          {
+            "word": "Vorgarten",
+            "meaning": "front garden"
+          },
+          {
+            "word": "Tiergarten",
+            "meaning": "zoo"
+          },
+          {
+            "word": "Gemüsegarten",
+            "meaning": "vegetable garden"
+          }
         ]
       }
     ],
@@ -215,10 +504,26 @@
         "accuracy": 99.7,
         "count": 336,
         "examples": [
-          "Muttersprache",
-          "Fremdsprache",
-          "Umgangssprache",
-          "Fachsprache"
+          {
+            "word": "Muttersprache",
+            "meaning": "mother tongue"
+          },
+          {
+            "word": "Fremdsprache",
+            "meaning": "foreign language"
+          },
+          {
+            "word": "Umgangssprache",
+            "meaning": "colloquial language"
+          },
+          {
+            "word": "Fachsprache",
+            "meaning": "technical jargon"
+          },
+          {
+            "word": "Aussprache",
+            "meaning": "pronunciation"
+          }
         ]
       },
       {
@@ -226,10 +531,26 @@
         "accuracy": 100.0,
         "count": 264,
         "examples": [
-          "Freizeit",
-          "Arbeitszeit",
-          "Jahreszeit",
-          "Hochzeit"
+          {
+            "word": "Freizeit",
+            "meaning": "free time"
+          },
+          {
+            "word": "Arbeitszeit",
+            "meaning": "working hours"
+          },
+          {
+            "word": "Jahreszeit",
+            "meaning": "season"
+          },
+          {
+            "word": "Hochzeit",
+            "meaning": "wedding"
+          },
+          {
+            "word": "Uhrzeit",
+            "meaning": "time of day"
+          }
         ]
       },
       {
@@ -237,10 +558,26 @@
         "accuracy": 100.0,
         "count": 120,
         "examples": [
-          "Abfahrt",
-          "Ausfahrt",
-          "Einfahrt",
-          "Rückfahrt"
+          {
+            "word": "Abfahrt",
+            "meaning": "departure"
+          },
+          {
+            "word": "Ausfahrt",
+            "meaning": "exit (road)"
+          },
+          {
+            "word": "Einfahrt",
+            "meaning": "driveway, entrance"
+          },
+          {
+            "word": "Rückfahrt",
+            "meaning": "return trip"
+          },
+          {
+            "word": "Vorfahrt",
+            "meaning": "right of way"
+          }
         ]
       },
       {
@@ -248,10 +585,26 @@
         "accuracy": 99.1,
         "count": 111,
         "examples": [
-          "Anzahl",
-          "Mehrzahl",
-          "Vielzahl",
-          "Einwohnerzahl"
+          {
+            "word": "Anzahl",
+            "meaning": "number, quantity"
+          },
+          {
+            "word": "Mehrzahl",
+            "meaning": "majority, plural"
+          },
+          {
+            "word": "Vielzahl",
+            "meaning": "multitude"
+          },
+          {
+            "word": "Einwohnerzahl",
+            "meaning": "population (count)"
+          },
+          {
+            "word": "Postleitzahl",
+            "meaning": "postal code"
+          }
         ]
       },
       {
@@ -259,10 +612,26 @@
         "accuracy": 100.0,
         "count": 111,
         "examples": [
-          "Hochschule",
-          "Grundschule",
-          "Realschule",
-          "Musikschule"
+          {
+            "word": "Hochschule",
+            "meaning": "university, college"
+          },
+          {
+            "word": "Grundschule",
+            "meaning": "primary school"
+          },
+          {
+            "word": "Realschule",
+            "meaning": "secondary school"
+          },
+          {
+            "word": "Musikschule",
+            "meaning": "music school"
+          },
+          {
+            "word": "Fahrschule",
+            "meaning": "driving school"
+          }
         ]
       },
       {
@@ -270,10 +639,26 @@
         "accuracy": 100.0,
         "count": 109,
         "examples": [
-          "Unterschrift",
-          "Überschrift",
-          "Handschrift",
-          "Zeitschrift"
+          {
+            "word": "Unterschrift",
+            "meaning": "signature"
+          },
+          {
+            "word": "Überschrift",
+            "meaning": "heading, title"
+          },
+          {
+            "word": "Handschrift",
+            "meaning": "handwriting"
+          },
+          {
+            "word": "Zeitschrift",
+            "meaning": "magazine"
+          },
+          {
+            "word": "Vorschrift",
+            "meaning": "regulation"
+          }
         ]
       },
       {
@@ -281,10 +666,26 @@
         "accuracy": 100.0,
         "count": 107,
         "examples": [
-          "Fahrkarte",
-          "Kreditkarte",
-          "Landkarte",
-          "Eintrittskarte"
+          {
+            "word": "Fahrkarte",
+            "meaning": "ticket"
+          },
+          {
+            "word": "Kreditkarte",
+            "meaning": "credit card"
+          },
+          {
+            "word": "Landkarte",
+            "meaning": "map"
+          },
+          {
+            "word": "Eintrittskarte",
+            "meaning": "admission ticket"
+          },
+          {
+            "word": "Speisekarte",
+            "meaning": "menu"
+          }
         ]
       },
       {
@@ -292,10 +693,26 @@
         "accuracy": 100.0,
         "count": 104,
         "examples": [
-          "Hauptstraße",
-          "Einbahnstraße",
-          "Bundesstraße",
-          "Seitenstraße"
+          {
+            "word": "Hauptstraße",
+            "meaning": "main street"
+          },
+          {
+            "word": "Einbahnstraße",
+            "meaning": "one-way street"
+          },
+          {
+            "word": "Bundesstraße",
+            "meaning": "federal road"
+          },
+          {
+            "word": "Seitenstraße",
+            "meaning": "side street"
+          },
+          {
+            "word": "Landstraße",
+            "meaning": "country road"
+          }
         ]
       },
       {
@@ -303,10 +720,26 @@
         "accuracy": 100.0,
         "count": 97,
         "examples": [
-          "Autobahn",
-          "Eisenbahn",
-          "Straßenbahn",
-          "Laufbahn"
+          {
+            "word": "Autobahn",
+            "meaning": "motorway, highway"
+          },
+          {
+            "word": "Eisenbahn",
+            "meaning": "railway"
+          },
+          {
+            "word": "Straßenbahn",
+            "meaning": "tram"
+          },
+          {
+            "word": "Laufbahn",
+            "meaning": "career"
+          },
+          {
+            "word": "Achterbahn",
+            "meaning": "roller coaster"
+          }
         ]
       },
       {
@@ -314,10 +747,26 @@
         "accuracy": 97.9,
         "count": 95,
         "examples": [
-          "Hauptstadt",
-          "Innenstadt",
-          "Altstadt",
-          "Großstadt"
+          {
+            "word": "Hauptstadt",
+            "meaning": "capital city"
+          },
+          {
+            "word": "Innenstadt",
+            "meaning": "city centre"
+          },
+          {
+            "word": "Altstadt",
+            "meaning": "old town"
+          },
+          {
+            "word": "Großstadt",
+            "meaning": "big city"
+          },
+          {
+            "word": "Heimatstadt",
+            "meaning": "hometown"
+          }
         ]
       },
       {
@@ -325,10 +774,26 @@
         "accuracy": 100.0,
         "count": 93,
         "examples": [
-          "Arbeitskraft",
-          "Fachkraft",
-          "Windkraft",
-          "Schwerkraft"
+          {
+            "word": "Arbeitskraft",
+            "meaning": "worker, manpower"
+          },
+          {
+            "word": "Fachkraft",
+            "meaning": "skilled worker"
+          },
+          {
+            "word": "Windkraft",
+            "meaning": "wind power"
+          },
+          {
+            "word": "Schwerkraft",
+            "meaning": "gravity"
+          },
+          {
+            "word": "Lehrkraft",
+            "meaning": "teacher"
+          }
         ]
       },
       {
@@ -336,10 +801,26 @@
         "accuracy": 98.9,
         "count": 89,
         "examples": [
-          "Haustür",
-          "Hintertür",
-          "Eingangstür",
-          "Wohnungstür"
+          {
+            "word": "Haustür",
+            "meaning": "front door"
+          },
+          {
+            "word": "Hintertür",
+            "meaning": "back door"
+          },
+          {
+            "word": "Eingangstür",
+            "meaning": "entrance door"
+          },
+          {
+            "word": "Wohnungstür",
+            "meaning": "apartment door"
+          },
+          {
+            "word": "Autotür",
+            "meaning": "car door"
+          }
         ]
       },
       {
@@ -347,10 +828,26 @@
         "accuracy": 100.0,
         "count": 86,
         "examples": [
-          "Ehefrau",
-          "Hausfrau",
-          "Jungfrau",
-          "Putzfrau"
+          {
+            "word": "Ehefrau",
+            "meaning": "wife"
+          },
+          {
+            "word": "Hausfrau",
+            "meaning": "housewife"
+          },
+          {
+            "word": "Jungfrau",
+            "meaning": "virgin, Virgo"
+          },
+          {
+            "word": "Putzfrau",
+            "meaning": "cleaning lady"
+          },
+          {
+            "word": "Geschäftsfrau",
+            "meaning": "businesswoman"
+          }
         ]
       },
       {
@@ -358,10 +855,26 @@
         "accuracy": 100.0,
         "count": 65,
         "examples": [
-          "Nachfrage",
-          "Umfrage",
-          "Rückfrage",
-          "Gegenfrage"
+          {
+            "word": "Nachfrage",
+            "meaning": "demand, inquiry"
+          },
+          {
+            "word": "Umfrage",
+            "meaning": "survey, poll"
+          },
+          {
+            "word": "Rückfrage",
+            "meaning": "follow-up question"
+          },
+          {
+            "word": "Gegenfrage",
+            "meaning": "counter-question"
+          },
+          {
+            "word": "Streitfrage",
+            "meaning": "contentious issue"
+          }
         ]
       },
       {
@@ -369,10 +882,26 @@
         "accuracy": 100.0,
         "count": 62,
         "examples": [
-          "Umwelt",
-          "Arbeitswelt",
-          "Außenwelt",
-          "Tierwelt"
+          {
+            "word": "Umwelt",
+            "meaning": "environment"
+          },
+          {
+            "word": "Arbeitswelt",
+            "meaning": "working world"
+          },
+          {
+            "word": "Außenwelt",
+            "meaning": "outside world"
+          },
+          {
+            "word": "Tierwelt",
+            "meaning": "animal kingdom"
+          },
+          {
+            "word": "Unterwelt",
+            "meaning": "underworld"
+          }
         ]
       },
       {
@@ -381,10 +910,26 @@
         "count": 55,
         "exceptions": "der Aufruhr (not an Uhr compound)",
         "examples": [
-          "Armbanduhr",
-          "Wanduhr",
-          "Stoppuhr",
-          "Sanduhr"
+          {
+            "word": "Armbanduhr",
+            "meaning": "wristwatch"
+          },
+          {
+            "word": "Wanduhr",
+            "meaning": "wall clock"
+          },
+          {
+            "word": "Stoppuhr",
+            "meaning": "stopwatch"
+          },
+          {
+            "word": "Sanduhr",
+            "meaning": "hourglass"
+          },
+          {
+            "word": "Taschenuhr",
+            "meaning": "pocket watch"
+          }
         ]
       }
     ],
@@ -394,10 +939,26 @@
         "accuracy": 100.0,
         "count": 262,
         "examples": [
-          "Beispiel",
-          "Schauspiel",
-          "Heimspiel",
-          "Glücksspiel"
+          {
+            "word": "Beispiel",
+            "meaning": "example"
+          },
+          {
+            "word": "Schauspiel",
+            "meaning": "play, drama"
+          },
+          {
+            "word": "Heimspiel",
+            "meaning": "home game"
+          },
+          {
+            "word": "Glücksspiel",
+            "meaning": "gambling"
+          },
+          {
+            "word": "Endspiel",
+            "meaning": "final (match)"
+          }
         ]
       },
       {
@@ -406,10 +967,26 @@
         "count": 219,
         "exceptions": "die Antwort (and its compounds)",
         "examples": [
-          "Stichwort",
-          "Passwort",
-          "Vorwort",
-          "Schlagwort"
+          {
+            "word": "Stichwort",
+            "meaning": "keyword, cue"
+          },
+          {
+            "word": "Passwort",
+            "meaning": "password"
+          },
+          {
+            "word": "Vorwort",
+            "meaning": "preface"
+          },
+          {
+            "word": "Schlagwort",
+            "meaning": "slogan, buzzword"
+          },
+          {
+            "word": "Sprichwort",
+            "meaning": "proverb"
+          }
         ]
       },
       {
@@ -417,10 +994,26 @@
         "accuracy": 99.0,
         "count": 209,
         "examples": [
-          "Krankenhaus",
-          "Rathaus",
-          "Wohnhaus",
-          "Hochhaus"
+          {
+            "word": "Krankenhaus",
+            "meaning": "hospital"
+          },
+          {
+            "word": "Rathaus",
+            "meaning": "town hall"
+          },
+          {
+            "word": "Wohnhaus",
+            "meaning": "residential building"
+          },
+          {
+            "word": "Hochhaus",
+            "meaning": "high-rise"
+          },
+          {
+            "word": "Kaufhaus",
+            "meaning": "department store"
+          }
         ]
       },
       {
@@ -428,10 +1021,26 @@
         "accuracy": 99.5,
         "count": 203,
         "examples": [
-          "Tagebuch",
-          "Wörterbuch",
-          "Drehbuch",
-          "Handbuch"
+          {
+            "word": "Tagebuch",
+            "meaning": "diary"
+          },
+          {
+            "word": "Wörterbuch",
+            "meaning": "dictionary"
+          },
+          {
+            "word": "Drehbuch",
+            "meaning": "screenplay"
+          },
+          {
+            "word": "Handbuch",
+            "meaning": "manual"
+          },
+          {
+            "word": "Kochbuch",
+            "meaning": "cookbook"
+          }
         ]
       },
       {
@@ -439,10 +1048,26 @@
         "accuracy": 98.9,
         "count": 182,
         "examples": [
-          "Netzwerk",
-          "Kunstwerk",
-          "Handwerk",
-          "Feuerwerk"
+          {
+            "word": "Netzwerk",
+            "meaning": "network"
+          },
+          {
+            "word": "Kunstwerk",
+            "meaning": "artwork"
+          },
+          {
+            "word": "Handwerk",
+            "meaning": "craft, trade"
+          },
+          {
+            "word": "Feuerwerk",
+            "meaning": "fireworks"
+          },
+          {
+            "word": "Kraftwerk",
+            "meaning": "power plant"
+          }
         ]
       },
       {
@@ -450,10 +1075,26 @@
         "accuracy": 100.0,
         "count": 154,
         "examples": [
-          "Fahrzeug",
-          "Flugzeug",
-          "Spielzeug",
-          "Werkzeug"
+          {
+            "word": "Fahrzeug",
+            "meaning": "vehicle"
+          },
+          {
+            "word": "Flugzeug",
+            "meaning": "aeroplane"
+          },
+          {
+            "word": "Spielzeug",
+            "meaning": "toy"
+          },
+          {
+            "word": "Werkzeug",
+            "meaning": "tool"
+          },
+          {
+            "word": "Feuerzeug",
+            "meaning": "lighter"
+          }
         ]
       },
       {
@@ -462,10 +1103,26 @@
         "count": 146,
         "exceptions": "die Schweiz/Türkei etc. as countries; das Land (territory) is neuter",
         "examples": [
-          "Ausland",
-          "Inland",
-          "Festland",
-          "Heimatland"
+          {
+            "word": "Ausland",
+            "meaning": "abroad"
+          },
+          {
+            "word": "Inland",
+            "meaning": "domestic, inland"
+          },
+          {
+            "word": "Festland",
+            "meaning": "mainland"
+          },
+          {
+            "word": "Heimatland",
+            "meaning": "homeland"
+          },
+          {
+            "word": "Bundesland",
+            "meaning": "federal state"
+          }
         ]
       },
       {
@@ -473,10 +1130,26 @@
         "accuracy": 99.1,
         "count": 109,
         "examples": [
-          "Wahlrecht",
-          "Strafrecht",
-          "Urheberrecht",
-          "Grundrecht"
+          {
+            "word": "Wahlrecht",
+            "meaning": "right to vote"
+          },
+          {
+            "word": "Strafrecht",
+            "meaning": "criminal law"
+          },
+          {
+            "word": "Urheberrecht",
+            "meaning": "copyright"
+          },
+          {
+            "word": "Grundrecht",
+            "meaning": "basic right"
+          },
+          {
+            "word": "Arbeitsrecht",
+            "meaning": "labour law"
+          }
         ]
       },
       {
@@ -484,10 +1157,26 @@
         "accuracy": 100.0,
         "count": 106,
         "examples": [
-          "Vorbild",
-          "Weltbild",
-          "Selbstbild",
-          "Stadtbild"
+          {
+            "word": "Vorbild",
+            "meaning": "role model"
+          },
+          {
+            "word": "Weltbild",
+            "meaning": "worldview"
+          },
+          {
+            "word": "Selbstbild",
+            "meaning": "self-image"
+          },
+          {
+            "word": "Stadtbild",
+            "meaning": "cityscape"
+          },
+          {
+            "word": "Spiegelbild",
+            "meaning": "reflection"
+          }
         ]
       },
       {
@@ -495,10 +1184,26 @@
         "accuracy": 100.0,
         "count": 102,
         "examples": [
-          "Trinkwasser",
-          "Grundwasser",
-          "Mineralwasser",
-          "Hochwasser"
+          {
+            "word": "Trinkwasser",
+            "meaning": "drinking water"
+          },
+          {
+            "word": "Grundwasser",
+            "meaning": "groundwater"
+          },
+          {
+            "word": "Mineralwasser",
+            "meaning": "mineral water"
+          },
+          {
+            "word": "Hochwasser",
+            "meaning": "flood"
+          },
+          {
+            "word": "Salzwasser",
+            "meaning": "salt water"
+          }
         ]
       },
       {
@@ -506,10 +1211,26 @@
         "accuracy": 100.0,
         "count": 96,
         "examples": [
-          "Messgerät",
-          "Ladegerät",
-          "Funkgerät",
-          "Haushaltsgerät"
+          {
+            "word": "Messgerät",
+            "meaning": "measuring device"
+          },
+          {
+            "word": "Ladegerät",
+            "meaning": "charger"
+          },
+          {
+            "word": "Funkgerät",
+            "meaning": "radio (transceiver)"
+          },
+          {
+            "word": "Haushaltsgerät",
+            "meaning": "household appliance"
+          },
+          {
+            "word": "Hörgerät",
+            "meaning": "hearing aid"
+          }
         ]
       },
       {
@@ -517,10 +1238,26 @@
         "accuracy": 100.0,
         "count": 92,
         "examples": [
-          "Bargeld",
-          "Taschengeld",
-          "Trinkgeld",
-          "Kindergeld"
+          {
+            "word": "Bargeld",
+            "meaning": "cash"
+          },
+          {
+            "word": "Taschengeld",
+            "meaning": "pocket money"
+          },
+          {
+            "word": "Trinkgeld",
+            "meaning": "tip, gratuity"
+          },
+          {
+            "word": "Kindergeld",
+            "meaning": "child benefit"
+          },
+          {
+            "word": "Kleingeld",
+            "meaning": "small change"
+          }
         ]
       },
       {
@@ -528,10 +1265,26 @@
         "accuracy": 100.0,
         "count": 87,
         "examples": [
-          "Wohnzimmer",
-          "Schlafzimmer",
-          "Badezimmer",
-          "Klassenzimmer"
+          {
+            "word": "Wohnzimmer",
+            "meaning": "living room"
+          },
+          {
+            "word": "Schlafzimmer",
+            "meaning": "bedroom"
+          },
+          {
+            "word": "Badezimmer",
+            "meaning": "bathroom"
+          },
+          {
+            "word": "Klassenzimmer",
+            "meaning": "classroom"
+          },
+          {
+            "word": "Wartezimmer",
+            "meaning": "waiting room"
+          }
         ]
       },
       {
@@ -539,10 +1292,26 @@
         "accuracy": 100.0,
         "count": 73,
         "examples": [
-          "Fernglas",
-          "Weinglas",
-          "Wasserglas",
-          "Reagenzglas"
+          {
+            "word": "Fernglas",
+            "meaning": "binoculars"
+          },
+          {
+            "word": "Weinglas",
+            "meaning": "wine glass"
+          },
+          {
+            "word": "Wasserglas",
+            "meaning": "water glass"
+          },
+          {
+            "word": "Reagenzglas",
+            "meaning": "test tube"
+          },
+          {
+            "word": "Bierglas",
+            "meaning": "beer glass"
+          }
         ]
       },
       {
@@ -550,10 +1319,26 @@
         "accuracy": 98.6,
         "count": 73,
         "examples": [
-          "Finanzamt",
-          "Jugendamt",
-          "Bundesamt",
-          "Standesamt"
+          {
+            "word": "Finanzamt",
+            "meaning": "tax office"
+          },
+          {
+            "word": "Jugendamt",
+            "meaning": "youth welfare office"
+          },
+          {
+            "word": "Bundesamt",
+            "meaning": "federal office"
+          },
+          {
+            "word": "Standesamt",
+            "meaning": "registry office"
+          },
+          {
+            "word": "Arbeitsamt",
+            "meaning": "employment office"
+          }
         ]
       },
       {
@@ -561,10 +1346,26 @@
         "accuracy": 100.0,
         "count": 71,
         "examples": [
-          "Frühjahr",
-          "Vorjahr",
-          "Lebensjahr",
-          "Schuljahr"
+          {
+            "word": "Frühjahr",
+            "meaning": "spring"
+          },
+          {
+            "word": "Vorjahr",
+            "meaning": "previous year"
+          },
+          {
+            "word": "Lebensjahr",
+            "meaning": "year of life, age"
+          },
+          {
+            "word": "Schuljahr",
+            "meaning": "school year"
+          },
+          {
+            "word": "Neujahr",
+            "meaning": "New Year"
+          }
         ]
       },
       {
@@ -572,10 +1373,26 @@
         "accuracy": 98.6,
         "count": 71,
         "examples": [
-          "Erdöl",
-          "Olivenöl",
-          "Heizöl",
-          "Sonnenblumenöl"
+          {
+            "word": "Erdöl",
+            "meaning": "petroleum, crude oil"
+          },
+          {
+            "word": "Olivenöl",
+            "meaning": "olive oil"
+          },
+          {
+            "word": "Heizöl",
+            "meaning": "heating oil"
+          },
+          {
+            "word": "Sonnenblumenöl",
+            "meaning": "sunflower oil"
+          },
+          {
+            "word": "Motoröl",
+            "meaning": "motor oil"
+          }
         ]
       }
     ]
