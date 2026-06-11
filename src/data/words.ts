@@ -180,6 +180,12 @@ export const RULES: RuleGroup[] = [
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🪻"), w("die","Distel","thistle","🌵")],
   },
   {
+    article: "die", title: "Fruits & berries", emoji: "🍓",
+    note: "Most fruits and berries are feminine.",
+    exceptions: "der Apfel, der Pfirsich, das Obst",
+    words: [w("die","Banane","banana","🍌"), w("die","Kirsche","cherry","🍒"), w("die","Traube","grape","🍇"), w("die","Birne","pear","🍐"), w("die","Erdbeere","strawberry","🍓"), w("die","Zitrone","lemon","🍋"), w("die","Pflaume","plum","🟣")],
+  },
+  {
     article: "die", title: "European rivers", emoji: "🌊",
     note: "Most European rivers are feminine.",
     exceptions: "der Rhein, der Main, der Neckar, der Inn",
@@ -225,12 +231,6 @@ export const RULES: RuleGroup[] = [
     article: "die", title: "Mixed drinks", emoji: "🍹",
     note: "Mixed and cocktail-style drinks tend to be feminine, breaking the masculine rule for wines and spirits.",
     words: [w("die","Weinschorle","wine spritzer","🍹"), w("die","Bowle","punch/bowl","🍹"), w("die","Margarita","margarita","🍹")],
-  },
-  {
-    article: "die", title: "Fruits & berries", emoji: "🍓",
-    note: "Most fruits and berries are feminine.",
-    exceptions: "der Apfel, der Pfirsich, das Obst",
-    words: [w("die","Banane","banana","🍌"), w("die","Kirsche","cherry","🍒"), w("die","Traube","grape","🍇"), w("die","Birne","pear","🍐"), w("die","Erdbeere","strawberry","🍓"), w("die","Zitrone","lemon","🍋"), w("die","Pflaume","plum","🟣")],
   },
   {
     article: "die", title: "Plural nouns — always die!", emoji: "👥",
