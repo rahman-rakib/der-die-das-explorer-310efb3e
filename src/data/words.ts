@@ -339,6 +339,12 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "das", title: "Cities, countries & continents", emoji: "🗺️",
+    note: "Most cities, countries, and continents are neuter.",
+    exceptions: "die Schweiz, die Türkei, die USA (pl); der Iran, der Irak, der Sudan",
+    words: [w("das","Berlin","Berlin","🗺️"), w("das","Deutschland","Germany","🇩🇪"), w("das","Italien","Italy","🇮🇹"), w("das","Europa","Europe","🇪🇺")],
+  },
+  {
     article: "das", title: "Year, age & long time periods", emoji: "🗓️",
     note: "Year and its multiples, and 'age' as a measurement of time, are neuter.",
     exceptions: "die Dekade (decade), die Epoche (epoch), die Ära (era)",
