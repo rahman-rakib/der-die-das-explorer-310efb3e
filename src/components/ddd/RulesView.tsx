@@ -154,6 +154,7 @@ export function RulesView() {
       </div>
 
       {view === "thematic" && <ThematicGroups article={tab} />}
+      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
       {view === "suffix" && (
         <div className="mt-4 space-y-3 px-4">
           {rules.map((r, i) => (
@@ -173,7 +174,6 @@ export function RulesView() {
           )}
         </div>
       )}
-      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
     </div>
   );
 }
