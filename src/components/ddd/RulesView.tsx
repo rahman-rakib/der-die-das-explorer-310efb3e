@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import rulesData from "@/data/rules.json";
+import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
 
@@ -26,6 +27,15 @@ interface Rule {
 }
 
 const RULES = (rulesData as { rules: Rule[] }).rules;
+
+interface CompoundHead {
+  head: string;
+  accuracy: number;
+  count: number;
+  exceptions?: string;
+  examples: string[];
+}
+const COMPOUNDS = (compoundData as { rules: Record<Article, CompoundHead[]> }).rules;
 
 const TABS: Article[] = ["der", "die", "das"];
 
@@ -58,9 +68,10 @@ const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: st
 
 export function RulesView() {
   const [tab, setTab] = useState<Article>("der");
-  const [view, setView] = useState<"thematic" | "suffix">("thematic");
+  const [view, setView] = useState<"thematic" | "suffix" | "compound">("thematic");
   const meta = ARTICLE_META[tab];
   const rules = RULES.filter(r => r.article === tab).slice().sort((a, b) => b.accuracy - a.accuracy);
+  const compounds = (COMPOUNDS[tab] ?? []).slice().sort((a, b) => b.count - a.count);
 
   return (
     <div className="pb-8">
@@ -99,17 +110,18 @@ export function RulesView() {
           })}
         </div>
 
-        <div className="grid grid-cols-2 gap-1.5 rounded-xl bg-muted p-1">
+        <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-muted p-1">
           {([
             { id: "thematic", label: "🎨 Thematic" },
             { id: "suffix", label: "🔤 Suffix" },
+            { id: "compound", label: "🧩 Compound" },
           ] as const).map(v => {
             const active = view === v.id;
             return (
               <button
                 key={v.id}
                 onClick={() => setView(v.id)}
-                className="relative rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition"
+                className="relative rounded-lg px-2 py-1.5 text-[11px] font-bold uppercase tracking-wider transition"
                 style={{ color: active ? `var(--${meta.fg})` : undefined }}
               >
                 {active && (
@@ -133,13 +145,16 @@ export function RulesView() {
       >
         <p className="text-sm font-semibold" style={{ color: `var(--${meta.color})` }}>
           {meta.icon} {meta.label.toUpperCase()} —{" "}
-          {view === "thematic" ? "thematic groups" : "suffix rules, strongest first"}
+          {view === "thematic"
+            ? "thematic groups"
+            : view === "suffix"
+              ? "suffix rules, strongest first"
+              : "compound heads — gender of the last noun wins"}
         </p>
       </div>
 
-      {view === "thematic" ? (
-        <ThematicGroups article={tab} />
-      ) : (
+      {view === "thematic" && <ThematicGroups article={tab} />}
+      {view === "suffix" && (
         <div className="mt-4 space-y-3 px-4">
           {rules.map((r, i) => (
             <motion.div
@@ -158,6 +173,7 @@ export function RulesView() {
           )}
         </div>
       )}
+      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
     </div>
   );
 }
@@ -357,6 +373,76 @@ function RuleCard({ rule }: { rule: Rule }) {
           ✅ No exceptions — this rule is rock solid!
         </div>
       )}
+    </div>
+  );
+}
+
+function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
+  const meta = ARTICLE_META[article];
+  if (heads.length === 0) {
+    return (
+      <p className="mx-4 mt-4 rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+        No compound heads for this gender.
+      </p>
+    );
+  }
+  return (
+    <div className="mt-5 px-4">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+          Compound heads · last noun wins
+        </span>
+        <span className="h-px flex-1 bg-border" />
+      </div>
+      <div className="space-y-3">
+        {heads.map((h, i) => (
+          <motion.div
+            key={h.head}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.02 }}
+            className="overflow-hidden rounded-3xl border bg-card shadow-sm"
+            style={{ borderColor: `var(--${meta.color})` }}
+          >
+            <div
+              className="flex items-center justify-between gap-3 px-4 py-3"
+              style={{ backgroundColor: `var(--${meta.soft})` }}
+            >
+              <div className="flex items-center gap-2">
+                <ArticleBadge article={article} size="sm" />
+                <span className="text-lg font-extrabold">-{h.head}</span>
+              </div>
+              <span
+                className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+                style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
+              >
+                {h.accuracy.toFixed(1)}% · n={h.count}
+              </span>
+            </div>
+            <div className="space-y-2 p-4">
+              <div className="flex flex-wrap gap-1.5">
+                {h.examples.map(ex => (
+                  <span
+                    key={ex}
+                    className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
+                    style={{ borderColor: `var(--${meta.color})` }}
+                  >
+                    <span className="text-[10px] font-bold uppercase" style={{ color: `var(--${meta.color})` }}>
+                      {article}
+                    </span>
+                    <span className="font-semibold">{ex}</span>
+                  </span>
+                ))}
+              </div>
+              {h.exceptions && (
+                <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
+                  ⚠️ {h.exceptions}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }

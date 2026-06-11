@@ -1,0 +1,583 @@
+{
+  "ruleSet": "compound-head",
+  "scope": "Gender from a compound's LAST noun (das Werk+Zeug, die Auto+Bahn). A SEPARATE rule type from the suffix rules in rules.json and the thematic rules in thematic_rules.json. Each head's accuracy/count is measured against the lexicon; examples are lexicon-verified.",
+  "supersedesSuffixes": {
+    "-stadt": "-dt",
+    "-fahrt": "-hrt",
+    "-amt": "-mt",
+    "-gerät": "-ät"
+  },
+  "rules": {
+    "der": [
+      {
+        "head": "Tag",
+        "accuracy": 99.2,
+        "count": 262,
+        "exceptions": "das Schalttag (rare)",
+        "examples": [
+          "Montag",
+          "Geburtstag",
+          "Feiertag",
+          "Alltag"
+        ]
+      },
+      {
+        "head": "Stand",
+        "accuracy": 100.0,
+        "count": 225,
+        "examples": [
+          "Zustand",
+          "Umstand",
+          "Verstand",
+          "Vorstand"
+        ]
+      },
+      {
+        "head": "Zug",
+        "accuracy": 99.5,
+        "count": 200,
+        "examples": [
+          "Anzug",
+          "Bezug",
+          "Auszug",
+          "Vorzug"
+        ]
+      },
+      {
+        "head": "Gang",
+        "accuracy": 100.0,
+        "count": 187,
+        "examples": [
+          "Eingang",
+          "Ausgang",
+          "Übergang",
+          "Untergang"
+        ]
+      },
+      {
+        "head": "Fall",
+        "accuracy": 99.5,
+        "count": 187,
+        "examples": [
+          "Unfall",
+          "Notfall",
+          "Zufall",
+          "Wasserfall"
+        ]
+      },
+      {
+        "head": "Raum",
+        "accuracy": 100.0,
+        "count": 177,
+        "examples": [
+          "Spielraum",
+          "Weltraum",
+          "Wohnraum",
+          "Zeitraum"
+        ]
+      },
+      {
+        "head": "Satz",
+        "accuracy": 100.0,
+        "count": 176,
+        "examples": [
+          "Einsatz",
+          "Umsatz",
+          "Gegensatz",
+          "Ersatz"
+        ]
+      },
+      {
+        "head": "Bau",
+        "accuracy": 100.0,
+        "count": 153,
+        "examples": [
+          "Aufbau",
+          "Ausbau",
+          "Neubau",
+          "Anbau"
+        ]
+      },
+      {
+        "head": "Mann",
+        "accuracy": 100.0,
+        "count": 153,
+        "exceptions": "Plural is die/das: die Männer, das Mannsbild",
+        "examples": [
+          "Ehemann",
+          "Kaufmann",
+          "Fachmann",
+          "Hauptmann"
+        ]
+      },
+      {
+        "head": "Platz",
+        "accuracy": 100.0,
+        "count": 129,
+        "examples": [
+          "Parkplatz",
+          "Arbeitsplatz",
+          "Marktplatz",
+          "Spielplatz"
+        ]
+      },
+      {
+        "head": "Preis",
+        "accuracy": 100.0,
+        "count": 112,
+        "examples": [
+          "Kaufpreis",
+          "Nobelpreis",
+          "Sonderpreis",
+          "Eintrittspreis"
+        ]
+      },
+      {
+        "head": "Punkt",
+        "accuracy": 100.0,
+        "count": 102,
+        "examples": [
+          "Zeitpunkt",
+          "Mittelpunkt",
+          "Standpunkt",
+          "Höhepunkt"
+        ]
+      },
+      {
+        "head": "Weg",
+        "accuracy": 100.0,
+        "count": 99,
+        "examples": [
+          "Radweg",
+          "Ausweg",
+          "Heimweg",
+          "Rückweg"
+        ]
+      },
+      {
+        "head": "Hof",
+        "accuracy": 100.0,
+        "count": 84,
+        "examples": [
+          "Bahnhof",
+          "Friedhof",
+          "Innenhof",
+          "Hinterhof"
+        ]
+      },
+      {
+        "head": "Kopf",
+        "accuracy": 98.8,
+        "count": 84,
+        "examples": [
+          "Dummkopf",
+          "Hinterkopf",
+          "Kehlkopf",
+          "Schweinekopf"
+        ]
+      },
+      {
+        "head": "Markt",
+        "accuracy": 100.0,
+        "count": 54,
+        "examples": [
+          "Supermarkt",
+          "Arbeitsmarkt",
+          "Wochenmarkt",
+          "Flohmarkt"
+        ]
+      },
+      {
+        "head": "Fang",
+        "accuracy": 100.0,
+        "count": 52,
+        "examples": [
+          "Anfang",
+          "Empfang",
+          "Fischfang"
+        ]
+      },
+      {
+        "head": "Garten",
+        "accuracy": 100.0,
+        "count": 49,
+        "examples": [
+          "Kindergarten",
+          "Biergarten",
+          "Vorgarten",
+          "Tiergarten"
+        ]
+      }
+    ],
+    "die": [
+      {
+        "head": "Sprache",
+        "accuracy": 99.7,
+        "count": 336,
+        "examples": [
+          "Muttersprache",
+          "Fremdsprache",
+          "Umgangssprache",
+          "Fachsprache"
+        ]
+      },
+      {
+        "head": "Zeit",
+        "accuracy": 100.0,
+        "count": 264,
+        "examples": [
+          "Freizeit",
+          "Arbeitszeit",
+          "Jahreszeit",
+          "Hochzeit"
+        ]
+      },
+      {
+        "head": "Fahrt",
+        "accuracy": 100.0,
+        "count": 120,
+        "examples": [
+          "Abfahrt",
+          "Ausfahrt",
+          "Einfahrt",
+          "Rückfahrt"
+        ]
+      },
+      {
+        "head": "Zahl",
+        "accuracy": 99.1,
+        "count": 111,
+        "examples": [
+          "Anzahl",
+          "Mehrzahl",
+          "Vielzahl",
+          "Einwohnerzahl"
+        ]
+      },
+      {
+        "head": "Schule",
+        "accuracy": 100.0,
+        "count": 111,
+        "examples": [
+          "Hochschule",
+          "Grundschule",
+          "Realschule",
+          "Musikschule"
+        ]
+      },
+      {
+        "head": "Schrift",
+        "accuracy": 100.0,
+        "count": 109,
+        "examples": [
+          "Unterschrift",
+          "Überschrift",
+          "Handschrift",
+          "Zeitschrift"
+        ]
+      },
+      {
+        "head": "Karte",
+        "accuracy": 100.0,
+        "count": 107,
+        "examples": [
+          "Fahrkarte",
+          "Kreditkarte",
+          "Landkarte",
+          "Eintrittskarte"
+        ]
+      },
+      {
+        "head": "Straße",
+        "accuracy": 100.0,
+        "count": 104,
+        "examples": [
+          "Hauptstraße",
+          "Einbahnstraße",
+          "Bundesstraße",
+          "Seitenstraße"
+        ]
+      },
+      {
+        "head": "Bahn",
+        "accuracy": 100.0,
+        "count": 97,
+        "examples": [
+          "Autobahn",
+          "Eisenbahn",
+          "Straßenbahn",
+          "Laufbahn"
+        ]
+      },
+      {
+        "head": "Stadt",
+        "accuracy": 97.9,
+        "count": 95,
+        "examples": [
+          "Hauptstadt",
+          "Innenstadt",
+          "Altstadt",
+          "Großstadt"
+        ]
+      },
+      {
+        "head": "Kraft",
+        "accuracy": 100.0,
+        "count": 93,
+        "examples": [
+          "Arbeitskraft",
+          "Fachkraft",
+          "Windkraft",
+          "Schwerkraft"
+        ]
+      },
+      {
+        "head": "Tür",
+        "accuracy": 98.9,
+        "count": 89,
+        "examples": [
+          "Haustür",
+          "Hintertür",
+          "Eingangstür",
+          "Wohnungstür"
+        ]
+      },
+      {
+        "head": "Frau",
+        "accuracy": 100.0,
+        "count": 86,
+        "examples": [
+          "Ehefrau",
+          "Hausfrau",
+          "Jungfrau",
+          "Putzfrau"
+        ]
+      },
+      {
+        "head": "Frage",
+        "accuracy": 100.0,
+        "count": 65,
+        "examples": [
+          "Nachfrage",
+          "Umfrage",
+          "Rückfrage",
+          "Gegenfrage"
+        ]
+      },
+      {
+        "head": "Welt",
+        "accuracy": 100.0,
+        "count": 62,
+        "examples": [
+          "Umwelt",
+          "Arbeitswelt",
+          "Außenwelt",
+          "Tierwelt"
+        ]
+      },
+      {
+        "head": "Uhr",
+        "accuracy": 98.2,
+        "count": 55,
+        "exceptions": "der Aufruhr (not an Uhr compound)",
+        "examples": [
+          "Armbanduhr",
+          "Wanduhr",
+          "Stoppuhr",
+          "Sanduhr"
+        ]
+      }
+    ],
+    "das": [
+      {
+        "head": "Spiel",
+        "accuracy": 100.0,
+        "count": 262,
+        "examples": [
+          "Beispiel",
+          "Schauspiel",
+          "Heimspiel",
+          "Glücksspiel"
+        ]
+      },
+      {
+        "head": "Wort",
+        "accuracy": 98.6,
+        "count": 219,
+        "exceptions": "die Antwort (and its compounds)",
+        "examples": [
+          "Stichwort",
+          "Passwort",
+          "Vorwort",
+          "Schlagwort"
+        ]
+      },
+      {
+        "head": "Haus",
+        "accuracy": 99.0,
+        "count": 209,
+        "examples": [
+          "Krankenhaus",
+          "Rathaus",
+          "Wohnhaus",
+          "Hochhaus"
+        ]
+      },
+      {
+        "head": "Buch",
+        "accuracy": 99.5,
+        "count": 203,
+        "examples": [
+          "Tagebuch",
+          "Wörterbuch",
+          "Drehbuch",
+          "Handbuch"
+        ]
+      },
+      {
+        "head": "Werk",
+        "accuracy": 98.9,
+        "count": 182,
+        "examples": [
+          "Netzwerk",
+          "Kunstwerk",
+          "Handwerk",
+          "Feuerwerk"
+        ]
+      },
+      {
+        "head": "Zeug",
+        "accuracy": 100.0,
+        "count": 154,
+        "examples": [
+          "Fahrzeug",
+          "Flugzeug",
+          "Spielzeug",
+          "Werkzeug"
+        ]
+      },
+      {
+        "head": "Land",
+        "accuracy": 93.2,
+        "count": 146,
+        "exceptions": "die Schweiz/Türkei etc. as countries; das Land (territory) is neuter",
+        "examples": [
+          "Ausland",
+          "Inland",
+          "Festland",
+          "Heimatland"
+        ]
+      },
+      {
+        "head": "Recht",
+        "accuracy": 99.1,
+        "count": 109,
+        "examples": [
+          "Wahlrecht",
+          "Strafrecht",
+          "Urheberrecht",
+          "Grundrecht"
+        ]
+      },
+      {
+        "head": "Bild",
+        "accuracy": 100.0,
+        "count": 106,
+        "examples": [
+          "Vorbild",
+          "Weltbild",
+          "Selbstbild",
+          "Stadtbild"
+        ]
+      },
+      {
+        "head": "Wasser",
+        "accuracy": 100.0,
+        "count": 102,
+        "examples": [
+          "Trinkwasser",
+          "Grundwasser",
+          "Mineralwasser",
+          "Hochwasser"
+        ]
+      },
+      {
+        "head": "Gerät",
+        "accuracy": 100.0,
+        "count": 96,
+        "examples": [
+          "Messgerät",
+          "Ladegerät",
+          "Funkgerät",
+          "Haushaltsgerät"
+        ]
+      },
+      {
+        "head": "Geld",
+        "accuracy": 100.0,
+        "count": 92,
+        "examples": [
+          "Bargeld",
+          "Taschengeld",
+          "Trinkgeld",
+          "Kindergeld"
+        ]
+      },
+      {
+        "head": "Zimmer",
+        "accuracy": 100.0,
+        "count": 87,
+        "examples": [
+          "Wohnzimmer",
+          "Schlafzimmer",
+          "Badezimmer",
+          "Klassenzimmer"
+        ]
+      },
+      {
+        "head": "Glas",
+        "accuracy": 100.0,
+        "count": 73,
+        "examples": [
+          "Fernglas",
+          "Weinglas",
+          "Wasserglas",
+          "Reagenzglas"
+        ]
+      },
+      {
+        "head": "Amt",
+        "accuracy": 98.6,
+        "count": 73,
+        "examples": [
+          "Finanzamt",
+          "Jugendamt",
+          "Bundesamt",
+          "Standesamt"
+        ]
+      },
+      {
+        "head": "Jahr",
+        "accuracy": 100.0,
+        "count": 71,
+        "examples": [
+          "Frühjahr",
+          "Vorjahr",
+          "Lebensjahr",
+          "Schuljahr"
+        ]
+      },
+      {
+        "head": "Öl",
+        "accuracy": 98.6,
+        "count": 71,
+        "examples": [
+          "Erdöl",
+          "Olivenöl",
+          "Heizöl",
+          "Sonnenblumenöl"
+        ]
+      }
+    ]
+  }
+}
