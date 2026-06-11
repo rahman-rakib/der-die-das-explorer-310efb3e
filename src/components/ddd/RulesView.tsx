@@ -74,6 +74,15 @@ const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: st
     bar: "bg-rose-500",
     barBg: "bg-rose-100",
   },
+  moderate: {
+    label: "Moderate",
+    icon: "🤔",
+    bg: "bg-orange-100",
+    fg: "text-orange-800",
+    bar: "bg-orange-500",
+    barBg: "bg-orange-100",
+  },
+
 };
 
 export function RulesView() {
