@@ -551,7 +551,8 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 >
                   <div className="flex items-center gap-2">
                     <ArticleBadge article={article} size="sm" />
-                    <span className="text-base font-extrabold">-{active.head}</span>
+                    <span className="text-base font-extrabold">{active.head}</span>
+                    <span className="text-xs text-muted-foreground">· {active.meaning}</span>
                   </div>
                   <button
                     onClick={() => setActiveIdx(null)}
