@@ -34,6 +34,7 @@ interface CompoundExample {
 }
 interface CompoundHead {
   head: string;
+  meaning: string;
   accuracy: number;
   count: number;
   exceptions?: string;
