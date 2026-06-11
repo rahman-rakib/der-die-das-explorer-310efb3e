@@ -147,9 +147,9 @@ export function RulesView() {
           {meta.icon} {meta.label.toUpperCase()} —{" "}
           {view === "thematic"
             ? "thematic groups"
-            : view === "suffix"
-              ? "suffix rules, strongest first"
-              : "compound heads — gender of the last noun wins"}
+            : view === "compound"
+              ? "compound heads — gender of the last noun wins"
+              : "suffix rules, strongest first"}
         </p>
       </div>
 
