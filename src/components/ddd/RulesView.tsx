@@ -5,7 +5,7 @@ import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
 
-type Tier = "ironclad" | "strong" | "weak";
+type Tier = "ironclad" | "strong" | "moderate" | "weak";
 
 interface Exception {
   noun: string;
@@ -20,13 +20,18 @@ interface Rule {
   tier: Tier;
   count: number;
   smallSample: boolean;
+  overriddenBy: string[];
   exceptionCount: number;
   note: string;
   examples: string[];
   exceptions: Exception[];
 }
 
-const RULES = (rulesData as { rules: Rule[] }).rules;
+const RAW_RULES = rulesData as { rules: Record<Article, Omit<Rule, "article">[]> };
+const RULES: Rule[] = (["der", "die", "das"] as Article[]).flatMap(a =>
+  (RAW_RULES.rules[a] ?? []).map(r => ({ ...r, article: a, tier: r.tier as Tier }))
+);
+
 
 interface CompoundExample {
   word: string;
