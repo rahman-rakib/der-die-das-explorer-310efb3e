@@ -87,7 +87,7 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Amazonas","Amazon","🌏"), w("der","Mississippi","Mississippi","🌏"), w("der","Nil","Nile","🌏"), w("der","Ganges","Ganges","🌏")],
   },
   {
-    article: "der", title: "wine-based drinks and spirits", emoji: "🍷",
+    article: "der", title: "wine-based drinks & spirits", emoji: "🍷",
     note: "Wines and strong spirits are masculine.",
     exceptions: "die Weinschorle, die Bowle, die Margarita",
     words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
