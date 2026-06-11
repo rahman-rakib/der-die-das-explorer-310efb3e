@@ -75,7 +75,7 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Norden","north","🧭"), w("der","Süden","south"), w("der","Osten","east"), w("der","Westen","west")],
   },
   {
-    article: "der", title: "mountains & mountain peaks", emoji: "🏔️",
+    article: "der", title: "mountains & peaks", emoji: "🏔️",
     note: "Mountains and mountain peaks are usually masculine.",
     exceptions: "die Zugspitze, die Marmolada",
     words: [w("der","Everest","Everest","🏔️"), w("der","Kilimandscharo","Kilimanjaro","🏔️"), w("der","Mont Blanc","Mont Blanc","🏔️")],
