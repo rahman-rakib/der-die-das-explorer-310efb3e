@@ -377,8 +377,17 @@ function RuleCard({ rule }: { rule: Rule }) {
   );
 }
 
+const BUBBLE_PALETTE = [
+  "#f87171", "#fb923c", "#facc15", "#a3e635", "#34d399",
+  "#22d3ee", "#60a5fa", "#818cf8", "#c084fc", "#f472b6",
+  "#fb7185", "#fdba74", "#fde047", "#86efac", "#67e8f9",
+  "#93c5fd", "#a5b4fc", "#d8b4fe",
+];
+
 function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
   const meta = ARTICLE_META[article];
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
   if (heads.length === 0) {
     return (
       <p className="mx-4 mt-4 rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
@@ -386,6 +395,17 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
       </p>
     );
   }
+
+  const counts = heads.map(h => h.count);
+  const minC = Math.min(...counts);
+  const maxC = Math.max(...counts);
+  const sizeFor = (c: number) => {
+    const t = maxC === minC ? 1 : (c - minC) / (maxC - minC);
+    return Math.round(60 + t * 56); // 60–116 px
+  };
+
+  const active = activeIdx !== null ? heads[activeIdx] : null;
+
   return (
     <div className="mt-5 px-4">
       <div className="mb-2 flex items-center gap-2">
@@ -394,34 +414,76 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
         </span>
         <span className="h-px flex-1 bg-border" />
       </div>
-      <div className="space-y-3">
-        {heads.map((h, i) => (
+      <p className="mb-3 text-xs italic text-muted-foreground">
+        Tap or hover a bubble to see examples.
+      </p>
+
+      <div
+        className="relative flex flex-wrap items-center justify-center gap-2 p-5 shadow-inner"
+        style={{
+          backgroundColor: `var(--${meta.soft})`,
+          borderRadius: "42% 58% 60% 40% / 45% 40% 60% 55%",
+          border: `2px dashed var(--${meta.color})`,
+        }}
+        onMouseLeave={() => setActiveIdx(null)}
+      >
+        {heads.map((h, i) => {
+          const size = sizeFor(h.count);
+          const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
+          const isActive = activeIdx === i;
+          return (
+            <motion.button
+              key={h.head}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: i * 0.03, type: "spring", stiffness: 260, damping: 18 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              onMouseEnter={() => setActiveIdx(i)}
+              onFocus={() => setActiveIdx(i)}
+              onClick={() => setActiveIdx(isActive ? null : i)}
+              style={{
+                width: size,
+                height: size,
+                backgroundColor: color,
+                boxShadow: isActive
+                  ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
+                  : `0 4px 12px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
+              }}
+              className="flex shrink-0 items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none transition-shadow"
+            >
+              <span
+                className="px-1"
+                style={{ fontSize: Math.max(11, Math.round(size / 7)) }}
+              >
+                -{h.head}
+              </span>
+            </motion.button>
+          );
+        })}
+      </div>
+
+      <AnimatePresence mode="wait">
+        {active && (
           <motion.div
-            key={h.head}
-            initial={{ opacity: 0, y: 10 }}
+            key={active.head}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.02 }}
-            className="overflow-hidden rounded-3xl border bg-card shadow-sm"
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.18 }}
+            className="mt-4 overflow-hidden rounded-3xl border bg-card shadow-sm"
             style={{ borderColor: `var(--${meta.color})` }}
           >
             <div
-              className="flex items-center justify-between gap-3 px-4 py-3"
+              className="flex items-center gap-2 px-4 py-3"
               style={{ backgroundColor: `var(--${meta.soft})` }}
             >
-              <div className="flex items-center gap-2">
-                <ArticleBadge article={article} size="sm" />
-                <span className="text-lg font-extrabold">-{h.head}</span>
-              </div>
-              <span
-                className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
-                style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
-              >
-                {h.accuracy.toFixed(1)}% · n={h.count}
-              </span>
+              <ArticleBadge article={article} size="sm" />
+              <span className="text-base font-extrabold">-{active.head}</span>
             </div>
             <div className="space-y-2 p-4">
               <div className="flex flex-wrap gap-1.5">
-                {h.examples.map(ex => (
+                {active.examples.map(ex => (
                   <span
                     key={ex}
                     className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
@@ -434,15 +496,20 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                   </span>
                 ))}
               </div>
-              {h.exceptions && (
+              {active.exceptions && (
                 <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
-                  ⚠️ {h.exceptions}
+                  ⚠️ {active.exceptions}
                 </p>
               )}
             </div>
           </motion.div>
-        ))}
-      </div>
+        )}
+        {!active && (
+          <p className="mt-4 rounded-2xl bg-muted/40 px-4 py-3 text-center text-xs text-muted-foreground">
+            👆 Pick a bubble to reveal example words
+          </p>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
