@@ -68,9 +68,10 @@ const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: st
 
 export function RulesView() {
   const [tab, setTab] = useState<Article>("der");
-  const [view, setView] = useState<"thematic" | "suffix">("thematic");
+  const [view, setView] = useState<"thematic" | "suffix" | "compound">("thematic");
   const meta = ARTICLE_META[tab];
   const rules = RULES.filter(r => r.article === tab).slice().sort((a, b) => b.accuracy - a.accuracy);
+  const compounds = (COMPOUNDS[tab] ?? []).slice().sort((a, b) => b.count - a.count);
 
   return (
     <div className="pb-8">
