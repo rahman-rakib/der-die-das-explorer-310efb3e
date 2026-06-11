@@ -396,13 +396,17 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
     );
   }
 
-  const counts = heads.map(h => h.count);
-  const minC = Math.min(...counts);
-  const maxC = Math.max(...counts);
-  const sizeFor = (c: number) => {
-    const t = maxC === minC ? 1 : (c - minC) / (maxC - minC);
-    return Math.round(60 + t * 56); // 60–116 px
-  };
+  const BUBBLE = 64;
+  const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
+  const GOLDEN = Math.PI * (3 - Math.sqrt(5));
+  const scale = BUBBLE * SPACING;
+  const positions = heads.map((_, i) => {
+    const r = scale * Math.sqrt(i + 0.5);
+    const theta = i * GOLDEN;
+    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
+  });
+  const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
+  const boxSize = Math.ceil(outerR * 2);
 
   const active = activeIdx !== null ? heads[activeIdx] : null;
 
@@ -419,49 +423,59 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
       </p>
 
       <div
-        className="relative flex flex-wrap items-center justify-center gap-2 p-5 shadow-inner"
-        style={{
-          backgroundColor: `var(--${meta.soft})`,
-          borderRadius: "42% 58% 60% 40% / 45% 40% 60% 55%",
-          border: `2px dashed var(--${meta.color})`,
-        }}
+        className="relative mx-auto"
+        style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
         onMouseLeave={() => setActiveIdx(null)}
       >
+        <div
+          className="absolute inset-0 rounded-full shadow-inner"
+          style={{
+            backgroundColor: `var(--${meta.soft})`,
+            border: `2px dashed var(--${meta.color})`,
+          }}
+        />
         {heads.map((h, i) => {
-          const size = sizeFor(h.count);
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
+          const { x, y } = positions[i];
+          const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
           return (
             <motion.button
               key={h.head}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.03, type: "spring", stiffness: 260, damping: 18 }}
-              whileHover={{ scale: 1.08 }}
+              transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
+              whileHover={{ scale: 1.12 }}
               whileTap={{ scale: 0.95 }}
               onMouseEnter={() => setActiveIdx(i)}
               onFocus={() => setActiveIdx(i)}
               onClick={() => setActiveIdx(isActive ? null : i)}
               style={{
-                width: size,
-                height: size,
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: BUBBLE,
+                height: BUBBLE,
+                marginLeft: -BUBBLE / 2,
+                marginTop: -BUBBLE / 2,
+                x,
+                y,
                 backgroundColor: color,
+                zIndex: isActive ? 10 : 1,
                 boxShadow: isActive
                   ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
-                  : `0 4px 12px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
+                  : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
               }}
-              className="flex shrink-0 items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none transition-shadow"
+              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
             >
-              <span
-                className="px-1"
-                style={{ fontSize: Math.max(11, Math.round(size / 7)) }}
-              >
-                -{h.head}
+              <span className="px-1" style={{ fontSize: 11 }}>
+                -{lower}
               </span>
             </motion.button>
           );
         })}
       </div>
+
 
       <AnimatePresence mode="wait">
         {active && (
