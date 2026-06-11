@@ -322,9 +322,8 @@ function RuleCard({ rule }: { rule: Rule }) {
       </div>
 
       <div className="px-4">
-        <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
+        <div className="text-[11px] font-semibold text-muted-foreground">
           <span>{rule.accuracy.toFixed(1)}% accuracy</span>
-          <span>n={rule.count} · {rule.exceptionCount} exception{rule.exceptionCount === 1 ? "" : "s"}</span>
         </div>
         {showTier && (
           <div className={`mt-1.5 h-1.5 w-full overflow-hidden rounded-full ${tier.barBg}`}>
