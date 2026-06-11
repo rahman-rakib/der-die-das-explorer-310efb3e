@@ -5,7 +5,7 @@ import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
 
-type Tier = "ironclad" | "strong" | "weak";
+type Tier = "ironclad" | "strong" | "moderate" | "weak";
 
 interface Exception {
   noun: string;
@@ -20,13 +20,18 @@ interface Rule {
   tier: Tier;
   count: number;
   smallSample: boolean;
+  overriddenBy: string[];
   exceptionCount: number;
   note: string;
   examples: string[];
   exceptions: Exception[];
 }
 
-const RULES = (rulesData as { rules: Rule[] }).rules;
+const RAW_RULES = rulesData as { rules: Record<Article, Omit<Rule, "article">[]> };
+const RULES: Rule[] = (["der", "die", "das"] as Article[]).flatMap(a =>
+  (RAW_RULES.rules[a] ?? []).map(r => ({ ...r, article: a, tier: r.tier as Tier }))
+);
+
 
 interface CompoundExample {
   word: string;
@@ -69,6 +74,15 @@ const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: st
     bar: "bg-rose-500",
     barBg: "bg-rose-100",
   },
+  moderate: {
+    label: "Moderate",
+    icon: "🤔",
+    bg: "bg-orange-100",
+    fg: "text-orange-800",
+    bar: "bg-orange-500",
+    barBg: "bg-orange-100",
+  },
+
 };
 
 export function RulesView() {
@@ -341,6 +355,19 @@ function RuleCard({ rule }: { rule: Rule }) {
           💡 {rule.note}
         </p>
       )}
+
+      {rule.overriddenBy && rule.overriddenBy.length > 0 && (
+        <p className="mx-4 mt-2 rounded-xl bg-sky-50 px-3 py-2 text-xs leading-relaxed text-sky-900">
+          ↗️ Overridden by more specific:{" "}
+          {rule.overriddenBy.map((s, i) => (
+            <span key={s}>
+              {i > 0 && ", "}
+              <span className="font-bold">{s}</span>
+            </span>
+          ))}
+        </p>
+      )}
+
 
       {rule.examples.length > 0 && (
         <div className="px-4 pt-3">
