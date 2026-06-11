@@ -111,7 +111,7 @@ export const RULES: RuleGroup[] = [
   },
 
   {
-    article: "der", title: "Nouns from verbs ending in -er", emoji: "🔧",
+    article: "der", title: "Agent nouns from verbs (-er)", emoji: "🔧",
     note: "Agent nouns formed from verbs with the -er suffix (the person/thing that does the action) are masculine.",
     words: [
       w("der","Lehrer","teacher","👨‍🏫"), w("der","Fahrer","driver","🚗"),
