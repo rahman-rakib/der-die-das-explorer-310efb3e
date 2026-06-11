@@ -113,8 +113,8 @@ export function RulesView() {
         <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-muted p-1">
           {([
             { id: "thematic", label: "🎨 Thematic" },
-            { id: "suffix", label: "🔤 Suffix" },
             { id: "compound", label: "🧩 Compound" },
+            { id: "suffix", label: "🔤 Suffix" },
           ] as const).map(v => {
             const active = view === v.id;
             return (
@@ -147,13 +147,14 @@ export function RulesView() {
           {meta.icon} {meta.label.toUpperCase()} —{" "}
           {view === "thematic"
             ? "thematic groups"
-            : view === "suffix"
-              ? "suffix rules, strongest first"
-              : "compound heads — gender of the last noun wins"}
+            : view === "compound"
+              ? "compound heads — gender of the last noun wins"
+              : "suffix rules, strongest first"}
         </p>
       </div>
 
       {view === "thematic" && <ThematicGroups article={tab} />}
+      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
       {view === "suffix" && (
         <div className="mt-4 space-y-3 px-4">
           {rules.map((r, i) => (
@@ -173,7 +174,6 @@ export function RulesView() {
           )}
         </div>
       )}
-      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
     </div>
   );
 }
