@@ -28,6 +28,15 @@ interface Rule {
 
 const RULES = (rulesData as { rules: Rule[] }).rules;
 
+interface CompoundHead {
+  head: string;
+  accuracy: number;
+  count: number;
+  exceptions?: string;
+  examples: string[];
+}
+const COMPOUNDS = (compoundData as { rules: Record<Article, CompoundHead[]> }).rules;
+
 const TABS: Article[] = ["der", "die", "das"];
 
 const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: string; bar: string; barBg: string }> = {
