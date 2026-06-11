@@ -41,12 +41,12 @@ const w = (article: Article, word: string, english: string, emoji?: string): Wor
 export const RULES: RuleGroup[] = [
   // DER
   {
-    article: "der", title: "Male humans & animals", emoji: "🧔",
+    article: "der", title: "male humans & animals", emoji: "🧔",
     note: "Words referring to male humans and male animals are masculine.",
     words: [w("der","Mann","man","🧔"), w("der","Vater","father","👨"), w("der","König","king","👑"), w("der","Hahn","rooster","🐓"), w("der","Stier","bull","🐂"), w("der","Löwe","lion","🦁"), w("der","Riese","giant","👹")],
   },
   {
-    article: "der", title: "Professions, occupations & roles", emoji: "👨‍💼",
+    article: "der", title: "professions, occupations & roles", emoji: "👨‍💼",
     note: "Professions, occupations, roles, and many function titles are grammatically masculine by default.",
     words: [
       w("der","Arzt","doctor","👨‍⚕️"), w("der","Pilot","pilot","✈️"), w("der","Ingenieur","engineer","⚙️"),
@@ -54,46 +54,46 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "der", title: "Days, months & seasons", emoji: "📅",
+    article: "der", title: "days, months & seasons", emoji: "📅",
     note: "Days of the week, months of the year, and seasons are all masculine.",
     words: [w("der","Montag","Monday","📅"), w("der","April","April","🌸"), w("der","Sommer","summer","☀️"), w("der","Winter","winter","❄️"), w("der","Freitag","Friday","🗓")],
   },
   {
-    article: "der", title: "Times / parts of the day", emoji: "🌅",
+    article: "der", title: "times / parts of the day", emoji: "🌅",
     note: "Parts of the day are masculine.",
     exceptions: "die Nacht",
     words: [w("der","Morgen","morning","🌅"), w("der","Vormittag","late morning","🌄"), w("der","Mittag","noon/midday","☀️"), w("der","Nachmittag","afternoon","🌇"), w("der","Abend","evening","🌆")],
   },
   {
-    article: "der", title: "Weather & nature forces", emoji: "🌧",
+    article: "der", title: "weather & nature forces", emoji: "🌧",
     note: "Weather phenomena and natural forces are typically masculine.",
     words: [w("der","Regen","rain","🌧"), w("der","Wind","wind","💨"), w("der","Schnee","snow","⛄"), w("der","Blitz","lightning","⚡"), w("der","Donner","thunder","🌩")],
   },
   {
-    article: "der", title: "Compass directions", emoji: "🧭",
+    article: "der", title: "compass directions", emoji: "🧭",
     note: "The four compass directions are masculine.",
     words: [w("der","Norden","north","🧭"), w("der","Süden","south"), w("der","Osten","east"), w("der","Westen","west")],
   },
   {
-    article: "der", title: "Mountains & mountain peaks", emoji: "🏔️",
+    article: "der", title: "mountains & mountain peaks", emoji: "🏔️",
     note: "Mountains and mountain peaks are usually masculine.",
     exceptions: "die Zugspitze, die Marmolada",
     words: [w("der","Everest","Everest","🏔️"), w("der","Kilimandscharo","Kilimanjaro","🏔️"), w("der","Mont Blanc","Mont Blanc","🏔️")],
   },
   {
-    article: "der", title: "Non-European rivers", emoji: "🌏",
+    article: "der", title: "non-european rivers", emoji: "🌏",
     note: "Rivers outside Europe are generally masculine.",
     exceptions: "die Wolga, die Lena, die Jangtsekiang",
     words: [w("der","Amazonas","Amazon","🌏"), w("der","Mississippi","Mississippi","🌏"), w("der","Nil","Nile","🌏"), w("der","Ganges","Ganges","🌏")],
   },
   {
-    article: "der", title: "Wine-based drinks and spirits", emoji: "🍷",
+    article: "der", title: "wine-based drinks and spirits", emoji: "🍷",
     note: "Wines and strong spirits are masculine.",
     exceptions: "die Weinschorle, die Bowle, die Margarita",
     words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
   },
   {
-    article: "der", title: "Real nouns ending in -en", emoji: "🌿",
+    article: "der", title: "real nouns ending in -en", emoji: "🌿",
     note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
     words: [
       w("der","Garten","garden","🌿"), w("der","Ofen","oven","🔥"), w("der","Boden","floor/ground","🪵"),
@@ -101,12 +101,12 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "der", title: "Car brands", emoji: "🚗",
+    article: "der", title: "car brands", emoji: "🚗",
     note: "Car brands are masculine (think: der Wagen — the car).",
     words: [w("der","BMW","BMW","🚗"), w("der","Mercedes","Mercedes"), w("der","Porsche","Porsche"), w("der","VW","Volkswagen")],
   },
   {
-    article: "der", title: "Electronic devices & appliances", emoji: "🔌",
+    article: "der", title: "electronic devices & appliances", emoji: "🔌",
     note: "Most electronic devices and appliances are masculine.",
     exceptions: "das Handy (mobile phone), das Tablet, das Radio; die Lampe (lamp), die Waschmaschine (washing machine)",
     words: [
@@ -117,7 +117,7 @@ export const RULES: RuleGroup[] = [
   },
 
   {
-    article: "der", title: "Agent nouns from verbs (-er)", emoji: "🔧",
+    article: "der", title: "agent nouns from verbs (-er)", emoji: "🔧",
     note: "Agent nouns formed from verbs with the -er suffix (the person/thing that does the action) are masculine.",
     words: [
       w("der","Lehrer","teacher","👨‍🏫"), w("der","Fahrer","driver","🚗"),
@@ -128,7 +128,7 @@ export const RULES: RuleGroup[] = [
   },
 
   {
-    article: "der", title: "Word endings → DER", emoji: "🔤",
+    article: "der", title: "word endings → der", emoji: "🔤",
     words: [],
     suffixes: [
       {
@@ -169,35 +169,35 @@ export const RULES: RuleGroup[] = [
 
   // DIE
   {
-    article: "die", title: "Female people & animals", emoji: "👩",
+    article: "die", title: "female people & animals", emoji: "👩",
     note: "Words referring to female humans and female animals are feminine.",
     words: [w("die","Frau","woman","👩"), w("die","Mutter","mother","👩‍🦰"), w("die","Tochter","daughter","👧"), w("die","Ärztin","doctor (f)","👩‍⚕️"), w("die","Friseuse","hairdresser (f)","💇‍♀️"), w("die","Henne","hen","🐔"), w("die","Kuh","cow","🐄")],
   },
   {
-    article: "die", title: "Flowers, trees & plants", emoji: "🌹",
+    article: "die", title: "flowers, trees & plants", emoji: "🌹",
     note: "Most flowers, trees, and plants are feminine.",
     exceptions: "🌳 der Ahorn, der Bambus, der Kaktus — 🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🪻"), w("die","Distel","thistle","🌵")],
   },
   {
-    article: "die", title: "Fruits & berries", emoji: "🍓",
+    article: "die", title: "fruits & berries", emoji: "🍓",
     note: "Most fruits and berries are feminine.",
     exceptions: "der Apfel, der Pfirsich, das Obst",
     words: [w("die","Banane","banana","🍌"), w("die","Kirsche","cherry","🍒"), w("die","Traube","grape","🍇"), w("die","Birne","pear","🍐"), w("die","Erdbeere","strawberry","🍓"), w("die","Zitrone","lemon","🍋"), w("die","Pflaume","plum","🟣")],
   },
   {
-    article: "die", title: "European rivers", emoji: "🌊",
+    article: "die", title: "european rivers", emoji: "🌊",
     note: "Most European rivers are feminine.",
     exceptions: "der Rhein, der Main, der Neckar, der Inn",
     words: [w("die","Donau","Danube","🌊"), w("die","Elbe","Elbe","🌊"), w("die","Oder","Oder","🌊"), w("die","Havel","Havel","🌊")],
   },
   {
-    article: "die", title: "Numbers used as nouns", emoji: "🔢",
+    article: "die", title: "numbers used as nouns", emoji: "🔢",
     note: "Cardinal numbers used as nouns (the digit itself) are feminine.",
     words: [w("die","Eins","one","1️⃣"), w("die","Zwei","two","2️⃣"), w("die","Million","million","🔢"), w("die","Milliarde","billion")],
   },
   {
-    article: "die", title: "Clock units & time measurement", emoji: "⏰",
+    article: "die", title: "clock units & time measurement", emoji: "⏰",
     note: "Units of time on a clock — hour, minute, second — are mostly feminine.",
     words: [
       w("die","Stunde","hour","⏰"), w("die","Minute","minute","🕐"), w("die","Sekunde","second","⏱️"),
@@ -205,14 +205,14 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "die", title: "Ships & vessels", emoji: "🚢",
+    article: "die", title: "ships & vessels", emoji: "🚢",
     note: "Ships and vessels are always feminine, even when named after men.",
     words: [
       w("die","Titanic","Titanic (RMS Titanic)","🚢"), w("die","Bismarck","German battleship"), w("die","Queen Mary 2","ocean liner"),
     ],
   },
   {
-    article: "die", title: "Aircraft & airlines", emoji: "✈️",
+    article: "die", title: "aircraft & airlines", emoji: "✈️",
     note: "Aircraft and airline names are feminine.",
     exceptions: "der Airbus (der Bus influences the gender), der Jumbo, das Flugzeug",
     words: [
@@ -221,19 +221,19 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "die", title: "Motorcycle brands", emoji: "🏍️",
+    article: "die", title: "motorcycle brands", emoji: "🏍️",
     note: "Motorcycle brands are feminine — even BMW when it's a motorbike!",
     words: [
       w("die","Harley-Davidson","Harley-Davidson","🏍️"), w("die","Yamaha","Yamaha"), w("die","BMW","BMW (motorcycle)"),
     ],
   },
   {
-    article: "die", title: "Mixed drinks", emoji: "🍹",
+    article: "die", title: "mixed drinks", emoji: "🍹",
     note: "Mixed and cocktail-style drinks tend to be feminine, breaking the masculine rule for wines and spirits.",
     words: [w("die","Weinschorle","wine spritzer","🍹"), w("die","Bowle","punch/bowl","🍹"), w("die","Margarita","margarita","🍹")],
   },
   {
-    article: "die", title: "Plural nouns — always die!", emoji: "👥",
+    article: "die", title: "plural nouns — always die!", emoji: "👥",
     note: "In the plural, ALL nouns use the definite article die, regardless of their singular gender.",
     words: [
       w("die","Männer","plural of der Mann → the men","👨"), w("die","Frauen","plural of die Frau → the women","👩"),
@@ -242,7 +242,7 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "die", title: "Word endings → DIE", emoji: "🔤",
+    article: "die", title: "word endings → die", emoji: "🔤",
     words: [],
     suffixes: [
       {
@@ -297,37 +297,37 @@ export const RULES: RuleGroup[] = [
 
   // DAS
   {
-    article: "das", title: "Diminutives — always!", emoji: "🐣",
+    article: "das", title: "diminutives — always!", emoji: "🐣",
     note: "Any word ending in -chen or -lein is ALWAYS das, even for a girl or woman.",
     words: [w("das","Mädchen","girl","👧"), w("das","Köpfchen","little head","🧠"), w("das","Häuschen","little house","🏡"), w("das","Fräulein","Miss","🎀"), w("das","Büchlein","little book","📖")],
   },
   {
-    article: "das", title: "Young animals & children", emoji: "👶",
+    article: "das", title: "young animals & children", emoji: "👶",
     note: "Young animals and the general words for child or baby are neuter.",
     words: [w("das","Baby","baby","👶"), w("das","Kind","child","🧒"), w("das","Lamm","lamb","🐑"), w("das","Küken","chick","🐥"), w("das","Kalb","calf","🐮")],
   },
   {
-    article: "das", title: "Metals & chemical elements", emoji: "⚗️",
+    article: "das", title: "metals & chemical elements", emoji: "⚗️",
     note: "Metals and chemical elements are neuter.",
     words: [w("das","Gold","gold","🥇"), w("das","Silber","silver","🥈"), w("das","Eisen","iron","⛓"), w("das","Kupfer","copper","🟠")],
   },
   {
-    article: "das", title: "Languages & letters", emoji: "🌍",
+    article: "das", title: "languages & letters", emoji: "🌍",
     note: "Names of languages and individual letters of the alphabet are neuter.",
     words: [w("das","Deutsch","German","🇩🇪"), w("das","Englisch","English","🇬🇧"), w("das","A","letter A","🅰️"), w("das","B","letter B","🅱️")],
   },
   {
-    article: "das", title: "Colours", emoji: "🎨",
+    article: "das", title: "colours", emoji: "🎨",
     note: "Colour names used as nouns (the colour itself) are neuter.",
     words: [w("das","Rot","red","🔴"), w("das","Gelb","yellow","🟡"), w("das","Blau","blue","🔵")],
   },
   {
-    article: "das", title: "Beer & beer variants", emoji: "🍺",
+    article: "das", title: "beer & beer variants", emoji: "🍺",
     note: "Beer and its variants are neuter.",
     words: [w("das","Bier","beer","🍺"), w("das","Pils","pilsner","🍺"), w("das","Lager","lager","🍺"), w("das","Ale","ale","🍺"), w("das","Radler","shandy/radler","🍺")],
   },
   {
-    article: "das", title: "Nouns from adjectives (substantivized)", emoji: "✨",
+    article: "das", title: "nouns from adjectives (substantivized)", emoji: "✨",
     note: "When an adjective is turned into a noun to mean 'the [adjective] thing/concept', it is always neuter.",
     words: [
       w("das","Gute","the good (goodness)","✨"), w("das","Böse","the evil (evilness)","😈"), w("das","Schöne","the beautiful (beauty)","🌸"),
@@ -335,13 +335,13 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "das", title: "Infinitives used as nouns", emoji: "🏃",
+    article: "das", title: "infinitives used as nouns", emoji: "🏃",
     note: "Any verb infinitive (ending in -en) used as a noun is ALWAYS das. Real -en nouns (not from verbs) like der Garten are DER — see the der tab.",
     words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤"), w("das","Lachen","laughter","😂"), w("das","Schreiben","writing","✍️")],
   },
 
   {
-    article: "das", title: "Fractions", emoji: "📐",
+    article: "das", title: "fractions", emoji: "📐",
     note: "Most fractions are neuter.",
     exceptions: "die Hälfte (half)",
     words: [
@@ -349,13 +349,13 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "das", title: "Cities, countries & continents", emoji: "🗺️",
+    article: "das", title: "cities, countries & continents", emoji: "🗺️",
     note: "Most cities, countries, and continents are neuter.",
     exceptions: "die Schweiz, die Türkei, die USA (pl); der Iran, der Irak, der Sudan",
     words: [w("das","Berlin","Berlin","🗺️"), w("das","Deutschland","Germany","🇩🇪"), w("das","Italien","Italy","🇮🇹"), w("das","Europa","Europe","🇪🇺")],
   },
   {
-    article: "das", title: "Year, age & long time periods", emoji: "🗓️",
+    article: "das", title: "year, age & long time periods", emoji: "🗓️",
     note: "Year and its multiples, and 'age' as a measurement of time, are neuter.",
     exceptions: "die Dekade (decade), die Epoche (epoch), die Ära (era)",
     words: [
@@ -364,7 +364,7 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "das", title: "Non-agent -er nouns", emoji: "🪟",
+    article: "das", title: "non-agent -er nouns", emoji: "🪟",
     note: "Not all -er nouns are agents (people who do the action). When -er is part of the root word — not a verb-derived agent suffix — the noun is usually DAS.",
     words: [
       w("das","Messer","knife","🔪"), w("das","Fenster","window","🪟"), w("das","Wasser","water","💧"),
@@ -375,7 +375,7 @@ export const RULES: RuleGroup[] = [
   },
 
   {
-    article: "das", title: "Word endings → DAS", emoji: "🔤",
+    article: "das", title: "word endings → das", emoji: "🔤",
     words: [],
     suffixes: [
       {
