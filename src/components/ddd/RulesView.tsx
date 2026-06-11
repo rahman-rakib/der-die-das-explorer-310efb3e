@@ -28,12 +28,16 @@ interface Rule {
 
 const RULES = (rulesData as { rules: Rule[] }).rules;
 
+interface CompoundExample {
+  word: string;
+  meaning: string;
+}
 interface CompoundHead {
   head: string;
   accuracy: number;
   count: number;
   exceptions?: string;
-  examples: string[];
+  examples: CompoundExample[];
 }
 const COMPOUNDS = (compoundData as { rules: Record<Article, CompoundHead[]> }).rules;
 
