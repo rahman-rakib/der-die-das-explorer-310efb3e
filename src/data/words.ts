@@ -206,6 +206,15 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
+    article: "die", title: "Aircraft & airlines", emoji: "✈️",
+    note: "Aircraft and airline names are feminine.",
+    exceptions: "der Airbus (der Bus influences the gender), der Jumbo, das Flugzeug",
+    words: [
+      w("die","Boeing","Boeing","✈️"), w("die","Concorde","Concorde","✈️"), w("die","Airbus A380","Airbus A380","✈️"),
+      w("die","Lufthansa","Lufthansa","✈️"), w("die","Air France","Air France","✈️"),
+    ],
+  },
+  {
     article: "die", title: "Motorcycle brands", emoji: "🏍️",
     note: "Motorcycle brands are feminine — even BMW when it's a motorbike!",
     words: [
