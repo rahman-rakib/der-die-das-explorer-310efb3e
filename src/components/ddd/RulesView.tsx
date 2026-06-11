@@ -419,13 +419,12 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
         <span className="h-px flex-1 bg-border" />
       </div>
       <p className="mb-3 text-xs italic text-muted-foreground">
-        Tap or hover a bubble to see examples.
+        Tap a bubble to see examples.
       </p>
 
       <div
         className="relative mx-auto"
         style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
-        onMouseLeave={() => setActiveIdx(null)}
       >
         <div
           className="absolute inset-0 rounded-full shadow-inner"
@@ -445,11 +444,9 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
-              whileHover={{ scale: 1.12 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              onMouseEnter={() => setActiveIdx(i)}
-              onFocus={() => setActiveIdx(i)}
-              onClick={() => setActiveIdx(isActive ? null : i)}
+              onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
               style={{
                 position: "absolute",
                 left: "50%",
@@ -461,7 +458,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 x,
                 y,
                 backgroundColor: color,
-                zIndex: isActive ? 10 : 1,
+                zIndex: isActive ? 5 : 1,
                 boxShadow: isActive
                   ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
                   : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
@@ -474,56 +471,71 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
             </motion.button>
           );
         })}
-      </div>
 
-
-      <AnimatePresence mode="wait">
-        {active && (
-          <motion.div
-            key={active.head}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.18 }}
-            className="mt-4 overflow-hidden rounded-3xl border bg-card shadow-sm"
-            style={{ borderColor: `var(--${meta.color})` }}
-          >
-            <div
-              className="flex items-center gap-2 px-4 py-3"
-              style={{ backgroundColor: `var(--${meta.soft})` }}
-            >
-              <ArticleBadge article={article} size="sm" />
-              <span className="text-base font-extrabold">-{active.head}</span>
-            </div>
-            <div className="space-y-2 p-4">
-              <div className="flex flex-wrap gap-1.5">
-                {active.examples.map(ex => (
-                  <span
-                    key={ex}
-                    className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
-                    style={{ borderColor: `var(--${meta.color})` }}
+        <AnimatePresence>
+          {active && (
+            <>
+              <motion.div
+                key="backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                onClick={() => setActiveIdx(null)}
+                className="absolute inset-0 z-10 rounded-full"
+                style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
+              />
+              <motion.div
+                key={active.head}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
+                className="absolute left-1/2 top-1/2 z-20 w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
+                style={{ borderColor: `var(--${meta.color})` }}
+              >
+                <div
+                  className="flex items-center justify-between gap-2 px-4 py-2.5"
+                  style={{ backgroundColor: `var(--${meta.soft})` }}
+                >
+                  <div className="flex items-center gap-2">
+                    <ArticleBadge article={article} size="sm" />
+                    <span className="text-base font-extrabold">-{active.head}</span>
+                  </div>
+                  <button
+                    onClick={() => setActiveIdx(null)}
+                    className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
+                    aria-label="Close"
                   >
-                    <span className="text-[10px] font-bold uppercase" style={{ color: `var(--${meta.color})` }}>
-                      {article}
-                    </span>
-                    <span className="font-semibold">{ex}</span>
-                  </span>
-                ))}
-              </div>
-              {active.exceptions && (
-                <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
-                  ⚠️ {active.exceptions}
-                </p>
-              )}
-            </div>
-          </motion.div>
-        )}
-        {!active && (
-          <p className="mt-4 rounded-2xl bg-muted/40 px-4 py-3 text-center text-xs text-muted-foreground">
-            👆 Pick a bubble to reveal example words
-          </p>
-        )}
-      </AnimatePresence>
+                    ✕
+                  </button>
+                </div>
+                <div className="space-y-2 p-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {active.examples.map(ex => (
+                      <span
+                        key={ex}
+                        className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
+                        style={{ borderColor: `var(--${meta.color})` }}
+                      >
+                        <span className="text-[10px] font-bold uppercase" style={{ color: `var(--${meta.color})` }}>
+                          {article}
+                        </span>
+                        <span className="font-semibold">{ex}</span>
+                      </span>
+                    ))}
+                  </div>
+                  {active.exceptions && (
+                    <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
+                      ⚠️ {active.exceptions}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
