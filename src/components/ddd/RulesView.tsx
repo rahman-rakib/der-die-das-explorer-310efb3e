@@ -564,14 +564,15 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                   <div className="flex flex-wrap gap-1.5">
                     {active.examples.map(ex => (
                       <span
-                        key={ex}
+                        key={ex.word}
                         className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
                         style={{ borderColor: `var(--${meta.color})` }}
                       >
                         <span className="text-[10px] font-bold uppercase" style={{ color: `var(--${meta.color})` }}>
                           {article}
                         </span>
-                        <span className="font-semibold">{ex}</span>
+                        <span className="font-semibold">{ex.word}</span>
+                        <span className="text-[10px] text-muted-foreground">· {ex.meaning}</span>
                       </span>
                     ))}
                   </div>
