@@ -113,8 +113,8 @@ export function RulesView() {
         <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-muted p-1">
           {([
             { id: "thematic", label: "🎨 Thematic" },
-            { id: "suffix", label: "🔤 Suffix" },
             { id: "compound", label: "🧩 Compound" },
+            { id: "suffix", label: "🔤 Suffix" },
           ] as const).map(v => {
             const active = view === v.id;
             return (
