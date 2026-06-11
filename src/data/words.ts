@@ -128,15 +128,6 @@ export const RULES: RuleGroup[] = [
   },
 
   {
-    article: "der", title: "Derived nouns ending in -gang / -fang", emoji: "🚶",
-    note: "Nouns derived from verbs ending in -gang or -fang are always masculine.",
-    words: [
-      w("der","Ausgang","exit","🚪"), w("der","Übergang","transition/crossing","🚶"), w("der","Zugang","access","🔑"),
-      w("der","Fang","catch","🎣"), w("der","Anfang","beginning","🚀"), w("der","Abfang","interception","🛡️"),
-    ],
-  },
-
-  {
     article: "der", title: "Word endings → DER", emoji: "🔤",
     words: [],
     suffixes: [
