@@ -123,7 +123,7 @@ export const RULES: RuleGroup[] = [
     note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
     words: [
       w("der","Garten","garden","🌿"), w("der","Ofen","oven","🔥"), w("der","Boden","floor/ground","🪵"),
-      w("der","Laden","shop","🏪"), w("der","Kuchen","cake","🍰"),
+      w("der","Laden","shop","🏪"), w("der","Kuchen","cake","🍰"), w("der","Knochen","bone","🦴"), w("der","Drachen","dragon","🐉"),
     ],
   },
 
