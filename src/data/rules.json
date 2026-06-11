@@ -1,1203 +1,2874 @@
 {
-  "source": "german-nouns lexicon (~93k nouns, Wiktionary); refined by morphological rules",
+  "ruleSet": "suffix-based",
+  "howToRead": "A word can match several endings — the LONGEST one wins (it is the most specific). 'Nation' matches -ion and -tion -> use -tion (die, 99.8%); 'Biologie' matches -e and -ie -> use -ie (die, 97%). Each ending's `overriddenBy` lists the more-specific endings that beat it, so overlapping endings (-ion/-tion/-sion, -e/-ie, -eit/-heit/-keit) can be shown together as a family rather than scattered.",
+  "scope": "MORPHOLOGICAL rules only: word-ending (suffix) rules + the compound-head rule. This file does NOT contain the app's THEMATIC/semantic rules (e.g. car brands -> der, days/months/seasons -> der, male people & animals -> der, weather -> der). Those are a separate rule type the app defines on its own and MUST be left untouched — these suffix-based rules are meant to sit alongside them, not replace them.",
+  "source": "german-nouns lexicon (~93k nouns, Wiktionary); refined by morphological rules. Compound-head split uses a frequency floor (wordfreq 3.1.1).",
   "tiers": {
-    "ironclad": ">= 98.0% — trust it",
-    "strong": "90.0–98.0% — usually right, learn the exceptions",
-    "weak": "< 90.0% — unreliable, memorise instead"
+    "ironclad": ">= 95.0% — trust it",
+    "strong": "85.0–95.0% — usually right, learn the exceptions",
+    "moderate": "68.0–85.0% — leans this way, many exceptions",
+    "weak": "< 68.0% — barely a pattern, memorise individually"
   },
-  "rules": [
-    {
-      "suffix": "-ium",
-      "article": "das",
-      "accuracy": 100.0,
-      "rawAccuracy": 100.0,
-      "tier": "ironclad",
-      "count": 466,
-      "smallSample": false,
-      "exceptionCount": 0,
-      "note": "Latin neuter → das (Stadium, Studium). Effectively no exceptions.",
-      "examples": [
-        "Studium",
-        "Stadium",
-        "Gymnasium",
-        "Aquarium",
-        "Territorium",
-        "Ministerium",
-        "Medium",
-        "Aluminium",
-        "Kriterium",
-        "Bundesministerium",
-        "Innenministerium",
-        "Imperium",
-        "Präsidium",
-        "Stipendium",
-        "Gremium"
-      ],
-      "exceptions": []
-    },
-    {
-      "suffix": "-lein",
-      "article": "das",
-      "accuracy": 98.99,
-      "rawAccuracy": 98.99,
-      "tier": "ironclad",
-      "count": 99,
-      "smallSample": false,
-      "exceptionCount": 1,
-      "note": "Diminutive → das (Fräulein). Highly reliable.",
-      "examples": [
-        "Fräulein",
-        "Büchlein",
-        "Tischlein",
-        "Vöglein",
-        "Klein",
-        "Männlein",
-        "Kirchlein",
-        "Weiblein",
-        "Zünglein",
-        "Bäuchlein",
-        "Bächlein",
-        "Äuglein",
-        "Entlein",
-        "Häuflein",
-        "Lichtlein"
-      ],
-      "exceptions": [
-        {
-          "noun": "Zwerglein",
-          "article": "der"
-        }
-      ]
-    },
-    {
-      "suffix": "-chen",
-      "article": "das",
-      "accuracy": 97.1,
-      "rawAccuracy": 88.58,
-      "tier": "strong",
-      "count": 863,
-      "smallSample": false,
-      "exceptionCount": 25,
-      "note": "Diminutive → das (Mädchen). Exceptions are compounds of der Kuchen / der Knochen — not real diminutives.",
-      "examples": [
-        "Mädchen",
-        "Brötchen",
-        "Hündchen",
-        "Kätzchen",
-        "Häuschen",
-        "Bäumchen",
-        "Bisschen",
-        "Sprechen",
-        "Erreichen",
-        "Zeichen",
-        "Lachen",
-        "Kochen",
-        "Verbrechen",
-        "Versprechen",
-        "Rauchen"
-      ],
-      "exceptions": [
-        {
-          "noun": "Kuchen",
-          "article": "der"
-        },
-        {
-          "noun": "Knochen",
-          "article": "der"
-        },
-        {
-          "noun": "Drachen",
-          "article": "der"
-        },
-        {
-          "noun": "Rachen",
-          "article": "der"
-        },
-        {
-          "noun": "Bähnchen",
-          "article": "die"
-        },
-        {
-          "noun": "Schochen",
-          "article": "der"
-        },
-        {
-          "noun": "Spänchen",
-          "article": "die"
-        },
-        {
-          "noun": "Watschen",
-          "article": "die"
-        },
-        {
-          "noun": "Lebkuchen",
-          "article": "der"
-        },
-        {
-          "noun": "Strauchen",
-          "article": "der"
-        }
-      ]
-    },
-    {
-      "suffix": "-ment",
-      "article": "das",
-      "accuracy": 95.85,
-      "rawAccuracy": 95.85,
-      "tier": "strong",
-      "count": 217,
-      "smallSample": false,
-      "exceptionCount": 9,
-      "note": "Latin -mentum → das (Dokument, Element). Distinct from the masculine -ent agent suffix.",
-      "examples": [
-        "Dokument",
-        "Element",
-        "Instrument",
-        "Argument",
-        "Experiment",
-        "Medikament",
-        "Moment",
-        "Parlament",
-        "Management",
-        "Engagement",
-        "Testament",
-        "Statement",
-        "Entertainment",
-        "Fundament",
-        "Kompliment"
-      ],
-      "exceptions": [
-        {
-          "noun": "Moment",
-          "article": "der"
-        },
-        {
-          "noun": "Zement",
-          "article": "der"
-        },
-        {
-          "noun": "Konsument",
-          "article": "der"
-        },
-        {
-          "noun": "Prosument",
-          "article": "der"
-        },
-        {
-          "noun": "Bierkomment",
-          "article": "der"
-        },
-        {
-          "noun": "Asbestzement",
-          "article": "der"
-        },
-        {
-          "noun": "Glücksmoment",
-          "article": "der"
-        },
-        {
-          "noun": "Portlandzement",
-          "article": "der"
-        },
-        {
-          "noun": "Drogenkonsument",
-          "article": "der"
-        }
-      ]
-    },
-    {
-      "suffix": "-ismus",
-      "article": "der",
-      "accuracy": 100.0,
-      "rawAccuracy": 100.0,
-      "tier": "ironclad",
-      "count": 563,
-      "smallSample": false,
-      "exceptionCount": 0,
-      "note": "-ismus → der (Kapitalismus). No exceptions.",
-      "examples": [
-        "Kapitalismus",
-        "Sozialismus",
-        "Tourismus",
-        "Optimismus",
-        "Organismus",
-        "Rassismus",
-        "Nationalsozialismus",
-        "Journalismus",
-        "Antisemitismus",
-        "Faschismus",
-        "Terrorismus",
-        "Feminismus",
-        "Kommunismus",
-        "Nationalismus",
-        "Mechanismus"
-      ],
-      "exceptions": []
-    },
-    {
-      "suffix": "-ist",
-      "article": "der",
-      "accuracy": 98.07,
-      "rawAccuracy": 94.62,
-      "tier": "ironclad",
-      "count": 466,
-      "smallSample": false,
-      "exceptionCount": 9,
-      "note": "Agent nouns → der (Journalist). The -frist family (die) is split off into its own rule.",
-      "examples": [
-        "Journalist",
-        "Tourist",
-        "Polizist",
-        "Optimist",
-        "Pianist",
-        "Komponist",
-        "Geist",
-        "Mist",
-        "Christ",
-        "Jurist",
-        "Spezialist",
-        "Terrorist",
-        "Zeitgeist",
-        "Gitarrist",
-        "Aktivist"
-      ],
-      "exceptions": [
-        {
-          "noun": "Frist",
-          "article": "die"
-        },
-        {
-          "noun": "List",
-          "article": "die"
-        },
-        {
-          "noun": "Hinterlist",
-          "article": "die"
-        },
-        {
-          "noun": "Feist",
-          "article": "das"
-        },
-        {
-          "noun": "Swist",
-          "article": "die"
-        },
-        {
-          "noun": "Whist",
-          "article": "das"
-        },
-        {
-          "noun": "Arglist",
-          "article": "die"
-        },
-        {
-          "noun": "Hotlist",
-          "article": "die"
-        },
-        {
-          "noun": "Playlist",
-          "article": "die"
-        }
-      ]
-    },
-    {
-      "suffix": "-ent",
-      "article": "der",
-      "accuracy": 96.12,
-      "rawAccuracy": 47.6,
-      "tier": "strong",
-      "count": 206,
-      "smallSample": false,
-      "exceptionCount": 8,
-      "note": "Agent nouns → der (Student). The neuter -ment family is split off; das Talent/Patent remain rare exceptions.",
-      "examples": [
-        "Student",
-        "Patient",
-        "Präsident",
-        "Dozent",
-        "Assistent",
-        "Produzent",
-        "Cent",
-        "Event",
-        "Content",
-        "Ministerpräsident",
-        "Agent",
-        "Akzent",
-        "Vizepräsident",
-        "Kontinent",
-        "Bundespräsident"
-      ],
-      "exceptions": [
-        {
-          "noun": "Talent",
-          "article": "das"
-        },
-        {
-          "noun": "Prozent",
-          "article": "das"
-        },
-        {
-          "noun": "Patent",
-          "article": "das"
-        },
-        {
-          "noun": "Tuchent",
-          "article": "die"
-        },
-        {
-          "noun": "Repellent",
-          "article": "das"
-        },
-        {
-          "noun": "Multitalent",
-          "article": "das"
-        },
-        {
-          "noun": "Sprachtalent",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-ig",
-      "article": "der",
-      "accuracy": 95.86,
-      "rawAccuracy": 90.85,
-      "tier": "strong",
-      "count": 145,
-      "smallSample": false,
-      "exceptionCount": 6,
-      "note": "→ der (Honig, König). Cardinal numbers (-zig/-ßig) are split off; das Reisig is an exception.",
-      "examples": [
-        "Honig",
-        "König",
-        "Käfig",
-        "Essig",
-        "Pfennig",
-        "Zweig",
-        "Teig",
-        "Bahnsteig",
-        "Steig",
-        "Bürgersteig",
-        "Gig",
-        "Torschützenkönig",
-        "Abzweig",
-        "Sauerteig",
-        "Gehsteig"
-      ],
-      "exceptions": [
-        {
-          "noun": "Reisig",
-          "article": "das"
-        },
-        {
-          "noun": "Hallig",
-          "article": "die"
-        },
-        {
-          "noun": "Gig",
-          "article": "die"
-        },
-        {
-          "noun": "NIG",
-          "article": "das"
-        },
-        {
-          "noun": "Gezweig",
-          "article": "das"
-        },
-        {
-          "noun": "Zuwenig",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-ling",
-      "article": "der",
-      "accuracy": 95.73,
-      "rawAccuracy": 93.18,
-      "tier": "strong",
-      "count": 328,
-      "smallSample": false,
-      "exceptionCount": 14,
-      "note": "Diminutive/agent → der (Frühling, Lehrling). Borrowed English -ing gerunds (Bowling, Styling) are das and remain exceptions.",
-      "examples": [
-        "Frühling",
-        "Lehrling",
-        "Liebling",
-        "Schmetterling",
-        "Zwilling",
-        "Feigling",
-        "Flüchtling",
-        "Schilling",
-        "Neuling",
-        "Häftling",
-        "Sterling",
-        "Häuptling",
-        "Säugling",
-        "Darling",
-        "Riesling"
-      ],
-      "exceptions": [
-        {
-          "noun": "Bowling",
-          "article": "das"
-        },
-        {
-          "noun": "Recycling",
-          "article": "das"
-        },
-        {
-          "noun": "Reling",
-          "article": "die"
-        },
-        {
-          "noun": "Wuling",
-          "article": "die"
-        },
-        {
-          "noun": "Feeling",
-          "article": "das"
-        },
-        {
-          "noun": "Mailing",
-          "article": "das"
-        },
-        {
-          "noun": "Peeling",
-          "article": "das"
-        },
-        {
-          "noun": "Styling",
-          "article": "das"
-        },
-        {
-          "noun": "Handling",
-          "article": "das"
-        },
-        {
-          "noun": "Tackling",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-ant",
-      "article": "der",
-      "accuracy": 92.23,
-      "rawAccuracy": 84.82,
-      "tier": "strong",
-      "count": 206,
-      "smallSample": false,
-      "exceptionCount": 16,
-      "note": "Agent nouns → der (Demonstrant). das Restaurant / Quant compounds and French loans are exceptions.",
-      "examples": [
-        "Demonstrant",
-        "Praktikant",
-        "Lieferant",
-        "Elefant",
-        "Konsonant",
-        "Musikant",
-        "Kommandant",
-        "Elegant",
-        "Leutnant",
-        "Grant",
-        "Signifikant",
-        "Diamant",
-        "Intendant",
-        "Brillant",
-        "Garant"
-      ],
-      "exceptions": [
-        {
-          "noun": "Restaurant",
-          "article": "das"
-        },
-        {
-          "noun": "Croissant",
-          "article": "das"
-        },
-        {
-          "noun": "Deodorant",
-          "article": "das"
-        },
-        {
-          "noun": "Gant",
-          "article": "die"
-        },
-        {
-          "noun": "Want",
-          "article": "die"
-        },
-        {
-          "noun": "Kurant",
-          "article": "das"
-        },
-        {
-          "noun": "Lavant",
-          "article": "die"
-        },
-        {
-          "noun": "Diamant",
-          "article": "die"
-        },
-        {
-          "noun": "Pendant",
-          "article": "das"
-        },
-        {
-          "noun": "Waterkant",
-          "article": "die"
-        }
-      ]
-    },
-    {
-      "suffix": "-ich",
-      "article": "der",
-      "accuracy": 91.7,
-      "rawAccuracy": 85.26,
-      "tier": "strong",
-      "count": 265,
-      "smallSample": false,
-      "exceptionCount": 22,
-      "note": "→ der (Teppich). Exceptions are compounds of das Reich (Königreich, Tierreich).",
-      "examples": [
-        "Teppich",
-        "Pfirsich",
-        "Rettich",
-        "Kranich",
-        "Bottich",
-        "Bereich",
-        "Vergleich",
-        "Ausgleich",
-        "Strich",
-        "Dietrich",
-        "Stich",
-        "Teich",
-        "Streich",
-        "Fachbereich",
-        "Sandwich"
-      ],
-      "exceptions": [
-        {
-          "noun": "Reich",
-          "article": "das"
-        },
-        {
-          "noun": "Königreich",
-          "article": "das"
-        },
-        {
-          "noun": "Tierreich",
-          "article": "das"
-        },
-        {
-          "noun": "Leich",
-          "article": "die"
-        },
-        {
-          "noun": "Überich",
-          "article": "das"
-        },
-        {
-          "noun": "Dreieich",
-          "article": "die"
-        },
-        {
-          "noun": "Erdreich",
-          "article": "das"
-        },
-        {
-          "noun": "Großreich",
-          "article": "das"
-        },
-        {
-          "noun": "Sonderreich",
-          "article": "das"
-        },
-        {
-          "noun": "Geisterreich",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-tät",
-      "article": "die",
-      "accuracy": 100.0,
-      "rawAccuracy": 100.0,
-      "tier": "ironclad",
-      "count": 782,
-      "smallSample": false,
-      "exceptionCount": 0,
-      "note": "Latin -tät → die (Universität, Qualität). No exceptions.",
-      "examples": [
-        "Universität",
-        "Qualität",
-        "Realität",
-        "Aktivität",
-        "Identität",
-        "Solidarität",
-        "Stabilität",
-        "Fakultät",
-        "Kreativität",
-        "Kriminalität",
-        "Mobilität",
-        "Priorität",
-        "Kapazität",
-        "Lebensqualität",
-        "Majestät"
-      ],
-      "exceptions": []
-    },
-    {
-      "suffix": "-frist",
-      "article": "die",
-      "accuracy": 100.0,
-      "rawAccuracy": 100.0,
-      "tier": "ironclad",
-      "count": 17,
-      "smallSample": true,
-      "exceptionCount": 0,
-      "note": "die Frist and all its compounds (Kündigungsfrist, Anmeldefrist) → die.",
-      "examples": [
-        "Kündigungsfrist",
-        "Anmeldefrist",
-        "Galgenfrist",
-        "Schonfrist",
-        "Jahresfrist",
-        "Bewerbungsfrist",
-        "Übergangsfrist",
-        "Gnadenfrist",
-        "Zahlungsfrist",
-        "Abgabefrist",
-        "Einspruchsfrist",
-        "Bewährungsfrist",
-        "Leihfrist",
-        "Aufbewahrungsfrist",
-        "Ruhefrist"
-      ],
-      "exceptions": []
-    },
-    {
-      "suffix": "-ßig",
-      "article": "die",
-      "accuracy": 100.0,
-      "rawAccuracy": 100.0,
-      "tier": "ironclad",
-      "count": 1,
-      "smallSample": true,
-      "exceptionCount": 0,
-      "note": "Cardinal-number suffix → die (die Dreißig).",
-      "examples": [
-        "Dreißig"
-      ],
-      "exceptions": []
-    },
-    {
-      "suffix": "-keit",
-      "article": "die",
-      "accuracy": 99.9,
-      "rawAccuracy": 99.9,
-      "tier": "ironclad",
-      "count": 1001,
-      "smallSample": false,
-      "exceptionCount": 1,
-      "note": "Abstract nouns → die (Möglichkeit). Very reliable.",
-      "examples": [
-        "Möglichkeit",
-        "Schwierigkeit",
-        "Geschwindigkeit",
-        "Einsamkeit",
-        "Höflichkeit",
-        "Öffentlichkeit",
-        "Aufmerksamkeit",
-        "Tätigkeit",
-        "Wirklichkeit",
-        "Gerechtigkeit",
-        "Wahrscheinlichkeit",
-        "Fähigkeit",
-        "Persönlichkeit",
-        "Unabhängigkeit",
-        "Notwendigkeit"
-      ],
-      "exceptions": []
-    },
-    {
-      "suffix": "-tion",
-      "article": "die",
-      "accuracy": 99.79,
-      "rawAccuracy": 99.79,
-      "tier": "ironclad",
-      "count": 1410,
-      "smallSample": false,
-      "exceptionCount": 3,
-      "note": "→ die (Nation, Information). One of the most reliable rules.",
-      "examples": [
-        "Nation",
-        "Information",
-        "Situation",
-        "Funktion",
-        "Reaktion",
-        "Tradition",
-        "Position",
-        "Aktion",
-        "Organisation",
-        "Produktion",
-        "Generation",
-        "Revolution",
-        "Kommunikation",
-        "Integration",
-        "Operation"
-      ],
-      "exceptions": [
-        {
-          "noun": "Kation",
-          "article": "das"
-        },
-        {
-          "noun": "Kymation",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-ung",
-      "article": "die",
-      "accuracy": 99.16,
-      "rawAccuracy": 99.16,
-      "tier": "ironclad",
-      "count": 5624,
-      "smallSample": false,
-      "exceptionCount": 47,
-      "note": "→ die (Zeitung, Meinung). A handful of masculine exceptions (der Ursprung, der Schwung).",
-      "examples": [
-        "Zeitung",
-        "Meinung",
-        "Wohnung",
-        "Übung",
-        "Bildung",
-        "Richtung",
-        "Regierung",
-        "Entwicklung",
-        "Entscheidung",
-        "Lösung",
-        "Bevölkerung",
-        "Ausbildung",
-        "Bedeutung",
-        "Verbindung",
-        "Ahnung"
-      ],
-      "exceptions": [
-        {
-          "noun": "Ursprung",
-          "article": "der"
-        },
-        {
-          "noun": "Schwung",
-          "article": "der"
-        },
-        {
-          "noun": "Sprung",
-          "article": "der"
-        },
-        {
-          "noun": "Dung",
-          "article": "der"
-        },
-        {
-          "noun": "Hartung",
-          "article": "der"
-        },
-        {
-          "noun": "Hornung",
-          "article": "der"
-        },
-        {
-          "noun": "Kuhdung",
-          "article": "der"
-        },
-        {
-          "noun": "Absprung",
-          "article": "der"
-        },
-        {
-          "noun": "Eisprung",
-          "article": "der"
-        },
-        {
-          "noun": "Nebelung",
-          "article": "der"
-        }
-      ]
-    },
-    {
-      "suffix": "-schaft",
-      "article": "die",
-      "accuracy": 98.9,
-      "rawAccuracy": 98.9,
-      "tier": "ironclad",
-      "count": 544,
-      "smallSample": false,
-      "exceptionCount": 6,
-      "note": "→ die (Freundschaft, Wissenschaft). Very reliable.",
-      "examples": [
-        "Freundschaft",
-        "Wissenschaft",
-        "Mannschaft",
-        "Gesellschaft",
-        "Landschaft",
-        "Wirtschaft",
-        "Gemeinschaft",
-        "Botschaft",
-        "Landwirtschaft",
-        "Herrschaft",
-        "Leidenschaft",
-        "Staatsanwaltschaft",
-        "Meisterschaft",
-        "Nationalmannschaft",
-        "Mitgliedschaft"
-      ],
-      "exceptions": [
-        {
-          "noun": "Petschaft",
-          "article": "das"
-        },
-        {
-          "noun": "Federschaft",
-          "article": "der"
-        },
-        {
-          "noun": "Pfeilschaft",
-          "article": "der"
-        },
-        {
-          "noun": "Säulenschaft",
-          "article": "der"
-        },
-        {
-          "noun": "Kleiderschaft",
-          "article": "der"
-        },
-        {
-          "noun": "Stiefelschaft",
-          "article": "der"
-        }
-      ]
-    },
-    {
-      "suffix": "-heit",
-      "article": "die",
-      "accuracy": 98.28,
-      "rawAccuracy": 98.28,
-      "tier": "ironclad",
-      "count": 523,
-      "smallSample": false,
-      "exceptionCount": 9,
-      "note": "Abstract nouns → die (Freiheit, Schönheit). Very reliable.",
-      "examples": [
-        "Freiheit",
-        "Schönheit",
-        "Gesundheit",
-        "Wahrheit",
-        "Kindheit",
-        "Sicherheit",
-        "Vergangenheit",
-        "Mehrheit",
-        "Gelegenheit",
-        "Krankheit",
-        "Einheit",
-        "Menschheit",
-        "Angelegenheit",
-        "Dunkelheit",
-        "Minderheit"
-      ],
-      "exceptions": [
-        {
-          "noun": "Scheit",
-          "article": "das"
-        },
-        {
-          "noun": "Fahrenheit",
-          "article": "das"
-        },
-        {
-          "noun": "Holzscheit",
-          "article": "das"
-        },
-        {
-          "noun": "Trumscheit",
-          "article": "das"
-        },
-        {
-          "noun": "Birkenscheit",
-          "article": "das"
-        },
-        {
-          "noun": "Buchenscheit",
-          "article": "das"
-        },
-        {
-          "noun": "Unerfahrenheit",
-          "article": "das"
-        },
-        {
-          "noun": "Angetrunkenheit",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-sion",
-      "article": "die",
-      "accuracy": 98.09,
-      "rawAccuracy": 98.09,
-      "tier": "ironclad",
-      "count": 209,
-      "smallSample": false,
-      "exceptionCount": 4,
-      "note": "→ die (Explosion, Diskussion). Reliable; a few Greek neuters (das Symposion) are exceptions.",
-      "examples": [
-        "Explosion",
-        "Diskussion",
-        "Version",
-        "Vision",
-        "Mission",
-        "Pension",
-        "Kommission",
-        "Depression",
-        "Dimension",
-        "Fusion",
-        "Rezension",
-        "Division",
-        "Session",
-        "Revision",
-        "Illusion"
-      ],
-      "exceptions": [
-        {
-          "noun": "Symposion",
-          "article": "das"
-        },
-        {
-          "noun": "Gymnasion",
-          "article": "das"
-        },
-        {
-          "noun": "Kodonostasion",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-enz",
-      "article": "die",
-      "accuracy": 98.01,
-      "rawAccuracy": 98.01,
-      "tier": "ironclad",
-      "count": 251,
-      "smallSample": false,
-      "exceptionCount": 5,
-      "note": "→ die (Tendenz, Konferenz). Reliable.",
-      "examples": [
-        "Tendenz",
-        "Konferenz",
-        "Existenz",
-        "Frequenz",
-        "Differenz",
-        "Konkurrenz",
-        "Intelligenz",
-        "Kompetenz",
-        "Konsequenz",
-        "Transparenz",
-        "Lizenz",
-        "Pressekonferenz",
-        "Präsenz",
-        "Effizienz",
-        "Insolvenz"
-      ],
-      "exceptions": [
-        {
-          "noun": "Lenz",
-          "article": "der"
-        },
-        {
-          "noun": "Stenz",
-          "article": "der"
-        },
-        {
-          "noun": "Reagenz",
-          "article": "das"
-        },
-        {
-          "noun": "Elbflorenz",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-anz",
-      "article": "die",
-      "accuracy": 85.47,
-      "rawAccuracy": 60.24,
-      "tier": "weak",
-      "count": 117,
-      "smallSample": false,
-      "exceptionCount": 17,
-      "note": "→ die (Distanz, Toleranz). Native masculines (der Tanz, Kranz, Schwanz) are exceptions.",
-      "examples": [
-        "Distanz",
-        "Toleranz",
-        "Eleganz",
-        "Bilanz",
-        "Substanz",
-        "Allianz",
-        "Konstanz",
-        "Instanz",
-        "Akzeptanz",
-        "Finanz",
-        "Relevanz",
-        "Resonanz",
-        "Dominanz",
-        "Arroganz",
-        "Ignoranz"
-      ],
-      "exceptions": [
-        {
-          "noun": "Tanz",
-          "article": "der"
-        },
-        {
-          "noun": "Kranz",
-          "article": "der"
-        },
-        {
-          "noun": "Schwanz",
-          "article": "der"
-        },
-        {
-          "noun": "Glanz",
-          "article": "der"
-        },
-        {
-          "noun": "Alfanz",
-          "article": "der"
-        },
-        {
-          "noun": "Popanz",
-          "article": "der"
-        },
-        {
-          "noun": "Eiertanz",
-          "article": "der"
-        },
-        {
-          "noun": "Firlefanz",
-          "article": "der"
-        },
-        {
-          "noun": "Halbfranz",
-          "article": "das"
-        },
-        {
-          "noun": "Veitstanz",
-          "article": "der"
-        }
-      ]
-    },
-    {
-      "suffix": "-zig",
-      "article": "die",
-      "accuracy": 80.0,
-      "rawAccuracy": 80.0,
-      "tier": "weak",
-      "count": 5,
-      "smallSample": true,
-      "exceptionCount": 1,
-      "note": "Cardinal-number suffix → die (die Zwanzig, die Dreißig).",
-      "examples": [
-        "Zwanzig",
-        "Kinzig",
-        "Zweiundvierzig",
-        "Neunundsechzig"
-      ],
-      "exceptions": [
-        {
-          "noun": "Sechsundsechzig",
-          "article": "das"
-        }
-      ]
-    },
-    {
-      "suffix": "-ion",
-      "article": "die",
-      "accuracy": 58.87,
-      "rawAccuracy": 96.31,
-      "tier": "weak",
-      "count": 141,
-      "smallSample": false,
-      "exceptionCount": 58,
-      "note": "ALONE, this is barely a coin flip (~59%): der Champion / Spion / Anion. Trust -tion and -sion, NOT bare -ion.",
-      "examples": [
-        "Region",
-        "Union",
-        "Religion",
-        "Legion",
-        "Million",
-        "Sowjetunion",
-        "Reflexion",
-        "Rebellion",
-        "Annexion",
-        "Metropolregion",
-        "Kommunion",
-        "Währungsunion",
-        "Billion",
-        "Selbstreflexion",
-        "Personalunion"
-      ],
-      "exceptions": [
-        {
-          "noun": "Champion",
-          "article": "der"
-        },
-        {
-          "noun": "Spion",
-          "article": "der"
-        },
-        {
-          "noun": "Skorpion",
-          "article": "der"
-        },
-        {
-          "noun": "Stadion",
-          "article": "das"
-        },
-        {
-          "noun": "Zion",
-          "article": "der"
-        },
-        {
-          "noun": "Anion",
-          "article": "das"
-        },
-        {
-          "noun": "Orion",
-          "article": "der"
-        },
-        {
-          "noun": "Prion",
-          "article": "das"
-        },
-        {
-          "noun": "Amnion",
-          "article": "das"
-        },
-        {
-          "noun": "Camion",
-          "article": "der"
-        }
-      ]
-    }
-  ]
+  "rules": {
+    "der": [
+      {
+        "suffix": "-ismus",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 563,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "-ismus → der (Kapitalismus). No exceptions.",
+        "examples": [
+          "Kapitalismus",
+          "Sozialismus",
+          "Tourismus",
+          "Optimismus",
+          "Organismus"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-aum",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 308,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "→ der (Baum, Raum, Traum). Virtually no exceptions.",
+        "examples": [
+          "Baum",
+          "Raum",
+          "Traum",
+          "Schaum",
+          "Saum"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-uf",
+        "accuracy": 99.59,
+        "rawAccuracy": 99.59,
+        "tier": "ironclad",
+        "count": 246,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "→ der (Beruf, Ruf, Lauf, Anlauf).",
+        "examples": [
+          "Beruf",
+          "Ruf",
+          "Anruf",
+          "Lauf",
+          "Ablauf"
+        ],
+        "exceptions": [
+          {
+            "noun": "Alacaluf",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-pf",
+        "accuracy": 99.29,
+        "rawAccuracy": 99.29,
+        "tier": "ironclad",
+        "count": 283,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 2,
+        "note": "→ der (Kopf, Topf, Kampf, Knopf).",
+        "examples": [
+          "Kopf",
+          "Topf",
+          "Kampf",
+          "Knopf",
+          "Sumpf"
+        ],
+        "exceptions": [
+          {
+            "noun": "Geschöpf",
+            "article": "das"
+          },
+          {
+            "noun": "Schafkopf",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-itt",
+        "accuracy": 98.65,
+        "rawAccuracy": 98.65,
+        "tier": "ironclad",
+        "count": 148,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 2,
+        "note": "→ der (Schritt, Schnitt, Tritt).",
+        "examples": [
+          "Schritt",
+          "Schnitt",
+          "Tritt",
+          "Ritt",
+          "Abschnitt"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-zt",
+        "accuracy": 98.18,
+        "rawAccuracy": 98.18,
+        "tier": "ironclad",
+        "count": 55,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "→ der (Arzt and its compounds: Facharzt, Zahnarzt).",
+        "examples": [
+          "Arzt"
+        ],
+        "exceptions": [
+          {
+            "noun": "Jetzt",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ist",
+        "accuracy": 98.07,
+        "rawAccuracy": 94.62,
+        "tier": "ironclad",
+        "count": 466,
+        "smallSample": false,
+        "overriddenBy": [
+          "-frist"
+        ],
+        "exceptionCount": 9,
+        "note": "Agent nouns → der (Journalist). The -frist family (die) is split off into its own rule.",
+        "examples": [
+          "Journalist",
+          "Tourist",
+          "Polizist",
+          "Optimist",
+          "Pianist"
+        ],
+        "exceptions": [
+          {
+            "noun": "Frist",
+            "article": "die"
+          },
+          {
+            "noun": "List",
+            "article": "die"
+          },
+          {
+            "noun": "Hinterlist",
+            "article": "die"
+          },
+          {
+            "noun": "Feist",
+            "article": "das"
+          },
+          {
+            "noun": "Swist",
+            "article": "die"
+          },
+          {
+            "noun": "Whist",
+            "article": "das"
+          },
+          {
+            "noun": "Arglist",
+            "article": "die"
+          },
+          {
+            "noun": "Hotlist",
+            "article": "die"
+          },
+          {
+            "noun": "Playlist",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-eur",
+        "accuracy": 96.53,
+        "rawAccuracy": 96.53,
+        "tier": "ironclad",
+        "count": 144,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 5,
+        "note": "French agent nouns → der (Friseur, Ingenieur, Masseur).",
+        "examples": [
+          "Friseur",
+          "Ingenieur",
+          "Masseur",
+          "Chauffeur",
+          "Amateur"
+        ],
+        "exceptions": [
+          {
+            "noun": "Couleur",
+            "article": "die"
+          },
+          {
+            "noun": "Douceur",
+            "article": "das"
+          },
+          {
+            "noun": "Malheur",
+            "article": "das"
+          },
+          {
+            "noun": "Interieur",
+            "article": "das"
+          },
+          {
+            "noun": "Biercouleur",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-ent",
+        "accuracy": 96.12,
+        "rawAccuracy": 47.6,
+        "tier": "ironclad",
+        "count": 206,
+        "smallSample": false,
+        "overriddenBy": [
+          "-ment"
+        ],
+        "exceptionCount": 8,
+        "note": "Agent nouns → der (Student). The neuter -ment family is split off; das Talent/Patent remain rare exceptions.",
+        "examples": [
+          "Student",
+          "Patient",
+          "Präsident",
+          "Dozent",
+          "Assistent"
+        ],
+        "exceptions": [
+          {
+            "noun": "Talent",
+            "article": "das"
+          },
+          {
+            "noun": "Prozent",
+            "article": "das"
+          },
+          {
+            "noun": "Patent",
+            "article": "das"
+          },
+          {
+            "noun": "Tuchent",
+            "article": "die"
+          },
+          {
+            "noun": "Repellent",
+            "article": "das"
+          },
+          {
+            "noun": "Multitalent",
+            "article": "das"
+          },
+          {
+            "noun": "Sprachtalent",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ig",
+        "accuracy": 95.86,
+        "rawAccuracy": 90.85,
+        "tier": "ironclad",
+        "count": 145,
+        "smallSample": false,
+        "overriddenBy": [
+          "-zig",
+          "-ßig"
+        ],
+        "exceptionCount": 6,
+        "note": "→ der (Honig, König). Cardinal numbers (-zig/-ßig) are split off; das Reisig is an exception.",
+        "examples": [
+          "Honig",
+          "König",
+          "Käfig",
+          "Essig",
+          "Pfennig"
+        ],
+        "exceptions": [
+          {
+            "noun": "Reisig",
+            "article": "das"
+          },
+          {
+            "noun": "Hallig",
+            "article": "die"
+          },
+          {
+            "noun": "Gig",
+            "article": "die"
+          },
+          {
+            "noun": "NIG",
+            "article": "das"
+          },
+          {
+            "noun": "Gezweig",
+            "article": "das"
+          },
+          {
+            "noun": "Zuwenig",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ling",
+        "accuracy": 95.73,
+        "rawAccuracy": 93.18,
+        "tier": "ironclad",
+        "count": 328,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 14,
+        "note": "Diminutive/agent → der (Frühling, Lehrling). Borrowed English -ing gerunds (Bowling, Styling) are das and remain exceptions.",
+        "examples": [
+          "Frühling",
+          "Lehrling",
+          "Liebling",
+          "Schmetterling",
+          "Zwilling"
+        ],
+        "exceptions": [
+          {
+            "noun": "Bowling",
+            "article": "das"
+          },
+          {
+            "noun": "Recycling",
+            "article": "das"
+          },
+          {
+            "noun": "Reling",
+            "article": "die"
+          },
+          {
+            "noun": "Wuling",
+            "article": "die"
+          },
+          {
+            "noun": "Feeling",
+            "article": "das"
+          },
+          {
+            "noun": "Mailing",
+            "article": "das"
+          },
+          {
+            "noun": "Peeling",
+            "article": "das"
+          },
+          {
+            "noun": "Styling",
+            "article": "das"
+          },
+          {
+            "noun": "Handling",
+            "article": "das"
+          },
+          {
+            "noun": "Tackling",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-aat",
+        "accuracy": 92.31,
+        "rawAccuracy": 92.31,
+        "tier": "strong",
+        "count": 91,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 7,
+        "note": "→ der (Staat, Bundesstaat). die Saat is an exception.",
+        "examples": [
+          "Staat",
+          "Maat"
+        ],
+        "exceptions": [
+          {
+            "noun": "Saat",
+            "article": "die"
+          },
+          {
+            "noun": "Maat",
+            "article": "die"
+          },
+          {
+            "noun": "Aussaat",
+            "article": "die"
+          },
+          {
+            "noun": "Feldsaat",
+            "article": "die"
+          },
+          {
+            "noun": "Senfsaat",
+            "article": "die"
+          },
+          {
+            "noun": "Dibbelsaat",
+            "article": "die"
+          },
+          {
+            "noun": "Wintersaat",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-ant",
+        "accuracy": 92.23,
+        "rawAccuracy": 84.82,
+        "tier": "strong",
+        "count": 206,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 16,
+        "note": "Agent nouns → der (Demonstrant). das Restaurant / Quant compounds and French loans are exceptions.",
+        "examples": [
+          "Demonstrant",
+          "Praktikant",
+          "Lieferant",
+          "Elefant",
+          "Konsonant"
+        ],
+        "exceptions": [
+          {
+            "noun": "Restaurant",
+            "article": "das"
+          },
+          {
+            "noun": "Croissant",
+            "article": "das"
+          },
+          {
+            "noun": "Deodorant",
+            "article": "das"
+          },
+          {
+            "noun": "Gant",
+            "article": "die"
+          },
+          {
+            "noun": "Want",
+            "article": "die"
+          },
+          {
+            "noun": "Kurant",
+            "article": "das"
+          },
+          {
+            "noun": "Lavant",
+            "article": "die"
+          },
+          {
+            "noun": "Diamant",
+            "article": "die"
+          },
+          {
+            "noun": "Pendant",
+            "article": "das"
+          },
+          {
+            "noun": "Waterkant",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-är",
+        "accuracy": 92.13,
+        "rawAccuracy": 92.13,
+        "tier": "strong",
+        "count": 89,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 7,
+        "note": "→ der (Aktionär, Millionär, Sekretär). das Quartär is an exception.",
+        "examples": [
+          "Aktionär",
+          "Millionär",
+          "Sekretär",
+          "Funktionär",
+          "Bär"
+        ],
+        "exceptions": [
+          {
+            "noun": "Quartär",
+            "article": "das"
+          },
+          {
+            "noun": "Mär",
+            "article": "die"
+          },
+          {
+            "noun": "Salär",
+            "article": "das"
+          },
+          {
+            "noun": "Militär",
+            "article": "das"
+          },
+          {
+            "noun": "Solitär",
+            "article": "das"
+          },
+          {
+            "noun": "Tertiär",
+            "article": "das"
+          },
+          {
+            "noun": "Sekundär",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ich",
+        "accuracy": 91.7,
+        "rawAccuracy": 85.26,
+        "tier": "strong",
+        "count": 265,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 22,
+        "note": "→ der (Teppich). Exceptions are compounds of das Reich (Königreich, Tierreich).",
+        "examples": [
+          "Teppich",
+          "Pfirsich",
+          "Rettich",
+          "Kranich",
+          "Bottich"
+        ],
+        "exceptions": [
+          {
+            "noun": "Reich",
+            "article": "das"
+          },
+          {
+            "noun": "Königreich",
+            "article": "das"
+          },
+          {
+            "noun": "Tierreich",
+            "article": "das"
+          },
+          {
+            "noun": "Leich",
+            "article": "die"
+          },
+          {
+            "noun": "Überich",
+            "article": "das"
+          },
+          {
+            "noun": "Dreieich",
+            "article": "die"
+          },
+          {
+            "noun": "Erdreich",
+            "article": "das"
+          },
+          {
+            "noun": "Großreich",
+            "article": "das"
+          },
+          {
+            "noun": "Sonderreich",
+            "article": "das"
+          },
+          {
+            "noun": "Geisterreich",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-xt",
+        "accuracy": 90.38,
+        "rawAccuracy": 90.38,
+        "tier": "strong",
+        "count": 52,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 5,
+        "note": "→ der (Text, Kontext).",
+        "examples": [
+          "Text",
+          "Urtext"
+        ],
+        "exceptions": [
+          {
+            "noun": "Axt",
+            "article": "die"
+          },
+          {
+            "noun": "Sext",
+            "article": "die"
+          },
+          {
+            "noun": "Holzaxt",
+            "article": "die"
+          },
+          {
+            "noun": "Spaltaxt",
+            "article": "die"
+          },
+          {
+            "noun": "Streitaxt",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-or",
+        "accuracy": 89.47,
+        "rawAccuracy": 89.47,
+        "tier": "strong",
+        "count": 617,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 65,
+        "note": "→ der (Doktor, Motor, Professor). das Labor / das Tor are exceptions.",
+        "examples": [
+          "Doktor",
+          "Motor",
+          "Professor",
+          "Autor",
+          "Faktor"
+        ],
+        "exceptions": [
+          {
+            "noun": "Labor",
+            "article": "das"
+          },
+          {
+            "noun": "Bor",
+            "article": "das"
+          },
+          {
+            "noun": "Kor",
+            "article": "das"
+          },
+          {
+            "noun": "Tor",
+            "article": "das"
+          },
+          {
+            "noun": "Chor",
+            "article": "das"
+          },
+          {
+            "noun": "Moor",
+            "article": "das"
+          },
+          {
+            "noun": "Chlor",
+            "article": "das"
+          },
+          {
+            "noun": "Fluor",
+            "article": "das"
+          },
+          {
+            "noun": "Manor",
+            "article": "das"
+          },
+          {
+            "noun": "Hoftor",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-er",
+        "accuracy": 79.25,
+        "rawAccuracy": 79.25,
+        "tier": "moderate",
+        "count": 10162,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 2109,
+        "note": "Agent nouns → der (Lehrer, Bäcker). Big group; common exceptions: die Mutter/Schwester, das Fenster/Wasser.",
+        "examples": [
+          "Lehrer",
+          "Bäcker",
+          "Schüler",
+          "Computer",
+          "Koffer"
+        ],
+        "exceptions": [
+          {
+            "noun": "Mutter",
+            "article": "die"
+          },
+          {
+            "noun": "Schwester",
+            "article": "die"
+          },
+          {
+            "noun": "Fenster",
+            "article": "das"
+          },
+          {
+            "noun": "Wasser",
+            "article": "das"
+          },
+          {
+            "noun": "Cer",
+            "article": "das"
+          },
+          {
+            "noun": "Zer",
+            "article": "das"
+          },
+          {
+            "noun": "Aber",
+            "article": "das"
+          },
+          {
+            "noun": "Acer",
+            "article": "das"
+          },
+          {
+            "noun": "Ader",
+            "article": "die"
+          },
+          {
+            "noun": "Ager",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-kt",
+        "accuracy": 75.88,
+        "rawAccuracy": 75.88,
+        "tier": "moderate",
+        "count": 514,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 124,
+        "note": "Leans der (Punkt, Markt, Akt) — but Latin neuters das Produkt/Objekt/Projekt are a big exception group.",
+        "examples": [
+          "Punkt",
+          "Markt",
+          "Akt",
+          "Effekt",
+          "Konflikt"
+        ],
+        "exceptions": [
+          {
+            "noun": "Produkt",
+            "article": "das"
+          },
+          {
+            "noun": "Objekt",
+            "article": "das"
+          },
+          {
+            "noun": "Projekt",
+            "article": "das"
+          },
+          {
+            "noun": "Insekt",
+            "article": "das"
+          },
+          {
+            "noun": "Edikt",
+            "article": "das"
+          },
+          {
+            "noun": "Edukt",
+            "article": "das"
+          },
+          {
+            "noun": "Dejekt",
+            "article": "das"
+          },
+          {
+            "noun": "Dekokt",
+            "article": "das"
+          },
+          {
+            "noun": "Delikt",
+            "article": "das"
+          },
+          {
+            "noun": "Relikt",
+            "article": "das"
+          }
+        ]
+      }
+    ],
+    "die": [
+      {
+        "suffix": "-tät",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 782,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "Latin -tät → die (Universität, Qualität). No exceptions.",
+        "examples": [
+          "Universität",
+          "Qualität",
+          "Realität",
+          "Aktivität",
+          "Identität"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-frist",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 17,
+        "smallSample": true,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "die Frist and all its compounds (Kündigungsfrist, Anmeldefrist) → die.",
+        "examples": [
+          "Kündigungsfrist",
+          "Anmeldefrist",
+          "Galgenfrist",
+          "Schonfrist",
+          "Jahresfrist"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-keit",
+        "accuracy": 99.9,
+        "rawAccuracy": 99.9,
+        "tier": "ironclad",
+        "count": 1001,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "Abstract nouns → die (Möglichkeit). Very reliable.",
+        "examples": [
+          "Möglichkeit",
+          "Schwierigkeit",
+          "Geschwindigkeit",
+          "Einsamkeit",
+          "Höflichkeit"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-tion",
+        "accuracy": 99.79,
+        "rawAccuracy": 99.79,
+        "tier": "ironclad",
+        "count": 1410,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 3,
+        "note": "→ die (Nation, Information). One of the most reliable rules.",
+        "examples": [
+          "Nation",
+          "Information",
+          "Situation",
+          "Funktion",
+          "Reaktion"
+        ],
+        "exceptions": [
+          {
+            "noun": "Kation",
+            "article": "das"
+          },
+          {
+            "noun": "Kymation",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-erin",
+        "accuracy": 99.64,
+        "rawAccuracy": 99.64,
+        "tier": "ironclad",
+        "count": 3039,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 11,
+        "note": "Female agent suffix → die (Lehrerin, Schülerin, Sportlerin). Effectively always die.",
+        "examples": [
+          "Lehrerin",
+          "Schülerin",
+          "Arbeiterin",
+          "Sportlerin",
+          "Verkäuferin"
+        ],
+        "exceptions": [
+          {
+            "noun": "Serin",
+            "article": "das"
+          },
+          {
+            "noun": "Glycerin",
+            "article": "das"
+          },
+          {
+            "noun": "Cadaverin",
+            "article": "das"
+          },
+          {
+            "noun": "Kadaverin",
+            "article": "das"
+          },
+          {
+            "noun": "Cholesterin",
+            "article": "das"
+          },
+          {
+            "noun": "Drehstoßerin",
+            "article": "der"
+          },
+          {
+            "noun": "Azotobakterin",
+            "article": "das"
+          },
+          {
+            "noun": "Nitroglyzerin",
+            "article": "das"
+          },
+          {
+            "noun": "Fußballlehrerin",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ung",
+        "accuracy": 99.16,
+        "rawAccuracy": 99.16,
+        "tier": "ironclad",
+        "count": 5624,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 47,
+        "note": "→ die (Zeitung, Meinung). A handful of masculine exceptions (der Ursprung, der Schwung).",
+        "examples": [
+          "Zeitung",
+          "Meinung",
+          "Wohnung",
+          "Übung",
+          "Bildung"
+        ],
+        "exceptions": [
+          {
+            "noun": "Ursprung",
+            "article": "der"
+          },
+          {
+            "noun": "Schwung",
+            "article": "der"
+          },
+          {
+            "noun": "Sprung",
+            "article": "der"
+          },
+          {
+            "noun": "Dung",
+            "article": "der"
+          },
+          {
+            "noun": "Hartung",
+            "article": "der"
+          },
+          {
+            "noun": "Hornung",
+            "article": "der"
+          },
+          {
+            "noun": "Kuhdung",
+            "article": "der"
+          },
+          {
+            "noun": "Absprung",
+            "article": "der"
+          },
+          {
+            "noun": "Eisprung",
+            "article": "der"
+          },
+          {
+            "noun": "Nebelung",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-schaft",
+        "accuracy": 98.9,
+        "rawAccuracy": 98.9,
+        "tier": "ironclad",
+        "count": 544,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 6,
+        "note": "→ die (Freundschaft, Wissenschaft). Very reliable.",
+        "examples": [
+          "Freundschaft",
+          "Wissenschaft",
+          "Mannschaft",
+          "Gesellschaft",
+          "Landschaft"
+        ],
+        "exceptions": [
+          {
+            "noun": "Petschaft",
+            "article": "das"
+          },
+          {
+            "noun": "Federschaft",
+            "article": "der"
+          },
+          {
+            "noun": "Pfeilschaft",
+            "article": "der"
+          },
+          {
+            "noun": "Säulenschaft",
+            "article": "der"
+          },
+          {
+            "noun": "Kleiderschaft",
+            "article": "der"
+          },
+          {
+            "noun": "Stiefelschaft",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-heit",
+        "accuracy": 98.28,
+        "rawAccuracy": 98.28,
+        "tier": "ironclad",
+        "count": 523,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 9,
+        "note": "Abstract nouns → die (Freiheit, Schönheit). Very reliable.",
+        "examples": [
+          "Freiheit",
+          "Schönheit",
+          "Gesundheit",
+          "Wahrheit",
+          "Kindheit"
+        ],
+        "exceptions": [
+          {
+            "noun": "Scheit",
+            "article": "das"
+          },
+          {
+            "noun": "Fahrenheit",
+            "article": "das"
+          },
+          {
+            "noun": "Holzscheit",
+            "article": "das"
+          },
+          {
+            "noun": "Trumscheit",
+            "article": "das"
+          },
+          {
+            "noun": "Birkenscheit",
+            "article": "das"
+          },
+          {
+            "noun": "Buchenscheit",
+            "article": "das"
+          },
+          {
+            "noun": "Unerfahrenheit",
+            "article": "das"
+          },
+          {
+            "noun": "Angetrunkenheit",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-sion",
+        "accuracy": 98.09,
+        "rawAccuracy": 98.09,
+        "tier": "ironclad",
+        "count": 209,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 4,
+        "note": "→ die (Explosion, Diskussion). Reliable; a few Greek neuters (das Symposion) are exceptions.",
+        "examples": [
+          "Explosion",
+          "Diskussion",
+          "Version",
+          "Vision",
+          "Mission"
+        ],
+        "exceptions": [
+          {
+            "noun": "Symposion",
+            "article": "das"
+          },
+          {
+            "noun": "Gymnasion",
+            "article": "das"
+          },
+          {
+            "noun": "Kodonostasion",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-tur",
+        "accuracy": 97.09,
+        "rawAccuracy": 97.09,
+        "tier": "ironclad",
+        "count": 275,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 8,
+        "note": "→ die (Natur, Kultur, Literatur, Architektur). Very reliable.",
+        "examples": [
+          "Natur",
+          "Kultur",
+          "Literatur",
+          "Temperatur",
+          "Diktatur"
+        ],
+        "exceptions": [
+          {
+            "noun": "Futur",
+            "article": "das"
+          },
+          {
+            "noun": "Abitur",
+            "article": "das"
+          },
+          {
+            "noun": "Komtur",
+            "article": "der"
+          },
+          {
+            "noun": "Notabitur",
+            "article": "das"
+          },
+          {
+            "noun": "Fachabitur",
+            "article": "das"
+          },
+          {
+            "noun": "Imprimatur",
+            "article": "das"
+          },
+          {
+            "noun": "Zentralabitur",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ie",
+        "accuracy": 96.91,
+        "rawAccuracy": 96.91,
+        "tier": "ironclad",
+        "count": 2299,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 71,
+        "note": "→ die (97%): academic topics (Biologie, Philosophie, Chemie) and most -ie words. Exceptions are loanwords (der Junkie, das Cookie) and das Knie / Genie.",
+        "examples": [
+          "Biologie",
+          "Philosophie",
+          "Energie",
+          "Familie",
+          "Theorie"
+        ],
+        "exceptions": [
+          {
+            "noun": "Junkie",
+            "article": "der"
+          },
+          {
+            "noun": "Cookie",
+            "article": "das"
+          },
+          {
+            "noun": "Knie",
+            "article": "das"
+          },
+          {
+            "noun": "Genie",
+            "article": "das"
+          },
+          {
+            "noun": "Die",
+            "article": "das"
+          },
+          {
+            "noun": "Sie",
+            "article": "der"
+          },
+          {
+            "noun": "Wie",
+            "article": "das"
+          },
+          {
+            "noun": "Brie",
+            "article": "der"
+          },
+          {
+            "noun": "Laie",
+            "article": "der"
+          },
+          {
+            "noun": "Curie",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-nft",
+        "accuracy": 96.88,
+        "rawAccuracy": 96.88,
+        "tier": "ironclad",
+        "count": 32,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "→ die (Ankunft, Auskunft, Vernunft, Zukunft).",
+        "examples": [
+          "Ankunft",
+          "Auskunft",
+          "Vernunft",
+          "Zukunft",
+          "Herkunft"
+        ],
+        "exceptions": [
+          {
+            "noun": "Jahrfünft",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-age",
+        "accuracy": 95.33,
+        "rawAccuracy": 95.33,
+        "tier": "ironclad",
+        "count": 514,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 24,
+        "note": "French loan suffix → die (Garage, Etage, Massage); also native -lage/-frage (Anlage). das Gelage / Image are exceptions.",
+        "examples": [
+          "Garage",
+          "Etage",
+          "Massage",
+          "Passage",
+          "Reportage"
+        ],
+        "exceptions": [
+          {
+            "noun": "Image",
+            "article": "das"
+          },
+          {
+            "noun": "Gelage",
+            "article": "das"
+          },
+          {
+            "noun": "Cottage",
+            "article": "das"
+          },
+          {
+            "noun": "Gage",
+            "article": "der"
+          },
+          {
+            "noun": "Page",
+            "article": "der"
+          },
+          {
+            "noun": "Phage",
+            "article": "der"
+          },
+          {
+            "noun": "Average",
+            "article": "der"
+          },
+          {
+            "noun": "Cribbage",
+            "article": "das"
+          },
+          {
+            "noun": "Gyrovage",
+            "article": "der"
+          },
+          {
+            "noun": "Pinotage",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ade",
+        "accuracy": 94.39,
+        "rawAccuracy": 94.39,
+        "tier": "strong",
+        "count": 214,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 12,
+        "note": "French loan suffix → die (Marmelade, Parade, Fassade). der Nomade and English loans (das Upgrade) are exceptions.",
+        "examples": [
+          "Marmelade",
+          "Schokolade",
+          "Limonade",
+          "Parade",
+          "Fassade"
+        ],
+        "exceptions": [
+          {
+            "noun": "Nomade",
+            "article": "der"
+          },
+          {
+            "noun": "Gestade",
+            "article": "das"
+          },
+          {
+            "noun": "Upgrade",
+            "article": "das"
+          },
+          {
+            "noun": "Abade",
+            "article": "der"
+          },
+          {
+            "noun": "Irade",
+            "article": "der"
+          },
+          {
+            "noun": "Quade",
+            "article": "der"
+          },
+          {
+            "noun": "Schade",
+            "article": "der"
+          },
+          {
+            "noun": "Jobnomade",
+            "article": "der"
+          },
+          {
+            "noun": "Readymade",
+            "article": "das"
+          },
+          {
+            "noun": "Mietnomade",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ik",
+        "accuracy": 94.2,
+        "rawAccuracy": 94.2,
+        "tier": "strong",
+        "count": 897,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 52,
+        "note": "→ die (Musik, Politik, Physik, Technik).",
+        "examples": [
+          "Musik",
+          "Politik",
+          "Physik",
+          "Technik",
+          "Kritik"
+        ],
+        "exceptions": [
+          {
+            "noun": "Pik",
+            "article": "der"
+          },
+          {
+            "noun": "Wik",
+            "article": "der"
+          },
+          {
+            "noun": "Aspik",
+            "article": "der"
+          },
+          {
+            "noun": "Indik",
+            "article": "der"
+          },
+          {
+            "noun": "Jastik",
+            "article": "der"
+          },
+          {
+            "noun": "Kaddik",
+            "article": "der"
+          },
+          {
+            "noun": "Prusik",
+            "article": "der"
+          },
+          {
+            "noun": "Streik",
+            "article": "der"
+          },
+          {
+            "noun": "Yastik",
+            "article": "der"
+          },
+          {
+            "noun": "Zaddik",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-anz/-enz",
+        "accuracy": 94.02,
+        "rawAccuracy": 94.02,
+        "tier": "strong",
+        "count": 368,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 22,
+        "note": "Latin abstract suffix → die (Distanz, Toleranz, Tendenz, Konferenz). Native der Tanz/Kranz/Glanz are exceptions.",
+        "examples": [
+          "Distanz",
+          "Toleranz",
+          "Eleganz",
+          "Bilanz",
+          "Substanz"
+        ],
+        "exceptions": [
+          {
+            "noun": "Tanz",
+            "article": "der"
+          },
+          {
+            "noun": "Kranz",
+            "article": "der"
+          },
+          {
+            "noun": "Schwanz",
+            "article": "der"
+          },
+          {
+            "noun": "Glanz",
+            "article": "der"
+          },
+          {
+            "noun": "Alfanz",
+            "article": "der"
+          },
+          {
+            "noun": "Popanz",
+            "article": "der"
+          },
+          {
+            "noun": "Eiertanz",
+            "article": "der"
+          },
+          {
+            "noun": "Firlefanz",
+            "article": "der"
+          },
+          {
+            "noun": "Halbfranz",
+            "article": "das"
+          },
+          {
+            "noun": "Veitstanz",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-eit",
+        "accuracy": 93.6,
+        "rawAccuracy": 98.13,
+        "tier": "strong",
+        "count": 406,
+        "smallSample": false,
+        "overriddenBy": [
+          "-heit",
+          "-keit"
+        ],
+        "exceptionCount": 26,
+        "note": "→ die (Zeit, Arbeit, Mahlzeit). der Streit is the main exception. (-heit/-keit are their own rules.)",
+        "examples": [
+          "Zeit",
+          "Arbeit"
+        ],
+        "exceptions": [
+          {
+            "noun": "Streit",
+            "article": "der"
+          },
+          {
+            "noun": "Geleit",
+            "article": "das"
+          },
+          {
+            "noun": "Jadeit",
+            "article": "der"
+          },
+          {
+            "noun": "Fußbreit",
+            "article": "der"
+          },
+          {
+            "noun": "Ehestreit",
+            "article": "der"
+          },
+          {
+            "noun": "Spaltbreit",
+            "article": "der"
+          },
+          {
+            "noun": "Wettstreit",
+            "article": "der"
+          },
+          {
+            "noun": "Dauerstreit",
+            "article": "der"
+          },
+          {
+            "noun": "Fingerbreit",
+            "article": "der"
+          },
+          {
+            "noun": "Tarifstreit",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-e",
+        "accuracy": 84.78,
+        "rawAccuracy": 86.76,
+        "tier": "moderate",
+        "count": 14802,
+        "smallSample": false,
+        "overriddenBy": [
+          "-ade",
+          "-age",
+          "-ie"
+        ],
+        "exceptionCount": 2253,
+        "note": "→ die (Sonne, Blume, Lampe). Huge group; exceptions are masculine n-stems (der Junge, der Name) and das Auge/Ende.",
+        "examples": [
+          "Sonne",
+          "Blume",
+          "Lampe",
+          "Schule",
+          "Straße"
+        ],
+        "exceptions": [
+          {
+            "noun": "Junge",
+            "article": "der"
+          },
+          {
+            "noun": "Name",
+            "article": "der"
+          },
+          {
+            "noun": "Auge",
+            "article": "das"
+          },
+          {
+            "noun": "Ende",
+            "article": "das"
+          },
+          {
+            "noun": "Käse",
+            "article": "der"
+          },
+          {
+            "noun": "PE",
+            "article": "das"
+          },
+          {
+            "noun": "Re",
+            "article": "der"
+          },
+          {
+            "noun": "Ade",
+            "article": "das"
+          },
+          {
+            "noun": "Ale",
+            "article": "das"
+          },
+          {
+            "noun": "Ase",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ei",
+        "accuracy": 83.99,
+        "rawAccuracy": 83.99,
+        "tier": "moderate",
+        "count": 562,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 90,
+        "note": "Activity/place nouns → die (Bäckerei, Polizei, Partei). der Brei / das Allerlei are exceptions.",
+        "examples": [
+          "Bäckerei",
+          "Polizei",
+          "Partei",
+          "Metzgerei",
+          "Malerei"
+        ],
+        "exceptions": [
+          {
+            "noun": "Brei",
+            "article": "der"
+          },
+          {
+            "noun": "Allerlei",
+            "article": "das"
+          },
+          {
+            "noun": "Papagei",
+            "article": "der"
+          },
+          {
+            "noun": "Bei",
+            "article": "der"
+          },
+          {
+            "noun": "Blei",
+            "article": "das"
+          },
+          {
+            "noun": "Klei",
+            "article": "der"
+          },
+          {
+            "noun": "Ammei",
+            "article": "das"
+          },
+          {
+            "noun": "Bohei",
+            "article": "das"
+          },
+          {
+            "noun": "Buhei",
+            "article": "das"
+          },
+          {
+            "noun": "Julei",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-zig/-ßig",
+        "accuracy": 83.33,
+        "rawAccuracy": 83.33,
+        "tier": "moderate",
+        "count": 6,
+        "smallSample": true,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "Cardinal-number suffix → die (die Zwanzig, die Dreißig).",
+        "examples": [
+          "Zwanzig",
+          "Kinzig",
+          "Zweiundvierzig",
+          "Neunundsechzig",
+          "Dreißig"
+        ],
+        "exceptions": [
+          {
+            "noun": "Sechsundsechzig",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ur",
+        "accuracy": 76.5,
+        "rawAccuracy": 68.61,
+        "tier": "moderate",
+        "count": 234,
+        "smallSample": false,
+        "overriddenBy": [
+          "-eur",
+          "-tur"
+        ],
+        "exceptionCount": 55,
+        "note": "→ die (Figur, Tour, Spur). -tur (Natur/Kultur) and -eur (der Friseur) split off; musical keys (der C-Dur) and der Schwur remain.",
+        "examples": [
+          "Figur",
+          "Zensur",
+          "Tour",
+          "Spur",
+          "Schnur"
+        ],
+        "exceptions": [
+          {
+            "noun": "Schwur",
+            "article": "der"
+          },
+          {
+            "noun": "Dur",
+            "article": "das"
+          },
+          {
+            "noun": "Amur",
+            "article": "der"
+          },
+          {
+            "noun": "Azur",
+            "article": "der"
+          },
+          {
+            "noun": "Flur",
+            "article": "der"
+          },
+          {
+            "noun": "Gaur",
+            "article": "der"
+          },
+          {
+            "noun": "Adour",
+            "article": "der"
+          },
+          {
+            "noun": "Augur",
+            "article": "der"
+          },
+          {
+            "noun": "Femur",
+            "article": "das"
+          },
+          {
+            "noun": "Giaur",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-in",
+        "accuracy": 65.41,
+        "rawAccuracy": 82.16,
+        "tier": "weak",
+        "count": 2686,
+        "smallSample": false,
+        "overriddenBy": [
+          "-erin",
+          "-lein"
+        ],
+        "exceptionCount": 929,
+        "note": "Female agents are die (Königin, Ärztin), but as a bare ending it's mixed: der Termin, das Benzin. The reliable part is -erin.",
+        "examples": [
+          "Königin",
+          "Ärztin",
+          "Freundin",
+          "Chefin",
+          "Heldin"
+        ],
+        "exceptions": [
+          {
+            "noun": "Termin",
+            "article": "der"
+          },
+          {
+            "noun": "Benzin",
+            "article": "das"
+          },
+          {
+            "noun": "Vitamin",
+            "article": "das"
+          },
+          {
+            "noun": "Rubin",
+            "article": "der"
+          },
+          {
+            "noun": "Ain",
+            "article": "der"
+          },
+          {
+            "noun": "DIN",
+            "article": "das"
+          },
+          {
+            "noun": "Gin",
+            "article": "der"
+          },
+          {
+            "noun": "Pin",
+            "article": "der"
+          },
+          {
+            "noun": "Yin",
+            "article": "das"
+          },
+          {
+            "noun": "Amin",
+            "article": "das"
+          }
+        ]
+      },
+      {
+        "suffix": "-ion",
+        "accuracy": 58.87,
+        "rawAccuracy": 96.31,
+        "tier": "weak",
+        "count": 141,
+        "smallSample": false,
+        "overriddenBy": [
+          "-tion",
+          "-sion"
+        ],
+        "exceptionCount": 58,
+        "note": "ALONE, this is barely a coin flip (~59%): der Champion / Spion / Anion. Trust -tion and -sion, NOT bare -ion.",
+        "examples": [
+          "Region",
+          "Union",
+          "Religion",
+          "Legion",
+          "Million"
+        ],
+        "exceptions": [
+          {
+            "noun": "Champion",
+            "article": "der"
+          },
+          {
+            "noun": "Spion",
+            "article": "der"
+          },
+          {
+            "noun": "Skorpion",
+            "article": "der"
+          },
+          {
+            "noun": "Stadion",
+            "article": "das"
+          },
+          {
+            "noun": "Zion",
+            "article": "der"
+          },
+          {
+            "noun": "Anion",
+            "article": "das"
+          },
+          {
+            "noun": "Orion",
+            "article": "der"
+          },
+          {
+            "noun": "Prion",
+            "article": "das"
+          },
+          {
+            "noun": "Amnion",
+            "article": "das"
+          },
+          {
+            "noun": "Camion",
+            "article": "der"
+          }
+        ]
+      }
+    ],
+    "das": [
+      {
+        "suffix": "-ium",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 466,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "Latin neuter → das (Stadium, Studium). Effectively no exceptions.",
+        "examples": [
+          "Studium",
+          "Stadium",
+          "Gymnasium",
+          "Aquarium",
+          "Territorium"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-äft",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 59,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "→ das (Geschäft and its compounds).",
+        "examples": [
+          "Geschäft"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-ym",
+        "accuracy": 100.0,
+        "rawAccuracy": 100.0,
+        "tier": "ironclad",
+        "count": 55,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 0,
+        "note": "→ das (Synonym, Pseudonym, Akronym, Enzym).",
+        "examples": [
+          "Synonym",
+          "Pseudonym",
+          "Akronym",
+          "Antonym",
+          "Enzym"
+        ],
+        "exceptions": []
+      },
+      {
+        "suffix": "-lein",
+        "accuracy": 98.99,
+        "rawAccuracy": 98.99,
+        "tier": "ironclad",
+        "count": 99,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "Diminutive → das (Fräulein). Highly reliable.",
+        "examples": [
+          "Fräulein",
+          "Büchlein",
+          "Tischlein",
+          "Vöglein",
+          "Männlein"
+        ],
+        "exceptions": [
+          {
+            "noun": "Zwerglein",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-gut",
+        "accuracy": 98.04,
+        "rawAccuracy": 98.04,
+        "tier": "ironclad",
+        "count": 51,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 1,
+        "note": "→ das (Gut and compounds: Frachtgut, Stückgut).",
+        "examples": [
+          "Gut"
+        ],
+        "exceptions": [
+          {
+            "noun": "Tunichtgut",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-chen",
+        "accuracy": 97.1,
+        "rawAccuracy": 88.58,
+        "tier": "ironclad",
+        "count": 863,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 25,
+        "note": "Diminutive → das (Mädchen). Exceptions are compounds of der Kuchen / der Knochen — not real diminutives.",
+        "examples": [
+          "Mädchen",
+          "Brötchen",
+          "Hündchen",
+          "Kätzchen",
+          "Häuschen"
+        ],
+        "exceptions": [
+          {
+            "noun": "Kuchen",
+            "article": "der"
+          },
+          {
+            "noun": "Knochen",
+            "article": "der"
+          },
+          {
+            "noun": "Drachen",
+            "article": "der"
+          },
+          {
+            "noun": "Rachen",
+            "article": "der"
+          },
+          {
+            "noun": "Bähnchen",
+            "article": "die"
+          },
+          {
+            "noun": "Schochen",
+            "article": "der"
+          },
+          {
+            "noun": "Spänchen",
+            "article": "die"
+          },
+          {
+            "noun": "Watschen",
+            "article": "die"
+          },
+          {
+            "noun": "Lebkuchen",
+            "article": "der"
+          },
+          {
+            "noun": "Strauchen",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ett",
+        "accuracy": 96.43,
+        "rawAccuracy": 96.43,
+        "tier": "ironclad",
+        "count": 224,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 8,
+        "note": "→ das (Ballett, Kabinett, Skelett, Bett, Brett).",
+        "examples": [
+          "Ballett",
+          "Kabinett",
+          "Skelett",
+          "Bett",
+          "Brett"
+        ],
+        "exceptions": [
+          {
+            "noun": "Kadett",
+            "article": "der"
+          },
+          {
+            "noun": "Jakonett",
+            "article": "der"
+          },
+          {
+            "noun": "Sterlett",
+            "article": "der"
+          },
+          {
+            "noun": "Seekadett",
+            "article": "der"
+          },
+          {
+            "noun": "Landkadett",
+            "article": "der"
+          },
+          {
+            "noun": "Intensivbett",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-ment",
+        "accuracy": 95.85,
+        "rawAccuracy": 95.85,
+        "tier": "ironclad",
+        "count": 217,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 9,
+        "note": "Latin -mentum → das (Dokument, Element). Distinct from the masculine -ent agent suffix.",
+        "examples": [
+          "Dokument",
+          "Element",
+          "Instrument",
+          "Argument",
+          "Experiment"
+        ],
+        "exceptions": [
+          {
+            "noun": "Moment",
+            "article": "der"
+          },
+          {
+            "noun": "Zement",
+            "article": "der"
+          },
+          {
+            "noun": "Konsument",
+            "article": "der"
+          },
+          {
+            "noun": "Prosument",
+            "article": "der"
+          },
+          {
+            "noun": "Bierkomment",
+            "article": "der"
+          },
+          {
+            "noun": "Asbestzement",
+            "article": "der"
+          },
+          {
+            "noun": "Glücksmoment",
+            "article": "der"
+          },
+          {
+            "noun": "Portlandzement",
+            "article": "der"
+          },
+          {
+            "noun": "Drogenkonsument",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-pt",
+        "accuracy": 93.18,
+        "rawAccuracy": 93.18,
+        "tier": "strong",
+        "count": 44,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 3,
+        "note": "→ das (Konzept, Rezept, Skript, Manuskript).",
+        "examples": [
+          "Konzept",
+          "Rezept",
+          "Skript",
+          "Haupt",
+          "JavaScript"
+        ],
+        "exceptions": [
+          {
+            "noun": "Sept",
+            "article": "die"
+          },
+          {
+            "noun": "Adept",
+            "article": "der"
+          },
+          {
+            "noun": "Interrupt",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-em",
+        "accuracy": 92.54,
+        "rawAccuracy": 92.54,
+        "tier": "strong",
+        "count": 295,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 22,
+        "note": "→ das (System, Problem, Morphem). der Atem is an exception.",
+        "examples": [
+          "System",
+          "Problem",
+          "Morphem",
+          "Tandem",
+          "Emblem"
+        ],
+        "exceptions": [
+          {
+            "noun": "Atem",
+            "article": "der"
+          },
+          {
+            "noun": "Harem",
+            "article": "der"
+          },
+          {
+            "noun": "Odem",
+            "article": "der"
+          },
+          {
+            "noun": "Golem",
+            "article": "der"
+          },
+          {
+            "noun": "Priem",
+            "article": "der"
+          },
+          {
+            "noun": "Schem",
+            "article": "der"
+          },
+          {
+            "noun": "Strem",
+            "article": "die"
+          },
+          {
+            "noun": "Brodem",
+            "article": "der"
+          },
+          {
+            "noun": "Jausem",
+            "article": "der"
+          },
+          {
+            "noun": "Moslem",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-tum",
+        "accuracy": 92.31,
+        "rawAccuracy": 92.31,
+        "tier": "strong",
+        "count": 169,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 13,
+        "note": "→ das (Wachstum, Eigentum, Christentum). der Reichtum / Irrtum are exceptions.",
+        "examples": [
+          "Wachstum",
+          "Eigentum",
+          "Christentum",
+          "Altertum",
+          "Brauchtum"
+        ],
+        "exceptions": [
+          {
+            "noun": "Reichtum",
+            "article": "der"
+          },
+          {
+            "noun": "Irrtum",
+            "article": "der"
+          },
+          {
+            "noun": "Veganertum",
+            "article": "der"
+          },
+          {
+            "noun": "Justizirrtum",
+            "article": "der"
+          },
+          {
+            "noun": "Wildreichtum",
+            "article": "der"
+          },
+          {
+            "noun": "Fischreichtum",
+            "article": "der"
+          },
+          {
+            "noun": "Hauptreichtum",
+            "article": "der"
+          },
+          {
+            "noun": "Vegetariertum",
+            "article": "der"
+          },
+          {
+            "noun": "Vogelreichtum",
+            "article": "der"
+          },
+          {
+            "noun": "Vitaminreichtum",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-um",
+        "accuracy": 89.16,
+        "rawAccuracy": 73.38,
+        "tier": "strong",
+        "count": 443,
+        "smallSample": false,
+        "overriddenBy": [
+          "-aum",
+          "-ium",
+          "-tum"
+        ],
+        "exceptionCount": 48,
+        "note": "→ das (Museum, Datum, Zentrum). -aum (der Baum) and -tum are split off; der Konsum is an exception.",
+        "examples": [
+          "Museum",
+          "Datum",
+          "Zentrum",
+          "Publikum",
+          "Album"
+        ],
+        "exceptions": [
+          {
+            "noun": "Konsum",
+            "article": "der"
+          },
+          {
+            "noun": "Rum",
+            "article": "der"
+          },
+          {
+            "noun": "Slum",
+            "article": "der"
+          },
+          {
+            "noun": "Begum",
+            "article": "die"
+          },
+          {
+            "noun": "Lizum",
+            "article": "die"
+          },
+          {
+            "noun": "Magnum",
+            "article": "die"
+          },
+          {
+            "noun": "Wampum",
+            "article": "der"
+          },
+          {
+            "noun": "Karakorum",
+            "article": "der"
+          },
+          {
+            "noun": "Teekonsum",
+            "article": "der"
+          },
+          {
+            "noun": "Ammoniacum",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ial",
+        "accuracy": 89.04,
+        "rawAccuracy": 89.04,
+        "tier": "strong",
+        "count": 73,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 8,
+        "note": "→ das (Material, Potenzial, Editorial, Adverbial). A few obscure der exceptions (Labial).",
+        "examples": [
+          "Material",
+          "Potenzial",
+          "Editorial",
+          "Tutorial",
+          "Differenzial"
+        ],
+        "exceptions": [
+          {
+            "noun": "Labial",
+            "article": "der"
+          },
+          {
+            "noun": "Rial",
+            "article": "der"
+          },
+          {
+            "noun": "Trial",
+            "article": "der"
+          },
+          {
+            "noun": "Belial",
+            "article": "der"
+          },
+          {
+            "noun": "Gavial",
+            "article": "der"
+          },
+          {
+            "noun": "Bilabial",
+            "article": "der"
+          },
+          {
+            "noun": "Offizial",
+            "article": "der"
+          },
+          {
+            "noun": "Interstadial",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-nis",
+        "accuracy": 77.57,
+        "rawAccuracy": 77.57,
+        "tier": "moderate",
+        "count": 321,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 72,
+        "note": "Leans das (Ergebnis, Verständnis, Zeugnis) — but die Erlaubnis/Kenntnis/Finsternis are common.",
+        "examples": [
+          "Ergebnis",
+          "Verständnis",
+          "Gefängnis",
+          "Zeugnis",
+          "Geständnis"
+        ],
+        "exceptions": [
+          {
+            "noun": "Erlaubnis",
+            "article": "die"
+          },
+          {
+            "noun": "Kenntnis",
+            "article": "die"
+          },
+          {
+            "noun": "Finsternis",
+            "article": "die"
+          },
+          {
+            "noun": "Wildnis",
+            "article": "die"
+          },
+          {
+            "noun": "Anis",
+            "article": "der"
+          },
+          {
+            "noun": "Penis",
+            "article": "der"
+          },
+          {
+            "noun": "Ödnis",
+            "article": "die"
+          },
+          {
+            "noun": "Adonis",
+            "article": "der"
+          },
+          {
+            "noun": "Firnis",
+            "article": "der"
+          },
+          {
+            "noun": "Fahrnis",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-et",
+        "accuracy": 74.39,
+        "rawAccuracy": 74.39,
+        "tier": "moderate",
+        "count": 367,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 94,
+        "note": "Leans das (Paket, Gebet, Gebiet) — but der Planet/Komet/Prophet are exceptions.",
+        "examples": [
+          "Paket",
+          "Gebet",
+          "Gebiet",
+          "Filet",
+          "Budget"
+        ],
+        "exceptions": [
+          {
+            "noun": "Planet",
+            "article": "der"
+          },
+          {
+            "noun": "Komet",
+            "article": "der"
+          },
+          {
+            "noun": "Prophet",
+            "article": "der"
+          },
+          {
+            "noun": "Magnet",
+            "article": "der"
+          },
+          {
+            "noun": "Jet",
+            "article": "der"
+          },
+          {
+            "noun": "Met",
+            "article": "der"
+          },
+          {
+            "noun": "Alet",
+            "article": "der"
+          },
+          {
+            "noun": "Poet",
+            "article": "der"
+          },
+          {
+            "noun": "Asket",
+            "article": "der"
+          },
+          {
+            "noun": "Aulet",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-ot",
+        "accuracy": 69.88,
+        "rawAccuracy": 69.88,
+        "tier": "moderate",
+        "count": 322,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 97,
+        "note": "Leans das (Brot, Gebot, Angebot) — but die Not and der Pilot/Idiot are exceptions.",
+        "examples": [
+          "Brot",
+          "Gebot",
+          "Angebot",
+          "Verbot",
+          "Rot"
+        ],
+        "exceptions": [
+          {
+            "noun": "Pilot",
+            "article": "der"
+          },
+          {
+            "noun": "Idiot",
+            "article": "der"
+          },
+          {
+            "noun": "Not",
+            "article": "die"
+          },
+          {
+            "noun": "Bot",
+            "article": "der"
+          },
+          {
+            "noun": "Kot",
+            "article": "der"
+          },
+          {
+            "noun": "Lot",
+            "article": "der"
+          },
+          {
+            "noun": "Asot",
+            "article": "der"
+          },
+          {
+            "noun": "Boot",
+            "article": "der"
+          },
+          {
+            "noun": "Exot",
+            "article": "der"
+          },
+          {
+            "noun": "Krot",
+            "article": "die"
+          }
+        ]
+      },
+      {
+        "suffix": "-ma",
+        "accuracy": 68.78,
+        "rawAccuracy": 68.78,
+        "tier": "moderate",
+        "count": 221,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 69,
+        "note": "Greek -ma leans das (Thema, Drama, Klima, Komma). die Firma is the main exception.",
+        "examples": [
+          "Thema",
+          "Drama",
+          "Klima",
+          "Schema",
+          "Komma"
+        ],
+        "exceptions": [
+          {
+            "noun": "Firma",
+            "article": "die"
+          },
+          {
+            "noun": "EMA",
+            "article": "die"
+          },
+          {
+            "noun": "Oma",
+            "article": "die"
+          },
+          {
+            "noun": "Auma",
+            "article": "die"
+          },
+          {
+            "noun": "Duma",
+            "article": "die"
+          },
+          {
+            "noun": "Kama",
+            "article": "die"
+          },
+          {
+            "noun": "Koma",
+            "article": "die"
+          },
+          {
+            "noun": "Lama",
+            "article": "der"
+          },
+          {
+            "noun": "Mama",
+            "article": "die"
+          },
+          {
+            "noun": "Nama",
+            "article": "der"
+          }
+        ]
+      },
+      {
+        "suffix": "-o",
+        "accuracy": 56.39,
+        "rawAccuracy": 56.39,
+        "tier": "weak",
+        "count": 821,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 358,
+        "note": "Leans das (~56%): das Auto, Büro, Kino, Video — but der Tango/Kakao and die Disco are common. The weakest rule; many -o words are best memorised.",
+        "examples": [
+          "Auto",
+          "Büro",
+          "Kino",
+          "Video",
+          "Radio"
+        ],
+        "exceptions": [
+          {
+            "noun": "Tango",
+            "article": "der"
+          },
+          {
+            "noun": "Kakao",
+            "article": "der"
+          },
+          {
+            "noun": "Disco",
+            "article": "die"
+          },
+          {
+            "noun": "Po",
+            "article": "der"
+          },
+          {
+            "noun": "APO",
+            "article": "die"
+          },
+          {
+            "noun": "Apo",
+            "article": "die"
+          },
+          {
+            "noun": "Beo",
+            "article": "der"
+          },
+          {
+            "noun": "CEO",
+            "article": "der"
+          },
+          {
+            "noun": "Emo",
+            "article": "der"
+          },
+          {
+            "noun": "IPO",
+            "article": "der"
+          }
+        ]
+      }
+    ]
+  },
+  "compoundRule": {
+    "note": "A compound takes the gender of its LAST noun: das Werk+Zeug, die Auto+Bahn, der Apfel+Kuchen. When in doubt about a long word, look at its final part.",
+    "accuracy": 99.61,
+    "count": 15487,
+    "examples": [
+      {
+        "noun": "Fußball",
+        "head": "Ball",
+        "article": "der"
+      },
+      {
+        "noun": "Unterschied",
+        "head": "Schied",
+        "article": "der"
+      },
+      {
+        "noun": "Gegensatz",
+        "head": "Satz",
+        "article": "der"
+      },
+      {
+        "noun": "Geburtstag",
+        "head": "Tag",
+        "article": "der"
+      },
+      {
+        "noun": "Auswahl",
+        "head": "Wahl",
+        "article": "die"
+      },
+      {
+        "noun": "Bundesliga",
+        "head": "Liga",
+        "article": "die"
+      },
+      {
+        "noun": "Zeitschrift",
+        "head": "Schrift",
+        "article": "die"
+      },
+      {
+        "noun": "Autobahn",
+        "head": "Bahn",
+        "article": "die"
+      },
+      {
+        "noun": "Beispiel",
+        "head": "Spiel",
+        "article": "das"
+      },
+      {
+        "noun": "Aussehen",
+        "head": "Sehen",
+        "article": "das"
+      },
+      {
+        "noun": "Krankenhaus",
+        "head": "Haus",
+        "article": "das"
+      },
+      {
+        "noun": "Ausland",
+        "head": "Land",
+        "article": "das"
+      }
+    ],
+    "exceptions": [
+      {
+        "noun": "Gegenwart",
+        "head": "Wart",
+        "article": "die",
+        "predicted": "der"
+      },
+      {
+        "noun": "Shopping",
+        "head": "Ping",
+        "article": "das",
+        "predicted": "der"
+      },
+      {
+        "noun": "Walking",
+        "head": "King",
+        "article": "das",
+        "predicted": "der"
+      },
+      {
+        "noun": "Pudding",
+        "head": "Ding",
+        "article": "der",
+        "predicted": "das"
+      },
+      {
+        "noun": "Mangold",
+        "head": "Gold",
+        "article": "der",
+        "predicted": "das"
+      },
+      {
+        "noun": "Schmankerl",
+        "head": "Kerl",
+        "article": "das",
+        "predicted": "der"
+      },
+      {
+        "noun": "Annaberg",
+        "head": "Berg",
+        "article": "das",
+        "predicted": "der"
+      },
+      {
+        "noun": "Eckball",
+        "head": "Ball",
+        "article": "das",
+        "predicted": "der"
+      }
+    ]
+  }
 }
