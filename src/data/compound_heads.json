@@ -518,7 +518,7 @@
     {
       "head": "Sprung",
       "accuracy": 100.0,
-      "count": 4,
+      "count": 5,
       "examples": [
         {
           "word": "Ursprung",
@@ -535,6 +535,10 @@
         {
           "word": "Vorsprung",
           "meaning": "lead, advantage"
+        },
+        {
+          "word": "Rücksprung",
+          "meaning": "return jump, jump back"
         }
       ],
       "meaning": "jump, leap"
