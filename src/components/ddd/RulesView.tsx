@@ -602,3 +602,143 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
     </div>
   );
 }
+
+function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) {
+  const meta = ARTICLE_META[article];
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+  if (rules.length === 0) {
+    return (
+      <p className="mx-4 mt-4 rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+        No suffix rules in dataset for this gender.
+      </p>
+    );
+  }
+
+  // Size bubbles by tier so ironclad reads as biggest/most-trustworthy.
+  const tierSize: Record<Tier, number> = { ironclad: 76, strong: 66, moderate: 58, weak: 50 };
+  const sizes = rules.map(r => tierSize[r.tier] ?? 58);
+  const maxSize = Math.max(...sizes);
+  const SPACING = 0.58;
+  const GOLDEN = Math.PI * (3 - Math.sqrt(5));
+  const scale = maxSize * SPACING;
+  const positions = rules.map((_, i) => {
+    const r = scale * Math.sqrt(i + 0.5);
+    const theta = i * GOLDEN;
+    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
+  });
+  const outerR = scale * Math.sqrt(rules.length) + maxSize / 2 + 6;
+  const boxSize = Math.ceil(outerR * 2);
+
+  const active = activeIdx !== null ? rules[activeIdx] : null;
+
+  return (
+    <div className="mt-5 px-4">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+          Suffix rules · bigger = stronger
+        </span>
+        <span className="h-px flex-1 bg-border" />
+      </div>
+      <p className="mb-3 text-xs italic text-muted-foreground">
+        Tap a bubble to see the rule, examples, and exceptions.
+      </p>
+
+      <div
+        className="relative mx-auto"
+        style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
+      >
+        <div
+          className="absolute inset-0 rounded-full shadow-inner"
+          style={{
+            backgroundColor: `var(--${meta.soft})`,
+            border: `2px dashed var(--${meta.color})`,
+          }}
+        />
+        {rules.map((r, i) => {
+          const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
+          const isActive = activeIdx === i;
+          const { x, y } = positions[i];
+          const size = sizes[i];
+          return (
+            <motion.button
+              key={r.suffix}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: size,
+                height: size,
+                marginLeft: -size / 2,
+                marginTop: -size / 2,
+                x,
+                y,
+                backgroundColor: color,
+                zIndex: isActive ? 5 : 1,
+                boxShadow: isActive
+                  ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
+                  : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
+              }}
+              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
+            >
+              <span className="px-1" style={{ fontSize: Math.max(11, size * 0.22) }}>
+                {r.suffix}
+              </span>
+            </motion.button>
+          );
+        })}
+
+        <AnimatePresence>
+          {active && (
+            <>
+              <motion.div
+                key="suffix-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                onClick={() => setActiveIdx(null)}
+                className="fixed inset-0 z-40 bg-black/30"
+              />
+              <motion.div
+                key={active.suffix}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.92 }}
+                transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
+                className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
+                style={{ borderColor: `var(--${meta.color})` }}
+              >
+                <div
+                  className="flex items-center justify-between gap-2 px-4 py-2.5"
+                  style={{ backgroundColor: `var(--${meta.soft})` }}
+                >
+                  <div className="flex items-center gap-2">
+                    <ArticleBadge article={article} size="sm" />
+                    <span className="text-base font-extrabold">{active.suffix}</span>
+                  </div>
+                  <button
+                    onClick={() => setActiveIdx(null)}
+                    className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
+                    aria-label="Close"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="max-h-[70vh] overflow-y-auto">
+                  <RuleCard rule={active} />
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
