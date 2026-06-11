@@ -194,7 +194,9 @@ function ThematicGroups({ article }: { article: Article }) {
         <span className="h-px flex-1 bg-border" />
       </div>
       <div className="relative grid grid-cols-2 gap-2.5">
-        {groups.map((g, i) => (
+        {groups.map((g, i) => {
+          const isOrphanLast = i === groups.length - 1 && groups.length % 2 === 1;
+          return (
           <motion.button
             key={g.title}
             initial={{ opacity: 0, y: 10 }}
@@ -203,13 +205,14 @@ function ThematicGroups({ article }: { article: Article }) {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => setActiveIdx(i)}
-            className="flex flex-col items-center justify-center gap-2 rounded-2xl border bg-card px-3 py-4 text-center shadow-sm"
+            className={`flex flex-col items-center justify-center gap-2 rounded-2xl border bg-card px-3 py-4 text-center shadow-sm ${isOrphanLast ? "col-span-2 mx-auto w-1/2" : ""}`}
             style={{ borderColor: `var(--${meta.color})`, backgroundColor: `var(--${meta.soft})` }}
           >
             <span className="text-3xl">{g.emoji}</span>
             <span className="text-sm font-bold leading-tight">{g.title}</span>
           </motion.button>
-        ))}
+          );
+        })}
 
         <AnimatePresence>
           {active && (

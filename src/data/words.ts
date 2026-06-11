@@ -93,14 +93,6 @@ export const RULES: RuleGroup[] = [
     words: [w("der","Wein","wine","🍷"), w("der","Sekt","sparkling wine","🥂"), w("der","Champagner","champagne","🍾"), w("der","Whisky","whiskey","🥃"), w("der","Wodka","vodka","🍸")],
   },
   {
-    article: "der", title: "real nouns ending in -en", emoji: "🌿",
-    note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
-    words: [
-      w("der","Garten","garden","🌿"), w("der","Ofen","oven","🔥"), w("der","Boden","floor/ground","🪵"),
-      w("der","Laden","shop","🏪"), w("der","Kuchen","cake","🍰"),
-    ],
-  },
-  {
     article: "der", title: "car brands", emoji: "🚗",
     note: "Car brands are masculine (think: der Wagen — the car).",
     words: [w("der","BMW","BMW","🚗"), w("der","Mercedes","Mercedes"), w("der","Porsche","Porsche"), w("der","VW","Volkswagen")],
@@ -126,6 +118,15 @@ export const RULES: RuleGroup[] = [
       w("der","Staubsauger","vacuum cleaner","🧹"),
     ],
   },
+  {
+    article: "der", title: "real nouns ending in -en", emoji: "🌿",
+    note: "If it's a real noun (not a verb turned into a noun) ending in -en → very likely DER. (Verb-derived -en nouns like das Essen are DAS — see the das tab.)",
+    words: [
+      w("der","Garten","garden","🌿"), w("der","Ofen","oven","🔥"), w("der","Boden","floor/ground","🪵"),
+      w("der","Laden","shop","🏪"), w("der","Kuchen","cake","🍰"),
+    ],
+  },
+
 
   {
     article: "der", title: "word endings → der", emoji: "🔤",
