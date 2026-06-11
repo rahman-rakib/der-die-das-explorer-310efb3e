@@ -299,7 +299,7 @@ export const RULES: RuleGroup[] = [
   // DAS
   {
     article: "das", title: "diminutives — always!", emoji: "🐣",
-    note: "Any word ending in -chen or -lein is ALWAYS das, even for a girl or woman.",
+    note: "Diminuaive words ending in -chen or -lein is ALWAYS das, even for a girl or woman.",
     words: [w("das","Mädchen","girl","👧"), w("das","Köpfchen","little head","🧠"), w("das","Häuschen","little house","🏡"), w("das","Fräulein","Miss","🎀"), w("das","Büchlein","little book","📖")],
   },
   {
