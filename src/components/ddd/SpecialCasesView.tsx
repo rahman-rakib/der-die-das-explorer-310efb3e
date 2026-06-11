@@ -38,6 +38,13 @@ const MEANING_ROWS: MeaningRow[] = [
       { article: "die", meaning: "sea / ocean", emoji: "🌊", example: "Die See ist stürmisch.", exampleEn: "The sea is stormy." },
     ],
   },
+  {
+    word: "Gang",
+    meanings: [
+      { article: "der", meaning: "corridor / passage / walk", emoji: "🚶", example: "Der Gang ist sehr lang.", exampleEn: "The corridor is very long." },
+      { article: "die", meaning: "gang (criminal group)", emoji: "🕵️", example: "Die Gang wurde verhaftet.", exampleEn: "The gang was arrested." },
+    ],
+  },
 ];
 
 const FLEXIBLE: { word: string; articles: Article[]; english: string; emoji: string; note?: string }[] = [
