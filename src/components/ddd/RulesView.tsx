@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import rulesData from "@/data/rules.json";
+import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
 import { ArticleBadge } from "./ArticleBadge";
 
