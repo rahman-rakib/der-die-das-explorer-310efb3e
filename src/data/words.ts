@@ -41,7 +41,7 @@ const w = (article: Article, word: string, english: string, emoji?: string): Wor
 export const RULES: RuleGroup[] = [
   // DER
   {
-    article: "der", title: "Male people & animals", emoji: "🧔",
+    article: "der", title: "Male humans & animals", emoji: "🧔",
     note: "Words referring to male humans and male animals are masculine.",
     words: [w("der","Mann","man","🧔"), w("der","Vater","father","👨"), w("der","König","king","👑"), w("der","Hahn","rooster","🐓"), w("der","Stier","bull","🐂"), w("der","Löwe","lion","🦁"), w("der","Riese","giant","👹")],
   },
