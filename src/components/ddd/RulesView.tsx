@@ -376,3 +376,73 @@ function RuleCard({ rule }: { rule: Rule }) {
     </div>
   );
 }
+
+function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
+  const meta = ARTICLE_META[article];
+  if (heads.length === 0) {
+    return (
+      <p className="mx-4 mt-4 rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+        No compound heads for this gender.
+      </p>
+    );
+  }
+  return (
+    <div className="mt-5 px-4">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+          Compound heads · last noun wins
+        </span>
+        <span className="h-px flex-1 bg-border" />
+      </div>
+      <div className="space-y-3">
+        {heads.map((h, i) => (
+          <motion.div
+            key={h.head}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.02 }}
+            className="overflow-hidden rounded-3xl border bg-card shadow-sm"
+            style={{ borderColor: `var(--${meta.color})` }}
+          >
+            <div
+              className="flex items-center justify-between gap-3 px-4 py-3"
+              style={{ backgroundColor: `var(--${meta.soft})` }}
+            >
+              <div className="flex items-center gap-2">
+                <ArticleBadge article={article} size="sm" />
+                <span className="text-lg font-extrabold">-{h.head}</span>
+              </div>
+              <span
+                className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+                style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
+              >
+                {h.accuracy.toFixed(1)}% · n={h.count}
+              </span>
+            </div>
+            <div className="space-y-2 p-4">
+              <div className="flex flex-wrap gap-1.5">
+                {h.examples.map(ex => (
+                  <span
+                    key={ex}
+                    className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
+                    style={{ borderColor: `var(--${meta.color})` }}
+                  >
+                    <span className="text-[10px] font-bold uppercase" style={{ color: `var(--${meta.color})` }}>
+                      {article}
+                    </span>
+                    <span className="font-semibold">{ex}</span>
+                  </span>
+                ))}
+              </div>
+              {h.exceptions && (
+                <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
+                  ⚠️ {h.exceptions}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
