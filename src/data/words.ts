@@ -328,20 +328,6 @@ export const RULES: RuleGroup[] = [
     words: [w("das","Bier","beer","🍺"), w("das","Pils","pilsner","🍺"), w("das","Lager","lager","🍺"), w("das","Ale","ale","🍺"), w("das","Radler","shandy/radler","🍺")],
   },
   {
-    article: "das", title: "nouns from adjectives (substantivized)", emoji: "✨",
-    note: "When an adjective is turned into a noun to mean 'the [adjective] thing/concept', it is always neuter.",
-    words: [
-      w("das","Gute","the good (goodness)","✨"), w("das","Böse","the evil (evilness)","😈"), w("das","Schöne","the beautiful (beauty)","🌸"),
-      w("das","Neue","the new (what is new)","🆕"), w("das","Alte","the old (old things)","🏛️"),
-    ],
-  },
-  {
-    article: "das", title: "infinitives used as nouns", emoji: "🏃",
-    note: "Any verb infinitive (ending in -en) used as a noun is ALWAYS das. Real -en nouns (not from verbs) like der Garten are DER — see the der tab.",
-    words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤"), w("das","Lachen","laughter","😂"), w("das","Schreiben","writing","✍️")],
-  },
-
-  {
     article: "das", title: "fractions", emoji: "📐",
     note: "Most fractions are neuter.",
     exceptions: "die Hälfte (half)",
@@ -374,6 +360,20 @@ export const RULES: RuleGroup[] = [
       w("das","Pflaster","plaster/bandage","🩹"),
     ],
   },
+  {
+    article: "das", title: "infinitives used as nouns", emoji: "🏃",
+    note: "Any verb infinitive (ending in -en) used as a noun is ALWAYS das. Real -en nouns (not from verbs) like der Garten are DER — see the der tab.",
+    words: [w("das","Laufen","running","🏃"), w("das","Essen","eating/food","🍽"), w("das","Schlafen","sleeping","😴"), w("das","Singen","singing","🎤"), w("das","Lachen","laughter","😂"), w("das","Schreiben","writing","✍️")],
+  },
+  {
+    article: "das", title: "nouns from adjectives (substantivized)", emoji: "✨",
+    note: "When an adjective is turned into a noun to mean 'the [adjective] thing/concept', it is always neuter.",
+    words: [
+      w("das","Gute","the good (goodness)","✨"), w("das","Böse","the evil (evilness)","😈"), w("das","Schöne","the beautiful (beauty)","🌸"),
+      w("das","Neue","the new (what is new)","🆕"), w("das","Alte","the old (old things)","🏛️"),
+    ],
+  },
+
 
   {
     article: "das", title: "word endings → das", emoji: "🔤",
