@@ -508,15 +508,39 @@
             "word": "Tiergarten",
             "meaning": "zoo"
           },
-          {
-            "word": "Gemüsegarten",
-            "meaning": "vegetable garden"
-          }
-        ],
-        "meaning": "garden"
-      }
-    ],
-    "die": [
+        {
+          "word": "Gemüsegarten",
+          "meaning": "vegetable garden"
+        }
+      ],
+      "meaning": "garden"
+    },
+    {
+      "head": "Sprung",
+      "accuracy": 100.0,
+      "count": 4,
+      "examples": [
+        {
+          "word": "Ursprung",
+          "meaning": "origin"
+        },
+        {
+          "word": "Absprung",
+          "meaning": "takeoff, jump-off"
+        },
+        {
+          "word": "Aufsprung",
+          "meaning": "jump onto something"
+        },
+        {
+          "word": "Vorsprung",
+          "meaning": "lead, advantage"
+        }
+      ],
+      "meaning": "jump, leap"
+    }
+  ],
+  "die": [
       {
         "head": "Sprache",
         "accuracy": 99.7,
