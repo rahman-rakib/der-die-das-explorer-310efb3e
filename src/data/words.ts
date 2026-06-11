@@ -213,11 +213,6 @@ export const RULES: RuleGroup[] = [
     ],
   },
   {
-    article: "die", title: "Mountain peaks (exceptions)", emoji: "🏔️",
-    note: "A small set of famous peaks break the masculine-mountain rule and take die.",
-    words: [w("die","Zugspitze","Zugspitze","🏔️"), w("die","Marmolada","Marmolada","🏔️")],
-  },
-  {
     article: "die", title: "Mixed drinks", emoji: "🍹",
     note: "Mixed and cocktail-style drinks tend to be feminine, breaking the masculine rule for wines and spirits.",
     words: [w("die","Weinschorle","wine spritzer","🍹"), w("die","Bowle","punch/bowl","🍹"), w("die","Margarita","margarita","🍹")],
