@@ -356,6 +356,19 @@ function RuleCard({ rule }: { rule: Rule }) {
         </p>
       )}
 
+      {rule.overriddenBy && rule.overriddenBy.length > 0 && (
+        <p className="mx-4 mt-2 rounded-xl bg-sky-50 px-3 py-2 text-xs leading-relaxed text-sky-900">
+          ↗️ Overridden by more specific:{" "}
+          {rule.overriddenBy.map((s, i) => (
+            <span key={s}>
+              {i > 0 && ", "}
+              <span className="font-bold">{s}</span>
+            </span>
+          ))}
+        </p>
+      )}
+
+
       {rule.examples.length > 0 && (
         <div className="px-4 pt-3">
           <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
