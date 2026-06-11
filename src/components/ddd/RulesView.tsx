@@ -110,17 +110,18 @@ export function RulesView() {
           })}
         </div>
 
-        <div className="grid grid-cols-2 gap-1.5 rounded-xl bg-muted p-1">
+        <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-muted p-1">
           {([
             { id: "thematic", label: "🎨 Thematic" },
             { id: "suffix", label: "🔤 Suffix" },
+            { id: "compound", label: "🧩 Compound" },
           ] as const).map(v => {
             const active = view === v.id;
             return (
               <button
                 key={v.id}
                 onClick={() => setView(v.id)}
-                className="relative rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition"
+                className="relative rounded-lg px-2 py-1.5 text-[11px] font-bold uppercase tracking-wider transition"
                 style={{ color: active ? `var(--${meta.fg})` : undefined }}
               >
                 {active && (
@@ -144,13 +145,16 @@ export function RulesView() {
       >
         <p className="text-sm font-semibold" style={{ color: `var(--${meta.color})` }}>
           {meta.icon} {meta.label.toUpperCase()} —{" "}
-          {view === "thematic" ? "thematic groups" : "suffix rules, strongest first"}
+          {view === "thematic"
+            ? "thematic groups"
+            : view === "suffix"
+              ? "suffix rules, strongest first"
+              : "compound heads — gender of the last noun wins"}
         </p>
       </div>
 
-      {view === "thematic" ? (
-        <ThematicGroups article={tab} />
-      ) : (
+      {view === "thematic" && <ThematicGroups article={tab} />}
+      {view === "suffix" && (
         <div className="mt-4 space-y-3 px-4">
           {rules.map((r, i) => (
             <motion.div
@@ -169,6 +173,7 @@ export function RulesView() {
           )}
         </div>
       )}
+      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
     </div>
   );
 }
