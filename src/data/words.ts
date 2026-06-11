@@ -170,7 +170,7 @@ export const RULES: RuleGroup[] = [
 
   // DIE
   {
-    article: "die", title: "female people & animals", emoji: "👩",
+    article: "die", title: "female humans & animals", emoji: "👩",
     note: "Words referring to female humans and female animals are feminine.",
     words: [w("die","Frau","woman","👩"), w("die","Mutter","mother","👩‍🦰"), w("die","Tochter","daughter","👧"), w("die","Ärztin","doctor (f)","👩‍⚕️"), w("die","Friseuse","hairdresser (f)","💇‍♀️"), w("die","Henne","hen","🐔"), w("die","Kuh","cow","🐄")],
   },
