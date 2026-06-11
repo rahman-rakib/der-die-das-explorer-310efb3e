@@ -30,7 +30,7 @@ interface Rule {
 const RAW_RULES = rulesData as { rules: Record<Article, Omit<Rule, "article">[]> };
 const RULES: Rule[] = (["der", "die", "das"] as Article[]).flatMap(a =>
   (RAW_RULES.rules[a] ?? []).map(r => ({ ...r, article: a, tier: r.tier as Tier }))
-);
+).filter(r => r.examples.length >= 5);
 
 
 interface CompoundExample {
