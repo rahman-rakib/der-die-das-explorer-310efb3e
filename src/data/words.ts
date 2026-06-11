@@ -180,6 +180,12 @@ export const RULES: RuleGroup[] = [
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🪻"), w("die","Distel","thistle","🌵")],
   },
   {
+    article: "die", title: "Fruits & berries", emoji: "🍓",
+    note: "Most fruits and berries are feminine.",
+    exceptions: "der Apfel, der Pfirsich, das Obst",
+    words: [w("die","Banane","banana","🍌"), w("die","Kirsche","cherry","🍒"), w("die","Traube","grape","🍇"), w("die","Birne","pear","🍐"), w("die","Erdbeere","strawberry","🍓"), w("die","Zitrone","lemon","🍋"), w("die","Pflaume","plum","🟣")],
+  },
+  {
     article: "die", title: "European rivers", emoji: "🌊",
     note: "Most European rivers are feminine.",
     exceptions: "der Rhein, der Main, der Neckar, der Inn",
