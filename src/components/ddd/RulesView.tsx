@@ -288,7 +288,7 @@ function ThematicGroups({ article }: { article: Article }) {
   );
 }
 
-function RuleCard({ rule }: { rule: Rule }) {
+function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }) {
   const [open, setOpen] = useState(false);
   const meta = ARTICLE_META[rule.article];
   const tier = TIER_STYLE[rule.tier];
@@ -297,33 +297,48 @@ function RuleCard({ rule }: { rule: Rule }) {
 
   return (
     <div
-      className="overflow-hidden rounded-3xl border bg-card shadow-sm"
-      style={{ borderColor: `var(--${meta.color})` }}
+      className={embedded ? "bg-card" : "overflow-hidden rounded-3xl border bg-card shadow-sm"}
+      style={embedded ? undefined : { borderColor: `var(--${meta.color})` }}
     >
-      <div className="flex items-center justify-between gap-3 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <span
-            className="rounded-md px-2 py-0.5 text-lg font-extrabold"
-            style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
-          >
-            {rule.suffix}
-          </span>
-          <ArticleBadge article={rule.article} size="sm" />
+      {!embedded && (
+        <div className="flex items-center justify-between gap-3 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span
+              className="rounded-md px-2 py-0.5 text-lg font-extrabold"
+              style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
+            >
+              {rule.suffix}
+            </span>
+            <ArticleBadge article={rule.article} size="sm" />
+          </div>
+          {showTier ? (
+            <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${tier.bg} ${tier.fg}`}>
+              <span aria-hidden>{tier.icon}</span>{tier.label}
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              limited data (n={rule.count})
+            </span>
+          )}
         </div>
-        {showTier ? (
-          <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${tier.bg} ${tier.fg}`}>
-            <span aria-hidden>{tier.icon}</span>{tier.label}
-          </span>
-        ) : (
-          <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-            limited data (n={rule.count})
-          </span>
-        )}
-      </div>
+      )}
 
-      <div className="px-4">
-        <div className="text-[11px] font-semibold text-muted-foreground">
-          <span>{rule.accuracy.toFixed(1)}% accuracy</span>
+      <div className={embedded ? "px-4 pt-3" : "px-4"}>
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[11px] font-semibold text-muted-foreground">
+            {rule.accuracy.toFixed(1)}% accuracy
+          </span>
+          {embedded && (
+            showTier ? (
+              <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${tier.bg} ${tier.fg}`}>
+                <span aria-hidden>{tier.icon}</span>{tier.label}
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                limited data (n={rule.count})
+              </span>
+            )
+          )}
         </div>
         {showTier && (
           <div className={`mt-1.5 h-1.5 w-full overflow-hidden rounded-full ${tier.barBg}`}>
