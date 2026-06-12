@@ -59,6 +59,9 @@ function Index() {
               📋 Prompt
             </Link>
           </div>
+        </header>
+
+
 
 
         <main className="flex-1">
