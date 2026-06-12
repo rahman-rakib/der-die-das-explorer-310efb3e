@@ -701,7 +701,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
               }}
               className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
             >
-              <span className="px-1" style={{ fontSize: Math.max(11, size * 0.22) }}>
+              <span className="px-1" style={{ fontSize: 14 }}>
                 {r.suffix}
               </span>
             </motion.button>
