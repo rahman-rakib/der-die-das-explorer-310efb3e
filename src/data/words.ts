@@ -353,7 +353,7 @@ export const RULES: RuleGroup[] = [
   {
     article: "das", title: "non-agent -er nouns", emoji: "🪟",
     note: "Not all -er nouns are agents (people who do the action). When -er is part of the root word — not a verb-derived agent suffix — the noun is usually DAS.",
-    exceptions: "die Butter",
+    exceptions: "die Butter, die Leiter",
     words: [
       w("das","Messer","knife","🔪"), w("das","Fenster","window","🪟"), w("das","Wasser","water","💧"),
       w("das","Klavier","piano","🎹"), w("das","Zimmer","room","🚪"), w("das","Wetter","weather","🌤"),
