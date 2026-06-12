@@ -746,7 +746,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                   </button>
                 </div>
                 <div className="max-h-[70vh] overflow-y-auto">
-                  <RuleCard rule={active} />
+                  <RuleCard rule={active} embedded />
                 </div>
               </motion.div>
             </>
