@@ -35,8 +35,7 @@
             "word": "Sonntag",
             "meaning": "Sunday"
           }
-        ],
-        "meaning": "day"
+        ]
       },
       {
         "head": "Stand",
@@ -63,8 +62,7 @@
             "word": "Widerstand",
             "meaning": "resistance"
           }
-        ],
-        "meaning": "stand, state"
+        ]
       },
       {
         "head": "Zug",
@@ -91,8 +89,7 @@
             "word": "Aufzug",
             "meaning": "lift, elevator"
           }
-        ],
-        "meaning": "train, pull"
+        ]
       },
       {
         "head": "Gang",
@@ -119,8 +116,7 @@
             "word": "Spaziergang",
             "meaning": "walk, stroll"
           }
-        ],
-        "meaning": "walk, corridor"
+        ]
       },
       {
         "head": "Fall",
@@ -147,8 +143,7 @@
             "word": "Vorfall",
             "meaning": "incident"
           }
-        ],
-        "meaning": "fall, case"
+        ]
       },
       {
         "head": "Raum",
@@ -175,8 +170,7 @@
             "word": "Kofferraum",
             "meaning": "car boot, trunk"
           }
-        ],
-        "meaning": "room, space"
+        ]
       },
       {
         "head": "Satz",
@@ -203,8 +197,7 @@
             "word": "Grundsatz",
             "meaning": "principle"
           }
-        ],
-        "meaning": "set, sentence"
+        ]
       },
       {
         "head": "Bau",
@@ -231,8 +224,7 @@
             "word": "Bergbau",
             "meaning": "mining"
           }
-        ],
-        "meaning": "construction, building"
+        ]
       },
       {
         "head": "Mann",
@@ -260,8 +252,7 @@
             "word": "Geschäftsmann",
             "meaning": "businessman"
           }
-        ],
-        "meaning": "man"
+        ]
       },
       {
         "head": "Platz",
@@ -288,8 +279,34 @@
             "word": "Sportplatz",
             "meaning": "sports field"
           }
-        ],
-        "meaning": "place, square"
+        ]
+      },
+      {
+        "head": "Baum",
+        "accuracy": 100.0,
+        "count": 114,
+        "examples": [
+          {
+            "word": "Apfelbaum",
+            "meaning": "apple tree"
+          },
+          {
+            "word": "Tannenbaum",
+            "meaning": "fir tree (Christmas tree)"
+          },
+          {
+            "word": "Stammbaum",
+            "meaning": "family tree"
+          },
+          {
+            "word": "Kirschbaum",
+            "meaning": "cherry tree"
+          },
+          {
+            "word": "Nussbaum",
+            "meaning": "walnut tree"
+          }
+        ]
       },
       {
         "head": "Preis",
@@ -316,8 +333,7 @@
             "word": "Aufpreis",
             "meaning": "surcharge"
           }
-        ],
-        "meaning": "price, prize"
+        ]
       },
       {
         "head": "Punkt",
@@ -344,8 +360,7 @@
             "word": "Treffpunkt",
             "meaning": "meeting point"
           }
-        ],
-        "meaning": "point"
+        ]
       },
       {
         "head": "Weg",
@@ -372,8 +387,7 @@
             "word": "Fußweg",
             "meaning": "footpath"
           }
-        ],
-        "meaning": "way, path"
+        ]
       },
       {
         "head": "Hof",
@@ -400,8 +414,7 @@
             "word": "Bauernhof",
             "meaning": "farm"
           }
-        ],
-        "meaning": "courtyard, farm"
+        ]
       },
       {
         "head": "Kopf",
@@ -428,8 +441,7 @@
             "word": "Totenkopf",
             "meaning": "skull"
           }
-        ],
-        "meaning": "head"
+        ]
       },
       {
         "head": "Markt",
@@ -456,8 +468,7 @@
             "word": "Weihnachtsmarkt",
             "meaning": "Christmas market"
           }
-        ],
-        "meaning": "market"
+        ]
       },
       {
         "head": "Fang",
@@ -484,8 +495,7 @@
             "word": "Umfang",
             "meaning": "extent, scope"
           }
-        ],
-        "meaning": "catch, capture"
+        ]
       },
       {
         "head": "Garten",
@@ -508,43 +518,149 @@
             "word": "Tiergarten",
             "meaning": "zoo"
           },
-        {
-          "word": "Gemüsegarten",
-          "meaning": "vegetable garden"
-        }
-      ],
-      "meaning": "garden"
-    },
-    {
-      "head": "Sprung",
-      "accuracy": 100.0,
-      "count": 5,
-      "examples": [
-        {
-          "word": "Ursprung",
-          "meaning": "origin"
-        },
-        {
-          "word": "Absprung",
-          "meaning": "takeoff, jump-off"
-        },
-        {
-          "word": "Aufsprung",
-          "meaning": "jump onto something"
-        },
-        {
-          "word": "Vorsprung",
-          "meaning": "lead, advantage"
-        },
-        {
-          "word": "Rücksprung",
-          "meaning": "return jump, jump back"
-        }
-      ],
-      "meaning": "jump, leap"
-    }
-  ],
-  "die": [
+          {
+            "word": "Gemüsegarten",
+            "meaning": "vegetable garden"
+          }
+        ]
+      },
+      {
+        "head": "Trieb",
+        "accuracy": 100.0,
+        "count": 131,
+        "examples": [
+          {
+            "word": "Betrieb",
+            "meaning": "business, operation"
+          },
+          {
+            "word": "Antrieb",
+            "meaning": "drive, propulsion"
+          },
+          {
+            "word": "Vertrieb",
+            "meaning": "sales, distribution"
+          },
+          {
+            "word": "Auftrieb",
+            "meaning": "buoyancy, upturn"
+          },
+          {
+            "word": "Familienbetrieb",
+            "meaning": "family business"
+          }
+        ]
+      },
+      {
+        "head": "Schlag",
+        "accuracy": 100.0,
+        "count": 117,
+        "examples": [
+          {
+            "word": "Vorschlag",
+            "meaning": "suggestion"
+          },
+          {
+            "word": "Anschlag",
+            "meaning": "attack, notice"
+          },
+          {
+            "word": "Niederschlag",
+            "meaning": "precipitation"
+          },
+          {
+            "word": "Umschlag",
+            "meaning": "envelope, cover"
+          },
+          {
+            "word": "Zuschlag",
+            "meaning": "surcharge"
+          }
+        ]
+      },
+      {
+        "head": "Stoff",
+        "accuracy": 100.0,
+        "count": 102,
+        "examples": [
+          {
+            "word": "Sauerstoff",
+            "meaning": "oxygen"
+          },
+          {
+            "word": "Wasserstoff",
+            "meaning": "hydrogen"
+          },
+          {
+            "word": "Kunststoff",
+            "meaning": "plastic"
+          },
+          {
+            "word": "Treibstoff",
+            "meaning": "fuel"
+          },
+          {
+            "word": "Sprengstoff",
+            "meaning": "explosive"
+          }
+        ]
+      },
+      {
+        "head": "Rand",
+        "accuracy": 100.0,
+        "count": 100,
+        "examples": [
+          {
+            "word": "Stadtrand",
+            "meaning": "edge of town"
+          },
+          {
+            "word": "Straßenrand",
+            "meaning": "roadside"
+          },
+          {
+            "word": "Tellerrand",
+            "meaning": "edge of the plate"
+          },
+          {
+            "word": "Waldrand",
+            "meaning": "edge of the forest"
+          },
+          {
+            "word": "Ortsrand",
+            "meaning": "edge of the village"
+          }
+        ]
+      },
+      {
+        "head": "Name",
+        "accuracy": 99.0,
+        "count": 101,
+        "examples": [
+          {
+            "word": "Vorname",
+            "meaning": "first name"
+          },
+          {
+            "word": "Nachname",
+            "meaning": "surname"
+          },
+          {
+            "word": "Spitzname",
+            "meaning": "nickname"
+          },
+          {
+            "word": "Benutzername",
+            "meaning": "username"
+          },
+          {
+            "word": "Künstlername",
+            "meaning": "stage name"
+          }
+        ]
+      }
+    ],
+    "die": [
       {
         "head": "Sprache",
         "accuracy": 99.7,
@@ -570,8 +686,7 @@
             "word": "Aussprache",
             "meaning": "pronunciation"
           }
-        ],
-        "meaning": "language"
+        ]
       },
       {
         "head": "Zeit",
@@ -598,8 +713,7 @@
             "word": "Uhrzeit",
             "meaning": "time of day"
           }
-        ],
-        "meaning": "time"
+        ]
       },
       {
         "head": "Fahrt",
@@ -626,8 +740,7 @@
             "word": "Vorfahrt",
             "meaning": "right of way"
           }
-        ],
-        "meaning": "trip, ride"
+        ]
       },
       {
         "head": "Zahl",
@@ -654,8 +767,7 @@
             "word": "Postleitzahl",
             "meaning": "postal code"
           }
-        ],
-        "meaning": "number"
+        ]
       },
       {
         "head": "Schule",
@@ -682,8 +794,7 @@
             "word": "Fahrschule",
             "meaning": "driving school"
           }
-        ],
-        "meaning": "school"
+        ]
       },
       {
         "head": "Schrift",
@@ -710,8 +821,7 @@
             "word": "Vorschrift",
             "meaning": "regulation"
           }
-        ],
-        "meaning": "writing, script"
+        ]
       },
       {
         "head": "Karte",
@@ -738,8 +848,7 @@
             "word": "Speisekarte",
             "meaning": "menu"
           }
-        ],
-        "meaning": "map, card"
+        ]
       },
       {
         "head": "Straße",
@@ -766,8 +875,7 @@
             "word": "Landstraße",
             "meaning": "country road"
           }
-        ],
-        "meaning": "street"
+        ]
       },
       {
         "head": "Bahn",
@@ -794,8 +902,7 @@
             "word": "Achterbahn",
             "meaning": "roller coaster"
           }
-        ],
-        "meaning": "track, railway"
+        ]
       },
       {
         "head": "Stadt",
@@ -822,8 +929,7 @@
             "word": "Heimatstadt",
             "meaning": "hometown"
           }
-        ],
-        "meaning": "city"
+        ]
       },
       {
         "head": "Kraft",
@@ -850,8 +956,7 @@
             "word": "Lehrkraft",
             "meaning": "teacher"
           }
-        ],
-        "meaning": "power, force"
+        ]
       },
       {
         "head": "Tür",
@@ -878,8 +983,7 @@
             "word": "Autotür",
             "meaning": "car door"
           }
-        ],
-        "meaning": "door"
+        ]
       },
       {
         "head": "Frau",
@@ -906,8 +1010,7 @@
             "word": "Geschäftsfrau",
             "meaning": "businesswoman"
           }
-        ],
-        "meaning": "woman"
+        ]
       },
       {
         "head": "Frage",
@@ -934,8 +1037,7 @@
             "word": "Streitfrage",
             "meaning": "contentious issue"
           }
-        ],
-        "meaning": "question"
+        ]
       },
       {
         "head": "Welt",
@@ -962,8 +1064,7 @@
             "word": "Unterwelt",
             "meaning": "underworld"
           }
-        ],
-        "meaning": "world"
+        ]
       },
       {
         "head": "Uhr",
@@ -991,8 +1092,35 @@
             "word": "Taschenuhr",
             "meaning": "pocket watch"
           }
-        ],
-        "meaning": "clock, watch"
+        ]
+      },
+      {
+        "head": "Form",
+        "accuracy": 99.2,
+        "count": 128,
+        "exceptions": "das Chloroform (chemistry, rare)",
+        "examples": [
+          {
+            "word": "Plattform",
+            "meaning": "platform"
+          },
+          {
+            "word": "Reform",
+            "meaning": "reform"
+          },
+          {
+            "word": "Uniform",
+            "meaning": "uniform"
+          },
+          {
+            "word": "Lebensform",
+            "meaning": "life form"
+          },
+          {
+            "word": "Rechtsform",
+            "meaning": "legal form"
+          }
+        ]
       }
     ],
     "das": [
@@ -1021,8 +1149,7 @@
             "word": "Endspiel",
             "meaning": "final (match)"
           }
-        ],
-        "meaning": "game, play"
+        ]
       },
       {
         "head": "Wort",
@@ -1050,8 +1177,7 @@
             "word": "Sprichwort",
             "meaning": "proverb"
           }
-        ],
-        "meaning": "word"
+        ]
       },
       {
         "head": "Haus",
@@ -1078,8 +1204,7 @@
             "word": "Kaufhaus",
             "meaning": "department store"
           }
-        ],
-        "meaning": "house"
+        ]
       },
       {
         "head": "Buch",
@@ -1106,8 +1231,7 @@
             "word": "Kochbuch",
             "meaning": "cookbook"
           }
-        ],
-        "meaning": "book"
+        ]
       },
       {
         "head": "Werk",
@@ -1134,8 +1258,7 @@
             "word": "Kraftwerk",
             "meaning": "power plant"
           }
-        ],
-        "meaning": "work, factory"
+        ]
       },
       {
         "head": "Zeug",
@@ -1162,8 +1285,7 @@
             "word": "Feuerzeug",
             "meaning": "lighter"
           }
-        ],
-        "meaning": "stuff, gear"
+        ]
       },
       {
         "head": "Land",
@@ -1191,8 +1313,7 @@
             "word": "Bundesland",
             "meaning": "federal state"
           }
-        ],
-        "meaning": "land, country"
+        ]
       },
       {
         "head": "Recht",
@@ -1219,8 +1340,7 @@
             "word": "Arbeitsrecht",
             "meaning": "labour law"
           }
-        ],
-        "meaning": "right, law"
+        ]
       },
       {
         "head": "Bild",
@@ -1247,8 +1367,7 @@
             "word": "Spiegelbild",
             "meaning": "reflection"
           }
-        ],
-        "meaning": "picture, image"
+        ]
       },
       {
         "head": "Wasser",
@@ -1275,8 +1394,7 @@
             "word": "Salzwasser",
             "meaning": "salt water"
           }
-        ],
-        "meaning": "water"
+        ]
       },
       {
         "head": "Gerät",
@@ -1303,8 +1421,7 @@
             "word": "Hörgerät",
             "meaning": "hearing aid"
           }
-        ],
-        "meaning": "device, appliance"
+        ]
       },
       {
         "head": "Geld",
@@ -1331,8 +1448,7 @@
             "word": "Kleingeld",
             "meaning": "small change"
           }
-        ],
-        "meaning": "money"
+        ]
       },
       {
         "head": "Zimmer",
@@ -1359,8 +1475,7 @@
             "word": "Wartezimmer",
             "meaning": "waiting room"
           }
-        ],
-        "meaning": "room"
+        ]
       },
       {
         "head": "Glas",
@@ -1387,8 +1502,7 @@
             "word": "Bierglas",
             "meaning": "beer glass"
           }
-        ],
-        "meaning": "glass"
+        ]
       },
       {
         "head": "Amt",
@@ -1415,8 +1529,7 @@
             "word": "Arbeitsamt",
             "meaning": "employment office"
           }
-        ],
-        "meaning": "office"
+        ]
       },
       {
         "head": "Jahr",
@@ -1443,8 +1556,7 @@
             "word": "Neujahr",
             "meaning": "New Year"
           }
-        ],
-        "meaning": "year"
+        ]
       },
       {
         "head": "Öl",
@@ -1471,8 +1583,61 @@
             "word": "Motoröl",
             "meaning": "motor oil"
           }
-        ],
-        "meaning": "oil"
+        ]
+      },
+      {
+        "head": "Gramm",
+        "accuracy": 100.0,
+        "count": 114,
+        "examples": [
+          {
+            "word": "Programm",
+            "meaning": "program"
+          },
+          {
+            "word": "Kilogramm",
+            "meaning": "kilogram"
+          },
+          {
+            "word": "Diagramm",
+            "meaning": "diagram"
+          },
+          {
+            "word": "Telegramm",
+            "meaning": "telegram"
+          },
+          {
+            "word": "Autogramm",
+            "meaning": "autograph"
+          }
+        ]
+      },
+      {
+        "head": "Stück",
+        "accuracy": 100.0,
+        "count": 116,
+        "examples": [
+          {
+            "word": "Frühstück",
+            "meaning": "breakfast"
+          },
+          {
+            "word": "Grundstück",
+            "meaning": "plot of land, property"
+          },
+          {
+            "word": "Theaterstück",
+            "meaning": "play (theatre)"
+          },
+          {
+            "word": "Gegenstück",
+            "meaning": "counterpart"
+          },
+          {
+            "word": "Herzstück",
+            "meaning": "centerpiece, heart"
+          }
+        ]
       }
     ]
   }
