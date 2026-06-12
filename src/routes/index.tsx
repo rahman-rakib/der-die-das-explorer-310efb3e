@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BottomNav, type TabId } from "@/components/ddd/BottomNav";
@@ -8,6 +8,7 @@ import { PracticeView } from "@/components/ddd/PracticeView";
 import { ProgressView } from "@/components/ddd/ProgressView";
 import { MemoryScenesView } from "@/components/ddd/MemoryScenesView";
 import { SpecialCasesView } from "@/components/ddd/SpecialCasesView";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,13 +44,22 @@ function Index() {
     <div className="min-h-screen bg-background">
       <div className="mx-auto flex min-h-screen max-w-[480px] flex-col bg-background shadow-[0_0_60px_rgba(0,0,0,0.04)]">
         <header className="px-4 pt-5">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🇩🇪</span>
-            <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
-              Der · Die · Das
-            </span>
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">🇩🇪</span>
+              <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
+                Der · Die · Das
+              </span>
+            </div>
+            <Link
+              to="/claude-prompt"
+              className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:bg-muted"
+              title="Generate Claude prompt from thematic rules"
+            >
+              📋 Prompt
+            </Link>
           </div>
-        </header>
+
 
         <main className="flex-1">
           <AnimatePresence mode="wait">
