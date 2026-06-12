@@ -39,13 +39,13 @@ interface CompoundExample {
 }
 interface CompoundHead {
   head: string;
-  meaning: string;
+  meaning?: string;
   accuracy: number;
   count: number;
   exceptions?: string;
   examples: CompoundExample[];
 }
-const COMPOUNDS = (compoundData as { rules: Record<Article, CompoundHead[]> }).rules;
+const COMPOUNDS = (compoundData as unknown as { rules: Record<Article, CompoundHead[]> }).rules;
 
 const TABS: Article[] = ["der", "die", "das"];
 
