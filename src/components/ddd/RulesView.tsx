@@ -162,16 +162,9 @@ export function RulesView() {
 
       <div
         className="mx-4 mt-4 rounded-3xl px-4 py-3"
-        style={{
-          backgroundColor: `var(--${view === "compound" && tab === "der" ? meta.color : meta.soft})`,
-        }}
+        style={{ backgroundColor: `var(--${meta.soft})` }}
       >
-        <p
-          className="text-sm font-semibold"
-          style={{
-            color: `var(--${view === "compound" && tab === "der" ? meta.fg : meta.color})`,
-          }}
-        >
+        <p className="text-sm font-semibold" style={{ color: `var(--${meta.color})` }}>
           {view === "compound" && tab === "der"
             ? "♂ MASCULINE"
             : `${meta.icon} ${meta.label.toUpperCase()}`} —{" "}
