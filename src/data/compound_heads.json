@@ -658,6 +658,33 @@
             "meaning": "stage name"
           }
         ]
+      },
+      {
+        "head": "Schein",
+        "accuracy": 99.3,
+        "count": 134,
+        "examples": [
+          {
+            "word": "Fahrschein",
+            "meaning": "ticket"
+          },
+          {
+            "word": "Führerschein",
+            "meaning": "driver's licence"
+          },
+          {
+            "word": "Parkschein",
+            "meaning": "parking ticket"
+          },
+          {
+            "word": "Gutschein",
+            "meaning": "voucher"
+          },
+          {
+            "word": "Sonnenschein",
+            "meaning": "sunshine"
+          }
+        ]
       }
     ],
     "die": [
