@@ -178,7 +178,7 @@ export const RULES: RuleGroup[] = [
   {
     article: "die", title: "flowers, trees & plants", emoji: "🌹",
     note: "Most flowers, trees, and plants are feminine.",
-    exceptions: "🌳 der Ahorn, der Bambus, der Kaktus, der Jasmin — 🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
+    exceptions: "🌳 der Jasmin, der Ahorn, der Bambus, der Kaktus — 🌼 das Veilchen, das Gänseblümchen, das Schneeglöckchen",
     words: [w("die","Rose","rose","🌹"), w("die","Eiche","oak","🌳"), w("die","Orchidee","orchid","🌸"), w("die","Iris","iris","🪻"), w("die","Distel","thistle","🌵")],
   },
   {
