@@ -479,7 +479,7 @@ function CompoundHeads({ article }: { article: Article }) {
       </p>
       <section className="mt-5" aria-label={`${article} compound heads`}>
             <div
-              className="mx-auto flex min-h-72 w-full flex-wrap content-center items-center justify-center gap-x-0.5 gap-y-1 overflow-hidden border px-7 py-8 shadow-inner"
+              className="mx-auto flex min-h-72 w-full flex-wrap content-center items-center justify-center overflow-hidden border px-7 py-8 shadow-inner"
               style={{
                 backgroundColor: `var(--${meta.soft})`,
                 borderColor: `color-mix(in oklch, var(--${meta.color}) 35%, var(--${meta.soft}))`,
@@ -489,8 +489,9 @@ function CompoundHeads({ article }: { article: Article }) {
               {heads.map((head, index) => {
                 const key = `${article}-${head.head}`;
                 const isActive = activeKey === key;
-                const shadeStrength = 58 + Math.round(head.sizeWeight * 18);
                 const seed = cloudSeed(key);
+                const horizontalCrowding = -10 - ((seed >>> 7) % 13);
+                const verticalCrowding = -5 - ((seed >>> 13) % 10);
                 return (
                   <Button
                     key={head.head}
@@ -500,13 +501,14 @@ function CompoundHeads({ article }: { article: Article }) {
                     aria-expanded={isActive}
                     aria-controls={`compound-detail-${article}-${index}`}
                     onClick={() => setActiveKey(isActive ? null : key)}
-                    className="min-h-11 h-auto rounded-xl px-2 py-1 font-extrabold lowercase leading-none hover:bg-card/50 focus-visible:ring-2"
+                    className="relative min-h-11 h-auto rounded-xl px-2 py-1 font-extrabold lowercase leading-none hover:z-20 hover:bg-card/50 focus-visible:z-20 focus-visible:ring-2"
                     style={{
                       fontSize: `${18 + head.sizeWeight * 22}px`,
                       color: `var(--${meta.color})`,
-                      marginInline: `${(seed >>> 8) % 7}px`,
-                      marginBlock: `${(seed >>> 12) % 5}px`,
-                      transform: `translate(${(seed % 13) - 6}px, ${((seed >>> 4) % 15) - 7}px)`,
+                      marginInline: `${horizontalCrowding}px`,
+                      marginBlock: `${verticalCrowding}px`,
+                      transform: `translate(${(seed % 39) - 19}px, ${((seed >>> 4) % 45) - 22}px) rotate(${((seed >>> 19) % 17) - 8}deg)`,
+                      zIndex: 1 + ((seed >>> 24) % 8),
                     }}
                   >
                     {head.head.toLocaleLowerCase("de")}
