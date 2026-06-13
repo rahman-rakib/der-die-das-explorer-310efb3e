@@ -90,7 +90,6 @@ export function RulesView() {
   const [view, setView] = useState<"thematic" | "suffix" | "compound">("thematic");
   const meta = ARTICLE_META[tab];
   const rules = RULES.filter(r => r.article === tab).slice().sort((a, b) => b.accuracy - a.accuracy);
-  const compounds = (COMPOUNDS[tab] ?? []).slice().sort((a, b) => b.count - a.count);
 
   return (
     <div className="pb-8">
@@ -173,7 +172,7 @@ export function RulesView() {
       </div>
 
       {view === "thematic" && <ThematicGroups article={tab} />}
-      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
+      {view === "compound" && <CompoundHeads />}
       {view === "suffix" && <SuffixBubbles article={tab} rules={rules} />}
 
     </div>
@@ -459,161 +458,101 @@ const BUBBLE_PALETTE = [
   "#93c5fd", "#a5b4fc", "#d8b4fe",
 ];
 
-function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
-  const meta = ARTICLE_META[article];
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
-
-  if (heads.length === 0) {
-    return (
-      <p className="mx-4 mt-4 rounded-2xl border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
-        No compound heads for this gender.
-      </p>
-    );
-  }
-
-  const BUBBLE = 64;
-  const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
-  const GOLDEN = Math.PI * (3 - Math.sqrt(5));
-  const scale = BUBBLE * SPACING;
-  const positions = heads.map((_, i) => {
-    const r = scale * Math.sqrt(i + 0.5);
-    const theta = i * GOLDEN;
-    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
-  });
-  const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
-  const boxSize = Math.ceil(outerR * 2);
-
-  const active = activeIdx !== null ? heads[activeIdx] : null;
+function CompoundHeads() {
+  const [active, setActive] = useState<{ article: Article; head: CompoundHead } | null>(null);
 
   return (
-    <div className="mt-5 px-4">
+    <section className="mt-5 px-4" aria-labelledby="compound-heads-title">
       <div className="mb-2 flex items-center gap-2">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-          Compound heads · last noun wins
-        </span>
+        <h2 id="compound-heads-title" className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+          Compound heads
+        </h2>
         <span className="h-px flex-1 bg-border" />
       </div>
-      <p className="mb-3 text-xs italic text-muted-foreground">
-        Tap a bubble to see examples.
+      <p className="mb-1 text-sm font-semibold leading-relaxed">
+        A compound takes the gender of its LAST noun — das Werk+Zeug, die Auto+Bahn, der Bahn+Hof.
       </p>
+      <p className="mb-4 text-xs text-muted-foreground">Hover, focus, or tap a head to see its examples.</p>
 
-      <div
-        className="relative mx-auto"
-        style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
-      >
-        <div
-          className="absolute inset-0 rounded-full shadow-inner"
-          style={{
-            backgroundColor: `var(--${meta.soft})`,
-            border: `2px dashed var(--${meta.color})`,
-          }}
-        />
-        {heads.map((h, i) => {
-          const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
-          const isActive = activeIdx === i;
-          const { x, y } = positions[i];
-          const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
+      <div className="grid grid-cols-3 gap-2" role="group" aria-label="Compound heads by article">
+        {TABS.map(article => {
+          const meta = ARTICLE_META[article];
+          const heads = (COMPOUNDS[article] ?? []).slice().sort((a, b) => b.count - a.count);
           return (
-            <motion.button
-              key={h.head}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                width: BUBBLE,
-                height: BUBBLE,
-                marginLeft: -BUBBLE / 2,
-                marginTop: -BUBBLE / 2,
-                x,
-                y,
-                backgroundColor: color,
-                zIndex: isActive ? 5 : 1,
-                boxShadow: isActive
-                  ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
-                  : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
-              }}
-              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
-            >
-              <span className="px-1" style={{ fontSize: 14 }}>
-                -{lower}
-              </span>
-            </motion.button>
+            <div key={article} className="min-w-0 rounded-2xl border p-2" style={{ borderColor: `var(--${meta.color})` }}>
+              <div className="mb-2 flex justify-center"><ArticleBadge article={article} size="sm" /></div>
+              <div className="flex flex-col items-stretch gap-1.5">
+                {heads.map((head, index) => (
+                  <motion.button
+                    key={head.head}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.015 }}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                    onMouseEnter={() => setActive({ article, head })}
+                    onFocus={() => setActive({ article, head })}
+                    onClick={() => setActive({ article, head })}
+                    className="min-w-0 rounded-full px-1.5 py-2 text-center text-xs font-extrabold leading-none outline-none ring-offset-2 focus-visible:ring-2"
+                    style={{ backgroundColor: `var(--${meta.color})`, color: `var(--${meta.fg})` }}
+                    aria-label={`-${head.head}, ${article}; show details`}
+                  >
+                    -{head.head}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
           );
         })}
-
-        <AnimatePresence>
-          {active && (
-            <>
-              <motion.div
-                key="backdrop"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
-                onClick={() => setActiveIdx(null)}
-                className="absolute inset-0 z-10 rounded-full"
-                style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
-              />
-              <motion.div
-                key={active.head}
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
-                className="absolute left-1/2 top-1/2 z-20 w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
-                style={{ borderColor: `var(--${meta.color})` }}
-              >
-                <div
-                  className="flex items-center justify-between gap-2 px-4 py-2.5"
-                  style={{ backgroundColor: `var(--${meta.soft})` }}
-                >
-                  <div className="flex items-center gap-2">
-                    <ArticleBadge article={article} size="sm" />
-                    <span className="text-base font-extrabold">{active.head}</span>
-                    <span className="text-xs text-muted-foreground">· {active.meaning}</span>
-                  </div>
-                  <button
-                    onClick={() => setActiveIdx(null)}
-                    className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
-                    aria-label="Close"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div className="space-y-2 p-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {active.examples.map(ex => (
-                      <span
-                        key={ex.word}
-                        className="inline-flex items-center gap-1 rounded-full border bg-card px-2 py-1 text-xs shadow-sm"
-                        style={{ borderColor: `var(--${meta.color})` }}
-                      >
-                        <span className="text-[10px] font-bold uppercase" style={{ color: `var(--${meta.color})` }}>
-                          {article}
-                        </span>
-                        <span className="font-semibold">{ex.word}</span>
-                        <span className="text-[10px] text-muted-foreground">· {ex.meaning}</span>
-                      </span>
-                    ))}
-                  </div>
-                  {active.exceptions && (
-                    <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
-                      ⚠️ {active.exceptions}
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {active && (
+          <>
+            <motion.button
+              key="compound-backdrop"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setActive(null)}
+              className="fixed inset-0 z-40 bg-foreground/20"
+              aria-label="Close compound head details"
+            />
+            <motion.div
+              key={`${active.article}-${active.head.head}`}
+              initial={{ opacity: 0, scale: 0.92, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={`-${active.head.head} compound head details`}
+              className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[92%] max-w-sm -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border bg-card p-4 shadow-2xl"
+              style={{ borderColor: `var(--${ARTICLE_META[active.article].color})` }}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-lg font-extrabold">-{active.head.head} → {active.article}</p>
+                  <p className="mt-0.5 text-xs font-semibold text-muted-foreground">
+                    {active.head.accuracy}% of {active.head.count} words
+                  </p>
+                </div>
+                <button onClick={() => setActive(null)} className="rounded-full bg-muted px-2.5 py-1 text-sm font-bold" aria-label="Close">✕</button>
+              </div>
+              <ul className="mt-4 space-y-1.5">
+                {active.head.examples.map(example => (
+                  <li key={example.word} className="rounded-xl bg-muted/60 px-3 py-2 text-xs">
+                    <span className="font-bold">{example.word}</span> — {example.meaning}
+                  </li>
+                ))}
+              </ul>
+              {active.head.exceptions && (
+                <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
+                  <span className="font-bold">Exceptions:</span> {active.head.exceptions}
+                </p>
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }
 
