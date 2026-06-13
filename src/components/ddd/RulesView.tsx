@@ -10,6 +10,7 @@ type Tier = "ironclad" | "strong" | "moderate" | "weak";
 interface Exception {
   noun: string;
   article: Article;
+  reason?: string | null;
 }
 
 interface Rule {
@@ -432,6 +433,9 @@ function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }
                                 {a}
                               </span>
                               <span className="font-semibold">{ex.noun}</span>
+                               {ex.reason && (
+                                 <span className="text-[10px] text-muted-foreground">· {ex.reason}</span>
+                               )}
                             </span>
                           ))}
                         </div>
