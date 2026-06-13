@@ -480,11 +480,11 @@ function CompoundHeads() {
         return (
           <section key={article} aria-label={`${article} compound heads`}>
             <div
-              className="mx-auto flex min-h-72 w-full flex-wrap content-center items-center justify-center gap-x-0.5 gap-y-1 overflow-hidden border px-5 py-8 shadow-inner"
+              className="mx-auto flex min-h-72 w-full flex-wrap content-center items-center justify-center gap-x-0.5 gap-y-1 overflow-hidden border px-7 py-8 shadow-inner"
               style={{
                 backgroundColor: `var(--${meta.soft})`,
                 borderColor: `color-mix(in oklch, var(--${meta.color}) 35%, var(--${meta.soft}))`,
-                borderRadius: "50%",
+                borderRadius: "42% / 18%",
               }}
             >
               {heads.map((head, index) => {
@@ -507,7 +507,7 @@ function CompoundHeads() {
                       color: `color-mix(in oklch, var(--${meta.color}) ${shadeStrength}%, var(--foreground))`,
                       marginInline: `${(seed >>> 8) % 7}px`,
                       marginBlock: `${(seed >>> 12) % 5}px`,
-                      transform: `translate(${(seed % 19) - 9}px, ${((seed >>> 4) % 17) - 8}px)`,
+                      transform: `translate(${(seed % 13) - 6}px, ${((seed >>> 4) % 15) - 7}px)`,
                     }}
                   >
                     {head.head.toLocaleLowerCase("de")}
