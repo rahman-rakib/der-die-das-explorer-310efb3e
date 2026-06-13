@@ -165,7 +165,9 @@ export function RulesView() {
         style={{ backgroundColor: `var(--${meta.soft})` }}
       >
         <p className="text-sm font-semibold" style={{ color: `var(--${meta.color})` }}>
-          {meta.icon} {meta.label.toUpperCase()} —{" "}
+          {view === "compound" && article === "der"
+            ? "♂ MASCULINE"
+            : `${meta.icon} ${meta.label.toUpperCase()}`} —{" "}
           {view === "thematic"
             ? "thematic groups"
             : view === "compound"
