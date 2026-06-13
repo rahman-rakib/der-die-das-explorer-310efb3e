@@ -25,20 +25,6 @@ const MEANING_ROWS: MeaningRow[] = [
     ],
   },
   {
-    word: "Lama",
-    meanings: [
-      { article: "der", meaning: "Buddhist monk", emoji: "🧘", example: "Der Lama lebt im Kloster.", exampleEn: "The lama lives in the monastery." },
-      { article: "das", meaning: "llama (animal)", emoji: "🦙", example: "Das Lama spuckt!", exampleEn: "The llama spits!" },
-    ],
-  },
-  {
-    word: "Kiwi",
-    meanings: [
-      { article: "der", meaning: "kiwi bird", emoji: "🐤", example: "Der Kiwi lebt in Neuseeland.", exampleEn: "The kiwi lives in New Zealand." },
-      { article: "die", meaning: "kiwi fruit", emoji: "🥝", example: "Die Kiwi schmeckt süß.", exampleEn: "The kiwi tastes sweet." },
-    ],
-  },
-  {
     word: "See",
     meanings: [
       { article: "der", meaning: "lake", emoji: "🏞️", example: "Der See ist tief.", exampleEn: "The lake is deep." },
@@ -50,6 +36,20 @@ const MEANING_ROWS: MeaningRow[] = [
     meanings: [
       { article: "der", meaning: "corridor / passage / walk", emoji: "🚶", example: "Der Gang ist sehr lang.", exampleEn: "The corridor is very long." },
       { article: "die", meaning: "gang (criminal group)", emoji: "🕵️", example: "Die Gang wurde verhaftet.", exampleEn: "The gang was arrested." },
+    ],
+  },
+  {
+    word: "Lama",
+    meanings: [
+      { article: "das", meaning: "llama (animal)", emoji: "🦙", example: "Das Lama spuckt!", exampleEn: "The llama spits!" },
+      { article: "der", meaning: "Buddhist monk", emoji: "🧘", example: "Der Lama lebt im Kloster.", exampleEn: "The lama lives in the monastery." },
+    ],
+  },
+  {
+    word: "Kiwi",
+    meanings: [
+      { article: "die", meaning: "kiwi fruit", emoji: "🥝", example: "Die Kiwi schmeckt süß.", exampleEn: "The kiwi tastes sweet." },
+      { article: "der", meaning: "kiwi bird", emoji: "🐤", example: "Der Kiwi lebt in Neuseeland.", exampleEn: "The kiwi lives in New Zealand." },
     ],
   },
 ];
