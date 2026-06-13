@@ -896,11 +896,6 @@
         ],
         "exceptions": [
           {
-            "noun": "Bein",
-            "article": "das",
-            "reason": null
-          },
-          {
             "noun": "Cholesterin",
             "article": "das",
             "reason": null
@@ -937,6 +932,11 @@
           },
           {
             "noun": "Vitamin",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Bein",
             "article": "das",
             "reason": null
           }
