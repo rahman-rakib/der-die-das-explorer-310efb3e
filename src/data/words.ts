@@ -311,6 +311,7 @@ export const RULES: RuleGroup[] = [
   {
     article: "das", title: "metals, chemical elements & compounds", emoji: "⚗️",
     note: "Metals, chemical elements and compounds are neuter.",
+    exceptions: "der Sauerstoff",
     words: [w("das","Gold","gold","🥇"), w("das","Eisen","iron","⛓"), w("das","Neon","neon","💡"), w("das","Benzin","petrol/gasoline","⛽"), w("das","Insulin","insulin","💉")],
   },
   {
