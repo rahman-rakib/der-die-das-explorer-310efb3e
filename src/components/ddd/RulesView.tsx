@@ -43,6 +43,7 @@ interface CompoundHead {
   meaning?: string;
   accuracy: number;
   count: number;
+  sizeWeight: number;
   exceptions?: string;
   examples: CompoundExample[];
 }
@@ -463,6 +464,7 @@ const BUBBLE_PALETTE = [
 function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const sortedHeads = [...heads].sort((a, b) => b.sizeWeight - a.sizeWeight);
 
   if (heads.length === 0) {
     return (
@@ -472,19 +474,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
     );
   }
 
-  const BUBBLE = 64;
-  const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
-  const GOLDEN = Math.PI * (3 - Math.sqrt(5));
-  const scale = BUBBLE * SPACING;
-  const positions = heads.map((_, i) => {
-    const r = scale * Math.sqrt(i + 0.5);
-    const theta = i * GOLDEN;
-    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
-  });
-  const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
-  const boxSize = Math.ceil(outerR * 2);
-
-  const active = activeIdx !== null ? heads[activeIdx] : null;
+  const active = activeIdx !== null ? sortedHeads[activeIdx] : null;
 
   return (
     <div className="mt-5 px-4">
@@ -498,55 +488,43 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
         Tap a bubble to see examples.
       </p>
 
-      <div
-        className="relative mx-auto"
-        style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
-      >
+      <div className="relative mx-auto max-w-2xl">
         <div
-          className="absolute inset-0 rounded-full shadow-inner"
+          className="flex min-h-64 flex-wrap content-center items-center justify-center gap-x-1 gap-y-0 rounded-[30%] border-2 border-dashed px-3 py-5 shadow-inner sm:px-6"
           style={{
             backgroundColor: `var(--${meta.soft})`,
-            border: `2px dashed var(--${meta.color})`,
+            borderColor: `var(--${meta.color})`,
           }}
-        />
-        {heads.map((h, i) => {
-          const isActive = activeIdx === i;
-          const { x, y } = positions[i];
-          const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
-          return (
-            <motion.button
-              key={h.head}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                width: BUBBLE,
-                height: BUBBLE,
-                marginLeft: -BUBBLE / 2,
-                marginTop: -BUBBLE / 2,
-                x,
-                y,
-                backgroundColor: `var(--${meta.soft})`,
-                color: `var(--${meta.color})`,
-                zIndex: isActive ? 5 : 1,
-                boxShadow: isActive
-                  ? `0 0 0 2px var(--${meta.color})`
-                  : "none",
-              }}
-              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight outline-none"
-            >
-              <span className="px-1" style={{ fontSize: 14 }}>
+        >
+          {sortedHeads.map((h, i) => {
+            const isActive = activeIdx === i;
+            const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
+            const fontSize = 18 + h.sizeWeight * (40 - 18);
+            return (
+              <motion.button
+                key={h.head}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
+                style={{
+                  minHeight: 44,
+                  paddingInline: 6,
+                  fontSize,
+                  backgroundColor: `var(--${meta.soft})`,
+                  color: `var(--${meta.color})`,
+                  zIndex: isActive ? 5 : 1,
+                  boxShadow: isActive ? `0 0 0 2px var(--${meta.color})` : "none",
+                }}
+                className="relative flex shrink-0 items-center justify-center rounded-full py-0.5 text-center font-extrabold leading-none outline-none"
+              >
                 {lower}
-              </span>
-            </motion.button>
-          );
-        })}
+              </motion.button>
+            );
+          })}
+        </div>
 
         <AnimatePresence>
           {active && (
