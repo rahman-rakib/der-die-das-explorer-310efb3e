@@ -542,7 +542,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
             >
               <span className="px-1" style={{ fontSize: 14 }}>
-                -{lower}
+                {lower}
               </span>
             </motion.button>
           );
