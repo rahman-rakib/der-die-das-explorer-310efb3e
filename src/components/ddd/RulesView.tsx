@@ -454,6 +454,13 @@ function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }
   );
 }
 
+const BUBBLE_PALETTE = [
+  "#f87171", "#fb923c", "#facc15", "#a3e635", "#34d399",
+  "#22d3ee", "#60a5fa", "#818cf8", "#c084fc", "#f472b6",
+  "#fb7185", "#fdba74", "#fde047", "#86efac", "#67e8f9",
+  "#93c5fd", "#a5b4fc", "#d8b4fe",
+];
+
 function CompoundHeads() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
