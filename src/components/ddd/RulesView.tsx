@@ -16,6 +16,8 @@ interface Exception {
 interface Rule {
   suffix: string;
   article: Article;
+  kind?: "suffix" | "ending" | "marginal";
+  why?: string | null;
   accuracy: number;
   rawAccuracy: number;
   tier: Tier;
@@ -348,9 +350,11 @@ function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }
         )}
       </div>
 
-      {rule.note && (
+      {(rule.why || rule.kind === "ending" || rule.note) && (
         <p className="mx-4 mt-3 rounded-xl bg-muted px-3 py-2 text-xs italic leading-relaxed">
-          💡 {rule.note}
+          {rule.why ?? (rule.kind === "ending" ? "Just a spelling pattern — no rule, learn by frequency." : null)}
+          {(rule.why || rule.kind === "ending") && rule.note && <br />}
+          {rule.note && <>💡 {rule.note}</>}
         </p>
       )}
 
