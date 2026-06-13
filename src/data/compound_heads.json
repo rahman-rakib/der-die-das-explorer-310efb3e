@@ -1,7 +1,6 @@
 {
-  "ruleSet": "compounds",
-  "scope": "The 'Compounds' rule type: gender from a compound's LAST noun (das Werk+Zeug, die Auto+Bahn). A SEPARATE rule type from the Endings (rules.json) and Themes (thematic_rules.json). Each head's accuracy/count is measured against the lexicon; examples are lexicon-verified.",
-  "sizeWeight": "Per-head display weight in [0,1] for a word-cloud render: 0 = fewest compounds covered, 1 = most. GLOBALLY √-scaled across all genders so equal coverage = equal size in any cloud. Map to a font size as MIN + weight*(MAX-MIN).",
+  "ruleSet": "compound-head",
+  "scope": "Gender from a compound's LAST noun (das Werk+Zeug, die Auto+Bahn). A SEPARATE rule type from the suffix rules in rules.json and the thematic rules in thematic_rules.json. Each head's accuracy/count is measured against the lexicon; examples are lexicon-verified.",
   "supersedesSuffixes": {
     "-stadt": "-dt",
     "-fahrt": "-hrt",
@@ -37,8 +36,7 @@
             "word": "Sonntag",
             "meaning": "Sunday"
           }
-        ],
-        "sizeWeight": 0.838
+        ]
       },
       {
         "head": "Stand",
@@ -66,8 +64,7 @@
             "word": "Widerstand",
             "meaning": "resistance"
           }
-        ],
-        "sizeWeight": 0.748
+        ]
       },
       {
         "head": "Zug",
@@ -95,8 +92,7 @@
             "word": "Aufzug",
             "meaning": "lift, elevator"
           }
-        ],
-        "sizeWeight": 0.683
+        ]
       },
       {
         "head": "Gang",
@@ -124,8 +120,7 @@
             "word": "Spaziergang",
             "meaning": "walk, stroll"
           }
-        ],
-        "sizeWeight": 0.648
+        ]
       },
       {
         "head": "Fall",
@@ -153,8 +148,7 @@
             "word": "Vorfall",
             "meaning": "incident"
           }
-        ],
-        "sizeWeight": 0.648
+        ]
       },
       {
         "head": "Raum",
@@ -182,8 +176,7 @@
             "word": "Kofferraum",
             "meaning": "car boot, trunk"
           }
-        ],
-        "sizeWeight": 0.62
+        ]
       },
       {
         "head": "Satz",
@@ -211,8 +204,7 @@
             "word": "Grundsatz",
             "meaning": "principle"
           }
-        ],
-        "sizeWeight": 0.617
+        ]
       },
       {
         "head": "Bau",
@@ -240,8 +232,7 @@
             "word": "Bergbau",
             "meaning": "mining"
           }
-        ],
-        "sizeWeight": 0.549
+        ]
       },
       {
         "head": "Mann",
@@ -270,8 +261,7 @@
             "word": "Geschäftsmann",
             "meaning": "businessman"
           }
-        ],
-        "sizeWeight": 0.549
+        ]
       },
       {
         "head": "Platz",
@@ -299,8 +289,7 @@
             "word": "Sportplatz",
             "meaning": "sports field"
           }
-        ],
-        "sizeWeight": 0.473
+        ]
       },
       {
         "head": "Baum",
@@ -328,8 +317,7 @@
             "word": "Nussbaum",
             "meaning": "walnut tree"
           }
-        ],
-        "sizeWeight": 0.422
+        ]
       },
       {
         "head": "Preis",
@@ -357,8 +345,7 @@
             "word": "Aufpreis",
             "meaning": "surcharge"
           }
-        ],
-        "sizeWeight": 0.414
+        ]
       },
       {
         "head": "Punkt",
@@ -386,8 +373,7 @@
             "word": "Treffpunkt",
             "meaning": "meeting point"
           }
-        ],
-        "sizeWeight": 0.378
+        ]
       },
       {
         "head": "Weg",
@@ -415,8 +401,7 @@
             "word": "Fußweg",
             "meaning": "footpath"
           }
-        ],
-        "sizeWeight": 0.367
+        ]
       },
       {
         "head": "Hof",
@@ -444,8 +429,7 @@
             "word": "Bauernhof",
             "meaning": "farm"
           }
-        ],
-        "sizeWeight": 0.307
+        ]
       },
       {
         "head": "Kopf",
@@ -473,8 +457,7 @@
             "word": "Totenkopf",
             "meaning": "skull"
           }
-        ],
-        "sizeWeight": 0.307
+        ]
       },
       {
         "head": "Markt",
@@ -502,8 +485,7 @@
             "word": "Weihnachtsmarkt",
             "meaning": "Christmas market"
           }
-        ],
-        "sizeWeight": 0.17
+        ]
       },
       {
         "head": "Fang",
@@ -531,8 +513,7 @@
             "word": "Umfang",
             "meaning": "extent, scope"
           }
-        ],
-        "sizeWeight": 0.16
+        ]
       },
       {
         "head": "Garten",
@@ -560,8 +541,7 @@
             "word": "Gemüsegarten",
             "meaning": "vegetable garden"
           }
-        ],
-        "sizeWeight": 0.144
+        ]
       },
       {
         "head": "Trieb",
@@ -589,8 +569,7 @@
             "word": "Familienbetrieb",
             "meaning": "family business"
           }
-        ],
-        "sizeWeight": 0.48
+        ]
       },
       {
         "head": "Schlag",
@@ -618,8 +597,7 @@
             "word": "Zuschlag",
             "meaning": "surcharge"
           }
-        ],
-        "sizeWeight": 0.432
+        ]
       },
       {
         "head": "Stoff",
@@ -647,8 +625,7 @@
             "word": "Sprengstoff",
             "meaning": "explosive"
           }
-        ],
-        "sizeWeight": 0.378
+        ]
       },
       {
         "head": "Rand",
@@ -676,8 +653,7 @@
             "word": "Ortsrand",
             "meaning": "edge of the village"
           }
-        ],
-        "sizeWeight": 0.37
+        ]
       },
       {
         "head": "Name",
@@ -705,8 +681,7 @@
             "word": "Künstlername",
             "meaning": "stage name"
           }
-        ],
-        "sizeWeight": 0.374
+        ]
       },
       {
         "head": "Schein",
@@ -734,37 +709,7 @@
             "word": "Sonnenschein",
             "meaning": "sunshine"
           }
-        ],
-        "sizeWeight": 0.49
-      },
-      {
-        "head": "Blick",
-        "meaning": "look, glance, view",
-        "accuracy": 100.0,
-        "count": 26,
-        "examples": [
-          {
-            "word": "Augenblick",
-            "meaning": "moment, instant"
-          },
-          {
-            "word": "Überblick",
-            "meaning": "overview"
-          },
-          {
-            "word": "Einblick",
-            "meaning": "insight"
-          },
-          {
-            "word": "Ausblick",
-            "meaning": "view, outlook"
-          },
-          {
-            "word": "Meerblick",
-            "meaning": "sea view"
-          }
-        ],
-        "sizeWeight": 0.0
+        ]
       }
     ],
     "die": [
@@ -794,8 +739,7 @@
             "word": "Aussprache",
             "meaning": "pronunciation"
           }
-        ],
-        "sizeWeight": 1.0
+        ]
       },
       {
         "head": "Zeit",
@@ -823,8 +767,7 @@
             "word": "Uhrzeit",
             "meaning": "time of day"
           }
-        ],
-        "sizeWeight": 0.843
+        ]
       },
       {
         "head": "Fahrt",
@@ -852,8 +795,7 @@
             "word": "Vorfahrt",
             "meaning": "right of way"
           }
-        ],
-        "sizeWeight": 0.443
+        ]
       },
       {
         "head": "Zahl",
@@ -881,8 +823,7 @@
             "word": "Postleitzahl",
             "meaning": "postal code"
           }
-        ],
-        "sizeWeight": 0.411
+        ]
       },
       {
         "head": "Schule",
@@ -910,8 +851,7 @@
             "word": "Fahrschule",
             "meaning": "driving school"
           }
-        ],
-        "sizeWeight": 0.411
+        ]
       },
       {
         "head": "Schrift",
@@ -939,8 +879,7 @@
             "word": "Vorschrift",
             "meaning": "regulation"
           }
-        ],
-        "sizeWeight": 0.404
+        ]
       },
       {
         "head": "Karte",
@@ -968,8 +907,7 @@
             "word": "Speisekarte",
             "meaning": "menu"
           }
-        ],
-        "sizeWeight": 0.396
+        ]
       },
       {
         "head": "Straße",
@@ -997,8 +935,7 @@
             "word": "Landstraße",
             "meaning": "country road"
           }
-        ],
-        "sizeWeight": 0.385
+        ]
       },
       {
         "head": "Bahn",
@@ -1026,8 +963,7 @@
             "word": "Achterbahn",
             "meaning": "roller coaster"
           }
-        ],
-        "sizeWeight": 0.359
+        ]
       },
       {
         "head": "Stadt",
@@ -1055,8 +991,7 @@
             "word": "Heimatstadt",
             "meaning": "hometown"
           }
-        ],
-        "sizeWeight": 0.351
+        ]
       },
       {
         "head": "Kraft",
@@ -1084,8 +1019,7 @@
             "word": "Lehrkraft",
             "meaning": "teacher"
           }
-        ],
-        "sizeWeight": 0.343
+        ]
       },
       {
         "head": "Tür",
@@ -1113,8 +1047,7 @@
             "word": "Autotür",
             "meaning": "car door"
           }
-        ],
-        "sizeWeight": 0.328
+        ]
       },
       {
         "head": "Frau",
@@ -1142,8 +1075,7 @@
             "word": "Geschäftsfrau",
             "meaning": "businesswoman"
           }
-        ],
-        "sizeWeight": 0.316
+        ]
       },
       {
         "head": "Frage",
@@ -1171,8 +1103,7 @@
             "word": "Streitfrage",
             "meaning": "contentious issue"
           }
-        ],
-        "sizeWeight": 0.224
+        ]
       },
       {
         "head": "Welt",
@@ -1200,8 +1131,7 @@
             "word": "Unterwelt",
             "meaning": "underworld"
           }
-        ],
-        "sizeWeight": 0.21
+        ]
       },
       {
         "head": "Uhr",
@@ -1230,8 +1160,7 @@
             "word": "Taschenuhr",
             "meaning": "pocket watch"
           }
-        ],
-        "sizeWeight": 0.175
+        ]
       },
       {
         "head": "Form",
@@ -1260,8 +1189,7 @@
             "word": "Rechtsform",
             "meaning": "legal form"
           }
-        ],
-        "sizeWeight": 0.47
+        ]
       }
     ],
     "das": [
@@ -1291,8 +1219,7 @@
             "word": "Endspiel",
             "meaning": "final (match)"
           }
-        ],
-        "sizeWeight": 0.838
+        ]
       },
       {
         "head": "Wort",
@@ -1321,8 +1248,7 @@
             "word": "Sprichwort",
             "meaning": "proverb"
           }
-        ],
-        "sizeWeight": 0.733
+        ]
       },
       {
         "head": "Haus",
@@ -1350,8 +1276,7 @@
             "word": "Kaufhaus",
             "meaning": "department store"
           }
-        ],
-        "sizeWeight": 0.707
+        ]
       },
       {
         "head": "Buch",
@@ -1379,8 +1304,7 @@
             "word": "Kochbuch",
             "meaning": "cookbook"
           }
-        ],
-        "sizeWeight": 0.691
+        ]
       },
       {
         "head": "Werk",
@@ -1408,8 +1332,7 @@
             "word": "Kraftwerk",
             "meaning": "power plant"
           }
-        ],
-        "sizeWeight": 0.634
+        ]
       },
       {
         "head": "Zeug",
@@ -1437,8 +1360,7 @@
             "word": "Feuerzeug",
             "meaning": "lighter"
           }
-        ],
-        "sizeWeight": 0.553
+        ]
       },
       {
         "head": "Land",
@@ -1467,8 +1389,7 @@
             "word": "Bundesland",
             "meaning": "federal state"
           }
-        ],
-        "sizeWeight": 0.528
+        ]
       },
       {
         "head": "Recht",
@@ -1496,8 +1417,7 @@
             "word": "Arbeitsrecht",
             "meaning": "labour law"
           }
-        ],
-        "sizeWeight": 0.404
+        ]
       },
       {
         "head": "Bild",
@@ -1525,8 +1445,7 @@
             "word": "Spiegelbild",
             "meaning": "reflection"
           }
-        ],
-        "sizeWeight": 0.393
+        ]
       },
       {
         "head": "Wasser",
@@ -1554,8 +1473,7 @@
             "word": "Salzwasser",
             "meaning": "salt water"
           }
-        ],
-        "sizeWeight": 0.378
+        ]
       },
       {
         "head": "Gerät",
@@ -1583,8 +1501,7 @@
             "word": "Hörgerät",
             "meaning": "hearing aid"
           }
-        ],
-        "sizeWeight": 0.355
+        ]
       },
       {
         "head": "Geld",
@@ -1612,8 +1529,7 @@
             "word": "Kleingeld",
             "meaning": "small change"
           }
-        ],
-        "sizeWeight": 0.34
+        ]
       },
       {
         "head": "Zimmer",
@@ -1641,8 +1557,7 @@
             "word": "Wartezimmer",
             "meaning": "waiting room"
           }
-        ],
-        "sizeWeight": 0.32
+        ]
       },
       {
         "head": "Glas",
@@ -1670,8 +1585,7 @@
             "word": "Bierglas",
             "meaning": "beer glass"
           }
-        ],
-        "sizeWeight": 0.26
+        ]
       },
       {
         "head": "Amt",
@@ -1699,8 +1613,7 @@
             "word": "Arbeitsamt",
             "meaning": "employment office"
           }
-        ],
-        "sizeWeight": 0.26
+        ]
       },
       {
         "head": "Jahr",
@@ -1728,8 +1641,7 @@
             "word": "Neujahr",
             "meaning": "New Year"
           }
-        ],
-        "sizeWeight": 0.251
+        ]
       },
       {
         "head": "Öl",
@@ -1757,8 +1669,7 @@
             "word": "Motoröl",
             "meaning": "motor oil"
           }
-        ],
-        "sizeWeight": 0.251
+        ]
       },
       {
         "head": "Gramm",
@@ -1786,8 +1697,7 @@
             "word": "Autogramm",
             "meaning": "autograph"
           }
-        ],
-        "sizeWeight": 0.422
+        ]
       },
       {
         "head": "Stück",
@@ -1815,8 +1725,7 @@
             "word": "Herzstück",
             "meaning": "centerpiece, heart"
           }
-        ],
-        "sizeWeight": 0.429
+        ]
       }
     ]
   }
