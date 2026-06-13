@@ -475,7 +475,7 @@ function CompoundHeads({ article }: { article: Article }) {
   return (
     <div className="mt-5 px-4">
       <p className="text-xs italic text-muted-foreground">
-        Tap a compound head to see its meaning, examples, and accuracy. Largest coverage appears first.
+        Tap a compound head to see its meaning, examples, and accuracy.
       </p>
       <section className="mt-5" aria-label={`${article} compound heads`}>
             <div
