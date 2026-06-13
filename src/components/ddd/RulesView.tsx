@@ -475,15 +475,16 @@ function CompoundHeads() {
         const meta = ARTICLE_META[article];
         const heads = (COMPOUNDS[article] ?? [])
           .slice()
-          .sort((a, b) => cloudSeed(`${article}-${a.head}`) - cloudSeed(`${article}-${b.head}`));
+          .sort((a, b) => cloudSeed(`${article}-cloud-${a.head}`) - cloudSeed(`${article}-cloud-${b.head}`));
 
         return (
           <section key={article} aria-label={`${article} compound heads`}>
             <div
-              className="flex flex-wrap items-center justify-center gap-x-0.5 gap-y-1 rounded-3xl border px-2 py-5 shadow-inner"
+              className="mx-auto flex min-h-72 w-full flex-wrap content-center items-center justify-center gap-x-0.5 gap-y-1 overflow-hidden border px-7 py-8 shadow-inner"
               style={{
                 backgroundColor: `var(--${meta.soft})`,
                 borderColor: `color-mix(in oklch, var(--${meta.color}) 35%, var(--${meta.soft}))`,
+                borderRadius: "42% / 18%",
               }}
             >
               {heads.map((head, index) => {
@@ -504,7 +505,9 @@ function CompoundHeads() {
                     style={{
                       fontSize: `${18 + head.sizeWeight * 22}px`,
                       color: `color-mix(in oklch, var(--${meta.color}) ${shadeStrength}%, var(--foreground))`,
-                      transform: `translate(${(seed % 9) - 4}px, ${((seed >>> 4) % 13) - 6}px)`,
+                      marginInline: `${(seed >>> 8) % 7}px`,
+                      marginBlock: `${(seed >>> 12) % 5}px`,
+                      transform: `translate(${(seed % 13) - 6}px, ${((seed >>> 4) % 15) - 7}px)`,
                     }}
                   >
                     {head.head.toLocaleLowerCase("de")}
