@@ -21,8 +21,6 @@
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "-ismus → der (Kapitalismus). No exceptions.",
-        "kind": "suffix",
-        "why": "Greek-Latin abstract suffix → der (Kapitalismus).",
         "examples": [
           "Tourismus",
           "Sozialismus",
@@ -42,8 +40,6 @@
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "→ der (Baum, Raum, Traum). Virtually no exceptions.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Raum",
           "Traum",
@@ -63,8 +59,6 @@
         "overriddenBy": [],
         "exceptionCount": 1,
         "note": "→ der (Beruf, Ruf, Lauf, Anlauf).",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Lauf",
           "Beruf",
@@ -84,8 +78,6 @@
         "overriddenBy": [],
         "exceptionCount": 2,
         "note": "→ der (Kopf, Topf, Kampf, Knopf).",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Kopf",
           "Kampf",
@@ -111,8 +103,6 @@
         "overriddenBy": [],
         "exceptionCount": 2,
         "note": "→ der (Schritt, Schnitt, Tritt).",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Schritt",
           "Tritt",
@@ -132,8 +122,6 @@
         "overriddenBy": [],
         "exceptionCount": 9,
         "note": "Agent nouns → der (Journalist). The -frist family (die) is split off into its own rule.",
-        "kind": "suffix",
-        "why": "Agent suffix naming a person → der (Journalist).",
         "examples": [
           "Polizist",
           "Journalist",
@@ -164,8 +152,6 @@
         "overriddenBy": [],
         "exceptionCount": 5,
         "note": "French agent nouns → der (Friseur, Ingenieur, Masseur).",
-        "kind": "suffix",
-        "why": "French agent suffix naming a person → der (Friseur).",
         "examples": [
           "Regisseur",
           "Ingenieur",
@@ -198,8 +184,6 @@
         ],
         "exceptionCount": 8,
         "note": "Agent nouns → der (Student). The neuter -ment family is split off; das Talent/Patent remain rare exceptions.",
-        "kind": "suffix",
-        "why": "Latin agent/person suffix → der (Student).",
         "examples": [
           "Präsident",
           "Patient",
@@ -235,8 +219,6 @@
         "overriddenBy": [],
         "exceptionCount": 6,
         "note": "→ der (Honig, König). Cardinal numbers (-zig/-ßig) are split off; das Reisig is an exception.",
-        "kind": "marginal",
-        "why": "Productive as an ADJECTIVE suffix; as a noun ending it's lexicalised (der König, Honig).",
         "examples": [
           "König",
           "Honig",
@@ -256,8 +238,6 @@
         "overriddenBy": [],
         "exceptionCount": 14,
         "note": "Diminutive/agent → der (Frühling, Lehrling). Borrowed English -ing gerunds (Bowling, Styling) are das and remain exceptions.",
-        "kind": "suffix",
-        "why": "Native noun-forming suffix → der (Frühling, Lehrling).",
         "examples": [
           "Frühling",
           "Liebling",
@@ -293,8 +273,6 @@
         "overriddenBy": [],
         "exceptionCount": 16,
         "note": "Agent nouns → der (Demonstrant). das Restaurant / Quant compounds and French loans are exceptions.",
-        "kind": "suffix",
-        "why": "Latin agent suffix → der (Demonstrant).",
         "examples": [
           "Elefant",
           "Praktikant",
@@ -330,8 +308,6 @@
         "overriddenBy": [],
         "exceptionCount": 7,
         "note": "→ der (Aktionär, Millionär, Sekretär). das Quartär is an exception.",
-        "kind": "suffix",
-        "why": "French/Latin person suffix → der (Millionär).",
         "examples": [
           "Bär",
           "Sekretär",
@@ -362,8 +338,6 @@
         "overriddenBy": [],
         "exceptionCount": 22,
         "note": "→ der (Teppich). Exceptions are compounds of das Reich (Königreich, Tierreich).",
-        "kind": "marginal",
-        "why": "A historical suffix, now dead — gender is lexicalised (der Teppich).",
         "examples": [
           "Teppich",
           "Pfirsich",
@@ -389,8 +363,6 @@
         "overriddenBy": [],
         "exceptionCount": 65,
         "note": "→ der (Doktor, Motor, Professor). das Labor / das Tor are exceptions.",
-        "kind": "suffix",
-        "why": "Latin agent/instrument suffix → der (Doktor, Motor).",
         "examples": [
           "Autor",
           "Professor",
@@ -426,8 +398,6 @@
         "overriddenBy": [],
         "exceptionCount": 2109,
         "note": "Agent nouns → der (Lehrer, Bäcker). Most exceptions follow ANOTHER rule, so reason before memorising: female people → die (Mutter, Tochter, Schwester); non-agent things → das (Wasser, Messer, Fenster, Zimmer). The only ones to simply memorise are feminine for no reason: die Butter, Leiter, Feder, Nummer, Mauer, Steuer.",
-        "kind": "suffix",
-        "why": "Agent/instrument suffix → der (Lehrer, Computer). Root-final -er like Wasser/Mutter is NOT this suffix.",
         "examples": [
           "Schüler",
           "Lehrer",
@@ -508,8 +478,6 @@
         "overriddenBy": [],
         "exceptionCount": 124,
         "note": "Leans der (Punkt, Markt, Akt) — but Latin neuters das Produkt/Objekt/Projekt are a big exception group.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Punkt",
           "Markt",
@@ -547,8 +515,6 @@
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "Latin -tät → die (Universität, Qualität). No exceptions.",
-        "kind": "suffix",
-        "why": "Latin abstract suffix → die (Universität, Qualität).",
         "examples": [
           "Universität",
           "Qualität",
@@ -568,8 +534,6 @@
         "overriddenBy": [],
         "exceptionCount": 1,
         "note": "Abstract nouns → die (Möglichkeit). Very reliable.",
-        "kind": "suffix",
-        "why": "Native suffix forming feminine abstract nouns → die (Möglichkeit).",
         "examples": [
           "Möglichkeit",
           "Geschwindigkeit",
@@ -589,8 +553,6 @@
         "overriddenBy": [],
         "exceptionCount": 7,
         "note": "Both → die (Nation, Information, Diskussion, Explosion). NB: bare -ion alone is only ~60% reliable — see the separate -ion rule.",
-        "kind": "suffix",
-        "why": "Latin action-noun suffix → die (Nation, Explosion).",
         "examples": [
           "Situation",
           "Version",
@@ -610,8 +572,6 @@
         "overriddenBy": [],
         "exceptionCount": 47,
         "note": "→ die (Zeitung, Meinung). A handful of masculine exceptions (der Ursprung, der Schwung).",
-        "kind": "suffix",
-        "why": "Suffix forming feminine deverbal nouns → die (Zeitung, Meinung).",
         "examples": [
           "Richtung",
           "Meinung",
@@ -647,8 +607,6 @@
         "overriddenBy": [],
         "exceptionCount": 6,
         "note": "→ die (Freundschaft, Wissenschaft). Very reliable.",
-        "kind": "suffix",
-        "why": "Native suffix forming feminine collective/abstract nouns → die (Freundschaft).",
         "examples": [
           "Gesellschaft",
           "Mannschaft",
@@ -668,8 +626,6 @@
         "overriddenBy": [],
         "exceptionCount": 9,
         "note": "Abstract nouns → die (Freiheit, Schönheit). Very reliable.",
-        "kind": "suffix",
-        "why": "Native suffix forming feminine abstract nouns → die (Freiheit).",
         "examples": [
           "Wahrheit",
           "Freiheit",
@@ -695,8 +651,6 @@
         "overriddenBy": [],
         "exceptionCount": 8,
         "note": "→ die (Natur, Kultur, Literatur, Architektur). Very reliable.",
-        "kind": "suffix",
-        "why": "Latin -tura suffix → die (Natur, Kultur).",
         "examples": [
           "Kultur",
           "Natur",
@@ -722,8 +676,6 @@
         "overriddenBy": [],
         "exceptionCount": 71,
         "note": "→ die (97%): academic topics (Biologie, Philosophie, Chemie) and most -ie words. Exceptions are loanwords (der Junkie, das Cookie) and das Knie / Genie.",
-        "kind": "suffix",
-        "why": "Greek/French suffix → die (Biologie, Energie).",
         "examples": [
           "Familie",
           "Energie",
@@ -759,8 +711,6 @@
         "overriddenBy": [],
         "exceptionCount": 1,
         "note": "→ die (Ankunft, Auskunft, Vernunft, Zukunft).",
-        "kind": "marginal",
-        "why": "Bound deverbal form of kommen (ablaut) → die (Zukunft, Ankunft) — not a free suffix.",
         "examples": [
           "Zukunft",
           "Herkunft",
@@ -780,8 +730,6 @@
         "overriddenBy": [],
         "exceptionCount": 52,
         "note": "→ die (Musik, Politik, Physik, Technik).",
-        "kind": "suffix",
-        "why": "Greek suffix → die (Musik, Politik).",
         "examples": [
           "Musik",
           "Politik",
@@ -817,8 +765,6 @@
         "overriddenBy": [],
         "exceptionCount": 22,
         "note": "Latin abstract suffix → die (Distanz, Toleranz, Tendenz, Konferenz). Native der Tanz/Kranz/Glanz/Lenz are exceptions.",
-        "kind": "suffix",
-        "why": "Latin abstract suffix → die (Distanz, Tendenz).",
         "examples": [
           "Existenz",
           "Konferenz",
@@ -856,8 +802,6 @@
         ],
         "exceptionCount": 2289,
         "note": "Most nouns ending in -e are die (Schule, Straße, Blume), incl. -ade (Schokolade) and -age (Garage). Exceptions group up: living males → der via the male-people rule (der Junge, Löwe, Affe, Hase); weak-masculine abstracts → der (der Name, Gedanke, Glaube, Wille — and der Name is also a compound head: der Vorname). A few are neuter → das (das Auge, Ende, Interesse) — memorise those, they follow no rule.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Schule",
           "Straße",
@@ -941,10 +885,8 @@
         "count": 5675,
         "smallSample": false,
         "overriddenBy": [],
-        "exceptionCount": 890,
+        "exceptionCount": 894,
         "note": "Words ending in -in lean die — strongly so for the female suffix -erin/-in (Lehrerin, Freundin, Königin). But many are masculine/neuter: der Termin, das Benzin, das Vitamin, das Cholesterin. And der Schein is a compound head → der Führerschein/Gutschein (the head overrides -in).",
-        "kind": "suffix",
-        "why": "Feminine motional suffix -in/-erin → die (Lehrerin, Königin). The bare -in in der Termin/das Benzin is a different, borrowed ending.",
         "examples": [
           "Freundin",
           "Königin",
@@ -964,6 +906,11 @@
             "reason": "compound head: der Schein"
           },
           {
+            "noun": "Termin",
+            "article": "der",
+            "reason": null
+          },
+          {
             "noun": "Delfin",
             "article": "der",
             "reason": null
@@ -979,11 +926,6 @@
             "reason": null
           },
           {
-            "noun": "Termin",
-            "article": "der",
-            "reason": null
-          },
-          {
             "noun": "Benzin",
             "article": "das",
             "reason": null
@@ -994,8 +936,8 @@
             "reason": null
           },
           {
-            "noun": "Rubin",
-            "article": "der",
+            "noun": "Bein",
+            "article": "das",
             "reason": null
           }
         ]
@@ -1010,8 +952,6 @@
         "overriddenBy": [],
         "exceptionCount": 90,
         "note": "Activity/place nouns → die (Bäckerei, Polizei, Partei). der Brei / das Allerlei are exceptions.",
-        "kind": "suffix",
-        "why": "Native suffix for activities/places → die (Bäckerei, Polizei).",
         "examples": [
           "Polizei",
           "Partei",
@@ -1050,8 +990,6 @@
         ],
         "exceptionCount": 55,
         "note": "→ die (Figur, Tour, Spur). -tur (Natur/Kultur) and -eur (der Friseur) split off; musical keys (der C-Dur) and der Schwur remain.",
-        "kind": "suffix",
-        "why": "Latin -ura suffix → die (Figur, Zensur).",
         "examples": [
           "Tour",
           "Figur",
@@ -1089,8 +1027,6 @@
         ],
         "exceptionCount": 58,
         "note": "ALONE, this is barely a coin flip (~59%): der Champion / Spion / Anion. Trust -tion and -sion, NOT bare -ion. Where it IS der, it's usually a male person (der Champion, Spion).",
-        "kind": "suffix",
-        "why": "Latin action-noun suffix → die — but bare -ion is unreliable (der Spion/Champion are persons).",
         "examples": [
           "Region",
           "Union",
@@ -1128,8 +1064,6 @@
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "→ das (Synonym, Pseudonym, Akronym, Enzym).",
-        "kind": "marginal",
-        "why": "Greek -onym ('name') → das (Synonym, Pseudonym) — a real but tiny set.",
         "examples": [
           "Synonym",
           "Pseudonym",
@@ -1149,8 +1083,6 @@
         "overriddenBy": [],
         "exceptionCount": 8,
         "note": "→ das (Ballett, Kabinett, Skelett, Bett, Brett).",
-        "kind": "marginal",
-        "why": "Romance diminutive -etto/-ette → das (Ballett, Skelett) — borrowed, not productive.",
         "examples": [
           "Bett",
           "Brett",
@@ -1170,8 +1102,6 @@
         "overriddenBy": [],
         "exceptionCount": 9,
         "note": "Latin -mentum → das (Dokument, Element). Distinct from the masculine -ent agent suffix.",
-        "kind": "suffix",
-        "why": "Latin -mentum suffix → das (Dokument, Element).",
         "examples": [
           "Instrument",
           "Argument",
@@ -1209,8 +1139,6 @@
         ],
         "exceptionCount": 61,
         "note": "Words ending in -um are neuter → das, including -ium (das Studium) and -tum (das Eigentum). A few are masculine: der Reichtum, der Irrtum, der Konsum.",
-        "kind": "suffix",
-        "why": "Latin neuter ending → das (Museum, Studium, Zentrum).",
         "examples": [
           "Studium",
           "Album",
@@ -1251,8 +1179,6 @@
         "overriddenBy": [],
         "exceptionCount": 3,
         "note": "→ das (Konzept, Rezept, Skript, Manuskript).",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Konzept",
           "Rezept",
@@ -1272,8 +1198,6 @@
         "overriddenBy": [],
         "exceptionCount": 22,
         "note": "→ das (System, Problem, Morphem). der Atem is irregular; der Moslem is a male person → der.",
-        "kind": "marginal",
-        "why": "Greek -ema ending → das (System, Problem) — a real but unproductive morpheme.",
         "examples": [
           "Problem",
           "System",
@@ -1309,8 +1233,6 @@
         "overriddenBy": [],
         "exceptionCount": 16,
         "note": "→ das (Modell, Duell, Fell, Kartell). The der exceptions are masculine loanwords: der Appell, der Rebell (a male role), der Quell.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Modell",
           "Duell",
@@ -1346,8 +1268,6 @@
         "overriddenBy": [],
         "exceptionCount": 8,
         "note": "→ das (Material, Potenzial, Editorial, Adverbial). A few obscure der exceptions (Labial).",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Material",
           "Potenzial",
@@ -1373,8 +1293,6 @@
         "overriddenBy": [],
         "exceptionCount": 72,
         "note": "Leans das (Ergebnis, Verständnis, Zeugnis) — but die Erlaubnis/Kenntnis/Finsternis are common.",
-        "kind": "suffix",
-        "why": "Native abstract suffix → das/die (Ergebnis, Verständnis).",
         "examples": [
           "Ergebnis",
           "Verständnis",
@@ -1410,8 +1328,6 @@
         "overriddenBy": [],
         "exceptionCount": 94,
         "note": "Leans das (Paket, Gebet, Gebiet). der Planet/Komet are Greek masculines and der Prophet is a male role — reason, don't just memorise.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Gebiet",
           "Paket",
@@ -1447,8 +1363,6 @@
         "overriddenBy": [],
         "exceptionCount": 97,
         "note": "Leans das (Brot, Gebot, Angebot). der Pilot/Idiot are male persons → der; only die Not has to be learned.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Angebot",
           "Brot",
@@ -1484,8 +1398,6 @@
         "overriddenBy": [],
         "exceptionCount": 69,
         "note": "Greek -ma leans das (Thema, Drama, Klima, Komma). die Firma is the main exception.",
-        "kind": "suffix",
-        "why": "Greek neuter ending → das (Thema, Drama, Klima).",
         "examples": [
           "Thema",
           "Klima",
@@ -1521,8 +1433,6 @@
         "overriddenBy": [],
         "exceptionCount": 358,
         "note": "Leans das (~56%): das Auto, Büro, Kino, Video — but der Tango/Kakao and die Disco are common. The weakest rule; many -o words are best memorised.",
-        "kind": "ending",
-        "why": null,
         "examples": [
           "Auto",
           "Video",
@@ -1566,13 +1476,13 @@
         "article": "der"
       },
       {
-        "noun": "Gegensatz",
-        "head": "Satz",
+        "noun": "Geburtstag",
+        "head": "Tag",
         "article": "der"
       },
       {
-        "noun": "Geburtstag",
-        "head": "Tag",
+        "noun": "Gegensatz",
+        "head": "Satz",
         "article": "der"
       },
       {
