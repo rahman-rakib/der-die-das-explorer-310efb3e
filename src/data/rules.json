@@ -885,7 +885,7 @@
         "count": 5675,
         "smallSample": false,
         "overriddenBy": [],
-        "exceptionCount": 890,
+        "exceptionCount": 893,
         "note": "Words ending in -in lean die — strongly so for the female suffix -erin/-in (Lehrerin, Freundin, Königin). But many are masculine/neuter: der Termin, das Benzin, das Vitamin, das Cholesterin. And der Schein is a compound head → der Führerschein/Gutschein (the head overrides -in).",
         "examples": [
           "Freundin",
@@ -907,6 +907,21 @@
           },
           {
             "noun": "Termin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Delfin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Pinguin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Jasmin",
             "article": "der",
             "reason": null
           },
