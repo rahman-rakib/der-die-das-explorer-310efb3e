@@ -132,9 +132,9 @@ export function RulesView() {
 
         <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-muted p-1">
           {([
-            { id: "thematic", label: "🎨 Thematic" },
-            { id: "compound", label: "🧩 Compound" },
-            { id: "suffix", label: "🔤 Suffix" },
+            { id: "thematic", label: "🎨 Themes" },
+            { id: "compound", label: "🧩 Compounds" },
+            { id: "suffix", label: "🔤 Endings" },
           ] as const).map(v => {
             const active = view === v.id;
             return (
