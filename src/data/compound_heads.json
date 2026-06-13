@@ -68,7 +68,7 @@
       },
       {
         "head": "Zug",
-        "meaning": "train, pull",
+        "meaning": "train; pull",
         "accuracy": 99.5,
         "count": 200,
         "examples": [
@@ -96,7 +96,7 @@
       },
       {
         "head": "Gang",
-        "meaning": "walk, passage",
+        "meaning": "walk; gear; corridor",
         "accuracy": 100.0,
         "count": 187,
         "examples": [
@@ -124,7 +124,7 @@
       },
       {
         "head": "Fall",
-        "meaning": "case, fall",
+        "meaning": "fall; case",
         "accuracy": 99.5,
         "count": 187,
         "examples": [
@@ -180,7 +180,7 @@
       },
       {
         "head": "Satz",
-        "meaning": "sentence, set",
+        "meaning": "sentence; set; leap",
         "accuracy": 100.0,
         "count": 176,
         "examples": [
@@ -265,7 +265,7 @@
       },
       {
         "head": "Platz",
-        "meaning": "place, square",
+        "meaning": "place, square; seat",
         "accuracy": 100.0,
         "count": 129,
         "examples": [
@@ -321,7 +321,7 @@
       },
       {
         "head": "Preis",
-        "meaning": "price, prize",
+        "meaning": "price; prize",
         "accuracy": 100.0,
         "count": 112,
         "examples": [
@@ -349,7 +349,7 @@
       },
       {
         "head": "Punkt",
-        "meaning": "point",
+        "meaning": "point, dot",
         "accuracy": 100.0,
         "count": 102,
         "examples": [
@@ -405,7 +405,7 @@
       },
       {
         "head": "Hof",
-        "meaning": "courtyard, farm",
+        "meaning": "yard, courtyard; farm",
         "accuracy": 100.0,
         "count": 84,
         "examples": [
@@ -538,14 +538,14 @@
             "meaning": "zoo"
           },
           {
-            "word": "Hintergarten",
-            "meaning": "back garden"
+            "word": "Gemüsegarten",
+            "meaning": "vegetable garden"
           }
         ]
       },
       {
         "head": "Trieb",
-        "meaning": "drive, impulse",
+        "meaning": "drive, urge; shoot",
         "accuracy": 100.0,
         "count": 131,
         "examples": [
@@ -601,7 +601,7 @@
       },
       {
         "head": "Stoff",
-        "meaning": "material, substance",
+        "meaning": "material; substance",
         "accuracy": 100.0,
         "count": 102,
         "examples": [
@@ -629,7 +629,7 @@
       },
       {
         "head": "Rand",
-        "meaning": "edge, margin",
+        "meaning": "edge, rim",
         "accuracy": 100.0,
         "count": 100,
         "examples": [
@@ -685,7 +685,7 @@
       },
       {
         "head": "Schein",
-        "meaning": "certificate, appearance, shine",
+        "meaning": "light, glow; certificate; banknote",
         "accuracy": 99.3,
         "count": 134,
         "examples": [
@@ -771,7 +771,7 @@
       },
       {
         "head": "Fahrt",
-        "meaning": "journey, ride",
+        "meaning": "trip, ride",
         "accuracy": 100.0,
         "count": 120,
         "examples": [
@@ -883,7 +883,7 @@
       },
       {
         "head": "Karte",
-        "meaning": "card, map",
+        "meaning": "card; map; ticket",
         "accuracy": 100.0,
         "count": 107,
         "examples": [
@@ -911,7 +911,7 @@
       },
       {
         "head": "Straße",
-        "meaning": "street, road",
+        "meaning": "street",
         "accuracy": 100.0,
         "count": 104,
         "examples": [
@@ -939,7 +939,7 @@
       },
       {
         "head": "Bahn",
-        "meaning": "railway, track",
+        "meaning": "track; railway; lane",
         "accuracy": 100.0,
         "count": 97,
         "examples": [
@@ -995,7 +995,7 @@
       },
       {
         "head": "Kraft",
-        "meaning": "power, force",
+        "meaning": "force, power",
         "accuracy": 100.0,
         "count": 93,
         "examples": [
@@ -1051,7 +1051,7 @@
       },
       {
         "head": "Frau",
-        "meaning": "woman",
+        "meaning": "woman; wife",
         "accuracy": 100.0,
         "count": 86,
         "examples": [
@@ -1308,7 +1308,7 @@
       },
       {
         "head": "Werk",
-        "meaning": "work, factory",
+        "meaning": "work; works (factory)",
         "accuracy": 98.9,
         "count": 182,
         "examples": [
@@ -1336,7 +1336,7 @@
       },
       {
         "head": "Zeug",
-        "meaning": "stuff, equipment",
+        "meaning": "stuff, gear",
         "accuracy": 100.0,
         "count": 154,
         "examples": [
@@ -1364,7 +1364,7 @@
       },
       {
         "head": "Land",
-        "meaning": "land, country",
+        "meaning": "country; land",
         "accuracy": 93.2,
         "count": 146,
         "exceptions": "die Schweiz/Türkei etc. as countries; das Land (territory) is neuter",
@@ -1393,7 +1393,7 @@
       },
       {
         "head": "Recht",
-        "meaning": "right, law",
+        "meaning": "right; law",
         "accuracy": 99.1,
         "count": 109,
         "examples": [
@@ -1589,7 +1589,7 @@
       },
       {
         "head": "Amt",
-        "meaning": "office, authority",
+        "meaning": "office (official); duty",
         "accuracy": 98.6,
         "count": 73,
         "examples": [
