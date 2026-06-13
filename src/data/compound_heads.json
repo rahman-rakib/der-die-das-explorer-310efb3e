@@ -11,6 +11,7 @@
     "der": [
       {
         "head": "Tag",
+        "meaning": "day",
         "accuracy": 99.2,
         "count": 262,
         "exceptions": "das Schalttag (rare)",
@@ -39,6 +40,7 @@
       },
       {
         "head": "Stand",
+        "meaning": "stand, state",
         "accuracy": 100.0,
         "count": 225,
         "examples": [
@@ -66,6 +68,7 @@
       },
       {
         "head": "Zug",
+        "meaning": "train, pull",
         "accuracy": 99.5,
         "count": 200,
         "examples": [
@@ -93,6 +96,7 @@
       },
       {
         "head": "Gang",
+        "meaning": "walk, passage",
         "accuracy": 100.0,
         "count": 187,
         "examples": [
@@ -120,6 +124,7 @@
       },
       {
         "head": "Fall",
+        "meaning": "case, fall",
         "accuracy": 99.5,
         "count": 187,
         "examples": [
@@ -147,6 +152,7 @@
       },
       {
         "head": "Raum",
+        "meaning": "room, space",
         "accuracy": 100.0,
         "count": 177,
         "examples": [
@@ -174,6 +180,7 @@
       },
       {
         "head": "Satz",
+        "meaning": "sentence, set",
         "accuracy": 100.0,
         "count": 176,
         "examples": [
@@ -201,6 +208,7 @@
       },
       {
         "head": "Bau",
+        "meaning": "construction, building",
         "accuracy": 100.0,
         "count": 153,
         "examples": [
@@ -228,6 +236,7 @@
       },
       {
         "head": "Mann",
+        "meaning": "man",
         "accuracy": 100.0,
         "count": 153,
         "exceptions": "Plural is die/das: die Männer, das Mannsbild",
@@ -256,6 +265,7 @@
       },
       {
         "head": "Platz",
+        "meaning": "place, square",
         "accuracy": 100.0,
         "count": 129,
         "examples": [
@@ -283,6 +293,7 @@
       },
       {
         "head": "Baum",
+        "meaning": "tree",
         "accuracy": 100.0,
         "count": 114,
         "examples": [
@@ -310,6 +321,7 @@
       },
       {
         "head": "Preis",
+        "meaning": "price, prize",
         "accuracy": 100.0,
         "count": 112,
         "examples": [
@@ -337,6 +349,7 @@
       },
       {
         "head": "Punkt",
+        "meaning": "point",
         "accuracy": 100.0,
         "count": 102,
         "examples": [
@@ -364,6 +377,7 @@
       },
       {
         "head": "Weg",
+        "meaning": "way, path",
         "accuracy": 100.0,
         "count": 99,
         "examples": [
@@ -391,6 +405,7 @@
       },
       {
         "head": "Hof",
+        "meaning": "courtyard, farm",
         "accuracy": 100.0,
         "count": 84,
         "examples": [
@@ -418,6 +433,7 @@
       },
       {
         "head": "Kopf",
+        "meaning": "head",
         "accuracy": 98.8,
         "count": 84,
         "examples": [
@@ -445,6 +461,7 @@
       },
       {
         "head": "Markt",
+        "meaning": "market",
         "accuracy": 100.0,
         "count": 54,
         "examples": [
@@ -472,6 +489,7 @@
       },
       {
         "head": "Fang",
+        "meaning": "catch, capture",
         "accuracy": 100.0,
         "count": 52,
         "examples": [
@@ -499,6 +517,7 @@
       },
       {
         "head": "Garten",
+        "meaning": "garden",
         "accuracy": 100.0,
         "count": 49,
         "examples": [
@@ -526,6 +545,7 @@
       },
       {
         "head": "Trieb",
+        "meaning": "drive, impulse",
         "accuracy": 100.0,
         "count": 131,
         "examples": [
@@ -553,6 +573,7 @@
       },
       {
         "head": "Schlag",
+        "meaning": "blow, stroke",
         "accuracy": 100.0,
         "count": 117,
         "examples": [
@@ -580,6 +601,7 @@
       },
       {
         "head": "Stoff",
+        "meaning": "material, substance",
         "accuracy": 100.0,
         "count": 102,
         "examples": [
@@ -607,6 +629,7 @@
       },
       {
         "head": "Rand",
+        "meaning": "edge, margin",
         "accuracy": 100.0,
         "count": 100,
         "examples": [
@@ -634,6 +657,7 @@
       },
       {
         "head": "Name",
+        "meaning": "name",
         "accuracy": 99.0,
         "count": 101,
         "examples": [
@@ -661,6 +685,7 @@
       },
       {
         "head": "Schein",
+        "meaning": "certificate, appearance, shine",
         "accuracy": 99.3,
         "count": 134,
         "examples": [
@@ -690,6 +715,7 @@
     "die": [
       {
         "head": "Sprache",
+        "meaning": "language",
         "accuracy": 99.7,
         "count": 336,
         "examples": [
@@ -717,6 +743,7 @@
       },
       {
         "head": "Zeit",
+        "meaning": "time",
         "accuracy": 100.0,
         "count": 264,
         "examples": [
@@ -744,6 +771,7 @@
       },
       {
         "head": "Fahrt",
+        "meaning": "journey, ride",
         "accuracy": 100.0,
         "count": 120,
         "examples": [
@@ -771,6 +799,7 @@
       },
       {
         "head": "Zahl",
+        "meaning": "number",
         "accuracy": 99.1,
         "count": 111,
         "examples": [
@@ -798,6 +827,7 @@
       },
       {
         "head": "Schule",
+        "meaning": "school",
         "accuracy": 100.0,
         "count": 111,
         "examples": [
@@ -825,6 +855,7 @@
       },
       {
         "head": "Schrift",
+        "meaning": "writing, script",
         "accuracy": 100.0,
         "count": 109,
         "examples": [
@@ -852,6 +883,7 @@
       },
       {
         "head": "Karte",
+        "meaning": "card, map",
         "accuracy": 100.0,
         "count": 107,
         "examples": [
@@ -879,6 +911,7 @@
       },
       {
         "head": "Straße",
+        "meaning": "street, road",
         "accuracy": 100.0,
         "count": 104,
         "examples": [
@@ -906,6 +939,7 @@
       },
       {
         "head": "Bahn",
+        "meaning": "railway, track",
         "accuracy": 100.0,
         "count": 97,
         "examples": [
@@ -933,6 +967,7 @@
       },
       {
         "head": "Stadt",
+        "meaning": "city, town",
         "accuracy": 97.9,
         "count": 95,
         "examples": [
@@ -960,6 +995,7 @@
       },
       {
         "head": "Kraft",
+        "meaning": "power, force",
         "accuracy": 100.0,
         "count": 93,
         "examples": [
@@ -987,6 +1023,7 @@
       },
       {
         "head": "Tür",
+        "meaning": "door",
         "accuracy": 98.9,
         "count": 89,
         "examples": [
@@ -1014,6 +1051,7 @@
       },
       {
         "head": "Frau",
+        "meaning": "woman",
         "accuracy": 100.0,
         "count": 86,
         "examples": [
@@ -1041,6 +1079,7 @@
       },
       {
         "head": "Frage",
+        "meaning": "question",
         "accuracy": 100.0,
         "count": 65,
         "examples": [
@@ -1068,6 +1107,7 @@
       },
       {
         "head": "Welt",
+        "meaning": "world",
         "accuracy": 100.0,
         "count": 62,
         "examples": [
@@ -1095,6 +1135,7 @@
       },
       {
         "head": "Uhr",
+        "meaning": "clock, watch",
         "accuracy": 98.2,
         "count": 55,
         "exceptions": "der Aufruhr (not an Uhr compound)",
@@ -1123,6 +1164,7 @@
       },
       {
         "head": "Form",
+        "meaning": "form, shape",
         "accuracy": 99.2,
         "count": 128,
         "exceptions": "das Chloroform (chemistry, rare)",
@@ -1153,6 +1195,7 @@
     "das": [
       {
         "head": "Spiel",
+        "meaning": "game, play",
         "accuracy": 100.0,
         "count": 262,
         "examples": [
@@ -1180,6 +1223,7 @@
       },
       {
         "head": "Wort",
+        "meaning": "word",
         "accuracy": 98.6,
         "count": 219,
         "exceptions": "die Antwort (and its compounds)",
@@ -1208,6 +1252,7 @@
       },
       {
         "head": "Haus",
+        "meaning": "house",
         "accuracy": 99.0,
         "count": 209,
         "examples": [
@@ -1235,6 +1280,7 @@
       },
       {
         "head": "Buch",
+        "meaning": "book",
         "accuracy": 99.5,
         "count": 203,
         "examples": [
@@ -1262,6 +1308,7 @@
       },
       {
         "head": "Werk",
+        "meaning": "work, factory",
         "accuracy": 98.9,
         "count": 182,
         "examples": [
@@ -1289,6 +1336,7 @@
       },
       {
         "head": "Zeug",
+        "meaning": "stuff, equipment",
         "accuracy": 100.0,
         "count": 154,
         "examples": [
@@ -1316,6 +1364,7 @@
       },
       {
         "head": "Land",
+        "meaning": "land, country",
         "accuracy": 93.2,
         "count": 146,
         "exceptions": "die Schweiz/Türkei etc. as countries; das Land (territory) is neuter",
@@ -1344,6 +1393,7 @@
       },
       {
         "head": "Recht",
+        "meaning": "right, law",
         "accuracy": 99.1,
         "count": 109,
         "examples": [
@@ -1371,6 +1421,7 @@
       },
       {
         "head": "Bild",
+        "meaning": "picture, image",
         "accuracy": 100.0,
         "count": 106,
         "examples": [
@@ -1398,6 +1449,7 @@
       },
       {
         "head": "Wasser",
+        "meaning": "water",
         "accuracy": 100.0,
         "count": 102,
         "examples": [
@@ -1425,6 +1477,7 @@
       },
       {
         "head": "Gerät",
+        "meaning": "device, appliance",
         "accuracy": 100.0,
         "count": 96,
         "examples": [
@@ -1452,6 +1505,7 @@
       },
       {
         "head": "Geld",
+        "meaning": "money",
         "accuracy": 100.0,
         "count": 92,
         "examples": [
@@ -1479,6 +1533,7 @@
       },
       {
         "head": "Zimmer",
+        "meaning": "room",
         "accuracy": 100.0,
         "count": 87,
         "examples": [
@@ -1506,6 +1561,7 @@
       },
       {
         "head": "Glas",
+        "meaning": "glass",
         "accuracy": 100.0,
         "count": 73,
         "examples": [
@@ -1533,6 +1589,7 @@
       },
       {
         "head": "Amt",
+        "meaning": "office, authority",
         "accuracy": 98.6,
         "count": 73,
         "examples": [
@@ -1560,6 +1617,7 @@
       },
       {
         "head": "Jahr",
+        "meaning": "year",
         "accuracy": 100.0,
         "count": 71,
         "examples": [
@@ -1587,6 +1645,7 @@
       },
       {
         "head": "Öl",
+        "meaning": "oil",
         "accuracy": 98.6,
         "count": 71,
         "examples": [
@@ -1614,6 +1673,7 @@
       },
       {
         "head": "Gramm",
+        "meaning": "gram",
         "accuracy": 100.0,
         "count": 114,
         "examples": [
@@ -1641,6 +1701,7 @@
       },
       {
         "head": "Stück",
+        "meaning": "piece",
         "accuracy": 100.0,
         "count": 116,
         "examples": [
