@@ -415,9 +415,6 @@ function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }
                       <div key={a}>
                         <div className="mb-1.5 flex items-center gap-2">
                           <ArticleBadge article={a} size="sm" />
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                            {items.length} exception{items.length === 1 ? "" : "s"}
-                          </span>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {items.map(ex => (
