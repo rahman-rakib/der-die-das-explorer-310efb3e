@@ -510,7 +510,6 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           }}
         />
         {heads.map((h, i) => {
-          const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
           const { x, y } = positions[i];
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
