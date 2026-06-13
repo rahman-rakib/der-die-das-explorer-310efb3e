@@ -477,7 +477,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
   const MIN_BUBBLE = 38;
   const MAX_BUBBLE = 78;
   const MIN_FONT = 18;
-  const MAX_FONT = 28;
+  const MAX_FONT = 40;
   const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
   const GOLDEN = Math.PI * (3 - Math.sqrt(5));
   const scale = BUBBLE * SPACING;
