@@ -395,7 +395,7 @@ function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }
             onClick={() => setOpen(o => !o)}
             className="mt-3 flex w-full items-center justify-between border-t bg-amber-50 px-4 py-2.5 text-xs font-bold text-amber-900 transition hover:bg-amber-100"
           >
-            <span>⚠️ Exceptions ({rule.exceptions.length})</span>
+            <span>⚠️ Exceptions</span>
             <span className="text-base">{open ? "▴" : "▾"}</span>
           </button>
           <AnimatePresence initial={false}>
