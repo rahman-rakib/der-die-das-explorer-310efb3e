@@ -18,6 +18,13 @@ const MEANING_ROWS: MeaningRow[] = [
     ],
   },
   {
+    word: "Leiter",
+    meanings: [
+      { article: "der", meaning: "male leader / manager / director", emoji: "👨‍💼", example: "Der Leiter trifft eine wichtige Entscheidung.", exampleEn: "The (male) director is making an important decision." },
+      { article: "die", meaning: "ladder / female leader / manager / director", emoji: "🪜", example: "Die Leiter steht an der Wand.", exampleEn: "The ladder is leaning against the wall." },
+    ],
+  },
+  {
     word: "Lama",
     meanings: [
       { article: "der", meaning: "Buddhist monk", emoji: "🧘", example: "Der Lama lebt im Kloster.", exampleEn: "The lama lives in the monastery." },
