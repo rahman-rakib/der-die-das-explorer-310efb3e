@@ -175,7 +175,7 @@ export function RulesView() {
       </div>
 
       {view === "thematic" && <ThematicGroups article={tab} />}
-      {view === "compound" && <CompoundHeads />}
+      {view === "compound" && <CompoundHeads article={tab} />}
       {view === "suffix" && <SuffixBubbles article={tab} rules={rules} />}
 
     </div>
@@ -461,24 +461,21 @@ const BUBBLE_PALETTE = [
   "#93c5fd", "#a5b4fc", "#d8b4fe",
 ];
 
-function CompoundHeads() {
+function CompoundHeads({ article }: { article: Article }) {
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const cloudSeed = (value: string) =>
     Array.from(value).reduce((total, character) => (total * 31 + character.charCodeAt(0)) >>> 0, 7);
+  const meta = ARTICLE_META[article];
+  const heads = (COMPOUNDS[article] ?? [])
+    .slice()
+    .sort((a, b) => cloudSeed(`${article}-cloud-${a.head}`) - cloudSeed(`${article}-cloud-${b.head}`));
 
   return (
-    <div className="mt-5 space-y-5 px-4">
+    <div className="mt-5 px-4">
       <p className="text-xs italic text-muted-foreground">
         Tap a compound head to see its meaning, examples, and accuracy. Largest coverage appears first.
       </p>
-      {TABS.map(article => {
-        const meta = ARTICLE_META[article];
-        const heads = (COMPOUNDS[article] ?? [])
-          .slice()
-          .sort((a, b) => cloudSeed(`${article}-cloud-${a.head}`) - cloudSeed(`${article}-cloud-${b.head}`));
-
-        return (
-          <section key={article} aria-label={`${article} compound heads`}>
+      <section className="mt-5" aria-label={`${article} compound heads`}>
             <div
               className="mx-auto flex min-h-72 w-full flex-wrap content-center items-center justify-center gap-x-0.5 gap-y-1 overflow-hidden border px-7 py-8 shadow-inner"
               style={{
@@ -560,9 +557,7 @@ function CompoundHeads() {
                 );
               })}
             </AnimatePresence>
-          </section>
-        );
-      })}
+      </section>
     </div>
   );
 }
