@@ -463,6 +463,8 @@ const BUBBLE_PALETTE = [
 
 function CompoundHeads() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
+  const cloudSeed = (value: string) =>
+    Array.from(value).reduce((total, character) => (total * 31 + character.charCodeAt(0)) >>> 0, 7);
 
   return (
     <div className="mt-5 space-y-5 px-4">
@@ -471,19 +473,14 @@ function CompoundHeads() {
       </p>
       {TABS.map(article => {
         const meta = ARTICLE_META[article];
-        const heads = (COMPOUNDS[article] ?? []).slice().sort((a, b) => b.sizeWeight - a.sizeWeight);
+        const heads = (COMPOUNDS[article] ?? [])
+          .slice()
+          .sort((a, b) => cloudSeed(`${article}-${a.head}`) - cloudSeed(`${article}-${b.head}`));
 
         return (
-          <section key={article} aria-labelledby={`compound-cloud-${article}`}>
-            <div className="mb-2 flex items-center gap-2">
-              <ArticleBadge article={article} />
-              <h2 id={`compound-cloud-${article}`} className="text-base font-extrabold">
-                {article} compound heads
-              </h2>
-              <span className="h-px flex-1" style={{ backgroundColor: `var(--${meta.color})` }} />
-            </div>
+          <section key={article} aria-label={`${article} compound heads`}>
             <div
-              className="flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5 rounded-3xl border px-2 py-4 shadow-inner"
+              className="flex flex-wrap items-center justify-center gap-x-0.5 gap-y-1 rounded-3xl border px-2 py-5 shadow-inner"
               style={{
                 backgroundColor: `var(--${meta.soft})`,
                 borderColor: `color-mix(in oklch, var(--${meta.color}) 35%, var(--${meta.soft}))`,
@@ -493,6 +490,7 @@ function CompoundHeads() {
                 const key = `${article}-${head.head}`;
                 const isActive = activeKey === key;
                 const shadeStrength = 58 + Math.round(head.sizeWeight * 18);
+                const seed = cloudSeed(key);
                 return (
                   <Button
                     key={head.head}
@@ -502,13 +500,14 @@ function CompoundHeads() {
                     aria-expanded={isActive}
                     aria-controls={`compound-detail-${article}-${index}`}
                     onClick={() => setActiveKey(isActive ? null : key)}
-                    className="min-h-11 h-auto rounded-xl px-2.5 py-1 font-extrabold leading-none hover:bg-card/50 focus-visible:ring-2"
+                    className="min-h-11 h-auto rounded-xl px-2 py-1 font-extrabold lowercase leading-none hover:bg-card/50 focus-visible:ring-2"
                     style={{
                       fontSize: `${18 + head.sizeWeight * 22}px`,
                       color: `color-mix(in oklch, var(--${meta.color}) ${shadeStrength}%, var(--foreground))`,
+                      transform: `translate(${(seed % 9) - 4}px, ${((seed >>> 4) % 13) - 6}px)`,
                     }}
                   >
-                    {article} {head.head}
+                    {head.head.toLocaleLowerCase("de")}
                   </Button>
                 );
               })}
