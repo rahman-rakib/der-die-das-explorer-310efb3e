@@ -3,6 +3,7 @@ import { useState } from "react";
 import rulesData from "@/data/rules.json";
 import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
+import { Button } from "@/components/ui/button";
 import { ArticleBadge } from "./ArticleBadge";
 
 type Tier = "ironclad" | "strong" | "moderate" | "weak";
@@ -45,6 +46,7 @@ interface CompoundHead {
   count: number;
   exceptions?: string;
   examples: CompoundExample[];
+  sizeWeight: number;
 }
 const COMPOUNDS = (compoundData as unknown as { rules: Record<Article, CompoundHead[]> }).rules;
 
@@ -91,7 +93,6 @@ export function RulesView() {
   const [view, setView] = useState<"thematic" | "suffix" | "compound">("thematic");
   const meta = ARTICLE_META[tab];
   const rules = RULES.filter(r => r.article === tab).slice().sort((a, b) => b.accuracy - a.accuracy);
-  const compounds = (COMPOUNDS[tab] ?? []).slice().sort((a, b) => b.count - a.count);
 
   return (
     <div className="pb-8">
@@ -174,7 +175,7 @@ export function RulesView() {
       </div>
 
       {view === "thematic" && <ThematicGroups article={tab} />}
-      {view === "compound" && <CompoundHeads article={tab} heads={compounds} />}
+      {view === "compound" && <CompoundHeads />}
       {view === "suffix" && <SuffixBubbles article={tab} rules={rules} />}
 
     </div>
