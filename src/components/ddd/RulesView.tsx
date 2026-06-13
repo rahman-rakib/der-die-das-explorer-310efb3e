@@ -490,8 +490,8 @@ function CompoundHeads({ article }: { article: Article }) {
                 const key = `${article}-${head.head}`;
                 const isActive = activeKey === key;
                 const seed = cloudSeed(key);
-                const horizontalCrowding = -10 - ((seed >>> 7) % 13);
-                const verticalCrowding = -5 - ((seed >>> 13) % 10);
+                const horizontalSpacing = 1 + ((seed >>> 7) % 5);
+                const verticalSpacing = 1 + ((seed >>> 13) % 4);
                 return (
                   <Button
                     key={head.head}
@@ -501,14 +501,12 @@ function CompoundHeads({ article }: { article: Article }) {
                     aria-expanded={isActive}
                     aria-controls={`compound-detail-${article}-${index}`}
                     onClick={() => setActiveKey(isActive ? null : key)}
-                    className="relative min-h-11 h-auto rounded-xl px-2 py-1 font-extrabold lowercase leading-none hover:z-20 hover:bg-card/50 focus-visible:z-20 focus-visible:ring-2"
+                    className="relative min-h-11 h-auto rounded-xl px-2 py-1 font-extrabold lowercase leading-none hover:bg-card/50 focus-visible:ring-2"
                     style={{
                       fontSize: `${18 + head.sizeWeight * 22}px`,
                       color: `var(--${meta.color})`,
-                      marginInline: `${horizontalCrowding}px`,
-                      marginBlock: `${verticalCrowding}px`,
-                      transform: `translate(${(seed % 39) - 19}px, ${((seed >>> 4) % 45) - 22}px) rotate(${((seed >>> 19) % 17) - 8}deg)`,
-                      zIndex: 1 + ((seed >>> 24) % 8),
+                      marginInline: `${horizontalSpacing}px`,
+                      marginBlock: `${verticalSpacing}px`,
                     }}
                   >
                     {head.head.toLocaleLowerCase("de")}
