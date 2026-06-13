@@ -136,12 +136,13 @@ export const RULES: RuleGroup[] = [
         suffix: "-er", example: w("der","Lehrer","teacher"),
         examples: [w("der","Lehrer","teacher"), w("der","Vater","father"), w("der","Bruder","brother"), w("der","Fahrer","driver"), w("der","Schüler","pupil")],
         exceptions: {
-          mnemonic: "Mother, daughter, sister, butter, ladder — the women of the -er family are all DIE. And rooms and things around the house are DAS.",
-          illustration: ["👩","👩‍👧","🧈","🪜","🪟"],
+          mnemonic: "Mother, daughter, sister, butter, ladder, feather, number, wall, tax — the women and household items of the -er family are mostly DIE. And rooms and things around the house are DAS.",
+          illustration: ["👩","👩‍👧","🧈","🪜","🪶","🔢","🧱","🕹️","🪟"],
           words: [
             w("die","Mutter","mother"), w("die","Tochter","daughter"), w("die","Schwester","sister"),
-            w("die","Butter","butter"), w("die","Leiter","ladder"), w("die","Schulter","shoulder"),
+            w("die","Butter","butter"), w("die","Leiter","ladder/manager"), w("die","Schulter","shoulder"),
             w("die","Feder","feather/pen"), w("die","Steuer","tax/steering wheel"), w("die","Wimper","eyelash"), w("die","Nummer","number"),
+            w("die","Mauer","wall"),
             w("das","Fenster","window"), w("das","Wasser","water"), w("das","Zimmer","room"), w("das","Wetter","weather"),
             w("das","Messer","knife"), w("das","Theater","theater"), w("das","Lager","storage/camp"), w("das","Muster","pattern"), w("das","Pflaster","plaster/bandage"),
           ],
