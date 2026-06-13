@@ -88,7 +88,8 @@
         "exceptions": [
           {
             "noun": "Geschöpf",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -131,11 +132,13 @@
         "exceptions": [
           {
             "noun": "Frist",
-            "article": "die"
+            "article": "die",
+            "reason": null
           },
           {
             "noun": "List",
-            "article": "die"
+            "article": "die",
+            "reason": null
           }
         ]
       },
@@ -159,11 +162,13 @@
         "exceptions": [
           {
             "noun": "Interieur",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Couleur",
-            "article": "die"
+            "article": "die",
+            "reason": null
           }
         ]
       },
@@ -189,15 +194,18 @@
         "exceptions": [
           {
             "noun": "Talent",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Prozent",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Patent",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -240,15 +248,18 @@
         "exceptions": [
           {
             "noun": "Bowling",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Recycling",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Feeling",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -272,15 +283,18 @@
         "exceptions": [
           {
             "noun": "Restaurant",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Want",
-            "article": "die"
+            "article": "die",
+            "reason": null
           },
           {
             "noun": "Pendant",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -304,11 +318,13 @@
         "exceptions": [
           {
             "noun": "Militär",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Mär",
-            "article": "die"
+            "article": "die",
+            "reason": null
           }
         ]
       },
@@ -332,7 +348,8 @@
         "exceptions": [
           {
             "noun": "Reich",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -356,15 +373,18 @@
         "exceptions": [
           {
             "noun": "Labor",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Tor",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Chor",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -377,7 +397,7 @@
         "smallSample": false,
         "overriddenBy": [],
         "exceptionCount": 2109,
-        "note": "Agent nouns → der (Lehrer, Bäcker). Big group; common exceptions: die Mutter/Schwester, das Fenster/Wasser.",
+        "note": "Agent nouns → der (Lehrer, Bäcker). Most exceptions follow ANOTHER rule, so reason before memorising: female people → die (Mutter, Tochter, Schwester); non-agent things → das (Wasser, Messer, Fenster, Zimmer). The only ones to simply memorise are feminine for no reason: die Butter, Leiter, Feder, Nummer, Mauer, Steuer.",
         "examples": [
           "Schüler",
           "Lehrer",
@@ -388,15 +408,63 @@
         "exceptions": [
           {
             "noun": "Mutter",
-            "article": "die"
+            "article": "die",
+            "reason": "female person → die"
+          },
+          {
+            "noun": "Tochter",
+            "article": "die",
+            "reason": "female person → die"
           },
           {
             "noun": "Schwester",
-            "article": "die"
+            "article": "die",
+            "reason": "female person → die"
+          },
+          {
+            "noun": "Wasser",
+            "article": "das",
+            "reason": "non-agent → das"
           },
           {
             "noun": "Fenster",
-            "article": "das"
+            "article": "das",
+            "reason": "non-agent → das"
+          },
+          {
+            "noun": "Zimmer",
+            "article": "das",
+            "reason": "non-agent → das"
+          },
+          {
+            "noun": "Butter",
+            "article": "die",
+            "reason": null
+          },
+          {
+            "noun": "Leiter",
+            "article": "die",
+            "reason": null
+          },
+          {
+            "noun": "Feder",
+            "article": "die",
+            "reason": null
+          },
+          {
+            "noun": "Nummer",
+            "article": "die",
+            "reason": null
+          },
+          {
+            "noun": "Mauer",
+            "article": "die",
+            "reason": null
+          },
+          {
+            "noun": "Steuer",
+            "article": "die",
+            "reason": null
           }
         ]
       },
@@ -420,15 +488,18 @@
         "exceptions": [
           {
             "noun": "Produkt",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Objekt",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Projekt",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       }
@@ -511,15 +582,18 @@
         "exceptions": [
           {
             "noun": "Ursprung",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Schwung",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Sprung",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -562,7 +636,8 @@
         "exceptions": [
           {
             "noun": "Fahrenheit",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -586,7 +661,8 @@
         "exceptions": [
           {
             "noun": "Abitur",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -610,15 +686,18 @@
         "exceptions": [
           {
             "noun": "Junkie",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Cookie",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Knie",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -661,15 +740,18 @@
         "exceptions": [
           {
             "noun": "Plastik",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Streik",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Atlantik",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -693,15 +775,18 @@
         "exceptions": [
           {
             "noun": "Tanz",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Kranz",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Schwanz",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -716,7 +801,7 @@
           "-ie"
         ],
         "exceptionCount": 2289,
-        "note": "Most nouns ending in -e are die (Schule, Straße, Blume), incl. -ade (Schokolade) and -age (Garage). Many weak-masculine nouns break it: der Junge, der Name, der Löwe, der Riese.",
+        "note": "Most nouns ending in -e are die (Schule, Straße, Blume), incl. -ade (Schokolade) and -age (Garage). Exceptions group up: living males → der via the male-people rule (der Junge, Löwe, Affe, Hase); weak-masculine abstracts → der (der Name, Gedanke, Glaube, Wille — and der Name is also a compound head: der Vorname). A few are neuter → das (das Auge, Ende, Interesse) — memorise those, they follow no rule.",
         "examples": [
           "Schule",
           "Straße",
@@ -727,39 +812,113 @@
         "exceptions": [
           {
             "noun": "Junge",
-            "article": "der"
-          },
-          {
-            "noun": "Name",
-            "article": "der"
+            "article": "der",
+            "reason": "male → der"
           },
           {
             "noun": "Löwe",
-            "article": "der"
+            "article": "der",
+            "reason": "male animal → der"
           },
           {
-            "noun": "Riese",
-            "article": "der"
+            "noun": "Affe",
+            "article": "der",
+            "reason": "male animal → der"
           },
           {
-            "noun": "Käse",
-            "article": "der"
+            "noun": "Hase",
+            "article": "der",
+            "reason": "male animal → der"
+          },
+          {
+            "noun": "Name",
+            "article": "der",
+            "reason": "compound head: der Name"
           },
           {
             "noun": "Gedanke",
-            "article": "der"
+            "article": "der",
+            "reason": "weak-masculine → der"
           },
           {
-            "noun": "Ende",
-            "article": "das"
+            "noun": "Glaube",
+            "article": "der",
+            "reason": "weak-masculine → der"
+          },
+          {
+            "noun": "Wille",
+            "article": "der",
+            "reason": "weak-masculine → der"
+          },
+          {
+            "noun": "Käse",
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Auge",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
-            "noun": "Schade",
-            "article": "der"
+            "noun": "Ende",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Interesse",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Finale",
+            "article": "das",
+            "reason": null
+          }
+        ]
+      },
+      {
+        "suffix": "-in",
+        "accuracy": 84.32,
+        "rawAccuracy": 84.32,
+        "tier": "moderate",
+        "count": 5675,
+        "smallSample": false,
+        "overriddenBy": [],
+        "exceptionCount": 890,
+        "note": "Words ending in -in lean die — strongly so for the female suffix -erin/-in (Lehrerin, Freundin, Königin). But many are masculine/neuter: der Termin, das Benzin, das Vitamin, das Cholesterin. And der Schein is a compound head → der Führerschein/Gutschein (the head overrides -in).",
+        "examples": [
+          "Freundin",
+          "Königin",
+          "Lehrerin",
+          "Chefin",
+          "Ärztin"
+        ],
+        "exceptions": [
+          {
+            "noun": "Cholesterin",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Schein",
+            "article": "der",
+            "reason": "compound head: der Schein"
+          },
+          {
+            "noun": "Termin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Benzin",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Vitamin",
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -783,51 +942,18 @@
         "exceptions": [
           {
             "noun": "Brei",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Allerlei",
-            "article": "das"
+            "article": "das",
+            "reason": null
           },
           {
             "noun": "Papagei",
-            "article": "der"
-          }
-        ]
-      },
-      {
-        "suffix": "-in",
-        "accuracy": 83.58,
-        "rawAccuracy": 83.58,
-        "tier": "moderate",
-        "count": 5725,
-        "smallSample": false,
-        "overriddenBy": [],
-        "exceptionCount": 940,
-        "note": "Words ending in -in lean die — strongly so for the female suffix -erin/-in (Lehrerin, Freundin, Königin). But many are masculine/neuter: der Termin, das Benzin, das Vitamin, das Cholesterin.",
-        "examples": [
-          "Freundin",
-          "Königin",
-          "Lehrerin",
-          "Chefin",
-          "Ärztin"
-        ],
-        "exceptions": [
-          {
-            "noun": "Cholesterin",
-            "article": "das"
-          },
-          {
-            "noun": "Termin",
-            "article": "der"
-          },
-          {
-            "noun": "Benzin",
-            "article": "das"
-          },
-          {
-            "noun": "Vitamin",
-            "article": "das"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -854,15 +980,18 @@
         "exceptions": [
           {
             "noun": "Schwur",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Flur",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Dur",
-            "article": "das"
+            "article": "das",
+            "reason": null
           }
         ]
       },
@@ -877,7 +1006,7 @@
           "-tion/-sion"
         ],
         "exceptionCount": 58,
-        "note": "ALONE, this is barely a coin flip (~59%): der Champion / Spion / Anion. Trust -tion and -sion, NOT bare -ion.",
+        "note": "ALONE, this is barely a coin flip (~59%): der Champion / Spion / Anion. Trust -tion and -sion, NOT bare -ion. Where it IS der, it's usually a male person (der Champion, Spion).",
         "examples": [
           "Region",
           "Union",
@@ -888,15 +1017,18 @@
         "exceptions": [
           {
             "noun": "Champion",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           },
           {
             "noun": "Spion",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           },
           {
             "noun": "Skorpion",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       }
@@ -960,15 +1092,18 @@
         "exceptions": [
           {
             "noun": "Moment",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Zement",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Konsument",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -994,19 +1129,23 @@
         "exceptions": [
           {
             "noun": "Reichtum",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Irrtum",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Konsum",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Rum",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -1038,7 +1177,7 @@
         "smallSample": false,
         "overriddenBy": [],
         "exceptionCount": 22,
-        "note": "→ das (System, Problem, Morphem). der Atem is an exception.",
+        "note": "→ das (System, Problem, Morphem). der Atem is irregular; der Moslem is a male person → der.",
         "examples": [
           "Problem",
           "System",
@@ -1049,15 +1188,18 @@
         "exceptions": [
           {
             "noun": "Atem",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Moslem",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           },
           {
             "noun": "Golem",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -1070,7 +1212,7 @@
         "smallSample": false,
         "overriddenBy": [],
         "exceptionCount": 16,
-        "note": "",
+        "note": "→ das (Modell, Duell, Fell, Kartell). The der exceptions are masculine loanwords: der Appell, der Rebell (a male role), der Quell.",
         "examples": [
           "Modell",
           "Duell",
@@ -1081,15 +1223,18 @@
         "exceptions": [
           {
             "noun": "Appell",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Rebell",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           },
           {
             "noun": "Quell",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -1113,7 +1258,8 @@
         "exceptions": [
           {
             "noun": "Trial",
-            "article": "der"
+            "article": "der",
+            "reason": null
           }
         ]
       },
@@ -1137,15 +1283,18 @@
         "exceptions": [
           {
             "noun": "Erlaubnis",
-            "article": "die"
+            "article": "die",
+            "reason": null
           },
           {
             "noun": "Kenntnis",
-            "article": "die"
+            "article": "die",
+            "reason": null
           },
           {
             "noun": "Finsternis",
-            "article": "die"
+            "article": "die",
+            "reason": null
           }
         ]
       },
@@ -1158,7 +1307,7 @@
         "smallSample": false,
         "overriddenBy": [],
         "exceptionCount": 94,
-        "note": "Leans das (Paket, Gebet, Gebiet) — but der Planet/Komet/Prophet are exceptions.",
+        "note": "Leans das (Paket, Gebet, Gebiet). der Planet/Komet are Greek masculines and der Prophet is a male role — reason, don't just memorise.",
         "examples": [
           "Gebiet",
           "Paket",
@@ -1169,15 +1318,18 @@
         "exceptions": [
           {
             "noun": "Planet",
-            "article": "der"
+            "article": "der",
+            "reason": "Greek masculine → der"
           },
           {
             "noun": "Komet",
-            "article": "der"
+            "article": "der",
+            "reason": "Greek masculine → der"
           },
           {
             "noun": "Prophet",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           }
         ]
       },
@@ -1190,7 +1342,7 @@
         "smallSample": false,
         "overriddenBy": [],
         "exceptionCount": 97,
-        "note": "Leans das (Brot, Gebot, Angebot) — but die Not and der Pilot/Idiot are exceptions.",
+        "note": "Leans das (Brot, Gebot, Angebot). der Pilot/Idiot are male persons → der; only die Not has to be learned.",
         "examples": [
           "Angebot",
           "Brot",
@@ -1201,15 +1353,18 @@
         "exceptions": [
           {
             "noun": "Pilot",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           },
           {
             "noun": "Idiot",
-            "article": "der"
+            "article": "der",
+            "reason": "male person → der"
           },
           {
             "noun": "Not",
-            "article": "die"
+            "article": "die",
+            "reason": null
           }
         ]
       },
@@ -1233,15 +1388,18 @@
         "exceptions": [
           {
             "noun": "Firma",
-            "article": "die"
+            "article": "die",
+            "reason": null
           },
           {
             "noun": "Puma",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Lama",
-            "article": "der/das"
+            "article": "der/das",
+            "reason": null
           }
         ]
       },
@@ -1265,15 +1423,18 @@
         "exceptions": [
           {
             "noun": "Tango",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Kakao",
-            "article": "der"
+            "article": "der",
+            "reason": null
           },
           {
             "noun": "Disco",
-            "article": "die"
+            "article": "die",
+            "reason": null
           }
         ]
       }
@@ -1282,7 +1443,7 @@
   "compoundRule": {
     "note": "A compound takes the gender of its LAST noun: das Werk+Zeug, die Auto+Bahn, der Apfel+Kuchen. When in doubt about a long word, look at its final part.",
     "accuracy": 99.6,
-    "count": 15378,
+    "count": 15425,
     "examples": [
       {
         "noun": "Fußball",
