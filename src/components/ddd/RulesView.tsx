@@ -503,7 +503,9 @@ function CompoundHeads({ article }: { article: Article }) {
                     className="min-h-11 h-auto rounded-xl px-2 py-1 font-extrabold lowercase leading-none hover:bg-card/50 focus-visible:ring-2"
                     style={{
                       fontSize: `${18 + head.sizeWeight * 22}px`,
-                      color: `color-mix(in oklch, var(--${meta.color}) ${shadeStrength}%, var(--foreground))`,
+                      color: article === "der"
+                        ? `var(--${meta.color})`
+                        : `color-mix(in oklch, var(--${meta.color}) ${shadeStrength}%, var(--foreground))`,
                       marginInline: `${(seed >>> 8) % 7}px`,
                       marginBlock: `${(seed >>> 12) % 5}px`,
                       transform: `translate(${(seed % 13) - 6}px, ${((seed >>> 4) % 15) - 7}px)`,
