@@ -510,6 +510,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           }}
         />
         {heads.map((h, i) => {
+          const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
           const { x, y } = positions[i];
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
@@ -532,14 +533,13 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 marginTop: -BUBBLE / 2,
                 x,
                 y,
-                backgroundColor: `var(--${meta.soft})`,
-                color: `var(--${meta.color})`,
+                backgroundColor: color,
                 zIndex: isActive ? 5 : 1,
                 boxShadow: isActive
-                  ? `0 0 0 2px var(--${meta.color})`
-                  : "none",
+                  ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
+                  : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
               }}
-              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight outline-none"
+              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
             >
               <span className="px-1" style={{ fontSize: 14 }}>
                 {lower}
