@@ -463,6 +463,9 @@ const BUBBLE_PALETTE = [
 function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const sortedHeads = [...heads].sort((a, b) =>
+    a.head.localeCompare(b.head, "de", { sensitivity: "base" }),
+  );
 
   if (heads.length === 0) {
     return (
@@ -476,7 +479,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
   const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
   const GOLDEN = Math.PI * (3 - Math.sqrt(5));
   const scale = BUBBLE * SPACING;
-  const positions = heads.map((_, i) => {
+  const positions = sortedHeads.map((_, i) => {
     const r = scale * Math.sqrt(i + 0.5);
     const theta = i * GOLDEN;
     return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
@@ -484,7 +487,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
   const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
   const boxSize = Math.ceil(outerR * 2);
 
-  const active = activeIdx !== null ? heads[activeIdx] : null;
+  const active = activeIdx !== null ? sortedHeads[activeIdx] : null;
 
   return (
     <div className="mt-5 px-4">
@@ -509,7 +512,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
             border: `2px dashed var(--${meta.color})`,
           }}
         />
-        {heads.map((h, i) => {
+        {sortedHeads.map((h, i) => {
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
           const { x, y } = positions[i];
