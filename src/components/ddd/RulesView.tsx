@@ -463,6 +463,9 @@ const BUBBLE_PALETTE = [
 function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const orderedHeads = [...heads].sort((a, b) =>
+    a.head.localeCompare(b.head, "de", { sensitivity: "base" }),
+  );
 
   if (heads.length === 0) {
     return (
@@ -480,11 +483,15 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
     const r = scale * Math.sqrt(i + 0.5);
     const theta = i * GOLDEN;
     return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
+  }).sort((a, b) => {
+    const clockwiseFromTop = (point: { x: number; y: number }) =>
+      (Math.atan2(point.x, -point.y) + Math.PI * 2) % (Math.PI * 2);
+    return clockwiseFromTop(a) - clockwiseFromTop(b);
   });
   const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
   const boxSize = Math.ceil(outerR * 2);
 
-  const active = activeIdx !== null ? heads[activeIdx] : null;
+  const active = activeIdx !== null ? orderedHeads[activeIdx] : null;
 
   return (
     <div className="mt-5 px-4">
@@ -509,7 +516,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
             border: `2px dashed var(--${meta.color})`,
           }}
         />
-        {heads.map((h, i) => {
+        {orderedHeads.map((h, i) => {
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
           const { x, y } = positions[i];
