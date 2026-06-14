@@ -522,6 +522,11 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           const isActive = activeIdx === i;
           const { x, y } = positions[i];
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
+          const MIN = 18;
+          const MAX = 40;
+          const fontSize = MIN + h.sizeWeight * (MAX - MIN);
+          const padV = Math.round(2 + h.sizeWeight * 6);   // 2px → 8px
+          const padH = Math.round(8 + h.sizeWeight * 12);  // 8px → 20px
           return (
             <motion.div
               key={h.head}
@@ -545,8 +550,8 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none whitespace-nowrap"
                 style={{
                   backgroundColor: color,
-                  fontSize: 14,
-                  padding: "2px 8px",
+                  fontSize,
+                  padding: `${padV}px ${padH}px`,
                   boxShadow: isActive
                     ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
                     : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
