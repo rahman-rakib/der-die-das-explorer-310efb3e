@@ -646,7 +646,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       </p>
 
       <div
-        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-1 gap-y-1 px-2 py-3"
+        className="relative mx-auto flex max-w-2xl flex-wrap items-start justify-center gap-x-3 gap-y-3 px-5 py-5"
         style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
         {sortedRules.map((r, i) => {
@@ -654,8 +654,8 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
           const MIN = 12;
           const MAX = 30;
           const fontSize = MIN + r.sizeWeight * (MAX - MIN);
-          const padV = Math.round(1 + r.sizeWeight * 2);
-          const padH = Math.round(3 + r.sizeWeight * 5);
+          const padV = Math.round(3 + r.sizeWeight * 5);   // 3px → 8px
+          const padH = Math.round(6 + r.sizeWeight * 10); // 6px → 16px
           return (
             <motion.div
               key={r.suffix}
@@ -663,9 +663,9 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${((i * 13 + (i % 3) * 5) % 13 - 3)}px`,
-                marginBottom: `${((i * 7 + (i % 5) * 3) % 11 + 1)}px`,
-                marginLeft: `${((i * 11) % 5 - 2) * 2}px`,
+                marginTop: `${((i * 13 + (i % 3) * 5) % 17 - 5)}px`,
+                marginBottom: `${((i * 7 + (i % 5) * 3) % 15 + 3)}px`,
+                marginLeft: `${((i * 11) % 9 - 3) * 2}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
