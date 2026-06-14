@@ -515,36 +515,38 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           const { x, y } = positions[i];
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
           return (
-            <motion.button
+            <motion.div
               key={h.head}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
               style={{
                 position: "absolute",
                 left: "50%",
                 top: "50%",
-                width: BUBBLE,
-                height: BUBBLE,
-                marginLeft: -BUBBLE / 2,
-                marginTop: -BUBBLE / 2,
                 x,
                 y,
-                backgroundColor: color,
+                transform: "translate(-50%, -50%)",
                 zIndex: isActive ? 5 : 1,
-                boxShadow: isActive
-                  ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
-                  : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
               }}
-              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
             >
-              <span className="px-1" style={{ fontSize: 14 }}>
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
+                className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none whitespace-nowrap"
+                style={{
+                  backgroundColor: color,
+                  fontSize: 14,
+                  padding: "2px 8px",
+                  boxShadow: isActive
+                    ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
+                    : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
+                }}
+              >
                 {lower}
-              </span>
-            </motion.button>
+              </motion.button>
+            </motion.div>
           );
         })}
 
