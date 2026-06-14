@@ -491,8 +491,8 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
       </p>
 
       <div
-        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-1 gap-y-1 px-2 py-3"
-        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
+        className="relative mx-auto flex max-w-md flex-wrap items-start justify-center px-1 py-1"
+        style={{ backgroundColor: `var(--${meta.soft})` }}
       >
         {sortedHeads.map((h, i) => {
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
@@ -524,12 +524,11 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 style={{
                   backgroundColor: `var(--${meta.soft})`,
                   color: `var(--${meta.color})`,
-                  border: `1.5px solid var(--${meta.color})`,
                   fontSize,
                   padding: `${padV}px ${padH}px`,
                   boxShadow: isActive
-                    ? `0 0 0 3px var(--${meta.color}), 0 8px 20px var(--${meta.soft})`
-                    : `0 3px 8px var(--${meta.color})33, inset 0 -4px 8px rgba(0,0,0,0.06), inset 0 4px 8px rgba(255,255,255,0.25)`,
+                    ? `0 0 0 2px var(--${meta.color})`
+                    : 'none',
                 }}
               >
                 {lower}
