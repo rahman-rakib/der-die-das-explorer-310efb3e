@@ -43,7 +43,6 @@ interface CompoundHead {
   meaning?: string;
   accuracy: number;
   count: number;
-  sizeWeight: number;
   exceptions?: string;
   examples: CompoundExample[];
 }
@@ -474,10 +473,6 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
   }
 
   const BUBBLE = 64;
-  const MIN_BUBBLE = 38;
-  const MAX_BUBBLE = 78;
-  const MIN_FONT = 18;
-  const MAX_FONT = 28;
   const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
   const GOLDEN = Math.PI * (3 - Math.sqrt(5));
   const scale = BUBBLE * SPACING;
@@ -517,9 +512,6 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
         {heads.map((h, i) => {
           const isActive = activeIdx === i;
           const { x, y } = positions[i];
-          const weight = Math.max(0, Math.min(1, h.sizeWeight));
-          const bubbleSize = MIN_BUBBLE + weight * (MAX_BUBBLE - MIN_BUBBLE);
-          const fontSize = MIN_FONT + weight * (MAX_FONT - MIN_FONT);
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
           return (
             <motion.button
@@ -534,10 +526,10 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 position: "absolute",
                 left: "50%",
                 top: "50%",
-                width: bubbleSize,
-                height: bubbleSize,
-                marginLeft: -bubbleSize / 2,
-                marginTop: -bubbleSize / 2,
+                width: BUBBLE,
+                height: BUBBLE,
+                marginLeft: -BUBBLE / 2,
+                marginTop: -BUBBLE / 2,
                 x,
                 y,
                 backgroundColor: `var(--${meta.soft})`,
@@ -549,7 +541,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               }}
               className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight outline-none"
             >
-              <span className="px-1" style={{ fontSize }}>
+              <span className="px-1" style={{ fontSize: 14 }}>
                 {lower}
               </span>
             </motion.button>
