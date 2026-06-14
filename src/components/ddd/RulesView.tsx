@@ -491,7 +491,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
       </p>
 
       <div
-        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-3 px-4 py-5"
+        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-1 gap-y-1 px-2 py-3"
         style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
         {sortedHeads.map((h, i) => {
@@ -501,8 +501,8 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           const MIN = 12;
           const MAX = 30;
           const fontSize = MIN + h.sizeWeight * (MAX - MIN);
-          const padV = Math.round(1 + h.sizeWeight * 4);   // 1px → 5px
-          const padH = Math.round(6 + h.sizeWeight * 8);  // 6px → 14px
+          const padV = Math.round(1 + h.sizeWeight * 2);   // 1px → 3px
+          const padH = Math.round(3 + h.sizeWeight * 5);  // 3px → 8px
           return (
             <motion.div
               key={h.head}
@@ -510,9 +510,9 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${(i * 13 + (i % 3) * 5) % 19 - 4}px`,
-                marginBottom: `${(i * 7 + (i % 5) * 3) % 17 + 2}px`,
-                marginLeft: `${((i * 11) % 7 - 3) * 2}px`,
+                marginTop: `${((i * 13 + (i % 3) * 5) % 13 - 3)}px`,
+                marginBottom: `${((i * 7 + (i % 5) * 3) % 11 + 1)}px`,
+                marginLeft: `${((i * 11) % 5 - 2) * 2}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
