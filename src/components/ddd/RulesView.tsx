@@ -498,11 +498,11 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
-          const MIN = 18;
-          const MAX = 40;
+          const MIN = 12;
+          const MAX = 30;
           const fontSize = MIN + h.sizeWeight * (MAX - MIN);
-          const padV = Math.round(2 + h.sizeWeight * 6);   // 2px → 8px
-          const padH = Math.round(8 + h.sizeWeight * 12);  // 8px → 20px
+          const padV = Math.round(1 + h.sizeWeight * 4);   // 1px → 5px
+          const padH = Math.round(6 + h.sizeWeight * 8);  // 6px → 14px
           return (
             <motion.div
               key={h.head}
