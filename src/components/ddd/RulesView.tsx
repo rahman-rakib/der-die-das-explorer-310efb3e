@@ -24,8 +24,11 @@ interface Rule {
   overriddenBy: string[];
   exceptionCount: number;
   note: string;
+  kind?: "suffix" | "pattern" | "marginal";
+  why?: string;
   examples: string[];
   exceptions: Exception[];
+  sizeWeight: number;
 }
 
 const RAW_RULES = rulesData as { rules: Record<Article, Omit<Rule, "article">[]> };
@@ -610,6 +613,9 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
 function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const sortedRules = [...rules].sort((a, b) =>
+    a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }),
+  );
 
   if (rules.length === 0) {
     return (
@@ -619,28 +625,13 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
     );
   }
 
-  // Size bubbles by tier so ironclad reads as biggest/most-trustworthy.
-  const tierSize: Record<Tier, number> = { ironclad: 76, strong: 66, moderate: 58, weak: 50 };
-  const sizes = rules.map(r => tierSize[r.tier] ?? 58);
-  const maxSize = Math.max(...sizes);
-  const SPACING = 0.58;
-  const GOLDEN = Math.PI * (3 - Math.sqrt(5));
-  const scale = maxSize * SPACING;
-  const positions = rules.map((_, i) => {
-    const r = scale * Math.sqrt(i + 0.5);
-    const theta = i * GOLDEN;
-    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
-  });
-  const outerR = scale * Math.sqrt(rules.length) + maxSize / 2 + 6;
-  const boxSize = Math.ceil(outerR * 2);
-
-  const active = activeIdx !== null ? rules[activeIdx] : null;
+  const active = activeIdx !== null ? sortedRules[activeIdx] : null;
 
   return (
     <div className="mt-5 px-4">
       <div className="mb-2 flex items-center gap-2">
         <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-          Suffix rules · bigger = stronger
+          Ending rules · bigger = more common
         </span>
         <span className="h-px flex-1 bg-border" />
       </div>
@@ -649,52 +640,48 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       </p>
 
       <div
-        className="relative mx-auto"
-        style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
+        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-1 gap-y-1 px-2 py-3"
+        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
-        <div
-          className="absolute inset-0 rounded-full shadow-inner"
-          style={{
-            backgroundColor: `var(--${meta.soft})`,
-            border: `2px dashed var(--${meta.color})`,
-          }}
-        />
-        {rules.map((r, i) => {
-          const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
+        {sortedRules.map((r, i) => {
           const isActive = activeIdx === i;
-          const { x, y } = positions[i];
-          const size = sizes[i];
+          const MIN = 12;
+          const MAX = 30;
+          const fontSize = MIN + r.sizeWeight * (MAX - MIN);
+          const padV = Math.round(1 + r.sizeWeight * 2);
+          const padH = Math.round(3 + r.sizeWeight * 5);
           return (
-            <motion.button
+            <motion.div
               key={r.suffix}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
               style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                width: size,
-                height: size,
-                marginLeft: -size / 2,
-                marginTop: -size / 2,
-                x,
-                y,
-                backgroundColor: color,
+                marginTop: `${((i * 13 + (i % 3) * 5) % 13 - 3)}px`,
+                marginBottom: `${((i * 7 + (i % 5) * 3) % 11 + 1)}px`,
+                marginLeft: `${((i * 11) % 5 - 2) * 2}px`,
                 zIndex: isActive ? 5 : 1,
-                boxShadow: isActive
-                  ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
-                  : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
               }}
-              className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none"
             >
-              <span className="px-1" style={{ fontSize: 14 }}>
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
+                className="flex items-center justify-center whitespace-nowrap rounded-full text-center font-extrabold leading-tight outline-none"
+                style={{
+                  backgroundColor: `var(--${meta.soft})`,
+                  color: `var(--${meta.color})`,
+                  border: `1.5px solid var(--${meta.color})`,
+                  fontSize,
+                  padding: `${padV}px ${padH}px`,
+                  boxShadow: isActive
+                    ? `0 0 0 3px var(--${meta.color}), 0 8px 20px var(--${meta.soft})`
+                    : `0 3px 8px var(--${meta.color})33, inset 0 -4px 8px rgba(0,0,0,0.06), inset 0 4px 8px rgba(255,255,255,0.25)`,
+                }}
+              >
                 {r.suffix}
-              </span>
-            </motion.button>
+              </motion.button>
+            </motion.div>
           );
         })}
 
@@ -706,9 +693,9 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
+                transition={{ duration: 0.2 }}
                 onClick={() => setActiveIdx(null)}
-                className="fixed inset-0 z-40 bg-black/30"
+                className="absolute inset-0 z-10 rounded-[3rem] bg-background/70 backdrop-blur-[3px]"
               />
               <motion.div
                 key={active.suffix}
@@ -716,7 +703,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92 }}
                 transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
-                className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
+                className="absolute left-1/2 top-1/2 z-20 max-h-[85vh] w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
                 style={{ borderColor: `var(--${meta.color})` }}
               >
                 <div
