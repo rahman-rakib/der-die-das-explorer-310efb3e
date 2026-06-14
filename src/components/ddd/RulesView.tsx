@@ -479,11 +479,15 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
   const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
   const GOLDEN = Math.PI * (3 - Math.sqrt(5));
   const scale = BUBBLE * SPACING;
-  const positions = sortedHeads.map((_, i) => {
+  const rawPositions = sortedHeads.map((_, i) => {
     const r = scale * Math.sqrt(i + 0.5);
     const theta = i * GOLDEN;
     return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
   });
+  // assign top-most raw positions to earliest alphabet, bottom-most to latest
+  const positions = [...rawPositions]
+    .sort((a, b) => a.y - b.y)
+    .map((p) => ({ x: p.x, y: p.y }));
   const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
   const boxSize = Math.ceil(outerR * 2);
 
