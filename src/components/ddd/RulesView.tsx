@@ -492,7 +492,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
 
       <div
         className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-1 gap-y-1 px-2 py-3"
-        style={{ backgroundColor: `var(--${meta.soft})` }}
+        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
         {sortedHeads.map((h, i) => {
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
