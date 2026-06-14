@@ -476,22 +476,6 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
     );
   }
 
-  const BUBBLE = 64;
-  const SPACING = 0.54; // phyllotaxis scale factor (~0.5 = touching)
-  const GOLDEN = Math.PI * (3 - Math.sqrt(5));
-  const scale = BUBBLE * SPACING;
-  const rawPositions = sortedHeads.map((_, i) => {
-    const r = scale * Math.sqrt(i + 0.5);
-    const theta = i * GOLDEN;
-    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
-  });
-  // assign top-most raw positions to earliest alphabet, bottom-most to latest
-  const positions = [...rawPositions]
-    .sort((a, b) => a.y - b.y)
-    .map((p) => ({ x: p.x, y: p.y }));
-  const outerR = scale * Math.sqrt(heads.length) + BUBBLE / 2 + 6;
-  const boxSize = Math.ceil(outerR * 2);
-
   const active = activeIdx !== null ? sortedHeads[activeIdx] : null;
 
   return (
@@ -507,20 +491,12 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
       </p>
 
       <div
-        className="relative mx-auto"
-        style={{ width: boxSize, height: boxSize, maxWidth: "100%" }}
+        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-3 px-4 py-5"
+        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
-        <div
-          className="absolute inset-0 rounded-full shadow-inner"
-          style={{
-            backgroundColor: `var(--${meta.soft})`,
-            border: `2px dashed var(--${meta.color})`,
-          }}
-        />
         {sortedHeads.map((h, i) => {
           const color = BUBBLE_PALETTE[i % BUBBLE_PALETTE.length];
           const isActive = activeIdx === i;
-          const { x, y } = positions[i];
           const lower = h.head.charAt(0).toLowerCase() + h.head.slice(1);
           const MIN = 18;
           const MAX = 40;
@@ -534,12 +510,8 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                x,
-                y,
-                transform: "translate(-50%, -50%)",
+                marginTop: `${(i * 7) % 13}px`,
+                marginBottom: `${12 - ((i * 7) % 13)}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
