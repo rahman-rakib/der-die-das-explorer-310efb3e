@@ -127,7 +127,7 @@ export function RulesView() {
                   />
                 )}
                 <span className="relative flex items-center justify-center gap-1.5">
-                  <span>{m.icon}</span>{t}
+                  <span className={t === "das" ? "relative -left-1 -top-0.5" : undefined}>{m.icon}</span>{t}
                 </span>
               </button>
             );
@@ -173,7 +173,7 @@ export function RulesView() {
             ? "thematic groups"
             : view === "compound"
               ? "compound heads — gender of the last noun wins"
-              : "suffix rules, strongest first"}
+              : "ending rules — bigger means more common"}
         </p>
       </div>
 
@@ -355,6 +355,12 @@ function RuleCard({ rule, embedded = false }: { rule: Rule; embedded?: boolean }
       {rule.note && (
         <p className="mx-4 mt-3 rounded-xl bg-muted px-3 py-2 text-xs italic leading-relaxed">
           💡 {rule.note}
+        </p>
+      )}
+
+      {rule.why && (
+        <p className="mx-4 mt-2 rounded-xl bg-muted/60 px-3 py-2 text-xs leading-relaxed">
+          <span className="font-bold">Why:</span> {rule.why}
         </p>
       )}
 
