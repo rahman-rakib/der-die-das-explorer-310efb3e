@@ -510,8 +510,9 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${(i * 7) % 13}px`,
-                marginBottom: `${12 - ((i * 7) % 13)}px`,
+                marginTop: `${(i * 13 + (i % 3) * 5) % 19 - 4}px`,
+                marginBottom: `${(i * 7 + (i % 5) * 3) % 17 + 2}px`,
+                marginLeft: `${((i * 11) % 7 - 3) * 2}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
