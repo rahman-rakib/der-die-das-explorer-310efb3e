@@ -520,14 +520,16 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={(e) => { e.stopPropagation(); setActiveIdx(isActive ? null : i); }}
-                className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight text-white outline-none whitespace-nowrap"
+                className="flex items-center justify-center rounded-full text-center font-extrabold leading-tight outline-none whitespace-nowrap"
                 style={{
-                  backgroundColor: color,
+                  backgroundColor: `var(--${meta.soft})`,
+                  color: `var(--${meta.color})`,
+                  border: `1.5px solid var(--${meta.color})`,
                   fontSize,
                   padding: `${padV}px ${padH}px`,
                   boxShadow: isActive
-                    ? `0 0 0 3px var(--${meta.color}), 0 8px 20px ${color}66`
-                    : `0 3px 8px ${color}55, inset 0 -4px 8px rgba(0,0,0,0.12), inset 0 4px 8px rgba(255,255,255,0.35)`,
+                    ? `0 0 0 3px var(--${meta.color}), 0 8px 20px var(--${meta.soft})`
+                    : `0 3px 8px var(--${meta.color})33, inset 0 -4px 8px rgba(0,0,0,0.06), inset 0 4px 8px rgba(255,255,255,0.25)`,
                 }}
               >
                 {lower}
