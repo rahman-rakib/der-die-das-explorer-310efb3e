@@ -491,7 +491,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
       </p>
 
       <div
-        className="relative mx-auto flex max-w-md flex-wrap items-start justify-around gap-x-1 gap-y-1 px-2 py-3"
+        className="relative mx-auto flex max-w-md flex-wrap items-start justify-center gap-0 px-1 py-1"
         style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
         {sortedHeads.map((h, i) => {
@@ -501,8 +501,8 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
           const MIN = 12;
           const MAX = 30;
           const fontSize = MIN + h.sizeWeight * (MAX - MIN);
-          const padV = Math.round(1 + h.sizeWeight * 2);   // 1px → 3px
-          const padH = Math.round(3 + h.sizeWeight * 5);  // 3px → 8px
+          const padV = Math.round(1 + h.sizeWeight * 1);   // 1px → 2px
+          const padH = Math.round(2 + h.sizeWeight * 3);  // 2px → 5px
           return (
             <motion.div
               key={h.head}
@@ -510,9 +510,10 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${((i * 13 + (i % 3) * 5) % 13 - 3)}px`,
-                marginBottom: `${((i * 7 + (i % 5) * 3) % 11 + 1)}px`,
-                marginLeft: `${((i * 11) % 5 - 2) * 2}px`,
+                marginTop: `${((i * 13 + (i % 3) * 5) % 9 - 2)}px`,
+                marginBottom: `${((i * 7 + (i % 5) * 3) % 7 - 1)}px`,
+                marginLeft: `${((i * 11) % 5 - 2)}px`,
+                marginRight: `${((i * 13) % 5 - 2)}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
@@ -524,7 +525,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 style={{
                   backgroundColor: `var(--${meta.soft})`,
                   color: `var(--${meta.color})`,
-                  border: `1.5px solid var(--${meta.color})`,
+                  border: "none",
                   fontSize,
                   padding: `${padV}px ${padH}px`,
                   boxShadow: isActive
