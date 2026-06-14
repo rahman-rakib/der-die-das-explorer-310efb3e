@@ -1,7 +1,7 @@
 {
-  "ruleSet": "suffix-based",
+  "ruleSet": "endings",
   "howToRead": "A word can match several endings — the LONGEST one wins (it is the most specific). 'Nation' matches -ion and -tion -> use -tion (die, 99.8%); 'Biologie' matches -e and -ie -> use -ie (die, 97%). Each ending's `overriddenBy` lists the more-specific endings that beat it, so overlapping endings (-ion/-tion/-sion, -e/-ie, -eit/-heit/-keit) can be shown together as a family rather than scattered.",
-  "scope": "MORPHOLOGICAL rules only: word-ending (suffix) rules + the compound-head rule. This file does NOT contain the app's THEMATIC/semantic rules (e.g. car brands -> der, days/months/seasons -> der, male people & animals -> der, weather -> der). Those are a separate rule type the app defines on its own and MUST be left untouched — these suffix-based rules are meant to sit alongside them, not replace them.",
+  "scope": "The 'Endings' rule type: word-ending rules (some are genuine derivational suffixes with a `why`, others are just spelling patterns — see each ending's `kind`) + the compound rule. This file does NOT contain the app's THEMES (semantic rules: car brands -> der, days/months/seasons -> der, male people & animals -> der, weather -> der). Themes are a separate rule type the app defines on its own and MUST be left untouched — Endings sit alongside Themes and Compounds, not replace them.",
   "source": "german-nouns lexicon (~93k nouns, Wiktionary); refined by morphological rules. Compound-head split uses a frequency floor (wordfreq 3.1.1).",
   "tiers": {
     "ironclad": ">= 95.0% — trust it",
@@ -9,6 +9,7 @@
     "moderate": "68.0–85.0% — leans this way, many exceptions",
     "weak": "< 68.0% — barely a pattern, memorise individually"
   },
+  "sizeWeight": "Per-ending display weight in [0,1] for word-cloud-style sizing: 0 = fewest COMMON words covered, 1 = most. Based on `frequentCount` (common single-word nouns whose longest matching ending is this one, Zipf>=3.0). GLOBALLY √-scaled across all genders. INDEPENDENT of tier/accuracy (rule strength) — size = how common the ending is, NOT how reliable. Map to a font size as MIN + weight*(MAX-MIN).",
   "rules": {
     "der": [
       {
@@ -18,9 +19,12 @@
         "tier": "ironclad",
         "count": 563,
         "smallSample": false,
+        "frequentCount": 51,
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "-ismus → der (Kapitalismus). No exceptions.",
+        "kind": "suffix",
+        "why": "Greek-Latin abstract suffix → der (Kapitalismus).",
         "examples": [
           "Tourismus",
           "Sozialismus",
@@ -28,7 +32,8 @@
           "Organismus",
           "Optimismus"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.132
       },
       {
         "suffix": "-aum",
@@ -37,9 +42,12 @@
         "tier": "ironclad",
         "count": 308,
         "smallSample": false,
+        "frequentCount": 30,
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "→ der (Baum, Raum, Traum). Virtually no exceptions.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Raum",
           "Traum",
@@ -47,7 +55,8 @@
           "Weltraum",
           "Schaum"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.091
       },
       {
         "suffix": "-uf",
@@ -56,9 +65,12 @@
         "tier": "ironclad",
         "count": 246,
         "smallSample": false,
+        "frequentCount": 35,
         "overriddenBy": [],
         "exceptionCount": 1,
         "note": "→ der (Beruf, Ruf, Lauf, Anlauf).",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Lauf",
           "Beruf",
@@ -66,7 +78,8 @@
           "Ablauf",
           "Anruf"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.102
       },
       {
         "suffix": "-pf",
@@ -75,9 +88,12 @@
         "tier": "ironclad",
         "count": 283,
         "smallSample": false,
+        "frequentCount": 27,
         "overriddenBy": [],
         "exceptionCount": 2,
         "note": "→ der (Kopf, Topf, Kampf, Knopf).",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Kopf",
           "Kampf",
@@ -91,7 +107,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.084
       },
       {
         "suffix": "-itt",
@@ -100,9 +117,12 @@
         "tier": "ironclad",
         "count": 148,
         "smallSample": false,
+        "frequentCount": 27,
         "overriddenBy": [],
         "exceptionCount": 2,
         "note": "→ der (Schritt, Schnitt, Tritt).",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Schritt",
           "Tritt",
@@ -110,7 +130,8 @@
           "Schnitt",
           "Ritt"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.084
       },
       {
         "suffix": "-ist",
@@ -119,9 +140,12 @@
         "tier": "ironclad",
         "count": 466,
         "smallSample": false,
+        "frequentCount": 37,
         "overriddenBy": [],
         "exceptionCount": 9,
         "note": "Agent nouns → der (Journalist). The -frist family (die) is split off into its own rule.",
+        "kind": "suffix",
+        "why": "Agent suffix naming a person → der (Journalist).",
         "examples": [
           "Polizist",
           "Journalist",
@@ -140,7 +164,8 @@
             "article": "die",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.106
       },
       {
         "suffix": "-eur",
@@ -149,9 +174,12 @@
         "tier": "ironclad",
         "count": 144,
         "smallSample": false,
+        "frequentCount": 14,
         "overriddenBy": [],
         "exceptionCount": 5,
         "note": "French agent nouns → der (Friseur, Ingenieur, Masseur).",
+        "kind": "suffix",
+        "why": "French agent suffix naming a person → der (Friseur).",
         "examples": [
           "Regisseur",
           "Ingenieur",
@@ -170,7 +198,8 @@
             "article": "die",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.049
       },
       {
         "suffix": "-ent",
@@ -179,11 +208,14 @@
         "tier": "ironclad",
         "count": 206,
         "smallSample": false,
+        "frequentCount": 29,
         "overriddenBy": [
           "-ment"
         ],
         "exceptionCount": 8,
         "note": "Agent nouns → der (Student). The neuter -ment family is split off; das Talent/Patent remain rare exceptions.",
+        "kind": "suffix",
+        "why": "Latin agent/person suffix → der (Student).",
         "examples": [
           "Präsident",
           "Patient",
@@ -207,7 +239,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.089
       },
       {
         "suffix": "-ig",
@@ -216,9 +249,12 @@
         "tier": "ironclad",
         "count": 145,
         "smallSample": false,
+        "frequentCount": 13,
         "overriddenBy": [],
         "exceptionCount": 6,
         "note": "→ der (Honig, König). Cardinal numbers (-zig/-ßig) are split off; das Reisig is an exception.",
+        "kind": "marginal",
+        "why": "Productive as an ADJECTIVE suffix; as a noun ending it's lexicalised (der König, Honig).",
         "examples": [
           "König",
           "Honig",
@@ -226,7 +262,8 @@
           "Essig",
           "Pfennig"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.046
       },
       {
         "suffix": "-ling",
@@ -235,9 +272,12 @@
         "tier": "ironclad",
         "count": 328,
         "smallSample": false,
+        "frequentCount": 23,
         "overriddenBy": [],
         "exceptionCount": 14,
         "note": "Diminutive/agent → der (Frühling, Lehrling). Borrowed English -ing gerunds (Bowling, Styling) are das and remain exceptions.",
+        "kind": "suffix",
+        "why": "Native noun-forming suffix → der (Frühling, Lehrling).",
         "examples": [
           "Frühling",
           "Liebling",
@@ -261,7 +301,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.075
       },
       {
         "suffix": "-ant",
@@ -270,9 +311,12 @@
         "tier": "strong",
         "count": 206,
         "smallSample": false,
+        "frequentCount": 25,
         "overriddenBy": [],
         "exceptionCount": 16,
         "note": "Agent nouns → der (Demonstrant). das Restaurant / Quant compounds and French loans are exceptions.",
+        "kind": "suffix",
+        "why": "Latin agent suffix → der (Demonstrant).",
         "examples": [
           "Elefant",
           "Praktikant",
@@ -296,7 +340,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.08
       },
       {
         "suffix": "-är",
@@ -305,9 +350,12 @@
         "tier": "strong",
         "count": 89,
         "smallSample": false,
+        "frequentCount": 15,
         "overriddenBy": [],
         "exceptionCount": 7,
         "note": "→ der (Aktionär, Millionär, Sekretär). das Quartär is an exception.",
+        "kind": "suffix",
+        "why": "French/Latin person suffix → der (Millionär).",
         "examples": [
           "Bär",
           "Sekretär",
@@ -326,7 +374,8 @@
             "article": "die",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.052
       },
       {
         "suffix": "-ich",
@@ -335,9 +384,12 @@
         "tier": "strong",
         "count": 265,
         "smallSample": false,
+        "frequentCount": 28,
         "overriddenBy": [],
         "exceptionCount": 22,
         "note": "→ der (Teppich). Exceptions are compounds of das Reich (Königreich, Tierreich).",
+        "kind": "marginal",
+        "why": "A historical suffix, now dead — gender is lexicalised (der Teppich).",
         "examples": [
           "Teppich",
           "Pfirsich",
@@ -351,7 +403,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.087
       },
       {
         "suffix": "-or",
@@ -360,9 +413,12 @@
         "tier": "strong",
         "count": 617,
         "smallSample": false,
+        "frequentCount": 88,
         "overriddenBy": [],
         "exceptionCount": 65,
         "note": "→ der (Doktor, Motor, Professor). das Labor / das Tor are exceptions.",
+        "kind": "suffix",
+        "why": "Latin agent/instrument suffix → der (Doktor, Motor).",
         "examples": [
           "Autor",
           "Professor",
@@ -386,7 +442,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.186
       },
       {
         "suffix": "-er",
@@ -395,9 +452,12 @@
         "tier": "moderate",
         "count": 10162,
         "smallSample": false,
+        "frequentCount": 1494,
         "overriddenBy": [],
         "exceptionCount": 2109,
         "note": "Agent nouns → der (Lehrer, Bäcker). Most exceptions follow ANOTHER rule, so reason before memorising: female people → die (Mutter, Tochter, Schwester); non-agent things → das (Wasser, Messer, Fenster, Zimmer). The only ones to simply memorise are feminine for no reason: die Butter, Leiter, Feder, Nummer, Mauer, Steuer.",
+        "kind": "suffix",
+        "why": "Agent/instrument suffix → der (Lehrer, Computer). Root-final -er like Wasser/Mutter is NOT this suffix.",
         "examples": [
           "Schüler",
           "Lehrer",
@@ -466,7 +526,8 @@
             "article": "die",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.9
       },
       {
         "suffix": "-kt",
@@ -475,9 +536,12 @@
         "tier": "moderate",
         "count": 514,
         "smallSample": false,
+        "frequentCount": 73,
         "overriddenBy": [],
         "exceptionCount": 124,
         "note": "Leans der (Punkt, Markt, Akt) — but Latin neuters das Produkt/Objekt/Projekt are a big exception group.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Punkt",
           "Markt",
@@ -489,19 +553,25 @@
           {
             "noun": "Produkt",
             "article": "das",
-            "reason": null
+            "reason": "Latin neuter → das"
           },
           {
             "noun": "Objekt",
             "article": "das",
-            "reason": null
+            "reason": "Latin neuter → das"
           },
           {
             "noun": "Projekt",
             "article": "das",
-            "reason": null
+            "reason": "Latin neuter → das"
+          },
+          {
+            "noun": "Insekt",
+            "article": "das",
+            "reason": "Latin neuter → das"
           }
-        ]
+        ],
+        "sizeWeight": 0.166
       }
     ],
     "die": [
@@ -512,9 +582,12 @@
         "tier": "ironclad",
         "count": 782,
         "smallSample": false,
+        "frequentCount": 77,
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "Latin -tät → die (Universität, Qualität). No exceptions.",
+        "kind": "suffix",
+        "why": "Latin abstract suffix → die (Universität, Qualität).",
         "examples": [
           "Universität",
           "Qualität",
@@ -522,7 +595,8 @@
           "Identität",
           "Aktivität"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.172
       },
       {
         "suffix": "-keit",
@@ -531,9 +605,12 @@
         "tier": "ironclad",
         "count": 1001,
         "smallSample": false,
+        "frequentCount": 138,
         "overriddenBy": [],
         "exceptionCount": 1,
         "note": "Abstract nouns → die (Möglichkeit). Very reliable.",
+        "kind": "suffix",
+        "why": "Native suffix forming feminine abstract nouns → die (Möglichkeit).",
         "examples": [
           "Möglichkeit",
           "Geschwindigkeit",
@@ -541,7 +618,8 @@
           "Schwierigkeit",
           "Höflichkeit"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.244
       },
       {
         "suffix": "-tion/-sion",
@@ -550,9 +628,12 @@
         "tier": "ironclad",
         "count": 1619,
         "smallSample": false,
+        "frequentCount": 249,
         "overriddenBy": [],
         "exceptionCount": 7,
         "note": "Both → die (Nation, Information, Diskussion, Explosion). NB: bare -ion alone is only ~60% reliable — see the separate -ion rule.",
+        "kind": "suffix",
+        "why": "Latin action-noun suffix → die (Nation, Explosion).",
         "examples": [
           "Situation",
           "Version",
@@ -560,7 +641,8 @@
           "Diskussion",
           "Reaktion"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.342
       },
       {
         "suffix": "-ung",
@@ -569,9 +651,12 @@
         "tier": "ironclad",
         "count": 5624,
         "smallSample": false,
+        "frequentCount": 1082,
         "overriddenBy": [],
         "exceptionCount": 47,
         "note": "→ die (Zeitung, Meinung). A handful of masculine exceptions (der Ursprung, der Schwung).",
+        "kind": "suffix",
+        "why": "Suffix forming feminine deverbal nouns → die (Zeitung, Meinung).",
         "examples": [
           "Richtung",
           "Meinung",
@@ -595,7 +680,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.76
       },
       {
         "suffix": "-schaft",
@@ -604,9 +690,12 @@
         "tier": "ironclad",
         "count": 544,
         "smallSample": false,
+        "frequentCount": 93,
         "overriddenBy": [],
         "exceptionCount": 6,
         "note": "→ die (Freundschaft, Wissenschaft). Very reliable.",
+        "kind": "suffix",
+        "why": "Native suffix forming feminine collective/abstract nouns → die (Freundschaft).",
         "examples": [
           "Gesellschaft",
           "Mannschaft",
@@ -614,7 +703,8 @@
           "Landschaft",
           "Freundschaft"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.193
       },
       {
         "suffix": "-heit",
@@ -623,9 +713,12 @@
         "tier": "ironclad",
         "count": 523,
         "smallSample": false,
+        "frequentCount": 84,
         "overriddenBy": [],
         "exceptionCount": 9,
         "note": "Abstract nouns → die (Freiheit, Schönheit). Very reliable.",
+        "kind": "suffix",
+        "why": "Native suffix forming feminine abstract nouns → die (Freiheit).",
         "examples": [
           "Wahrheit",
           "Freiheit",
@@ -639,7 +732,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.181
       },
       {
         "suffix": "-tur",
@@ -648,9 +742,12 @@
         "tier": "ironclad",
         "count": 275,
         "smallSample": false,
+        "frequentCount": 40,
         "overriddenBy": [],
         "exceptionCount": 8,
         "note": "→ die (Natur, Kultur, Literatur, Architektur). Very reliable.",
+        "kind": "suffix",
+        "why": "Latin -tura suffix → die (Natur, Kultur).",
         "examples": [
           "Kultur",
           "Natur",
@@ -664,7 +761,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.112
       },
       {
         "suffix": "-ie",
@@ -673,9 +771,12 @@
         "tier": "ironclad",
         "count": 2299,
         "smallSample": false,
+        "frequentCount": 208,
         "overriddenBy": [],
         "exceptionCount": 71,
         "note": "→ die (97%): academic topics (Biologie, Philosophie, Chemie) and most -ie words. Exceptions are loanwords (der Junkie, das Cookie) and das Knie / Genie.",
+        "kind": "suffix",
+        "why": "Greek/French suffix → die (Biologie, Energie).",
         "examples": [
           "Familie",
           "Energie",
@@ -698,8 +799,14 @@
             "noun": "Knie",
             "article": "das",
             "reason": null
+          },
+          {
+            "noun": "Genie",
+            "article": "das",
+            "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.309
       },
       {
         "suffix": "-unft",
@@ -708,9 +815,12 @@
         "tier": "ironclad",
         "count": 32,
         "smallSample": false,
+        "frequentCount": 10,
         "overriddenBy": [],
         "exceptionCount": 1,
         "note": "→ die (Ankunft, Auskunft, Vernunft, Zukunft).",
+        "kind": "marginal",
+        "why": "Bound deverbal form of kommen (ablaut) → die (Zukunft, Ankunft) — not a free suffix.",
         "examples": [
           "Zukunft",
           "Herkunft",
@@ -718,7 +828,8 @@
           "Auskunft",
           "Vernunft"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.035
       },
       {
         "suffix": "-ik",
@@ -727,9 +838,12 @@
         "tier": "strong",
         "count": 897,
         "smallSample": false,
+        "frequentCount": 122,
         "overriddenBy": [],
         "exceptionCount": 52,
         "note": "→ die (Musik, Politik, Physik, Technik).",
+        "kind": "suffix",
+        "why": "Greek suffix → die (Musik, Politik).",
         "examples": [
           "Musik",
           "Politik",
@@ -739,21 +853,27 @@
         ],
         "exceptions": [
           {
+            "noun": "Streik",
+            "article": "der",
+            "reason": null
+          },
+          {
             "noun": "Plastik",
             "article": "das",
             "reason": null
           },
           {
-            "noun": "Streik",
+            "noun": "Katholik",
             "article": "der",
-            "reason": null
+            "reason": "male person → der"
           },
           {
             "noun": "Atlantik",
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.227
       },
       {
         "suffix": "-anz/-enz",
@@ -762,9 +882,12 @@
         "tier": "strong",
         "count": 368,
         "smallSample": false,
+        "frequentCount": 60,
         "overriddenBy": [],
         "exceptionCount": 22,
         "note": "Latin abstract suffix → die (Distanz, Toleranz, Tendenz, Konferenz). Native der Tanz/Kranz/Glanz/Lenz are exceptions.",
+        "kind": "suffix",
+        "why": "Latin abstract suffix → die (Distanz, Tendenz).",
         "examples": [
           "Existenz",
           "Konferenz",
@@ -788,7 +911,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.147
       },
       {
         "suffix": "-e",
@@ -797,11 +921,14 @@
         "tier": "strong",
         "count": 15530,
         "smallSample": false,
+        "frequentCount": 1828,
         "overriddenBy": [
           "-ie"
         ],
         "exceptionCount": 2289,
         "note": "Most nouns ending in -e are die (Schule, Straße, Blume), incl. -ade (Schokolade) and -age (Garage). Exceptions group up: living males → der via the male-people rule (der Junge, Löwe, Affe, Hase); weak-masculine abstracts → der (der Name, Gedanke, Glaube, Wille — and der Name is also a compound head: der Vorname). A few are neuter → das (das Auge, Ende, Interesse) — memorise those, they follow no rule.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Schule",
           "Straße",
@@ -875,7 +1002,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 1.0
       },
       {
         "suffix": "-in",
@@ -884,9 +1012,12 @@
         "tier": "moderate",
         "count": 5675,
         "smallSample": false,
+        "frequentCount": 247,
         "overriddenBy": [],
-        "exceptionCount": 894,
+        "exceptionCount": 890,
         "note": "Words ending in -in lean die — strongly so for the female suffix -erin/-in (Lehrerin, Freundin, Königin). But many are masculine/neuter: der Termin, das Benzin, das Vitamin, das Cholesterin. And der Schein is a compound head → der Führerschein/Gutschein (the head overrides -in).",
+        "kind": "suffix",
+        "why": "Feminine motional suffix -in/-erin → die (Lehrerin, Königin). The bare -in in der Termin/das Benzin is a different, borrowed ending.",
         "examples": [
           "Freundin",
           "Königin",
@@ -906,11 +1037,6 @@
             "reason": "compound head: der Schein"
           },
           {
-            "noun": "Termin",
-            "article": "der",
-            "reason": null
-          },
-          {
             "noun": "Delfin",
             "article": "der",
             "reason": null
@@ -926,6 +1052,36 @@
             "reason": null
           },
           {
+            "noun": "Kamin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Magazin",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Gin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Urin",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Aspirin",
+            "article": "das",
+            "reason": null
+          },
+          {
+            "noun": "Termin",
+            "article": "der",
+            "reason": null
+          },
+          {
             "noun": "Benzin",
             "article": "das",
             "reason": null
@@ -936,11 +1092,12 @@
             "reason": null
           },
           {
-            "noun": "Bein",
-            "article": "das",
+            "noun": "Rubin",
+            "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.341
       },
       {
         "suffix": "-ei",
@@ -949,9 +1106,12 @@
         "tier": "moderate",
         "count": 562,
         "smallSample": false,
+        "frequentCount": 61,
         "overriddenBy": [],
         "exceptionCount": 90,
         "note": "Activity/place nouns → die (Bäckerei, Polizei, Partei). der Brei / das Allerlei are exceptions.",
+        "kind": "suffix",
+        "why": "Native suffix for activities/places → die (Bäckerei, Polizei).",
         "examples": [
           "Polizei",
           "Partei",
@@ -966,16 +1126,22 @@
             "reason": null
           },
           {
-            "noun": "Allerlei",
-            "article": "das",
+            "noun": "Schrei",
+            "article": "der",
             "reason": null
           },
           {
             "noun": "Papagei",
             "article": "der",
             "reason": null
+          },
+          {
+            "noun": "Allerlei",
+            "article": "das",
+            "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.148
       },
       {
         "suffix": "-ur",
@@ -984,12 +1150,15 @@
         "tier": "moderate",
         "count": 234,
         "smallSample": false,
+        "frequentCount": 23,
         "overriddenBy": [
           "-eur",
           "-tur"
         ],
         "exceptionCount": 55,
-        "note": "→ die (Figur, Tour, Spur). -tur (Natur/Kultur) and -eur (der Friseur) split off; musical keys (der C-Dur) and der Schwur remain.",
+        "note": "→ die (Figur, Tour, Spur, Zensur). -tur (Natur/Kultur) and -eur (der Friseur) split off. The common der exceptions are der Flur and der Schwur (and das Dur in music).",
+        "kind": "suffix",
+        "why": "Latin -ura suffix → die (Figur, Zensur).",
         "examples": [
           "Tour",
           "Figur",
@@ -1013,7 +1182,8 @@
             "article": "das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.075
       },
       {
         "suffix": "-ion",
@@ -1022,11 +1192,14 @@
         "tier": "weak",
         "count": 141,
         "smallSample": false,
+        "frequentCount": 22,
         "overriddenBy": [
           "-tion/-sion"
         ],
         "exceptionCount": 58,
         "note": "ALONE, this is barely a coin flip (~59%): der Champion / Spion / Anion. Trust -tion and -sion, NOT bare -ion. Where it IS der, it's usually a male person (der Champion, Spion).",
+        "kind": "suffix",
+        "why": "Latin action-noun suffix → die — but bare -ion is unreliable (der Spion/Champion are persons).",
         "examples": [
           "Region",
           "Union",
@@ -1050,7 +1223,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.072
       }
     ],
     "das": [
@@ -1061,9 +1235,12 @@
         "tier": "ironclad",
         "count": 55,
         "smallSample": false,
+        "frequentCount": 3,
         "overriddenBy": [],
         "exceptionCount": 0,
         "note": "→ das (Synonym, Pseudonym, Akronym, Enzym).",
+        "kind": "marginal",
+        "why": "Greek -onym ('name') → das (Synonym, Pseudonym) — a real but tiny set.",
         "examples": [
           "Synonym",
           "Pseudonym",
@@ -1071,7 +1248,8 @@
           "Akronym",
           "Antonym"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.0
       },
       {
         "suffix": "-ett",
@@ -1080,9 +1258,12 @@
         "tier": "ironclad",
         "count": 224,
         "smallSample": false,
+        "frequentCount": 20,
         "overriddenBy": [],
         "exceptionCount": 8,
         "note": "→ das (Ballett, Kabinett, Skelett, Bett, Brett).",
+        "kind": "marginal",
+        "why": "Romance diminutive -etto/-ette → das (Ballett, Skelett) — borrowed, not productive.",
         "examples": [
           "Bett",
           "Brett",
@@ -1090,7 +1271,8 @@
           "Ballett",
           "Skelett"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.067
       },
       {
         "suffix": "-ment",
@@ -1099,9 +1281,12 @@
         "tier": "ironclad",
         "count": 217,
         "smallSample": false,
+        "frequentCount": 36,
         "overriddenBy": [],
         "exceptionCount": 9,
         "note": "Latin -mentum → das (Dokument, Element). Distinct from the masculine -ent agent suffix.",
+        "kind": "suffix",
+        "why": "Latin -mentum suffix → das (Dokument, Element).",
         "examples": [
           "Instrument",
           "Argument",
@@ -1125,7 +1310,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.104
       },
       {
         "suffix": "-um",
@@ -1134,11 +1320,14 @@
         "tier": "strong",
         "count": 1078,
         "smallSample": false,
+        "frequentCount": 114,
         "overriddenBy": [
           "-aum"
         ],
         "exceptionCount": 61,
         "note": "Words ending in -um are neuter → das, including -ium (das Studium) and -tum (das Eigentum). A few are masculine: der Reichtum, der Irrtum, der Konsum.",
+        "kind": "suffix",
+        "why": "Latin neuter ending → das (Museum, Studium, Zentrum).",
         "examples": [
           "Studium",
           "Album",
@@ -1167,7 +1356,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.218
       },
       {
         "suffix": "-pt",
@@ -1176,9 +1366,12 @@
         "tier": "strong",
         "count": 44,
         "smallSample": false,
+        "frequentCount": 9,
         "overriddenBy": [],
         "exceptionCount": 3,
         "note": "→ das (Konzept, Rezept, Skript, Manuskript).",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Konzept",
           "Rezept",
@@ -1186,7 +1379,8 @@
           "Skript",
           "Oberhaupt"
         ],
-        "exceptions": []
+        "exceptions": [],
+        "sizeWeight": 0.031
       },
       {
         "suffix": "-em",
@@ -1195,9 +1389,12 @@
         "tier": "strong",
         "count": 295,
         "smallSample": false,
+        "frequentCount": 22,
         "overriddenBy": [],
         "exceptionCount": 22,
         "note": "→ das (System, Problem, Morphem). der Atem is irregular; der Moslem is a male person → der.",
+        "kind": "marginal",
+        "why": "Greek -ema ending → das (System, Problem) — a real but unproductive morpheme.",
         "examples": [
           "Problem",
           "System",
@@ -1221,7 +1418,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.072
       },
       {
         "suffix": "-ell",
@@ -1230,9 +1428,12 @@
         "tier": "strong",
         "count": 183,
         "smallSample": false,
+        "frequentCount": 12,
         "overriddenBy": [],
         "exceptionCount": 16,
         "note": "→ das (Modell, Duell, Fell, Kartell). The der exceptions are masculine loanwords: der Appell, der Rebell (a male role), der Quell.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Modell",
           "Duell",
@@ -1256,7 +1457,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.042
       },
       {
         "suffix": "-ial",
@@ -1265,9 +1467,12 @@
         "tier": "strong",
         "count": 73,
         "smallSample": false,
+        "frequentCount": 10,
         "overriddenBy": [],
         "exceptionCount": 8,
         "note": "→ das (Material, Potenzial, Editorial, Adverbial). A few obscure der exceptions (Labial).",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Material",
           "Potenzial",
@@ -1281,7 +1486,8 @@
             "article": "der",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.035
       },
       {
         "suffix": "-nis",
@@ -1290,9 +1496,12 @@
         "tier": "moderate",
         "count": 321,
         "smallSample": false,
+        "frequentCount": 49,
         "overriddenBy": [],
         "exceptionCount": 72,
-        "note": "Leans das (Ergebnis, Verständnis, Zeugnis) — but die Erlaubnis/Kenntnis/Finsternis are common.",
+        "note": "→ das (Ergebnis, Verständnis, Geheimnis, Zeugnis) — very reliable. A small set are die: die Kenntnis, Erkenntnis, Erlaubnis, Finsternis, Wildnis (memorise these).",
+        "kind": "suffix",
+        "why": "Native abstract suffix → das/die (Ergebnis, Verständnis).",
         "examples": [
           "Ergebnis",
           "Verständnis",
@@ -1302,12 +1511,17 @@
         ],
         "exceptions": [
           {
-            "noun": "Erlaubnis",
+            "noun": "Kenntnis",
             "article": "die",
             "reason": null
           },
           {
-            "noun": "Kenntnis",
+            "noun": "Erkenntnis",
+            "article": "die",
+            "reason": null
+          },
+          {
+            "noun": "Erlaubnis",
             "article": "die",
             "reason": null
           },
@@ -1315,8 +1529,14 @@
             "noun": "Finsternis",
             "article": "die",
             "reason": null
+          },
+          {
+            "noun": "Wildnis",
+            "article": "die",
+            "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.128
       },
       {
         "suffix": "-et",
@@ -1325,9 +1545,12 @@
         "tier": "moderate",
         "count": 367,
         "smallSample": false,
+        "frequentCount": 43,
         "overriddenBy": [],
         "exceptionCount": 94,
-        "note": "Leans das (Paket, Gebet, Gebiet). der Planet/Komet are Greek masculines and der Prophet is a male role — reason, don't just memorise.",
+        "note": "Leans das (Paket, Gebet, Gebiet, Filet). Most der exceptions follow a rule: Greek masculines (der Planet, Komet) and male persons (der Prophet, Poet, Athlet). der Magnet/Jet are arbitrary.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Gebiet",
           "Paket",
@@ -1350,8 +1573,29 @@
             "noun": "Prophet",
             "article": "der",
             "reason": "male person → der"
+          },
+          {
+            "noun": "Poet",
+            "article": "der",
+            "reason": "male person → der"
+          },
+          {
+            "noun": "Athlet",
+            "article": "der",
+            "reason": "male person → der"
+          },
+          {
+            "noun": "Magnet",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Jet",
+            "article": "der",
+            "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.118
       },
       {
         "suffix": "-ot",
@@ -1360,9 +1604,12 @@
         "tier": "moderate",
         "count": 322,
         "smallSample": false,
+        "frequentCount": 37,
         "overriddenBy": [],
         "exceptionCount": 97,
-        "note": "Leans das (Brot, Gebot, Angebot). der Pilot/Idiot are male persons → der; only die Not has to be learned.",
+        "note": "Leans das (Brot, Gebot, Angebot, Verbot). The der exceptions are male persons → der (der Pilot, Idiot, Patriot); only die Not is irregular.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Angebot",
           "Brot",
@@ -1382,11 +1629,17 @@
             "reason": "male person → der"
           },
           {
+            "noun": "Patriot",
+            "article": "der",
+            "reason": "male person → der"
+          },
+          {
             "noun": "Not",
             "article": "die",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.106
       },
       {
         "suffix": "-ma",
@@ -1395,9 +1648,12 @@
         "tier": "moderate",
         "count": 221,
         "smallSample": false,
+        "frequentCount": 36,
         "overriddenBy": [],
         "exceptionCount": 69,
         "note": "Greek -ma leans das (Thema, Drama, Klima, Komma). die Firma is the main exception.",
+        "kind": "suffix",
+        "why": "Greek neuter ending → das (Thema, Drama, Klima).",
         "examples": [
           "Thema",
           "Klima",
@@ -1421,7 +1677,8 @@
             "article": "der/das",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.104
       },
       {
         "suffix": "-o",
@@ -1430,9 +1687,12 @@
         "tier": "weak",
         "count": 821,
         "smallSample": false,
+        "frequentCount": 149,
         "overriddenBy": [],
         "exceptionCount": 358,
-        "note": "Leans das (~56%): das Auto, Büro, Kino, Video — but der Tango/Kakao and die Disco are common. The weakest rule; many -o words are best memorised.",
+        "note": "Leans das (~56%) — das Auto, Büro, Kino, Video — but this is the WEAKEST ending. Many common words are der (der Euro, Zoo, Cappuccino, Tornado), and the die exceptions include fruits, which follow the fruit rule (die Mango, Avocado). Best learned per word.",
+        "kind": "pattern",
+        "why": null,
         "examples": [
           "Auto",
           "Video",
@@ -1441,6 +1701,21 @@
           "Kino"
         ],
         "exceptions": [
+          {
+            "noun": "Euro",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Zoo",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Cappuccino",
+            "article": "der",
+            "reason": null
+          },
           {
             "noun": "Tango",
             "article": "der",
@@ -1452,11 +1727,32 @@
             "reason": null
           },
           {
+            "noun": "Tornado",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Dino",
+            "article": "der",
+            "reason": null
+          },
+          {
+            "noun": "Mango",
+            "article": "die",
+            "reason": "fruit → die"
+          },
+          {
+            "noun": "Avocado",
+            "article": "die",
+            "reason": "fruit → die"
+          },
+          {
             "noun": "Disco",
             "article": "die",
             "reason": null
           }
-        ]
+        ],
+        "sizeWeight": 0.255
       }
     ]
   },
