@@ -45,6 +45,7 @@ interface CompoundHead {
   count: number;
   exceptions?: string;
   examples: CompoundExample[];
+  sizeWeight: number;
 }
 const COMPOUNDS = (compoundData as unknown as { rules: Record<Article, CompoundHead[]> }).rules;
 
