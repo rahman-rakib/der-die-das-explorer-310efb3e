@@ -619,9 +619,26 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
 function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
-  const sortedRules = [...rules].sort((a, b) =>
-    a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }),
-  );
+  // Near-alphabetic order: sort, then randomly swap some adjacent pairs (deterministic per render set)
+  const sortedRules = (() => {
+    const arr = [...rules].sort((a, b) =>
+      a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }),
+    );
+    // deterministic pseudo-random seeded by suffix string so it's stable across renders
+    const seed = arr.map((r) => r.suffix).join("|");
+    let h = 0;
+    for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+    const rand = () => {
+      h = (h * 1664525 + 1013904223) >>> 0;
+      return h / 0xffffffff;
+    };
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (rand() < 0.45) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+      }
+    }
+    return arr;
+  })();
 
   if (rules.length === 0) {
     return (
