@@ -673,11 +673,11 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       >
         {sortedRules.map((r, i) => {
           const isActive = activeIdx === i;
-          const MIN = 12;
-          const MAX = 30;
+          const MIN = 10;
+          const MAX = 22;
           const fontSize = MIN + r.sizeWeight * (MAX - MIN);
-          const padV = Math.round(3 + r.sizeWeight * 5);   // 3px → 8px
-          const padH = Math.round(6 + r.sizeWeight * 10); // 6px → 16px
+          const padV = Math.round(2 + r.sizeWeight * 3);
+          const padH = Math.round(5 + r.sizeWeight * 6);
           return (
             <motion.div
               key={r.suffix}
@@ -685,9 +685,9 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${((i * 13 + (i % 3) * 5) % 17 - 5)}px`,
-                marginBottom: `${((i * 7 + (i % 5) * 3) % 15 + 3)}px`,
-                marginLeft: `${((i * 11) % 9 - 3) * 2}px`,
+                marginTop: `${((i * 13 + (i % 3) * 5) % 9 - 3)}px`,
+                marginBottom: `${((i * 7 + (i % 5) * 3) % 8 + 1)}px`,
+                marginLeft: `${((i * 11) % 7 - 3)}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
