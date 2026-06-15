@@ -701,7 +701,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setActiveIdx(null)}
-                className="absolute inset-0 z-10 rounded-[3rem] bg-background/70 backdrop-blur-[3px]"
+                className="absolute inset-0 z-10 rounded-full bg-background/70 backdrop-blur-[3px]"
               />
               <motion.div
                 key={active.suffix}
