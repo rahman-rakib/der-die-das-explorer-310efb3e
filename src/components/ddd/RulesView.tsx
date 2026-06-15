@@ -646,8 +646,8 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       </p>
 
       <div
-        className="relative mx-auto flex max-w-md flex-wrap items-start justify-center gap-x-2 gap-y-2 px-4 py-4"
-        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
+        className="relative mx-auto flex aspect-square max-w-lg flex-wrap items-center justify-center gap-x-2 gap-y-2 px-4 py-4"
+        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "50%" }}
       >
         {sortedRules.map((r, i) => {
           const isActive = activeIdx === i;
@@ -701,7 +701,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setActiveIdx(null)}
-                className="absolute inset-0 z-10 rounded-[3rem] bg-background/70 backdrop-blur-[3px]"
+                className="absolute inset-0 z-10 rounded-full bg-background/70 backdrop-blur-[3px]"
               />
               <motion.div
                 key={active.suffix}
