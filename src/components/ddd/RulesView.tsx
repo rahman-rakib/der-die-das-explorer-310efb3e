@@ -678,6 +678,18 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
           const fontSize = MIN + r.sizeWeight * (MAX - MIN);
           const padV = Math.round(2 + r.sizeWeight * 3);
           const padH = Math.round(5 + r.sizeWeight * 6);
+          // seeded random per bubble
+          let h = 0;
+          for (let k = 0; k < r.suffix.length; k++) h = (h * 31 + r.suffix.charCodeAt(k)) >>> 0;
+          const seededRand = () => {
+            h = (h * 1664525 + 1013904223) >>> 0;
+            return h / 0xffffffff;
+          };
+          const mt = Math.round((seededRand() * 28) - 14);   // -14 .. 14
+          const mb = Math.round((seededRand() * 28) - 14);
+          const ml = Math.round((seededRand() * 28) - 14);
+          const mr = Math.round((seededRand() * 28) - 14);
+          const rot = Math.round((seededRand() * 10) - 5);    // -5deg .. 5deg
           return (
             <motion.div
               key={r.suffix}
@@ -685,9 +697,11 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${((i * 13 + (i % 3) * 5) % 9 - 3)}px`,
-                marginBottom: `${((i * 7 + (i % 5) * 3) % 8 + 1)}px`,
-                marginLeft: `${((i * 11) % 7 - 3)}px`,
+                marginTop: `${mt}px`,
+                marginBottom: `${mb}px`,
+                marginLeft: `${ml}px`,
+                marginRight: `${mr}px`,
+                transform: `rotate(${rot}deg)`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
