@@ -619,9 +619,26 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
 function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
-  const sortedRules = [...rules].sort((a, b) =>
-    a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }),
-  );
+  // Near-alphabetic order: sort, then randomly swap some adjacent pairs (deterministic per render set)
+  const sortedRules = (() => {
+    const arr = [...rules].sort((a, b) =>
+      a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }),
+    );
+    // deterministic pseudo-random seeded by suffix string so it's stable across renders
+    const seed = arr.map((r) => r.suffix).join("|");
+    let h = 0;
+    for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+    const rand = () => {
+      h = (h * 1664525 + 1013904223) >>> 0;
+      return h / 0xffffffff;
+    };
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (rand() < 0.45) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+      }
+    }
+    return arr;
+  })();
 
   if (rules.length === 0) {
     return (
@@ -646,16 +663,21 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       </p>
 
       <div
-        className="relative mx-auto flex aspect-square max-w-lg flex-wrap items-center justify-center gap-x-2 gap-y-2 px-4 py-4"
-        style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "50%" }}
+        className="relative mx-auto flex aspect-square max-w-xs flex-wrap items-center justify-center gap-x-1.5 gap-y-1.5"
+        style={{
+          backgroundColor: `var(--${meta.soft})`,
+          border: `2px dashed var(--${meta.color})`,
+          borderRadius: "50%",
+          padding: "15%",
+        }}
       >
         {sortedRules.map((r, i) => {
           const isActive = activeIdx === i;
-          const MIN = 12;
-          const MAX = 30;
+          const MIN = 10;
+          const MAX = 22;
           const fontSize = MIN + r.sizeWeight * (MAX - MIN);
-          const padV = Math.round(3 + r.sizeWeight * 5);   // 3px → 8px
-          const padH = Math.round(6 + r.sizeWeight * 10); // 6px → 16px
+          const padV = Math.round(2 + r.sizeWeight * 3);
+          const padH = Math.round(5 + r.sizeWeight * 6);
           return (
             <motion.div
               key={r.suffix}
@@ -663,9 +685,9 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${((i * 13 + (i % 3) * 5) % 17 - 5)}px`,
-                marginBottom: `${((i * 7 + (i % 5) * 3) % 15 + 3)}px`,
-                marginLeft: `${((i * 11) % 9 - 3) * 2}px`,
+                marginTop: `${((i * 13 + (i % 3) * 5) % 9 - 3)}px`,
+                marginBottom: `${((i * 7 + (i % 5) * 3) % 8 + 1)}px`,
+                marginLeft: `${((i * 11) % 7 - 3)}px`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
