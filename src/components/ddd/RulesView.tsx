@@ -646,7 +646,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       </p>
 
       <div
-        className="relative mx-auto flex max-w-2xl flex-wrap items-start justify-center gap-x-3 gap-y-3 px-5 py-5"
+        className="relative mx-auto flex max-w-md flex-wrap items-start justify-center gap-x-2 gap-y-2 px-4 py-4"
         style={{ backgroundColor: `var(--${meta.soft})`, border: `2px dashed var(--${meta.color})`, borderRadius: "3rem" }}
       >
         {sortedRules.map((r, i) => {
