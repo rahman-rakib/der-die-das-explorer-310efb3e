@@ -677,8 +677,8 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       const h = fontSize * 1.15 + 2 * padV + 4;
       return { idx, w, h, fontSize, padV, padH, rot: 0, cx: 0, cy: 0 };
     });
-    // Place largest first for better packing
-    const order = [...items].sort((a, b) => b.w * b.h - a.w * a.h);
+    // Place in alphabetical order so reading flow is preserved (clockwise from top).
+    const order = items;
     const placed: Item[] = [];
     // seed
     let seed = 1337;
@@ -687,17 +687,22 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       seed = (seed * 1664525 + 1013904223) >>> 0;
       return seed / 0xffffffff;
     };
-    for (const it of order) {
+    const N = order.length;
+    for (let i = 0; i < N; i++) {
+      const it = order[i];
       const halfDiag = Math.sqrt(it.w * it.w + it.h * it.h) / 2;
       const maxR = Math.max(0, R - halfDiag);
+      // Target angle: clockwise from top, alphabetic order
+      const targetAngle = -Math.PI / 2 + (i / N) * Math.PI * 2;
       let bestCx = 0, bestCy = 0, bestScore = -Infinity, found = false;
-      for (let attempt = 0; attempt < 600; attempt++) {
-        // sample uniformly in disk
-        const t = rand() * Math.PI * 2;
-        const rr = Math.sqrt(rand()) * maxR;
+      // Allowed angular deviation shrinks placement search to a sector for ordering
+      const angleSpread = Math.PI / N + 0.35; // small wedge per bubble + slack
+      for (let attempt = 0; attempt < 800; attempt++) {
+        const t = targetAngle + (rand() * 2 - 1) * angleSpread;
+        // bias radius to fill the disk: use varying distance from center
+        const rr = (0.15 + rand() * 0.85) * maxR;
         const cx = Math.cos(t) * rr;
         const cy = Math.sin(t) * rr;
-        // overlap test (rect AABB with gap)
         let ok = true;
         let minDist = Infinity;
         for (const p of placed) {
@@ -708,19 +713,17 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
           if (d < minDist) minDist = d;
         }
         if (ok) {
-          // prefer tighter packing (smaller minDist) but valid
-          const score = -minDist;
+          // prefer scatter: reward LARGER min distance from neighbours
+          const score = minDist;
           if (score > bestScore) {
             bestScore = score; bestCx = cx; bestCy = cy; found = true;
           }
-          if (attempt > 60 && found) break;
         }
       }
       if (!found) {
-        // fallback: place at random point even if overlaps
-        const t = rand() * Math.PI * 2;
-        const rr = Math.sqrt(rand()) * maxR;
-        bestCx = Math.cos(t) * rr; bestCy = Math.sin(t) * rr;
+        // fallback: place at target angle at mid radius
+        bestCx = Math.cos(targetAngle) * maxR * 0.7;
+        bestCy = Math.sin(targetAngle) * maxR * 0.7;
       }
       it.cx = bestCx; it.cy = bestCy;
       it.rot = (rand() * 8) - 4;
@@ -728,6 +731,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
     }
     return items;
   })();
+
 
   return (
     <div className="mt-5 px-4">
