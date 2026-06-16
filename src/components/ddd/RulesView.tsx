@@ -650,6 +650,85 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
 
   const active = activeIdx !== null ? sortedRules[activeIdx] : null;
 
+  // Pack bubbles inside the circle without overlap.
+  const SIZE = 320; // px (max-w-xs)
+  const R = SIZE / 2 - 6; // inner radius (account for border)
+  const MIN_FS = 11;
+  const MAX_FS = 26;
+  const GAP = 4;
+
+  const packed = (() => {
+    type Item = {
+      idx: number;
+      w: number;
+      h: number;
+      fontSize: number;
+      padV: number;
+      padH: number;
+      rot: number;
+      cx: number;
+      cy: number;
+    };
+    const items: Item[] = sortedRules.map((r, idx) => {
+      const fontSize = MIN_FS + r.sizeWeight * (MAX_FS - MIN_FS);
+      const padV = Math.round(3 + r.sizeWeight * 4);
+      const padH = Math.round(7 + r.sizeWeight * 8);
+      const w = r.suffix.length * fontSize * 0.62 + 2 * padH + 4;
+      const h = fontSize * 1.15 + 2 * padV + 4;
+      return { idx, w, h, fontSize, padV, padH, rot: 0, cx: 0, cy: 0 };
+    });
+    // Place largest first for better packing
+    const order = [...items].sort((a, b) => b.w * b.h - a.w * a.h);
+    const placed: Item[] = [];
+    // seed
+    let seed = 1337;
+    for (const r of sortedRules) for (let k = 0; k < r.suffix.length; k++) seed = (seed * 31 + r.suffix.charCodeAt(k)) >>> 0;
+    const rand = () => {
+      seed = (seed * 1664525 + 1013904223) >>> 0;
+      return seed / 0xffffffff;
+    };
+    for (const it of order) {
+      const halfDiag = Math.sqrt(it.w * it.w + it.h * it.h) / 2;
+      const maxR = Math.max(0, R - halfDiag);
+      let bestCx = 0, bestCy = 0, bestScore = -Infinity, found = false;
+      for (let attempt = 0; attempt < 600; attempt++) {
+        // sample uniformly in disk
+        const t = rand() * Math.PI * 2;
+        const rr = Math.sqrt(rand()) * maxR;
+        const cx = Math.cos(t) * rr;
+        const cy = Math.sin(t) * rr;
+        // overlap test (rect AABB with gap)
+        let ok = true;
+        let minDist = Infinity;
+        for (const p of placed) {
+          const dx = Math.abs(cx - p.cx) - (it.w + p.w) / 2 - GAP;
+          const dy = Math.abs(cy - p.cy) - (it.h + p.h) / 2 - GAP;
+          if (dx < 0 && dy < 0) { ok = false; break; }
+          const d = Math.max(dx, dy);
+          if (d < minDist) minDist = d;
+        }
+        if (ok) {
+          // prefer tighter packing (smaller minDist) but valid
+          const score = -minDist;
+          if (score > bestScore) {
+            bestScore = score; bestCx = cx; bestCy = cy; found = true;
+          }
+          if (attempt > 60 && found) break;
+        }
+      }
+      if (!found) {
+        // fallback: place at random point even if overlaps
+        const t = rand() * Math.PI * 2;
+        const rr = Math.sqrt(rand()) * maxR;
+        bestCx = Math.cos(t) * rr; bestCy = Math.sin(t) * rr;
+      }
+      it.cx = bestCx; it.cy = bestCy;
+      it.rot = (rand() * 8) - 4;
+      placed.push(it);
+    }
+    return items;
+  })();
+
   return (
     <div className="mt-5 px-4">
       <div className="mb-2 flex items-center gap-2">
@@ -663,33 +742,21 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
       </p>
 
       <div
-        className="relative mx-auto flex aspect-square max-w-xs flex-wrap items-center justify-center gap-x-1.5 gap-y-1.5"
+        className="relative mx-auto"
         style={{
+          width: SIZE,
+          maxWidth: "100%",
+          aspectRatio: "1 / 1",
           backgroundColor: `var(--${meta.soft})`,
           border: `2px dashed var(--${meta.color})`,
           borderRadius: "50%",
-          padding: "15%",
         }}
       >
         {sortedRules.map((r, i) => {
           const isActive = activeIdx === i;
-          const MIN = 10;
-          const MAX = 22;
-          const fontSize = MIN + r.sizeWeight * (MAX - MIN);
-          const padV = Math.round(2 + r.sizeWeight * 3);
-          const padH = Math.round(5 + r.sizeWeight * 6);
-          // seeded random per bubble
-          let h = 0;
-          for (let k = 0; k < r.suffix.length; k++) h = (h * 31 + r.suffix.charCodeAt(k)) >>> 0;
-          const seededRand = () => {
-            h = (h * 1664525 + 1013904223) >>> 0;
-            return h / 0xffffffff;
-          };
-          const mt = Math.round((seededRand() * 28) - 14);   // -14 .. 14
-          const mb = Math.round((seededRand() * 28) - 14);
-          const ml = Math.round((seededRand() * 28) - 14);
-          const mr = Math.round((seededRand() * 28) - 14);
-          const rot = Math.round((seededRand() * 10) - 5);    // -5deg .. 5deg
+          const p = packed[i];
+          const leftPct = ((SIZE / 2 + p.cx) / SIZE) * 100;
+          const topPct = ((SIZE / 2 + p.cy) / SIZE) * 100;
           return (
             <motion.div
               key={r.suffix}
@@ -697,11 +764,10 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: i * 0.025, type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                marginTop: `${mt}px`,
-                marginBottom: `${mb}px`,
-                marginLeft: `${ml}px`,
-                marginRight: `${mr}px`,
-                transform: `rotate(${rot}deg)`,
+                position: "absolute",
+                left: `${leftPct}%`,
+                top: `${topPct}%`,
+                transform: `translate(-50%, -50%) rotate(${p.rot}deg)`,
                 zIndex: isActive ? 5 : 1,
               }}
             >
@@ -714,8 +780,8 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                   backgroundColor: `var(--${meta.soft})`,
                   color: `var(--${meta.color})`,
                   border: `1.5px solid var(--${meta.color})`,
-                  fontSize,
-                  padding: `${padV}px ${padH}px`,
+                  fontSize: p.fontSize,
+                  padding: `${p.padV}px ${p.padH}px`,
                   boxShadow: isActive
                     ? `0 0 0 3px var(--${meta.color}), 0 8px 20px var(--${meta.soft})`
                     : `0 3px 8px var(--${meta.color})33, inset 0 -4px 8px rgba(0,0,0,0.06), inset 0 4px 8px rgba(255,255,255,0.25)`,
