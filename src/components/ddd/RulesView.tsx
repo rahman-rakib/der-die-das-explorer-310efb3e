@@ -3,7 +3,7 @@ import { useState } from "react";
 import rulesData from "@/data/rules.json";
 import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
-import { endingBox, packEndings } from "@/lib/endingLayout";
+import { endingBox, packEndings, sharedEndingScale } from "@/lib/endingLayout";
 import { ArticleBadge } from "./ArticleBadge";
 
 type Tier = "ironclad" | "strong" | "moderate" | "weak";
@@ -37,6 +37,28 @@ const RULES: Rule[] = (["der", "die", "das"] as Article[]).flatMap(a =>
   (RAW_RULES.rules[a] ?? []).map(r => ({ ...r, article: a, tier: r.tier as Tier }))
 ).filter(r => r.examples.length >= 5);
 
+/**
+ * The on-screen order of a gender's ending bubbles: alphabetical, then a few
+ * deterministic adjacent swaps so the rows look organic rather than rigidly
+ * sorted. Deterministic (seeded by the suffix list) so SSR and hydration agree.
+ * Used BOTH to compute the shared font scale and to render — they must match, or
+ * the scale (order-sensitive packing) wouldn't guarantee the bubbles fit.
+ */
+function endingDisplayOrder(rules: Rule[]): Rule[] {
+  const arr = [...rules].sort((a, b) => a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }));
+  const seed = arr.map(r => r.suffix).join("|");
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  const rand = () => {
+    h = (h * 1664525 + 1013904223) >>> 0;
+    return h / 0xffffffff;
+  };
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (rand() < 0.45) [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+  }
+  return arr;
+}
+
 
 interface CompoundExample {
   word: string;
@@ -54,6 +76,13 @@ interface CompoundHead {
 const COMPOUNDS = (compoundData as unknown as { rules: Record<Article, CompoundHead[]> }).rules;
 
 const TABS: Article[] = ["der", "die", "das"];
+
+// One font scale shared by all three ending circles (computed once over every
+// gender), so the same-size disk holds the busiest gender and a frequent ending
+// always renders bigger than a rarer one across tabs. See sharedEndingScale.
+const ENDING_SCALE = sharedEndingScale(
+  TABS.map(a => endingDisplayOrder(RULES.filter(r => r.article === a)).map(r => endingBox(r.sizeWeight, r.suffix.length))),
+);
 
 const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: string; bar: string; barBg: string }> = {
   ironclad: {
@@ -631,26 +660,8 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const dragControls = useDragControls();
-  // Near-alphabetic order: sort, then randomly swap some adjacent pairs (deterministic per render set)
-  const sortedRules = (() => {
-    const arr = [...rules].sort((a, b) =>
-      a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }),
-    );
-    // deterministic pseudo-random seeded by suffix string so it's stable across renders
-    const seed = arr.map((r) => r.suffix).join("|");
-    let h = 0;
-    for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
-    const rand = () => {
-      h = (h * 1664525 + 1013904223) >>> 0;
-      return h / 0xffffffff;
-    };
-    for (let i = 0; i < arr.length - 1; i++) {
-      if (rand() < 0.45) {
-        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-      }
-    }
-    return arr;
-  })();
+  // Near-alphabetic display order (shared with the scale computation above).
+  const sortedRules = endingDisplayOrder(rules);
 
   if (rules.length === 0) {
     return (
@@ -669,9 +680,9 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
   // step if a gender is busy. Deterministic (SSR-safe) and geometry-tested in
   // scripts/verify-ending-layout.ts.
   const baseBoxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length));
-  const { positions: packed, radius, scale } = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })));
-  const boxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length, scale));
-  const SIZE = 2 * (radius + 6); // disk drawn a touch larger than the content radius
+  const { positions: packed, radius } = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })), ENDING_SCALE);
+  const boxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length, ENDING_SCALE));
+  const SIZE = 2 * (radius + 6); // disk drawn a touch larger than the (fixed) content radius
 
 
   return (

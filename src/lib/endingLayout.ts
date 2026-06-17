@@ -37,29 +37,26 @@ export interface PackResult {
   scale: number;
 }
 
-// Endings use their OWN font band, but the TOP now matches the compound cloud
-// (MAX 30) so a dominant ending reads as boldly here as in Compounds. The lever
-// that actually fills the disk, though, is the raised FLOOR (MIN 20): the global
-// √-scaled frequency weights park almost every ending near the bottom of the
-// band (e.g. das's busiest ending is only weight ~0.26), so most bubbles render
-// at ~MIN regardless of MAX — a higher MIN grows that whole crowd and lifts das
-// from a sparse ~25% fill to ~37%. Relative size still tracks frequency globally
-// (font ∝ sizeWeight, same scale across all three genders), so a prominent
-// ending like die's -e stays the biggest bubble while das — which genuinely has
-// no standout ending — reads as calm/uniform. The busiest genders (die/der carry
-// ~16 endings) still get shrunk a step by the fit-to-disk `scale` below so they
-// never overflow; their smallest ending stays ~11px, comfortably legible.
-export const MIN_FS = 20;
+// Endings use the SAME size rule as the compound cloud: font = MIN + weight*(MAX-MIN),
+// with MIN 18 / MAX 30. Unlike the compounds (which flow freely and just wrap), the
+// endings sit in a FIXED phone-width disk, so full-size bubbles don't fit — der/die
+// would each need a ~450–490px circle. So the whole circle is shrunk by ONE shared
+// factor (see sharedEndingScale): the smallest scale that lets the busiest gender
+// fit the capped disk, applied identically to all three circles. A uniform scale
+// leaves the formula's proportions untouched (every size ratio is preserved) and,
+// crucially, keeps sizing comparable ACROSS genders — a frequent ending like die's
+// -e or der's -er stays bigger than a rare one like das's -um. (A per-gender scale
+// broke this: sparse das barely shrank while die shrank hard, inverting the sizes.)
+export const MIN_FS = 18;
 export const MAX_FS = 30;
 
-// Largest inner radius. Sized to stay within the narrowest mainstream phone
-// (≈360px wide minus the px-4 page padding → ~328px), because the disk SIZE is
-// 2*(radius+6) and fonts are absolute px while bubble positions are %: if the
-// disk had to clamp to a narrower container the bubbles would overflow. The
-// extra room over the old 148 lets die/der pack at a higher scale.
+// Fixed inner radius for EVERY ending circle (same-size disk on every tab).
+// Sized to stay within the narrowest mainstream phone (≈360px wide minus the
+// px-4 page padding → ~328px), because the disk SIZE is 2*(radius+6) and fonts
+// are absolute px while bubble positions are %: if the disk had to clamp to a
+// narrower container the bubbles would overflow.
 const R_MAX = 158;
 const SPREAD = 0.84; // how far rows reach toward the disk edge (1 = the very edge)
-const DPAD = 8; // padding between the outermost bubble and the drawn disk edge
 
 /**
  * Bubble box geometry for an ending. The width factor deliberately *over*-
@@ -78,6 +75,11 @@ export function endingBox(sizeWeight: number, suffixLen: number, scale = 1): End
 
 const jitter = 6; // organic per-bubble offset (px); larger = more scatter, less room
 const gap = 8;
+// How much of each row's spare width to spread into (0 = bubbles packed tight in
+// the row centre, 1 = pushed to the chord ends). A sparse gender (e.g. das) has
+// lots of spare width; spreading distributes it as small even gaps so the fixed
+// disk reads as filled rather than having one big empty band.
+const FILL = 0.5;
 const jit = (i: number) => ({
   dx: ((((i * 11) % 5) - 2) / 2) * jitter,
   dy: ((((i * 7 + (i % 3) * 2) % 5) - 2) / 2) * jitter,
@@ -147,49 +149,131 @@ function tryPack(items: Box[], R: number): Pos[] | null {
 }
 
 /**
- * Lay out the endings: find the largest font scale (≤1) at which all bubbles
- * fit the max disk, then size the disk to the actual content. Returns the
- * positions, the disk radius, and the scale (which the component applies to the
- * rendered font size / padding so it matches the packed boxes).
+ * Distribute the bubbles to FILL the fixed disk: rows spread across the whole
+ * disk height, and within each row the bubbles are spread (justified to {@link
+ * FILL} of the row's chord) rather than clustered in the centre. Bubbles are
+ * assigned to rows proportional to each row's chord width (so the wide middle
+ * rows hold more, matching the circle), in reading order. Returns null if a row
+ * can't hold its assigned bubbles — the caller then falls back to {@link tryPack}
+ * (a gender too busy to spread out already fills the disk densely on its own).
  */
-export function packEndings(baseBoxes: Box[]): PackResult {
-  const N = baseBoxes.length;
-  if (N === 0) return { positions: [], radius: 60, scale: 1 };
+function spreadPack(items: Box[], R: number): Pos[] | null {
+  const N = items.length;
+  const rowH = Math.max(...items.map(b => b.h));
+  const margin = Math.ceil(jitter * 1.6) + 2;
+  const usableR = R - margin;
+  if (usableR <= rowH / 2) return null;
 
-  for (let scale = 1; scale >= 0.5; scale -= 0.04) {
-    const boxes = baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale }));
-    const positions = tryPack(boxes, R_MAX);
-    if (positions) {
-      // Vertical-centre the placed content. The greedy top-down fill leaves the
-      // lowest row(s) sparse, so the cluster sits high and the bottom of the
-      // round disk looks empty. Shifting every bubble so its bounding box is
-      // centred splits the slack evenly top/bottom — symmetric and intentional.
-      let minY = Infinity;
-      let maxY = -Infinity;
-      for (let i = 0; i < N; i++) {
-        minY = Math.min(minY, positions[i].cy - boxes[i].h / 2);
-        maxY = Math.max(maxY, positions[i].cy + boxes[i].h / 2);
-      }
-      const shiftY = (minY + maxY) / 2;
-      for (let i = 0; i < N; i++) positions[i].cy -= shiftY;
+  const spreadHalf = Math.max(0, (usableR - rowH / 2) * SPREAD);
+  const nRows = Math.max(1, Math.floor((2 * spreadHalf) / (rowH + gap)) + 1);
+  const centers: number[] = [];
+  for (let k = 0; k < nRows; k++) {
+    centers.push(nRows === 1 ? 0 : -spreadHalf + (k * (2 * spreadHalf)) / (nRows - 1));
+  }
+  const halfW = centers.map(c => {
+    const yFar = Math.abs(c) + rowH / 2;
+    const v = usableR * usableR - yFar * yFar;
+    return v > 0 ? Math.sqrt(v) : 0;
+  });
 
-      // Size the disk to the content so it's never oversized and nothing pokes out.
-      let contentR = 0;
-      for (let i = 0; i < N; i++) {
-        const reach = Math.hypot(
-          Math.abs(positions[i].cx) + boxes[i].w / 2,
-          Math.abs(positions[i].cy) + boxes[i].h / 2,
-        );
-        if (reach > contentR) contentR = reach;
-      }
-      return { positions, radius: Math.min(R_MAX, contentR + DPAD), scale };
-    }
+  // Assign bubble counts per row proportional to chord width, then fix rounding.
+  const chord = halfW.map(h => 2 * h);
+  const totalChord = chord.reduce((s, c) => s + c, 0);
+  if (totalChord <= 0) return null;
+  const quota = chord.map(c => Math.max(0, Math.round((N * c) / totalChord)));
+  let diff = N - quota.reduce((s, q) => s + q, 0);
+  const byChord = [...chord.keys()].sort((a, b) => chord[b] - chord[a]);
+  for (const k of byChord) {
+    if (diff === 0) break;
+    if (diff > 0) { quota[k]++; diff--; }
+    else if (quota[k] > 0) { quota[k]--; diff++; }
   }
 
-  // Smallest scale still didn't fit (shouldn't happen for ≤ ~20 endings): pack at
-  // the smallest scale and accept it.
-  const scale = 0.5;
+  // Fill rows top→bottom in reading order, honouring each row's quota.
+  const rows: number[][] = Array.from({ length: nRows }, () => []);
+  let i = 0;
+  for (let k = 0; k < nRows && i < N; k++) {
+    let take = quota[k];
+    while (take > 0 && i < N) { rows[k].push(i++); take--; }
+  }
+  while (i < N) rows[nRows - 1].push(i++); // safety: never drop a bubble
+
+  // A row must actually hold its bubbles at tight spacing; if not, bail to greedy.
+  for (let k = 0; k < nRows; k++) {
+    const row = rows[k];
+    if (row.length === 0) continue;
+    const tight = row.reduce((s, idx) => s + items[idx].w, 0) + (gap + jitter) * (row.length - 1);
+    if (tight > 2 * halfW[k]) return null;
+  }
+
+  // Place each row, justified to FILL of its chord (edges stay within usableR,
+  // since the justified extent never exceeds the chord 2*halfW[k]).
+  const positions: Pos[] = new Array(N);
+  for (let k = 0; k < nRows; k++) {
+    const row = rows[k];
+    if (row.length === 0) continue;
+    const sumW = row.reduce((s, idx) => s + items[idx].w, 0);
+    const W = 2 * halfW[k];
+    const tight = sumW + (gap + jitter) * (row.length - 1);
+    const targetW = row.length > 1 ? Math.min(W, tight + (W - tight) * FILL) : sumW;
+    const between = row.length > 1 ? (targetW - sumW) / (row.length - 1) : 0;
+    let x = -targetW / 2;
+    for (const idx of row) {
+      const { dx, dy } = jit(idx);
+      positions[idx] = { cx: x + items[idx].w / 2 + dx, cy: centers[k] + dy };
+      x += items[idx].w + between;
+    }
+  }
+  return positions;
+}
+
+/**
+ * The single font scale (≤1) shared by ALL three ending circles: the largest
+ * scale at which the BUSIEST gender still fits the capped disk. Applying one
+ * uniform factor to every circle keeps the size formula's proportions intact and
+ * keeps bubbles comparable across genders (a frequent ending always renders
+ * bigger than a rarer one, in any tab). Pass the base (scale-1) boxes for every
+ * gender. Deterministic; compute once and feed the result to {@link packEndings}.
+ */
+export function sharedEndingScale(genderBoxes: Box[][]): number {
+  let shared = 1;
+  for (const boxes of genderBoxes) {
+    if (boxes.length === 0) continue;
+    let s = 1;
+    for (; s >= 0.4; s -= 0.04) {
+      const scaled = boxes.map(b => ({ w: b.w * s, h: b.h * s }));
+      if (tryPack(scaled, R_MAX)) break;
+    }
+    shared = Math.min(shared, s);
+  }
+  return shared;
+}
+
+/**
+ * Lay out one gender's endings at the given shared `scale` inside the FIXED disk
+ * (every gender draws the same-size circle). Bubbles are spread to fill the disk
+ * via {@link spreadPack}, falling back to the dense greedy {@link tryPack} for a
+ * gender too busy to distribute. Returns positions, the fixed radius, and the
+ * scale (which the component re-applies to the rendered font/padding).
+ */
+export function packEndings(baseBoxes: Box[], scale: number): PackResult {
+  const N = baseBoxes.length;
+  if (N === 0) return { positions: [], radius: R_MAX, scale };
+
   const boxes = baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale }));
-  const positions = tryPack(boxes, R_MAX) ?? boxes.map(() => ({ cx: 0, cy: 0 }));
+  const positions = spreadPack(boxes, R_MAX) ?? tryPack(boxes, R_MAX) ?? boxes.map(() => ({ cx: 0, cy: 0 }));
+
+  // Vertical-centre the placed content so any leftover slack splits evenly
+  // top/bottom rather than leaving the bottom of the round disk empty.
+  let minY = Infinity;
+  let maxY = -Infinity;
+  for (let i = 0; i < N; i++) {
+    minY = Math.min(minY, positions[i].cy - boxes[i].h / 2);
+    maxY = Math.max(maxY, positions[i].cy + boxes[i].h / 2);
+  }
+  const shiftY = (minY + maxY) / 2;
+  for (let i = 0; i < N; i++) positions[i].cy -= shiftY;
+
+  // Fixed disk radius for every gender — the circle is identical on each tab.
   return { positions, radius: R_MAX, scale };
 }

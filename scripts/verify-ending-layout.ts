@@ -7,26 +7,45 @@
  *         --platform=node --format=esm --outfile=/tmp/vp.mjs && node /tmp/vp.mjs
  */
 import rulesData from "../src/data/rules.json";
-import { endingBox, packEndings } from "../src/lib/endingLayout";
+import { endingBox, packEndings, sharedEndingScale } from "../src/lib/endingLayout";
 
 const RAW = rulesData as { rules: Record<string, any[]> };
 
-let failures = 0;
-for (const art of ["der", "die", "das"]) {
-  const rules = (RAW.rules[art] ?? []).filter(r => r.examples.length >= 5)
-    .slice().sort((a, b) => b.accuracy - a.accuracy);
-  // mirror the component's display order: alphabetical, then deterministic adjacent swaps
-  const arr = [...rules].sort((a, b) => a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }));
+const ARTS = ["der", "die", "das"];
+const endingsOf = (art: string) => (RAW.rules[art] ?? []).filter(r => r.examples.length >= 5);
+
+// Mirror the component's display order: alphabetical, then deterministic adjacent
+// swaps (same as RulesView.endingDisplayOrder). The scale is order-sensitive, so
+// scale-computation and packing must use this SAME order.
+function displayOrder(art: string) {
+  const arr = [...endingsOf(art)].sort((a, b) => a.suffix.localeCompare(b.suffix, "de", { sensitivity: "base" }));
   let h = 0; const seed = arr.map(r => r.suffix).join("|");
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
   const rand = () => { h = (h * 1664525 + 1013904223) >>> 0; return h / 0xffffffff; };
   for (let i = 0; i < arr.length - 1; i++) if (rand() < 0.45) [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+  return arr;
+}
+const ORDERED: Record<string, any[]> = Object.fromEntries(ARTS.map(art => [art, displayOrder(art)]));
+
+// One shared scale across all three genders — exactly what the component computes,
+// from the SAME display order it renders.
+const SCALE = sharedEndingScale(
+  ARTS.map(art => ORDERED[art].map(r => endingBox(r.sizeWeight, r.suffix.length))),
+);
+
+// Collect every ending across genders for the cross-gender frequency check (f).
+const allEndings: { art: string; suffix: string; sizeWeight: number; font: number }[] = [];
+
+let failures = 0;
+for (const art of ARTS) {
+  const arr = ORDERED[art];
 
   const baseBoxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length));
-  const out = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })));
+  const out = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })), SCALE);
   const pos = out.positions;
   const R = out.radius;
   const boxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length, out.scale));
+  arr.forEach((r, i) => allEndings.push({ art, suffix: r.suffix, sizeWeight: r.sizeWeight, font: boxes[i].fontSize }));
 
   // (a) every bubble fully inside the disk
   let outside = 0, maxReach = 0;
@@ -73,5 +92,28 @@ for (const art of ["der", "die", "das"]) {
   if (!ok) failures++;
   console.log(`${art}: ${boxes.length} bubbles, ${rows} rows | scale ${out.scale.toFixed(2)} | font ${minFont.toFixed(1)}–${Math.max(...boxes.map(b => b.fontSize)).toFixed(1)}px | inside=${outside === 0} | no-overlap=${overlaps === 0} | order=${orderViol === 0} | freq=${freqViol === 0} | legible=${legible} ${ok ? "PASS" : "FAIL"}`);
 }
+
+// (f) CROSS-GENDER frequency preserved: pool every ending across all three
+// genders, sort by global sizeWeight, and assert the rendered font never
+// decreases. This locks in "a frequent ending (e.g. der -er) always renders
+// bigger than a rarer one (e.g. das -um)" — the regression the per-gender scale
+// caused. With one shared scale, font is strictly monotonic in weight, so it holds.
+const sorted = [...allEndings].sort((a, b) => a.sizeWeight - b.sizeWeight);
+let xViol = 0;
+for (let i = 1; i < sorted.length; i++) {
+  if (sorted[i].font < sorted[i - 1].font - 1e-6) {
+    xViol++;
+    console.log(`  ✗ cross-gender: ${sorted[i].art} -${sorted[i].suffix} (w=${sorted[i].sizeWeight.toFixed(2)}, ${sorted[i].font.toFixed(1)}px) < ${sorted[i - 1].art} -${sorted[i - 1].suffix} (w=${sorted[i - 1].sizeWeight.toFixed(2)}, ${sorted[i - 1].font.toFixed(1)}px)`);
+  }
+}
+if (xViol > 0) failures++;
+// Spot-check the example Rakib raised: der -er must be bigger than das -um.
+const er = allEndings.find(e => e.art === "der" && e.suffix === "er");
+const um = allEndings.find(e => e.art === "das" && e.suffix === "um");
+const erUmOk = !er || !um || er.font > um.font;
+if (!erUmOk) failures++;
+console.log(`cross-gender freq: ${xViol === 0 ? "PASS" : `${xViol} violation(s) FAIL`}` +
+  (er && um ? ` | der -er=${er.font.toFixed(1)}px > das -um=${um.font.toFixed(1)}px: ${erUmOk ? "PASS" : "FAIL"}` : ""));
+
 console.log(failures === 0 ? "\nALL PASS ✓" : `\n${failures} FAILED`);
 process.exit(failures === 0 ? 0 : 1);
