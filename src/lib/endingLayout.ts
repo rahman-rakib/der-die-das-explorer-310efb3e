@@ -55,7 +55,7 @@ export const MAX_FS = 19;
 // disk had to clamp to a narrower container the bubbles would overflow. The
 // extra room over the old 148 lets die/der pack at a higher scale.
 const R_MAX = 158;
-const SPREAD = 0.82; // how far rows reach toward the disk edge (1 = the very edge)
+const SPREAD = 0.84; // how far rows reach toward the disk edge (1 = the very edge)
 const DPAD = 8; // padding between the outermost bubble and the drawn disk edge
 
 /**
@@ -73,8 +73,8 @@ export function endingBox(sizeWeight: number, suffixLen: number, scale = 1): End
   return { w, h, fontSize, padV, padH };
 }
 
-const jitter = 5;
-const gap = 7;
+const jitter = 6; // organic per-bubble offset (px); larger = more scatter, less room
+const gap = 8;
 const jit = (i: number) => ({
   dx: ((((i * 11) % 5) - 2) / 2) * jitter,
   dy: ((((i * 7 + (i % 3) * 2) % 5) - 2) / 2) * jitter,
@@ -157,6 +157,19 @@ export function packEndings(baseBoxes: Box[]): PackResult {
     const boxes = baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale }));
     const positions = tryPack(boxes, R_MAX);
     if (positions) {
+      // Vertical-centre the placed content. The greedy top-down fill leaves the
+      // lowest row(s) sparse, so the cluster sits high and the bottom of the
+      // round disk looks empty. Shifting every bubble so its bounding box is
+      // centred splits the slack evenly top/bottom — symmetric and intentional.
+      let minY = Infinity;
+      let maxY = -Infinity;
+      for (let i = 0; i < N; i++) {
+        minY = Math.min(minY, positions[i].cy - boxes[i].h / 2);
+        maxY = Math.max(maxY, positions[i].cy + boxes[i].h / 2);
+      }
+      const shiftY = (minY + maxY) / 2;
+      for (let i = 0; i < N; i++) positions[i].cy -= shiftY;
+
       // Size the disk to the content so it's never oversized and nothing pokes out.
       let contentR = 0;
       for (let i = 0; i < N; i++) {
