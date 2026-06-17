@@ -254,6 +254,20 @@ function layout(scaledBoxes: Box[]): Pos[] {
   }
   const shiftY = (minY + maxY) / 2;
   for (let i = 0; i < N; i++) positions[i].cy -= shiftY;
+
+  // Horizontal-centre by visual MASS (area-weighted), so a gender whose bigger
+  // bubbles happen to land on one side doesn't look lopsided. A rigid shift of
+  // the whole set; the disk stays fixed. Mass- rather than bbox-centred because
+  // the eye tracks where the weight is, not the outermost edges.
+  let comNum = 0;
+  let comDen = 0;
+  for (let i = 0; i < N; i++) {
+    const a = scaledBoxes[i].w * scaledBoxes[i].h;
+    comNum += positions[i].cx * a;
+    comDen += a;
+  }
+  const shiftX = comDen > 0 ? comNum / comDen : 0;
+  for (let i = 0; i < N; i++) positions[i].cx -= shiftX;
   return positions;
 }
 
