@@ -37,7 +37,7 @@ function SceneImage({ scene }: { scene: MemoryScene }) {
   if (failed) {
     return (
       <div
-        className="flex h-[360px] w-full flex-col items-center justify-center rounded-xl"
+        className="flex aspect-square w-full flex-col items-center justify-center rounded-xl"
         style={{ backgroundColor: `var(--${m.soft})`, color: `var(--${m.color})` }}
       >
         <div className="px-6 text-center text-lg font-extrabold">{scene.title}</div>
@@ -50,7 +50,7 @@ function SceneImage({ scene }: { scene: MemoryScene }) {
       src={scene.image}
       alt={scene.title}
       onError={() => setFailed(true)}
-      className="h-[360px] w-full rounded-xl object-contain"
+      className="aspect-square w-full rounded-xl object-cover"
       style={{ backgroundColor: `var(--${m.soft})` }}
       loading="lazy"
     />
@@ -63,15 +63,20 @@ function SceneCard({
   total,
   mastered,
   onDrill,
+  onPrev,
+  onNext,
 }: {
   scene: MemoryScene;
   index: number;
   total: number;
   mastered: boolean;
   onDrill: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
 }) {
   const m = ARTICLE_META[scene.tone];
   const [showTranslation, setShowTranslation] = useState(false);
+  const canNav = !!onPrev && !!onNext;
   return (
     <article
       className="overflow-hidden rounded-3xl border bg-card shadow-md"
@@ -84,13 +89,43 @@ function SceneCard({
         <ArticleBadge article={scene.tone} size="sm" />
         <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
           {mastered && <span title="Mastered" className="text-base">⭐</span>}
+          {canNav && (
+            <button
+              onClick={onPrev}
+              aria-label="Previous scene"
+              className="flex h-6 w-6 items-center justify-center rounded-full border bg-card text-sm shadow-sm active:scale-90"
+              style={{ borderColor: `var(--${m.color})`, color: `var(--${m.color})` }}
+            >
+              ‹
+            </button>
+          )}
           <span>Scene {index + 1} / {total}</span>
+          {canNav && (
+            <button
+              onClick={onNext}
+              aria-label="Next scene"
+              className="flex h-6 w-6 items-center justify-center rounded-full border bg-card text-sm shadow-sm active:scale-90"
+              style={{ borderColor: `var(--${m.color})`, color: `var(--${m.color})` }}
+            >
+              ›
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="px-3 pt-3">
+      <motion.div
+        className="px-3 pt-3"
+        drag={canNav ? "x" : false}
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.2}
+        onDragEnd={(_, info) => {
+          if (info.offset.x < -60) onNext?.();
+          else if (info.offset.x > 60) onPrev?.();
+        }}
+        style={{ touchAction: "pan-y" }}
+      >
         <SceneImage scene={scene} />
-      </div>
+      </motion.div>
 
       <div className="px-5 pt-4">
         <h2 className="text-[22px] font-extrabold leading-tight">{scene.title}</h2>
@@ -358,13 +393,6 @@ export function MemoryScenesView() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: direction >= 0 ? -80 : 80, opacity: 0 }}
                 transition={{ duration: 0.28 }}
-                drag={total > 1 ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.25}
-                onDragEnd={(_, info) => {
-                  if (info.offset.x < -60) go(1);
-                  else if (info.offset.x > 60) go(-1);
-                }}
               >
                 <SceneCard
                   scene={scene}
@@ -372,42 +400,28 @@ export function MemoryScenesView() {
                   total={tab === "shuffle" ? 1 : total}
                   mastered={mastered.includes(scene.id)}
                   onDrill={() => setDrilling(scene)}
+                  onPrev={tab !== "shuffle" && total > 1 ? () => go(-1) : undefined}
+                  onNext={tab !== "shuffle" && total > 1 ? () => go(1) : undefined}
                 />
               </motion.div>
             </AnimatePresence>
           </div>
 
           {tab !== "shuffle" && total > 1 && (
-            <>
-              <div className="mt-4 flex items-center justify-between">
-                <button
-                  onClick={() => go(-1)}
-                  className="rounded-full border bg-card px-4 py-2 text-sm font-bold shadow-sm"
-                >
-                  ← Prev
-                </button>
-                <div className="flex items-center gap-1.5">
-                  {scenes.map((_, i) => (
-                    <span
-                      key={i}
-                      className="h-2 rounded-full transition-all"
-                      style={{
-                        width: i === index ? 18 : 6,
-                        backgroundColor: i === index
-                          ? `var(--${ARTICLE_META[tab as Article].color})`
-                          : "var(--muted)",
-                      }}
-                    />
-                  ))}
-                </div>
-                <button
-                  onClick={() => go(1)}
-                  className="rounded-full border bg-card px-4 py-2 text-sm font-bold shadow-sm"
-                >
-                  Next →
-                </button>
-              </div>
-            </>
+            <div className="mt-4 flex items-center justify-center gap-1.5">
+              {scenes.map((_, i) => (
+                <span
+                  key={i}
+                  className="h-2 rounded-full transition-all"
+                  style={{
+                    width: i === index ? 18 : 6,
+                    backgroundColor: i === index
+                      ? `var(--${ARTICLE_META[tab as Article].color})`
+                      : "var(--muted)",
+                  }}
+                />
+              ))}
+            </div>
           )}
 
           {tab === "shuffle" && (
