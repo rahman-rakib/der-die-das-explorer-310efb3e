@@ -52,6 +52,13 @@ const MEANING_ROWS: MeaningRow[] = [
       { article: "der", meaning: "kiwi bird", emoji: "🐤", example: "Der Kiwi lebt in Neuseeland.", exampleEn: "The kiwi lives in New Zealand." },
     ],
   },
+  {
+    word: "Teil",
+    meanings: [
+      { article: "der", meaning: "part / portion of a whole", emoji: "🧩", example: "Der erste Teil des Buches ist spannend.", exampleEn: "The first part of the book is exciting." },
+      { article: "das", meaning: "piece / component / item", emoji: "⚙️", example: "Das Teil passt nicht in die Maschine.", exampleEn: "The part doesn't fit in the machine." },
+    ],
+  },
 ];
 
 const FLEXIBLE: { word: string; articles: Article[]; english: string; emoji: string; note?: string }[] = [
@@ -75,6 +82,7 @@ const QUIZ: Quiz[] = [
   { q: "Which Joghurt is most common in Austria?", options: ["der Joghurt", "die Joghurt", "das Joghurt"], answer: 2, hint: "In Austria and southern Germany, it's das Joghurt 🥣" },
   { q: "Which Lama is the animal?", options: ["der Lama", "das Lama"], answer: 1, hint: "Das Lama spuckt! 🦙" },
   { q: "Which Kiwi is the fruit?", options: ["der Kiwi", "die Kiwi"], answer: 1, hint: "Die Kiwi — the fruit is feminine 🥝" },
+  { q: "Which Teil means an individual piece or component?", options: ["der Teil", "das Teil"], answer: 1, hint: "das Teil = a single piece/component ⚙️; der Teil = a portion of a whole 🧩" },
 ];
 
 export function SpecialCasesView() {

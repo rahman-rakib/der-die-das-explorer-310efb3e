@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap" },
-      { rel: "icon", href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%87%A9%F0%9F%87%AA%3C/text%3E%3C/svg%3E" },
+      { rel: "icon", type: "image/png", href: "/logo-icon.png" },
     ],
   }),
   component: Index,
@@ -45,7 +45,7 @@ function Index() {
         <header className="px-4 pt-5">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Der Die Das logo" className="h-8 w-8 rounded-md object-contain" />
+              <img src="/logo-icon.png" alt="Der Die Das logo" className="h-8 w-8 rounded-md object-contain" />
               <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
                 Der · Die · Das
               </span>

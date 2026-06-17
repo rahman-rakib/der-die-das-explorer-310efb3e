@@ -37,7 +37,7 @@ function SceneImage({ scene }: { scene: MemoryScene }) {
   if (failed) {
     return (
       <div
-        className="flex h-[300px] w-full flex-col items-center justify-center rounded-xl"
+        className="flex h-[360px] w-full flex-col items-center justify-center rounded-xl"
         style={{ backgroundColor: `var(--${m.soft})`, color: `var(--${m.color})` }}
       >
         <div className="px-6 text-center text-lg font-extrabold">{scene.title}</div>
@@ -50,7 +50,8 @@ function SceneImage({ scene }: { scene: MemoryScene }) {
       src={scene.image}
       alt={scene.title}
       onError={() => setFailed(true)}
-      className="h-[300px] w-full rounded-xl object-cover"
+      className="h-[360px] w-full rounded-xl object-contain"
+      style={{ backgroundColor: `var(--${m.soft})` }}
       loading="lazy"
     />
   );
