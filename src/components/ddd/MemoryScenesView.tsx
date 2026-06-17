@@ -10,6 +10,7 @@ import {
 } from "@/data/words";
 import { ArticleBadge, WordPill } from "./ArticleBadge";
 import { loadProgress, markSceneMastered, recordAnswer } from "@/lib/progress";
+import { chunkForSpeech } from "@/lib/speech";
 
 const TABS: Article[] = ["das", "der", "die"];
 
@@ -22,13 +23,47 @@ function shuffle<T>(a: T[]): T[] {
   return r;
 }
 
+// Chrome/Edge stop a single utterance after ~15s, cutting long narrations off
+// mid-word. We queue sentence-sized chunks instead, and nudge resume() so the
+// queue keeps playing past the engine's internal timeout.
+let speechKeepAlive: ReturnType<typeof setInterval> | null = null;
+
 function speak(text: string) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "de-DE";
-  u.rate = 0.95;
-  window.speechSynthesis.speak(u);
+  const synth = window.speechSynthesis;
+  synth.cancel();
+  if (speechKeepAlive) {
+    clearInterval(speechKeepAlive);
+    speechKeepAlive = null;
+  }
+
+  const chunks = chunkForSpeech(text);
+  chunks.forEach((chunk, idx) => {
+    const u = new SpeechSynthesisUtterance(chunk);
+    u.lang = "de-DE";
+    u.rate = 0.95;
+    if (idx === chunks.length - 1) {
+      // Stop the keep-alive once the final chunk finishes.
+      u.onend = () => {
+        if (speechKeepAlive) {
+          clearInterval(speechKeepAlive);
+          speechKeepAlive = null;
+        }
+      };
+    }
+    synth.speak(u);
+  });
+
+  // resume() is a no-op unless the engine paused itself; calling it every few
+  // seconds revives the queue after Chrome's ~15s auto-pause.
+  speechKeepAlive = setInterval(() => {
+    if (!synth.speaking) {
+      if (speechKeepAlive) clearInterval(speechKeepAlive);
+      speechKeepAlive = null;
+      return;
+    }
+    synth.resume();
+  }, 5000);
 }
 
 function SceneImage({ scene }: { scene: MemoryScene }) {
