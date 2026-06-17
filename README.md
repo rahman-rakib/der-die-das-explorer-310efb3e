@@ -33,9 +33,9 @@ The app is organised into five tabs:
 <div align="center">
 <table>
   <tr>
-    <td><img src="public/scenes/das-1-dach.png" width="220" alt="Memory scene: Frühstück auf dem Dach" /></td>
-    <td><img src="public/scenes/der-2-wanderer.png" width="220" alt="Memory scene: Der stürmische Wanderer" /></td>
-    <td><img src="public/scenes/die-2-kueche.png" width="220" alt="Memory scene: die Küche" /></td>
+    <td><img src="public/scenes/das-1-dach.webp" width="220" alt="Memory scene: Frühstück auf dem Dach" /></td>
+    <td><img src="public/scenes/der-2-wanderer.webp" width="220" alt="Memory scene: Der stürmische Wanderer" /></td>
+    <td><img src="public/scenes/die-2-kueche.webp" width="220" alt="Memory scene: die Küche" /></td>
   </tr>
   <tr align="center">
     <td><em>das · Frühstück auf dem Dach</em></td>

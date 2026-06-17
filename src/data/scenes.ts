@@ -4,7 +4,7 @@ export interface MemoryScene {
   id: string;
   tone: Article;
   title: string;
-  image: string; // public path, e.g. /scenes/das-1-dach.png
+  image: string; // public path, e.g. /scenes/das-1-dach.webp
   narrativeDe: string;
   narrativeEn: string;
   words: Word[];
@@ -18,7 +18,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-rooftop",
     tone: "das",
     title: "Frühstück auf dem Dach",
-    image: "/scenes/das-1-dach.png",
+    image: "/scenes/das-1-dach.webp",
     narrativeDe:
       "Ein Kind und ein Mädchen frühstücken auf dem Dach. Ein umgekipptes Glas liegt da, und Wasser ist daraus über das Dach verschüttet. Vor ihnen liegen ein Messer, ein frisches Brot, ein Ei, rohes Fleisch mit etwas Blut, Salz und Öl. Das lange Haar des Mädchens verdeckt ihr Gesicht. Das Kind hat große Augen und große Ohren.",
     narrativeEn:
@@ -46,7 +46,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-ghost-horse",
     tone: "das",
     title: "Das Geisterpferd",
-    image: "/scenes/das-2-pferd.png",
+    image: "/scenes/das-2-pferd.webp",
     narrativeDe:
       "Ein Gespenst reitet auf einem Pferd durch das Licht. Das Gesicht des Pferdes ist erstarrt. Es trägt ein schweres Gewicht und schwingt ein Schwert. Ein Netz aus Spinnweben hängt darüber.",
     narrativeEn:
@@ -65,7 +65,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-farmyard",
     tone: "das",
     title: "Der Bauernhof",
-    image: "/scenes/das-3-bauernhof.png",
+    image: "/scenes/das-3-bauernhof.webp",
     narrativeDe:
       "Alle jungen Tiere stehen zusammen auf dem Feld. Ein Schaf, ein Schwein, ein Huhn, ein Kalb, ein Küken und ein Reh schauen nach oben. Kein Tier weiß, welches Geschlecht es hat.",
     narrativeEn:
@@ -85,7 +85,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-poisoned-gift",
     tone: "das",
     title: "Das überraschende Geschenk",
-    image: "/scenes/das-5-geschenk.png",
+    image: "/scenes/das-5-geschenk.webp",
     narrativeDe:
       "Ein Kind packt ein schön verpacktes Geschenk aus. Heraus kommt ein grünes, blubberndes Glas Gift — im Deutschen ist ein 'Gift' eben kein Geschenk! Daneben liegen ein Gesetz, ein Medikament und ein Dokument.",
     narrativeEn:
@@ -105,7 +105,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "der-stormy-wanderer",
     tone: "der",
     title: "Der stürmische Wanderer",
-    image: "/scenes/der-2-wanderer.png",
+    image: "/scenes/der-2-wanderer.webp",
     narrativeDe:
       "Unter dem Mond geht ein Mann durch den Sturm. Er fühlt einen großen Schmerz. Er hört den lauten Lärm. Er hat Hunger und Durst. Aber er hat auch viel Mut und geht weiter — als wäre alles nur ein Traum.",
     narrativeEn:
@@ -124,7 +124,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "der-strange-cafe",
     tone: "der",
     title: "Das seltsame Café",
-    image: "/scenes/der-3-cafe.png",
+    image: "/scenes/der-3-cafe.webp",
     narrativeDe:
       "An einem seltsamen Ort sitzt ein Stein auf einem Stuhl. Ein Schlüssel hängt an einem Haken. Ein Preis steht auf einem Zettel. Ein Beutel voller Taler liegt auf dem Boden. Der Kellner ist ein riesiger Löffel. Niemand findet das seltsam.",
     narrativeEn:
@@ -142,7 +142,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "die-invisible-powers",
     tone: "die",
     title: "Die unsichtbaren Mächte",
-    image: "/scenes/die-1-maechte.png",
+    image: "/scenes/die-1-maechte.webp",
     narrativeDe:
       "In der Nacht füllen unsichtbare Mächte die Luft. Die Zeit zieht in eine Richtung. Die Kraft zieht in eine andere. Die Welt dreht sich. Die Schuld flüstert leise. Alle sind weiblich, alle sind unsichtbar.",
     narrativeEn:
@@ -161,7 +161,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "die-kitchen-rebellion",
     tone: "die",
     title: "Die Küchenleiter",
-    image: "/scenes/die-2-kueche.png",
+    image: "/scenes/die-2-kueche.webp",
     narrativeDe:
       "In der Küche reicht eine Leiter von der Decke bis zur Wand. Daneben stehen Butter, Schüsseln und Flaschen voller Milch. Die Mutter, die Tochter und die Schwester schauen sie an.",
     narrativeEn:
@@ -185,7 +185,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "die-body-alarm",
     tone: "die",
     title: "Die Falten der Frau",
-    image: "/scenes/die-3-koerper.png",
+    image: "/scenes/die-3-koerper.webp",
     narrativeDe:
       "Eine Frau legt eine Hand auf die Schulter und die andere Hand auf die Brust. Auf der Haut ihrer Stirn und ihrer Wange liegen viele Falten.",
     narrativeEn:
@@ -206,7 +206,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "die-clockwork-city",
     tone: "die",
     title: "Die Uhrwerkstadt",
-    image: "/scenes/die-4-uhrenstadt.png",
+    image: "/scenes/die-4-uhrenstadt.webp",
     narrativeDe:
       "In einer Stadt aus Uhren ist jede Tür eine große Uhr. Jede Scheibe tickt. Die Treppe geht nach oben. Eine Zahl blinkt an jeder Wand. Die ganze Stadt läuft nach der Uhr.",
     narrativeEn:
@@ -225,7 +225,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-coffee-shop",
     tone: "das",
     title: "Das gemütliche Café",
-    image: "/scenes/das-6-coffeeshop.png",
+    image: "/scenes/das-6-coffeeshop.webp",
     narrativeDe:
       "In einem gemütlichen Café sitzt ein Kind. Ein warmes Feuer brennt und macht alles gemütlich. Das Radio spielt leise, während jemand aus dem Büro auf einem weichen Sofa einschläft. Durch das Fenster sieht man das Kino und ein ruhiges Hotel. Das Restaurant nebenan duftet warm.",
     narrativeEn:
@@ -247,7 +247,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-fortune",
     tone: "das",
     title: "Das große Los",
-    image: "/scenes/das-7-glueck.png",
+    image: "/scenes/das-7-glueck.webp",
     narrativeDe:
       "Ein Kind sitzt beim Spiel. Über ihm schwebt das Glück wie ein leuchtendes Kleeblatt, daneben lauert das Pech. Vor ihm stapelt sich das Geld. Das Kind zieht das große Los — und dann geschieht ein kleines Wunder.",
     narrativeEn:
@@ -266,7 +266,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "der-landscape",
     tone: "der",
     title: "Die Bergwanderung",
-    image: "/scenes/der-5-landschaft.png",
+    image: "/scenes/der-5-landschaft.webp",
     narrativeDe:
       "Ein Mann wandert den schmalen Weg den Hügel hinauf. Links rauscht ein Bach, rechts beginnt der dunkle Wald. Weit hinten ragt der Berg steil empor, und unten glänzt der Fluss.",
     narrativeEn:
@@ -286,7 +286,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-seaside",
     tone: "das",
     title: "Das Fischerdorf am Meer",
-    image: "/scenes/das-8-dorf.png",
+    image: "/scenes/das-8-dorf.webp",
     narrativeDe:
       "Am Ufer liegt ein kleines Dorf mit einem weißen Haus. Hoch oben thront ein altes Schloss. Unten am Wasser schaukelt ein hölzernes Boot, während ein großes Schiff aufs Meer hinausfährt.",
     narrativeEn:
@@ -305,7 +305,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "die-italian-villa",
     tone: "die",
     title: "Omas italienische Villa",
-    image: "/scenes/die-5-villa.png",
+    image: "/scenes/die-5-villa.webp",
     narrativeDe:
       "Die Oma führt ihre Firma von einer alten Villa in einer sonnigen Stadt. Dann backt die Mama dort eine riesige Pizza, und eine Kamera filmt alles. Alles hier endet auf -a — und alles ist die.",
     narrativeEn:
@@ -324,7 +324,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-collectives",
     tone: "das",
     title: "Das Gemälde im Gebäude",
-    image: "/scenes/das-9-gebaeude.png",
+    image: "/scenes/das-9-gebaeude.webp",
     narrativeDe:
       "Ein Kind steht allein in einem riesigen Gebäude. Oben hängt ein großes Gemälde von frischem Gemüse und goldenem Getreide. Draußen erstreckt sich das weite Gelände. Alles endet auf -e und sieht nach die aus — doch alles ist das.",
     narrativeEn:
@@ -343,7 +343,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "der-forest-rescue",
     tone: "der",
     title: "Die Rettung im Wald",
-    image: "/scenes/der-7-tiere.png",
+    image: "/scenes/der-7-tiere.webp",
     narrativeDe:
       "Ein Löwe packt den Riesen am Fuß. Ein Elefant schlingt seinen Rüssel um ihn. Gemeinsam wollen sie den Affen, den Hasen, den Papagei, den Raben und den Spatz retten, die der Riese aus dem Wald forträgt. Der Rabe klemmt dabei den Käse in seinem Schnabel. Doch die Gefangenen sitzen in den Armen des Riesen. Der Bart des Riesen ist zu einem Zopf geflochten, und ein Nagel hält den Zopf zusammen. Am Gürtel hängen viele Schlüssel. Hoch am Himmel leuchtet der Mond.",
     narrativeEn:
@@ -371,7 +371,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "die-animal-tower",
     tone: "die",
     title: "An der Ampel",
-    image: "/scenes/die-6-ampel.png",
+    image: "/scenes/die-6-ampel.webp",
     narrativeDe:
       "An der Ampel wartet eine Kuh. Eine Gans sitzt auf der Kuh, und eine Maus sitzt auf der Gans. Hoch oben fliegt eine Amsel mit einer Gabel. Neben der Kuh liegt eine Kugel, gespickt mit vielen Nadeln, und die Sonne scheint.",
     narrativeEn:
@@ -392,7 +392,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-bodyparts",
     tone: "das",
     title: "Das tapfere Herz",
-    image: "/scenes/das-10-koerper.png",
+    image: "/scenes/das-10-koerper.webp",
     narrativeDe:
       "Ein Kind rennt zum Ziel. Da gibt das Bein nach, und das Knie knickt ein. Doch das Herz hämmert wild weiter, und das Gehirn glüht. Nass und zitternd reckt das Kind das Kinn nach vorn — und gewinnt.",
     narrativeEn:
@@ -410,7 +410,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "der-bodyparts",
     tone: "der",
     title: "Der Körper von oben",
-    image: "/scenes/der-6-koerper.png",
+    image: "/scenes/der-6-koerper.webp",
     narrativeDe:
       "Oben sitzt der Kopf. Darunter der Hals, dann der breite Rücken. Der Bauch wölbt sich vor, der Arm hängt herab, und der Finger zeigt nach vorn.",
     narrativeEn:
@@ -429,7 +429,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "das-zoo",
     tone: "das",
     title: "Die Tiere im Gehege",
-    image: "/scenes/das-11-zoo.png",
+    image: "/scenes/das-11-zoo.webp",
     narrativeDe:
       "Im Gehege steht das Pferd neben dem Kamel. Ein Lama spuckt. Ein Zebra trabt vorbei, ein Pony wiehert. Hinter dem Gitter liegt das Krokodil und reißt sein Maul weit auf. Das Nashorn senkt sein Horn.",
     narrativeEn:
@@ -450,7 +450,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     id: "der-exotic-zoo",
     tone: "der",
     title: "Der Zoo der Exoten",
-    image: "/scenes/der-8-exoten.png",
+    image: "/scenes/der-8-exoten.webp",
     narrativeDe:
       "Im Zoo brüllt der Tiger. Ein Gorilla trommelt, ein Leopard schleicht. Am Teich watet der Flamingo neben dem Pinguin. Der Pfau stolziert, der Strauß rennt davon, und im Teich springt der Delfin.",
     narrativeEn:

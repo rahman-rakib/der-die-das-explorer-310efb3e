@@ -87,7 +87,13 @@ function SceneImage({ scene }: { scene: MemoryScene }) {
       onError={() => setFailed(true)}
       className="aspect-square w-full rounded-xl object-cover"
       style={{ backgroundColor: `var(--${m.soft})` }}
-      loading="lazy"
+      // Only the active scene is mounted, so eager-load it (with explicit
+      // dimensions to reserve the square and avoid layout shift). Neighbours are
+      // warmed separately so a swipe shows instantly.
+      width={900}
+      height={900}
+      loading="eager"
+      decoding="async"
     />
   );
 }
@@ -373,6 +379,20 @@ export function MemoryScenesView() {
     setDirection(delta);
     setIndex(i => (i + delta + total) % total);
   };
+
+  // Warm the previous/next scene images so swiping shows them instantly instead
+  // of fetching on demand. `new Image()` populates the browser cache; the actual
+  // <img> then hits that cache. Runs only in the browser.
+  useEffect(() => {
+    if (typeof window === "undefined" || total <= 1) return;
+    for (const delta of [1, -1]) {
+      const neighbor = scenes[(index + delta + total) % total];
+      if (neighbor?.image) {
+        const img = new Image();
+        img.src = neighbor.image;
+      }
+    }
+  }, [scenes, index, total]);
 
   if (drilling) {
     return (
