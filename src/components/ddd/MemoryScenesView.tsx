@@ -11,6 +11,7 @@ import {
 import { ArticleBadge, WordPill } from "./ArticleBadge";
 import { loadProgress, markSceneMastered, recordAnswer } from "@/lib/progress";
 import { chunkForSpeech } from "@/lib/speech";
+import { orderByDifficulty } from "@/lib/sceneOrder";
 
 const TABS: Article[] = ["das", "der", "die"];
 
@@ -358,7 +359,8 @@ export function MemoryScenesView() {
     if (tab === "shuffle") {
       return shuffleScene ? [shuffleScene] : [];
     }
-    return MEMORY_SCENES.filter(s => s.tone === tab);
+    // Within an article, show scenes easiest → hardest (by their words' CEFR level).
+    return orderByDifficulty(MEMORY_SCENES.filter(s => s.tone === tab));
   }, [tab, shuffleScene]);
 
   // Re-roll shuffle when entering tab
