@@ -5,7 +5,7 @@
  * Run:  node_modules/.bin/esbuild scripts/verify-speech-chunks.ts --bundle \\
  *         --platform=node --format=esm --outfile=/tmp/vs.mjs && node /tmp/vs.mjs
  */
-import { chunkForSpeech } from "../src/lib/speech";
+import { buildSceneSpeech, chunkForSpeech } from "../src/lib/speech";
 import { MEMORY_SCENES } from "../src/data/words";
 
 let failures = 0;
@@ -52,6 +52,47 @@ if (chunkForSpeech(oneWord).join("") !== oneWord) fail("short text should pass t
 const longSentence = "der " + "Tisch und ".repeat(40) + "Stuhl.";
 const lc = chunkForSpeech(longSentence, MAX);
 if (lc.some(c => c.length > MAX)) fail("over-long single sentence not broken under cap");
+
+// --- buildSceneSpeech: narration → pause → word list -----------------------
+for (const scene of MEMORY_SCENES as Array<{
+  title: string;
+  narrativeDe: string;
+  words: Array<{ article: string; word: string }>;
+}>) {
+  const WORD_GAP = 450;
+  const segs = buildSceneSpeech(scene.narrativeDe, scene.words, {
+    pauseMs: 2000,
+    wordGapMs: WORD_GAP,
+    maxLen: MAX,
+  });
+  const speakSegs = segs.filter(s => s.type === "speak") as Array<{ text: string; rate?: number }>;
+  const pauses = segs.filter(s => s.type === "pause") as Array<{ ms: number }>;
+
+  // (d) every spoken segment respects the cap
+  if (speakSegs.some(s => s.text.length > MAX)) fail(`${scene.title}: scene segment exceeds ${MAX}`);
+
+  if (scene.words.length) {
+    // (e) one 2s pause after narration, then one word-gap pause between each word
+    const bigPauses = pauses.filter(p => p.ms === 2000);
+    const gapPauses = pauses.filter(p => p.ms === WORD_GAP);
+    if (bigPauses.length !== 1) fail(`${scene.title}: expected exactly one 2000ms pause`);
+    if (gapPauses.length !== scene.words.length - 1)
+      fail(`${scene.title}: expected ${scene.words.length - 1} word-gap pauses, got ${gapPauses.length}`);
+
+    // the 2s pause must sit between narration and the words (not first/last)
+    const pauseAt = segs.findIndex(s => s.type === "pause" && s.ms === 2000);
+    if (pauseAt <= 0 || pauseAt === segs.length - 1) fail(`${scene.title}: pause not between narration and words`);
+
+    // (f) each word is its own "article noun" utterance, in order, slightly slower
+    const wordSegs = speakSegs.slice(speakSegs.length - scene.words.length);
+    scene.words.forEach((w, i) => {
+      if (wordSegs[i].text !== `${w.article} ${w.word}`)
+        fail(`${scene.title}: word ${i} is "${wordSegs[i].text}", expected "${w.article} ${w.word}"`);
+      if (!(wordSegs[i].rate && wordSegs[i].rate! < 0.95))
+        fail(`${scene.title}: word "${w.word}" should read slower than narration`);
+    });
+  }
+}
 
 console.log(
   failures === 0

@@ -40,6 +40,42 @@ function splitLong(sentence: string, maxLen: number): string[] {
  * together so the speech still flows naturally. A sentence longer than `maxLen`
  * is broken further at clause/word boundaries via {@link splitLong}.
  */
+/**
+ * A playback segment: either spoken text (optionally at a custom rate) or a
+ * silent pause (ms). A scene is narrated, then a pause, then its covered words
+ * are read aloud one at a time.
+ */
+export type SpeechSegment =
+  | { type: "speak"; text: string; rate?: number }
+  | { type: "pause"; ms: number };
+
+/**
+ * Build the playback plan for a scene: the narration (chunked), a pause, then
+ * the covered words spoken as "article + noun" — each word its OWN utterance,
+ * separated by a short gap and read a touch slower, so every word lands cleanly
+ * for the learner (commas in one breath read too fast and flat). Pure — the
+ * caller drives `speechSynthesis`.
+ */
+export function buildSceneSpeech(
+  narrativeDe: string,
+  words: ReadonlyArray<{ article: string; word: string }>,
+  opts: { pauseMs?: number; wordGapMs?: number; wordRate?: number; maxLen?: number } = {},
+): SpeechSegment[] {
+  const { pauseMs = 2000, wordGapMs = 450, wordRate = 0.9, maxLen = 180 } = opts;
+  const segments: SpeechSegment[] = chunkForSpeech(narrativeDe, maxLen).map(text => ({
+    type: "speak",
+    text,
+  }));
+  if (words.length) {
+    segments.push({ type: "pause", ms: pauseMs });
+    words.forEach((w, i) => {
+      if (i > 0) segments.push({ type: "pause", ms: wordGapMs });
+      segments.push({ type: "speak", text: `${w.article} ${w.word}`, rate: wordRate });
+    });
+  }
+  return segments;
+}
+
 export function chunkForSpeech(text: string, maxLen = 180): string[] {
   const trimmed = text.trim();
   if (!trimmed) return [];

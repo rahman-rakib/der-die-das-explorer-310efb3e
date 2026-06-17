@@ -10,7 +10,7 @@ import {
 } from "@/data/words";
 import { ArticleBadge, WordPill } from "./ArticleBadge";
 import { loadProgress, markSceneMastered, recordAnswer } from "@/lib/progress";
-import { chunkForSpeech } from "@/lib/speech";
+import { buildSceneSpeech, type SpeechSegment } from "@/lib/speech";
 import { orderByDifficulty } from "@/lib/sceneOrder";
 
 const TABS: Article[] = ["das", "der", "die"];
@@ -24,47 +24,69 @@ function shuffle<T>(a: T[]): T[] {
   return r;
 }
 
-// Chrome/Edge stop a single utterance after ~15s, cutting long narrations off
-// mid-word. We queue sentence-sized chunks instead, and nudge resume() so the
-// queue keeps playing past the engine's internal timeout.
+// Speech playback. We play a list of segments (spoken chunks + timed pauses)
+// in order: a scene is narrated, then a short pause, then its covered words are
+// read aloud. Chrome/Edge cut a single utterance off after ~15s, so narrations
+// are pre-chunked (see buildSceneSpeech) and we nudge resume() to survive the
+// engine's auto-pause. A generation token makes a new play cancel the old one
+// cleanly — synth.cancel() fires onend on pending utterances, and stale
+// callbacks must not advance the new sequence.
 let speechKeepAlive: ReturnType<typeof setInterval> | null = null;
+let speechTimer: ReturnType<typeof setTimeout> | null = null;
+let speechGen = 0;
 
-function speak(text: string) {
-  if (typeof window === "undefined" || !window.speechSynthesis) return;
-  const synth = window.speechSynthesis;
-  synth.cancel();
+function stopSpeech() {
+  if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel();
   if (speechKeepAlive) {
     clearInterval(speechKeepAlive);
     speechKeepAlive = null;
   }
+  if (speechTimer) {
+    clearTimeout(speechTimer);
+    speechTimer = null;
+  }
+}
 
-  const chunks = chunkForSpeech(text);
-  chunks.forEach((chunk, idx) => {
-    const u = new SpeechSynthesisUtterance(chunk);
-    u.lang = "de-DE";
-    u.rate = 0.95;
-    if (idx === chunks.length - 1) {
-      // Stop the keep-alive once the final chunk finishes.
-      u.onend = () => {
-        if (speechKeepAlive) {
-          clearInterval(speechKeepAlive);
-          speechKeepAlive = null;
-        }
-      };
+function playSegments(segments: SpeechSegment[]) {
+  if (typeof window === "undefined" || !window.speechSynthesis) return;
+  const synth = window.speechSynthesis;
+  const gen = ++speechGen; // invalidate any in-flight sequence
+  stopSpeech();
+
+  let i = 0;
+  const next = () => {
+    if (gen !== speechGen) return; // superseded by a newer play
+    if (i >= segments.length) {
+      if (speechKeepAlive) {
+        clearInterval(speechKeepAlive);
+        speechKeepAlive = null;
+      }
+      return;
     }
+    const seg = segments[i++];
+    if (seg.type === "pause") {
+      speechTimer = setTimeout(next, seg.ms);
+      return;
+    }
+    const u = new SpeechSynthesisUtterance(seg.text);
+    u.lang = "de-DE";
+    u.rate = seg.rate ?? 0.95; // word readout plays a touch slower
+    u.onend = next;
+    u.onerror = next; // never get stuck on a failed chunk
     synth.speak(u);
-  });
+  };
 
   // resume() is a no-op unless the engine paused itself; calling it every few
   // seconds revives the queue after Chrome's ~15s auto-pause.
   speechKeepAlive = setInterval(() => {
-    if (!synth.speaking) {
-      if (speechKeepAlive) clearInterval(speechKeepAlive);
-      speechKeepAlive = null;
-      return;
-    }
-    synth.resume();
+    if (synth.speaking) synth.resume();
   }, 5000);
+  next();
+}
+
+/** Narrate a scene, pause, then read its covered words aloud. */
+function speakScene(scene: MemoryScene) {
+  playSegments(buildSceneSpeech(scene.narrativeDe, scene.words));
 }
 
 function SceneImage({ scene }: { scene: MemoryScene }) {
@@ -180,7 +202,7 @@ function SceneCard({
             {scene.narrativeDe}
           </p>
           <button
-            onClick={() => speak(scene.narrativeDe)}
+            onClick={() => speakScene(scene)}
             aria-label="Anhören"
             title="Anhören"
             className="shrink-0 rounded-full border bg-card p-2 text-base shadow-sm"
