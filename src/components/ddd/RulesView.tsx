@@ -3,7 +3,7 @@ import { useState } from "react";
 import rulesData from "@/data/rules.json";
 import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
-import { endingBox, packEndings, sharedEndingScale } from "@/lib/endingLayout";
+import { endingBox, packEndings, sharedEndingScale, type LayoutOpts } from "@/lib/endingLayout";
 import { ArticleBadge } from "./ArticleBadge";
 
 type Tier = "ironclad" | "strong" | "moderate" | "weak";
@@ -80,8 +80,19 @@ const TABS: Article[] = ["der", "die", "das"];
 // One font scale shared by all three ending circles (computed once over every
 // gender), so the same-size disk holds the busiest gender and a frequent ending
 // always renders bigger than a rarer one across tabs. See sharedEndingScale.
+// Per-gender layout tweaks: die's wide -tion/-sion needs a touch more right-edge
+// clearance (nudge the set left); das is sparse, so spread its bubbles wider.
+const ENDING_OPTS: Record<Article, LayoutOpts> = {
+  der: {},
+  die: { shiftX: -8 },
+  das: { fill: 0.85 },
+};
+
 const ENDING_SCALE = sharedEndingScale(
-  TABS.map(a => endingDisplayOrder(RULES.filter(r => r.article === a)).map(r => endingBox(r.sizeWeight, r.suffix.length))),
+  TABS.map(a => ({
+    boxes: endingDisplayOrder(RULES.filter(r => r.article === a)).map(r => endingBox(r.sizeWeight, r.suffix.length)),
+    opts: ENDING_OPTS[a],
+  })),
 );
 
 const TIER_STYLE: Record<Tier, { label: string; icon: string; bg: string; fg: string; bar: string; barBg: string }> = {
@@ -680,7 +691,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
   // step if a gender is busy. Deterministic (SSR-safe) and geometry-tested in
   // scripts/verify-ending-layout.ts.
   const baseBoxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length));
-  const { positions: packed, radius } = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })), ENDING_SCALE);
+  const { positions: packed, radius } = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })), ENDING_SCALE, ENDING_OPTS[article]);
   const boxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length, ENDING_SCALE));
   const SIZE = 2 * (radius + 6); // disk drawn a touch larger than the (fixed) content radius
 

@@ -27,10 +27,17 @@ function displayOrder(art: string) {
 }
 const ORDERED: Record<string, any[]> = Object.fromEntries(ARTS.map(art => [art, displayOrder(art)]));
 
+// Per-gender layout options — must match RulesView's ENDING_OPTS.
+const OPTS: Record<string, { fill?: number; shiftX?: number }> = {
+  der: {},
+  die: { shiftX: -8 },
+  das: { fill: 0.85 },
+};
+
 // One shared scale across all three genders — exactly what the component computes,
-// from the SAME display order it renders.
+// from the SAME display order and options it renders.
 const SCALE = sharedEndingScale(
-  ARTS.map(art => ORDERED[art].map(r => endingBox(r.sizeWeight, r.suffix.length))),
+  ARTS.map(art => ({ boxes: ORDERED[art].map(r => endingBox(r.sizeWeight, r.suffix.length)), opts: OPTS[art] })),
 );
 
 // Collect every ending across genders for the cross-gender frequency check (f).
@@ -41,7 +48,7 @@ for (const art of ARTS) {
   const arr = ORDERED[art];
 
   const baseBoxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length));
-  const out = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })), SCALE);
+  const out = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })), SCALE, OPTS[art]);
   const pos = out.positions;
   const R = out.radius;
   const boxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length, out.scale));

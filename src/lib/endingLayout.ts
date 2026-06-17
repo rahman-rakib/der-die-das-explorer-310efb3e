@@ -165,7 +165,7 @@ function tryPack(items: Box[], R: number): Pos[] | null {
  * can't hold its assigned bubbles — the caller then falls back to {@link tryPack}
  * (a gender too busy to spread out already fills the disk densely on its own).
  */
-function spreadPack(items: Box[], R: number): Pos[] | null {
+function spreadPack(items: Box[], R: number, fill: number): Pos[] | null {
   const N = items.length;
   const rowH = Math.max(...items.map(b => b.h));
   const margin = Math.ceil(jitter * 1.6) + 2;
@@ -223,7 +223,7 @@ function spreadPack(items: Box[], R: number): Pos[] | null {
     const sumW = row.reduce((s, idx) => s + items[idx].w, 0);
     const W = 2 * halfW[k];
     const tight = sumW + (gap + jitter) * (row.length - 1);
-    const targetW = row.length > 1 ? Math.min(W, tight + (W - tight) * FILL) : sumW;
+    const targetW = row.length > 1 ? Math.min(W, tight + (W - tight) * fill) : sumW;
     const between = row.length > 1 ? (targetW - sumW) / (row.length - 1) : 0;
     let x = -targetW / 2;
     for (const idx of row) {
@@ -236,15 +236,26 @@ function spreadPack(items: Box[], R: number): Pos[] | null {
 }
 
 /**
+ * Per-gender layout tuning. `fill` overrides the default row-justify fraction
+ * (raise it to spread a sparse gender wider). `shiftX` adds a rigid horizontal
+ * nudge after centring (negative = left), to give a wide bubble extra edge
+ * clearance. The disk stays fixed in all cases.
+ */
+export interface LayoutOpts {
+  fill?: number;
+  shiftX?: number;
+}
+
+/**
  * Pack a gender's (already-scaled) bubbles into the fixed disk and vertical-centre
  * them. Tries the spread/fill layout first, falling back to the dense greedy pack
  * for a gender too busy to distribute. Shared by {@link sharedEndingScale} (to
  * validate a scale) and {@link packEndings} (to render), so the layout that gets
  * validated is exactly the one drawn.
  */
-function layout(scaledBoxes: Box[]): Pos[] {
+function layout(scaledBoxes: Box[], opts: LayoutOpts = {}): Pos[] {
   const N = scaledBoxes.length;
-  const positions = spreadPack(scaledBoxes, R_MAX) ?? tryPack(scaledBoxes, R_MAX) ?? scaledBoxes.map(() => ({ cx: 0, cy: 0 }));
+  const positions = spreadPack(scaledBoxes, R_MAX, opts.fill ?? FILL) ?? tryPack(scaledBoxes, R_MAX) ?? scaledBoxes.map(() => ({ cx: 0, cy: 0 }));
   // Vertical-centre so any leftover slack splits evenly top/bottom.
   let minY = Infinity;
   let maxY = -Infinity;
@@ -258,7 +269,8 @@ function layout(scaledBoxes: Box[]): Pos[] {
   // Horizontal-centre by visual MASS (area-weighted), so a gender whose bigger
   // bubbles happen to land on one side doesn't look lopsided. A rigid shift of
   // the whole set; the disk stays fixed. Mass- rather than bbox-centred because
-  // the eye tracks where the weight is, not the outermost edges.
+  // the eye tracks where the weight is, not the outermost edges. opts.shiftX adds
+  // an extra rigid nudge (negative = left) on top.
   let comNum = 0;
   let comDen = 0;
   for (let i = 0; i < N; i++) {
@@ -266,16 +278,16 @@ function layout(scaledBoxes: Box[]): Pos[] {
     comNum += positions[i].cx * a;
     comDen += a;
   }
-  const shiftX = comDen > 0 ? comNum / comDen : 0;
+  const shiftX = (comDen > 0 ? comNum / comDen : 0) - (opts.shiftX ?? 0);
   for (let i = 0; i < N; i++) positions[i].cx -= shiftX;
   return positions;
 }
 
 /** True if the *rendered* layout fits the disk (nothing outside) with no overlaps. */
-function fitsClean(scaledBoxes: Box[]): boolean {
+function fitsClean(scaledBoxes: Box[], opts: LayoutOpts = {}): boolean {
   const N = scaledBoxes.length;
   if (N === 0) return true;
-  const pos = layout(scaledBoxes);
+  const pos = layout(scaledBoxes, opts);
   for (let i = 0; i < N; i++) {
     const reach = Math.hypot(Math.abs(pos[i].cx) + scaledBoxes[i].w / 2, Math.abs(pos[i].cy) + scaledBoxes[i].h / 2);
     if (reach > R_MAX) return false;
@@ -297,9 +309,9 @@ function fitsClean(scaledBoxes: Box[]): boolean {
  * rarer one). Pass the base (scale-1) boxes for every gender; compute once and
  * feed the result to {@link packEndings}.
  */
-export function sharedEndingScale(genderBoxes: Box[][]): number {
+export function sharedEndingScale(genders: { boxes: Box[]; opts?: LayoutOpts }[]): number {
   for (let s = 1; s >= 0.4; s -= 0.02) {
-    if (genderBoxes.every(boxes => fitsClean(boxes.map(b => ({ w: b.w * s, h: b.h * s }))))) {
+    if (genders.every(g => fitsClean(g.boxes.map(b => ({ w: b.w * s, h: b.h * s })), g.opts))) {
       return s;
     }
   }
@@ -311,9 +323,9 @@ export function sharedEndingScale(genderBoxes: Box[][]): number {
  * (every gender draws the same-size circle). Returns positions, the fixed radius,
  * and the scale (which the component re-applies to the rendered font/padding).
  */
-export function packEndings(baseBoxes: Box[], scale: number): PackResult {
+export function packEndings(baseBoxes: Box[], scale: number, opts: LayoutOpts = {}): PackResult {
   const N = baseBoxes.length;
   if (N === 0) return { positions: [], radius: R_MAX, scale };
-  const positions = layout(baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale })));
+  const positions = layout(baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale })), opts);
   return { positions, radius: R_MAX, scale };
 }
