@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
  */
 export function HomeView() {
   return (
-    <div className="flex flex-1 flex-col items-center pb-6">
+    <div className="flex flex-1 flex-col items-center pt-8 pb-6">
       <motion.img
         src="/der_die_das_logo.png"
         alt="Der Die Das"
@@ -23,10 +23,7 @@ export function HomeView() {
         className="-mt-2 max-w-[420px] px-6 text-center"
       >
         <p className="text-base font-bold leading-snug">
-          Master the one thing every German learner dreads —{" "}
-          <span style={{ color: "var(--der)" }}>der</span>,{" "}
-          <span style={{ color: "var(--die)" }}>die</span>,{" "}
-          <span style={{ color: "var(--das)" }}>das</span>.
+          Master the one thing every German learner dreads — der, die, das.
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           Spot the patterns, lock them in with vivid picture stories, then drill
