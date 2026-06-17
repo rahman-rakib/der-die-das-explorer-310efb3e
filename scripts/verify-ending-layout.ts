@@ -65,7 +65,7 @@ for (const art of ARTS) {
   }
   // (c) reading order preserved: non-decreasing row (cy), left-to-right within a
   // row — tolerant of the organic jitter band (±jitter on each axis).
-  const T = 13; // jitter tolerance (2*jitter + 1)
+  const T = 9; // jitter tolerance (2*jitter + 1)
   let orderViol = 0;
   for (let i = 1; i < pos.length; i++) {
     if (pos[i].cy < pos[i - 1].cy - T) orderViol++; // jumped up to an earlier row

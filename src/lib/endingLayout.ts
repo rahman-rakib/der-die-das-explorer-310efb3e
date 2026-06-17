@@ -66,15 +66,23 @@ const SPREAD = 0.84; // how far rows reach toward the disk edge (1 = the very ed
  */
 export function endingBox(sizeWeight: number, suffixLen: number, scale = 1): EndingBox {
   const fontSize = (MIN_FS + sizeWeight * (MAX_FS - MIN_FS)) * scale;
-  const padV = (3 + sizeWeight * 4) * scale;
-  const padH = (8 + sizeWeight * 8) * scale;
-  const w = suffixLen * fontSize * 0.72 + 2 * padH + 4;
-  const h = fontSize * 1.2 + 2 * padV + 4;
+  // Padding tightened (was 3+4w / 8+8w) so bubbles take less room and the shared
+  // font scale can rise to ~0.75. The 0.72 width factor is left intact — it
+  // over-estimates bold glyph width so text never spills its bubble.
+  const padV = (2 + sizeWeight * 3) * scale;
+  const padH = (5 + sizeWeight * 4) * scale;
+  // The +4 safety margin is scaled too, so a box at scale s equals the scale-1
+  // box times s exactly — the packer scales base boxes by s, and that must match
+  // what's rendered or tight layouts mis-predict overlaps.
+  const w = suffixLen * fontSize * 0.72 + 2 * padH + 4 * scale;
+  const h = fontSize * 1.2 + 2 * padV + 4 * scale;
   return { w, h, fontSize, padV, padH };
 }
 
-const jitter = 6; // organic per-bubble offset (px); larger = more scatter, less room
-const gap = 8;
+const jitter = 3; // organic per-bubble offset (px); larger = more scatter, less room
+const gap = 5;    // tightened (was 8) so the shared font scale can rise to ~0.75:
+                  // the busiest gender packs congested to fit, while a sparse
+                  // gender's few bubbles still spread out via FILL below.
 // How much of each row's spare width to spread into (0 = bubbles packed tight in
 // the row centre, 1 = pushed to the chord ends). A sparse gender (e.g. das) has
 // lots of spare width; spreading distributes it as small even gaps so the fixed
@@ -228,52 +236,70 @@ function spreadPack(items: Box[], R: number): Pos[] | null {
 }
 
 /**
+ * Pack a gender's (already-scaled) bubbles into the fixed disk and vertical-centre
+ * them. Tries the spread/fill layout first, falling back to the dense greedy pack
+ * for a gender too busy to distribute. Shared by {@link sharedEndingScale} (to
+ * validate a scale) and {@link packEndings} (to render), so the layout that gets
+ * validated is exactly the one drawn.
+ */
+function layout(scaledBoxes: Box[]): Pos[] {
+  const N = scaledBoxes.length;
+  const positions = spreadPack(scaledBoxes, R_MAX) ?? tryPack(scaledBoxes, R_MAX) ?? scaledBoxes.map(() => ({ cx: 0, cy: 0 }));
+  // Vertical-centre so any leftover slack splits evenly top/bottom.
+  let minY = Infinity;
+  let maxY = -Infinity;
+  for (let i = 0; i < N; i++) {
+    minY = Math.min(minY, positions[i].cy - scaledBoxes[i].h / 2);
+    maxY = Math.max(maxY, positions[i].cy + scaledBoxes[i].h / 2);
+  }
+  const shiftY = (minY + maxY) / 2;
+  for (let i = 0; i < N; i++) positions[i].cy -= shiftY;
+  return positions;
+}
+
+/** True if the *rendered* layout fits the disk (nothing outside) with no overlaps. */
+function fitsClean(scaledBoxes: Box[]): boolean {
+  const N = scaledBoxes.length;
+  if (N === 0) return true;
+  const pos = layout(scaledBoxes);
+  for (let i = 0; i < N; i++) {
+    const reach = Math.hypot(Math.abs(pos[i].cx) + scaledBoxes[i].w / 2, Math.abs(pos[i].cy) + scaledBoxes[i].h / 2);
+    if (reach > R_MAX) return false;
+  }
+  for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+    const ox = Math.abs(pos[i].cx - pos[j].cx) < (scaledBoxes[i].w + scaledBoxes[j].w) / 2;
+    const oy = Math.abs(pos[i].cy - pos[j].cy) < (scaledBoxes[i].h + scaledBoxes[j].h) / 2;
+    if (ox && oy) return false;
+  }
+  return true;
+}
+
+/**
  * The single font scale (≤1) shared by ALL three ending circles: the largest
- * scale at which the BUSIEST gender still fits the capped disk. Applying one
- * uniform factor to every circle keeps the size formula's proportions intact and
- * keeps bubbles comparable across genders (a frequent ending always renders
- * bigger than a rarer one, in any tab). Pass the base (scale-1) boxes for every
- * gender. Deterministic; compute once and feed the result to {@link packEndings}.
+ * scale at which EVERY gender RENDERS cleanly — nothing outside the fixed disk,
+ * no overlaps — including the jitter and fill-justify, not just a tight pack.
+ * One uniform factor keeps the size formula's proportions intact and bubbles
+ * comparable across genders (a frequent ending always renders bigger than a
+ * rarer one). Pass the base (scale-1) boxes for every gender; compute once and
+ * feed the result to {@link packEndings}.
  */
 export function sharedEndingScale(genderBoxes: Box[][]): number {
-  let shared = 1;
-  for (const boxes of genderBoxes) {
-    if (boxes.length === 0) continue;
-    let s = 1;
-    for (; s >= 0.4; s -= 0.04) {
-      const scaled = boxes.map(b => ({ w: b.w * s, h: b.h * s }));
-      if (tryPack(scaled, R_MAX)) break;
+  for (let s = 1; s >= 0.4; s -= 0.02) {
+    if (genderBoxes.every(boxes => fitsClean(boxes.map(b => ({ w: b.w * s, h: b.h * s }))))) {
+      return s;
     }
-    shared = Math.min(shared, s);
   }
-  return shared;
+  return 0.4;
 }
 
 /**
  * Lay out one gender's endings at the given shared `scale` inside the FIXED disk
- * (every gender draws the same-size circle). Bubbles are spread to fill the disk
- * via {@link spreadPack}, falling back to the dense greedy {@link tryPack} for a
- * gender too busy to distribute. Returns positions, the fixed radius, and the
- * scale (which the component re-applies to the rendered font/padding).
+ * (every gender draws the same-size circle). Returns positions, the fixed radius,
+ * and the scale (which the component re-applies to the rendered font/padding).
  */
 export function packEndings(baseBoxes: Box[], scale: number): PackResult {
   const N = baseBoxes.length;
   if (N === 0) return { positions: [], radius: R_MAX, scale };
-
-  const boxes = baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale }));
-  const positions = spreadPack(boxes, R_MAX) ?? tryPack(boxes, R_MAX) ?? boxes.map(() => ({ cx: 0, cy: 0 }));
-
-  // Vertical-centre the placed content so any leftover slack splits evenly
-  // top/bottom rather than leaving the bottom of the round disk empty.
-  let minY = Infinity;
-  let maxY = -Infinity;
-  for (let i = 0; i < N; i++) {
-    minY = Math.min(minY, positions[i].cy - boxes[i].h / 2);
-    maxY = Math.max(maxY, positions[i].cy + boxes[i].h / 2);
-  }
-  const shiftY = (minY + maxY) / 2;
-  for (let i = 0; i < N; i++) positions[i].cy -= shiftY;
-
-  // Fixed disk radius for every gender — the circle is identical on each tab.
+  const positions = layout(baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale })));
   return { positions, radius: R_MAX, scale };
 }
