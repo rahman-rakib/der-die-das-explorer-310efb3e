@@ -34,13 +34,13 @@ The app is organised into five tabs:
 <table>
   <tr>
     <td><img src="public/scenes/das-1-dach.webp" width="220" alt="Memory scene: Frühstück auf dem Dach" /></td>
-    <td><img src="public/scenes/der-2-wanderer.webp" width="220" alt="Memory scene: Der stürmische Wanderer" /></td>
-    <td><img src="public/scenes/die-2-kueche.webp" width="220" alt="Memory scene: die Küche" /></td>
+    <td><img src="public/scenes/der-7-tiere.webp" width="220" alt="Memory scene: Die Rettung im Wald" /></td>
+    <td><img src="public/scenes/die-6-ampel.webp" width="220" alt="Memory scene: An der Ampel" /></td>
   </tr>
   <tr align="center">
     <td><em>das · Frühstück auf dem Dach</em></td>
-    <td><em>der · Der stürmische Wanderer</em></td>
-    <td><em>die · Die Küche</em></td>
+    <td><em>der · Die Rettung im Wald</em></td>
+    <td><em>die · An der Ampel</em></td>
   </tr>
 </table>
 <sub>A few of the memory scenes — each one packs a single gender into one image so the article comes back with the picture.</sub>
@@ -52,7 +52,7 @@ This app is a **vibe-coding** experiment: built conversationally, by describing 
 
 Three tools, three jobs:
 
-- 🧠 **[Claude Code](https://claude.com/claude-code)** — reasoning, data pipeline, and code. Claude curated and classified the gender rules, built the leveled practice-word lists, wrote the deterministic layout engine for the Endings bubble cloud, and handled the iterative refactors and Git workflow.
+- 🧠 **[Claude Code](https://claude.com/claude-code)** — reasoning, data pipeline, and code. Claude curated and classified the gender rules, built the leveled practice-word lists, wrote the deterministic layout engine for the Endings bubble cloud, and handled the iterative refactors and Git workflow. Larger changes were planned and tracked with **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** inside Claude Code — proposing a spec, generating the design/tasks, then implementing and archiving it — so each feature had a written intent before any code was written.
 - 🎨 **ChatGPT (DALL·E / image generation)** — every memory-scene illustration was generated as a square image, one per scene, each composed around a single grammatical gender.
 - 🛠️ **[Lovable](https://lovable.dev/)** — the app shell, UI, and hosting. Lovable scaffolded the TanStack Start + React frontend and deploys it straight from this repo.
 
