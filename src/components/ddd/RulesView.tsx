@@ -662,14 +662,16 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
 
   const active = activeIdx !== null ? sortedRules[activeIdx] : null;
 
-  // Lay the bubbles out in centred rows that fill the circular background:
+  // Lay the bubbles out in spread rows that fill the circular background:
   // alphabetical reading flow (top→bottom, left→right), narrow rows at the
-  // top/bottom of the disk and wide rows through the middle. Deterministic
-  // (SSR-safe) and geometry-tested in scripts/verify-ending-layout.ts.
-  const SIZE = 320; // px (max-w-xs)
-  const R = SIZE / 2 - 6; // inner radius (inside the 2px border)
-  const boxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length));
-  const packed = packEndings(boxes.map(b => ({ w: b.w, h: b.h })), R, 6);
+  // top/bottom of the disk and wide rows through the middle, with organic
+  // jitter. The packer sizes the disk to the content and shrinks the font a
+  // step if a gender is busy. Deterministic (SSR-safe) and geometry-tested in
+  // scripts/verify-ending-layout.ts.
+  const baseBoxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length));
+  const { positions: packed, radius, scale } = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })));
+  const boxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length, scale));
+  const SIZE = 2 * (radius + 6); // disk drawn a touch larger than the content radius
 
 
   return (

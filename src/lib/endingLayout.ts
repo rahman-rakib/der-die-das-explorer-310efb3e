@@ -1,144 +1,165 @@
 /**
  * Pure, deterministic layout for the "Endings" bubble circle.
  *
- * The Compounds section is a free-flowing flex-wrap cloud, but Endings are far
- * fewer per gender (≈13–16), so they sit inside a circular background. We want
- * them to read like the compounds — alphabetical-ish, top-to-bottom — yet fill
- * the disk: rows are short near the top/bottom (narrow chord) and wide in the
- * middle. Everything here is deterministic (no Math.random) because the app is
- * server-rendered then hydrated — random positions would cause hydration
- * mismatches and flicker.
+ * Endings are few per gender (≈13–16), so they sit inside a circular background
+ * (the Compounds use a free flex-wrap cloud). Goals: read like the compounds
+ * (alphabetical, top→bottom) but FILL the disk — rows spread across the whole
+ * disk (not a central band), narrow near the top/bottom and wide through the
+ * centre, with an organic per-bubble jitter. A busy gender shrinks its font a
+ * step so all bubbles fit; the disk is then sized to the actual content so it's
+ * never oversized and nothing pokes out.
+ *
+ * Deterministic (no Math.random): the app is SSR'd then hydrated, so random
+ * positions would cause hydration mismatches and flicker.
  */
 
 export interface Box {
-  /** rendered width of the bubble in px */
   w: number;
-  /** rendered height of the bubble in px */
   h: number;
 }
 
 export interface Pos {
-  /** centre x relative to the circle centre (px; negative = left) */
-  cx: number;
-  /** centre y relative to the circle centre (px; negative = up) */
-  cy: number;
+  cx: number; // centre x relative to disk centre (px)
+  cy: number; // centre y relative to disk centre (px)
 }
 
-export const MIN_FS = 10;
-export const MAX_FS = 22;
+export interface EndingBox extends Box {
+  fontSize: number;
+  padV: number;
+  padH: number;
+}
+
+export interface PackResult {
+  positions: Pos[];
+  /** inner radius the content occupies (the disk is drawn a touch larger) */
+  radius: number;
+  /** font scale applied so a busy gender fits (1 = full size) */
+  scale: number;
+}
+
+export const MIN_FS = 12;
+export const MAX_FS = 26;
+
+const R_MAX = 148; // largest inner radius (keeps the disk within a phone's width)
+const SPREAD = 0.82; // how far rows reach toward the disk edge (1 = the very edge)
+const DPAD = 8; // padding between the outermost bubble and the drawn disk edge
 
 /**
- * Bubble box geometry for an ending, from its size weight and label length.
- * Kept here (not inlined in the component) so the layout test measures exactly
- * what the UI renders.
+ * Bubble box geometry for an ending. The width factor deliberately *over*-
+ * estimates bold glyph width so the packer always reserves enough room (an
+ * under-estimate previously let a wide ending poke outside the disk). `scale`
+ * shrinks a busy gender's bubbles so they all fit the capped disk.
  */
-export function endingBox(sizeWeight: number, suffixLen: number) {
-  const fontSize = MIN_FS + sizeWeight * (MAX_FS - MIN_FS);
-  const padV = Math.round(2 + sizeWeight * 3);
-  const padH = Math.round(6 + sizeWeight * 6);
-  // 0.62 ≈ average glyph-width / font-size for this bold font; +4 for the border.
-  const w = suffixLen * fontSize * 0.62 + 2 * padH + 4;
-  const h = fontSize * 1.15 + 2 * padV + 4;
+export function endingBox(sizeWeight: number, suffixLen: number, scale = 1): EndingBox {
+  const fontSize = (MIN_FS + sizeWeight * (MAX_FS - MIN_FS)) * scale;
+  const padV = (3 + sizeWeight * 4) * scale;
+  const padH = (8 + sizeWeight * 8) * scale;
+  const w = suffixLen * fontSize * 0.72 + 2 * padH + 4;
+  const h = fontSize * 1.2 + 2 * padV + 4;
   return { w, h, fontSize, padV, padH };
 }
 
+const jitter = 5;
+const gap = 7;
+const jit = (i: number) => ({
+  dx: ((((i * 11) % 5) - 2) / 2) * jitter,
+  dy: ((((i * 7 + (i % 3) * 2) % 5) - 2) / 2) * jitter,
+});
+
 /**
- * Lay bubbles out in centred horizontal rows that fit inside a circle of radius
- * ``R``. Items are placed in the given (reading) order, left-to-right then
- * top-to-bottom, so alphabetical flow is preserved.
- *
- * Strategy: try each row count; for a count ``nRows`` the row centres are symmetric
- * about 0 (so the stack is auto-centred), and each row may only be as wide as
- * the circle's chord at that row's *far* edge — which guarantees every bubble
- * stays inside the disk. Prefer the largest row count that places everything
- * with no empty row (spreads the bubbles to fill the circle); fall back to the
- * largest count that simply fits, then to a single row.
+ * Try to place every bubble in spread rows inside radius R. Returns positions
+ * (with jitter) if and only if ALL bubbles fit their row's chord — otherwise
+ * null, so the caller can shrink the font and retry.
  */
-export function packEndings(items: Box[], R: number, gap = 6, jitter = 3): Pos[] {
+function tryPack(items: Box[], R: number): Pos[] | null {
   const N = items.length;
-  if (N === 0) return [];
-
   const rowH = Math.max(...items.map(b => b.h));
-  // Reserve room so the organic jitter (added at the end) never pushes a bubble
-  // outside the disk or into a neighbour: pack inside a slightly smaller radius
-  // and widen the inter-bubble / inter-row spacing by the jitter amount.
-  const packR = Math.max(0, R - Math.ceil(jitter * 1.6));
-  const rowGap = gap + jitter;
-  const itemGap = gap + jitter;
-  const maxRows = Math.max(1, Math.floor((2 * packR + rowGap) / (rowH + rowGap)));
+  const margin = Math.ceil(jitter * 1.6) + 2;
+  const usableR = R - margin;
+  if (usableR <= rowH / 2) return null;
 
-  // A full layout for a given row count. ALWAYS returns a position for every
-  // item (no holes): once the rows are exhausted, leftovers pile into the last
-  // row, which then "overflows" its chord — we record that so the selector can
-  // avoid it. `overflowRows` counts rows wider than the disk allows there.
-  const layoutFor = (nRows: number): { pos: Pos[]; emptyRows: number; overflowRows: number } | null => {
-    const centers: number[] = [];
-    for (let k = 0; k < nRows; k++) centers.push((k - (nRows - 1) / 2) * (rowH + rowGap));
-    // Outermost row must sit fully inside the (jitter-reserved) circle vertically.
-    if (Math.abs(centers[0]) + rowH / 2 > packR) return null;
+  const spreadHalf = Math.max(0, (usableR - rowH / 2) * SPREAD);
+  // Row count from the SPREAD extent so adjacent row centres are always at least
+  // (rowH + gap) apart — otherwise rows would overlap vertically.
+  const nRows = Math.max(1, Math.floor((2 * spreadHalf) / (rowH + gap)) + 1);
+  const centers: number[] = [];
+  for (let k = 0; k < nRows; k++) {
+    centers.push(nRows === 1 ? 0 : -spreadHalf + (k * (2 * spreadHalf)) / (nRows - 1));
+  }
+  const halfW = centers.map(c => {
+    const yFar = Math.abs(c) + rowH / 2;
+    const v = usableR * usableR - yFar * yFar;
+    return v > 0 ? Math.sqrt(v) : 0;
+  });
 
-    // Half the usable width of each row = the chord at the row's far edge.
-    const halfW = centers.map(c => {
-      const yFar = Math.abs(c) + rowH / 2;
-      const v = packR * packR - yFar * yFar;
-      return v > 0 ? Math.sqrt(v) : 0;
-    });
-
-    const rows: number[][] = Array.from({ length: nRows }, () => []);
-    let i = 0;
-    for (let k = 0; k < nRows && i < N; k++) {
-      const isLast = k === nRows - 1;
-      let wsum = 0;
-      while (i < N) {
-        const add = items[i].w + (rows[k].length ? itemGap : 0);
-        // Row full — but never break on the last row (must place the rest) and
-        // always take at least one item per row.
-        if (!isLast && rows[k].length && wsum + add > 2 * halfW[k]) break;
+  const rows: number[][] = Array.from({ length: nRows }, () => []);
+  let i = 0;
+  for (let k = 0; k < nRows && i < N; k++) {
+    let wsum = 0;
+    while (i < N) {
+      if (rows[k].length === 0) {
+        if (items[i].w > 2 * halfW[k]) break; // too wide for this row → defer to a wider one
         rows[k].push(i);
-        wsum += add;
+        wsum = items[i].w;
+        i++;
+      } else {
+        const need = items[i].w + gap + jitter;
+        if (wsum + need > 2 * halfW[k]) break;
+        rows[k].push(i);
+        wsum += need;
         i++;
       }
     }
+  }
+  if (i < N) return null; // didn't fit them all at this size
 
-    let overflowRows = 0;
-    const pos: Pos[] = new Array(N);
-    for (let k = 0; k < nRows; k++) {
-      const row = rows[k];
-      if (row.length === 0) continue;
-      const totalW =
-        row.reduce((s, idx) => s + items[idx].w, 0) + itemGap * (row.length - 1);
-      if (totalW > 2 * halfW[k] + 0.5) overflowRows++;
-      let x = -totalW / 2;
-      for (const idx of row) {
-        pos[idx] = { cx: x + items[idx].w / 2, cy: centers[k] };
-        x += items[idx].w + itemGap;
+  const positions: Pos[] = new Array(N);
+  for (let k = 0; k < nRows; k++) {
+    const row = rows[k];
+    if (row.length === 0) continue;
+    const totalW =
+      row.reduce((s, idx) => s + items[idx].w, 0) + (gap + jitter) * (row.length - 1);
+    let x = -totalW / 2;
+    for (const idx of row) {
+      const { dx, dy } = jit(idx);
+      positions[idx] = { cx: x + items[idx].w / 2 + dx, cy: centers[k] + dy };
+      x += items[idx].w + gap + jitter;
+    }
+  }
+  return positions;
+}
+
+/**
+ * Lay out the endings: find the largest font scale (≤1) at which all bubbles
+ * fit the max disk, then size the disk to the actual content. Returns the
+ * positions, the disk radius, and the scale (which the component applies to the
+ * rendered font size / padding so it matches the packed boxes).
+ */
+export function packEndings(baseBoxes: Box[]): PackResult {
+  const N = baseBoxes.length;
+  if (N === 0) return { positions: [], radius: 60, scale: 1 };
+
+  for (let scale = 1; scale >= 0.5; scale -= 0.04) {
+    const boxes = baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale }));
+    const positions = tryPack(boxes, R_MAX);
+    if (positions) {
+      // Size the disk to the content so it's never oversized and nothing pokes out.
+      let contentR = 0;
+      for (let i = 0; i < N; i++) {
+        const reach = Math.hypot(
+          Math.abs(positions[i].cx) + boxes[i].w / 2,
+          Math.abs(positions[i].cy) + boxes[i].h / 2,
+        );
+        if (reach > contentR) contentR = reach;
       }
+      return { positions, radius: Math.min(R_MAX, contentR + DPAD), scale };
     }
-    return { pos, emptyRows: rows.filter(r => r.length === 0).length, overflowRows };
-  };
-
-  // Prefer the largest row count that fits with no overflow and no empty row
-  // (spreads bubbles to fill the disk); else the fewest-overflow layout.
-  let best: Pos[] | null = null;
-  let fewestOverflow: { pos: Pos[]; overflowRows: number } | null = null;
-  for (let nRows = 1; nRows <= maxRows; nRows++) {
-    const res = layoutFor(nRows);
-    if (!res) break; // taller counts only get worse
-    if (!fewestOverflow || res.overflowRows < fewestOverflow.overflowRows) {
-      fewestOverflow = { pos: res.pos, overflowRows: res.overflowRows };
-    }
-    if (res.overflowRows === 0 && res.emptyRows === 0) best = res.pos;
   }
 
-  const base = best ?? fewestOverflow?.pos ?? items.map(() => ({ cx: 0, cy: 0 }));
-
-  // Organic jitter: a small, deterministic per-bubble nudge in x and y so the
-  // rows read as hand-scattered (like the compounds cloud) while alphabetical
-  // order stays clear. Deterministic ⇒ SSR-safe; bounded by `jitter` and
-  // absorbed by the reserved radius/spacing, so still inside-disk & overlap-free.
-  return base.map((p, i) => {
-    const dx = ((((i * 11) % 5) - 2) / 2) * jitter;          // −jitter .. +jitter
-    const dy = ((((i * 7 + (i % 3) * 2) % 5) - 2) / 2) * jitter;
-    return { cx: p.cx + dx, cy: p.cy + dy };
-  });
+  // Smallest scale still didn't fit (shouldn't happen for ≤ ~20 endings): pack at
+  // the smallest scale and accept it.
+  const scale = 0.5;
+  const boxes = baseBoxes.map(b => ({ w: b.w * scale, h: b.h * scale }));
+  const positions = tryPack(boxes, R_MAX) ?? boxes.map(() => ({ cx: 0, cy: 0 }));
+  return { positions, radius: R_MAX, scale };
 }

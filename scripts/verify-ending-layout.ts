@@ -10,7 +10,6 @@ import rulesData from "../src/data/rules.json";
 import { endingBox, packEndings } from "../src/lib/endingLayout";
 
 const RAW = rulesData as { rules: Record<string, any[]> };
-const SIZE = 320, R = SIZE / 2 - 6, GAP = 6;
 
 let failures = 0;
 for (const art of ["der", "die", "das"]) {
@@ -23,8 +22,11 @@ for (const art of ["der", "die", "das"]) {
   const rand = () => { h = (h * 1664525 + 1013904223) >>> 0; return h / 0xffffffff; };
   for (let i = 0; i < arr.length - 1; i++) if (rand() < 0.45) [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
 
-  const boxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length));
-  const pos = packEndings(boxes.map(b => ({ w: b.w, h: b.h })), R, GAP);
+  const baseBoxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length));
+  const out = packEndings(baseBoxes.map(b => ({ w: b.w, h: b.h })));
+  const pos = out.positions;
+  const R = out.radius;
+  const boxes = arr.map(r => endingBox(r.sizeWeight, r.suffix.length, out.scale));
 
   // (a) every bubble fully inside the disk
   let outside = 0, maxReach = 0;
@@ -44,7 +46,7 @@ for (const art of ["der", "die", "das"]) {
   }
   // (c) reading order preserved: non-decreasing row (cy), left-to-right within a
   // row — tolerant of the organic jitter band (±jitter on each axis).
-  const T = 7; // jitter tolerance (2*jitter + 1)
+  const T = 13; // jitter tolerance (2*jitter + 1)
   let orderViol = 0;
   for (let i = 1; i < pos.length; i++) {
     if (pos[i].cy < pos[i - 1].cy - T) orderViol++; // jumped up to an earlier row
