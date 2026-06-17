@@ -195,7 +195,7 @@ export function SpecialCasesView() {
         </div>
         <div className="space-y-2 p-5">
           {[
-            { a: "der" as const, where: "Most common in Germany 🇩🇪", emoji: "🥇" },
+            { a: "der" as const, where: "Most common in Germany", emoji: "🥇" },
             { a: "das" as const, where: "Common in Austria 🇦🇹 & southern Germany", emoji: "🏔️" },
             { a: "die" as const, where: "Less common but accepted ✅", emoji: "💬" },
           ].map(item => (

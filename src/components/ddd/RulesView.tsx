@@ -103,7 +103,7 @@ export function RulesView() {
       <div className="px-4 pt-6">
         <h1 className="text-3xl font-extrabold">Rules</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Pick a gender to start learning! 🇩🇪
+          Pick a gender to start learning!
         </p>
       </div>
 
