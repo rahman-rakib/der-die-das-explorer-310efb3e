@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BottomNav, type TabId } from "@/components/ddd/BottomNav";
+import { HomeView } from "@/components/ddd/HomeView";
 import { RulesView } from "@/components/ddd/RulesView";
 import { PracticeView } from "@/components/ddd/PracticeView";
 import { ProgressView } from "@/components/ddd/ProgressView";
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [tab, setTab] = useState<TabId>("rules");
+  const [tab, setTab] = useState<TabId>("home");
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
@@ -42,26 +43,30 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto flex min-h-screen max-w-[480px] flex-col bg-background shadow-[0_0_60px_rgba(0,0,0,0.04)]">
-        <header className="px-4 pt-5">
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <img src="/logo-icon.png" alt="Der Die Das logo" className="h-8 w-8 rounded-md object-contain" />
-              <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
-                Der · Die · Das
-              </span>
+        {tab !== "home" && (
+          <header className="px-4 pt-5">
+            <div className="flex items-center justify-between gap-2">
+              {/* Logo doubles as a "back to landing" button. */}
+              <button
+                onClick={() => setTab("home")}
+                className="flex items-center gap-2 rounded-md transition active:scale-95"
+                title="Back to home"
+              >
+                <img src="/logo-icon.png" alt="Der Die Das — home" className="h-8 w-8 rounded-md object-contain" />
+                <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
+                  Der · Die · Das
+                </span>
+              </button>
+              <Link
+                to="/claude-prompt"
+                className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:bg-muted"
+                title="Generate Claude prompt from thematic rules"
+              >
+                📋 Prompt
+              </Link>
             </div>
-            <Link
-              to="/claude-prompt"
-              className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:bg-muted"
-              title="Generate Claude prompt from thematic rules"
-            >
-              📋 Prompt
-            </Link>
-          </div>
-        </header>
-
-
-
+          </header>
+        )}
 
         <main className="flex-1">
           <AnimatePresence mode="wait">
@@ -72,6 +77,7 @@ function Index() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22 }}
             >
+              {tab === "home" && <HomeView onNavigate={setTab} />}
               {tab === "rules" && <RulesView />}
               {tab === "scenes" && <MemoryScenesView />}
               {tab === "special" && <SpecialCasesView />}
@@ -81,7 +87,7 @@ function Index() {
           </AnimatePresence>
         </main>
 
-        <BottomNav active={tab} onChange={setTab} />
+        {tab !== "home" && <BottomNav active={tab} onChange={setTab} />}
       </div>
 
       <AnimatePresence>

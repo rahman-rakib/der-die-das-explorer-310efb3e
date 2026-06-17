@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export type TabId = "rules" | "scenes" | "special" | "practice" | "progress";
+export type TabId = "home" | "rules" | "scenes" | "special" | "practice" | "progress";
 
 const TABS: { id: TabId; label: string; icon: string }[] = [
   { id: "rules",     label: "Rules",     icon: "📖" },
