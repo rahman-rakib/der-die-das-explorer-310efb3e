@@ -77,7 +77,7 @@ function Index() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22 }}
             >
-              {tab === "home" && <HomeView onNavigate={setTab} />}
+              {tab === "home" && <HomeView />}
               {tab === "rules" && <RulesView />}
               {tab === "scenes" && <MemoryScenesView />}
               {tab === "special" && <SpecialCasesView />}
@@ -87,7 +87,7 @@ function Index() {
           </AnimatePresence>
         </main>
 
-        {tab !== "home" && <BottomNav active={tab} onChange={setTab} />}
+        <BottomNav active={tab} onChange={setTab} />
       </div>
 
       <AnimatePresence>
