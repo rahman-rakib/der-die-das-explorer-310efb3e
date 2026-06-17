@@ -127,7 +127,6 @@ export const RULES: RuleGroup[] = [
     ],
   },
 
-
   {
     article: "der", title: "word endings → der", emoji: "🔤",
     words: [],
@@ -377,7 +376,6 @@ export const RULES: RuleGroup[] = [
     ],
   },
 
-
   {
     article: "das", title: "word endings → das", emoji: "🔤",
     words: [],
@@ -398,83 +396,6 @@ export const RULES: RuleGroup[] = [
       { suffix: "-o", example: w("das","Auto","car") },
       { suffix: "-nis", example: w("das","Ergebnis","result"), exceptions: { mnemonic: "Mostly DAS, but a few feminine -nis nouns sneak in.", illustration: ["💚","🚧"], words: [w("die","Erlaubnis","permission"), w("die","Kenntnis","knowledge"), w("die","Finsternis","darkness")] } },
 
-
-    ],
-  },
-];
-
-export interface Scene {
-  title: string;
-  illustration: string[];
-  mnemonic: string;
-  words: Word[];
-  note?: string;
-  tone: Article;
-}
-
-export const SCENES: Scene[] = [
-  {
-    title: "The Coffee Shop", tone: "das",
-    illustration: ["☕","🥐","📰","💻","🎵"],
-    mnemonic: "In the coffee shop, everything feels neutral and cozy.",
-    words: [w("das","Café","café"), w("das","Restaurant","restaurant"), w("das","Hotel","hotel"), w("das","Büro","office"), w("das","Radio","radio"), w("das","Kino","cinema"), w("das","Sofa","sofa")],
-    note: "Borrowed words ending in -o, -é, -eau → usually DAS.",
-  },
-  {
-    title: "The Mighty River", tone: "der",
-    illustration: ["🌊","🗺️","⚓","🏔️","🌍"],
-    mnemonic: "Most rivers carve their own path — they're masculine!",
-    words: [w("der","Rhein","Rhine"), w("der","Main","Main"), w("der","Nil","Nile"), w("der","Amazonas","Amazon"), w("der","Mississippi","Mississippi")],
-    note: "Exception: rivers ending in -e or -a are usually DIE — die Donau, die Elbe, die Mosel, die Themse.",
-  },
-  {
-    title: "The Science Lab", tone: "das",
-    illustration: ["⚗️","🔬","💎","⚡","🧪"],
-    mnemonic: "In the lab, all elements are neutral — das is the scientist's article.",
-    words: [w("das","Gold","gold"), w("das","Silber","silver"), w("das","Eisen","iron"), w("das","Kupfer","copper"), w("das","Blei","lead"), w("das","Uran","uranium"), w("das","Helium","helium"), w("das","Sauerstoff","oxygen")],
-    note: "Exception: der Stahl (steel), der Rost (rust) — they behave differently.",
-  },
-  {
-    title: "The Tiny World", tone: "das",
-    illustration: ["🔍","🐭","🏠","🌸","👧"],
-    mnemonic: "Everything tiny and cute becomes neutral — das makes it adorable!",
-    words: [w("das","Mädchen","girl"), w("das","Fräulein","Miss"), w("das","Häuschen","little house"), w("das","Büchlein","little book"), w("das","Städtchen","little town"), w("das","Tierchen","little animal")],
-    note: "⚠️ Even female people become DAS with -chen/-lein — grammar overrules biology.",
-  },
-  {
-    title: "The Fruit Basket", tone: "die",
-    illustration: ["🍎","🍌","🍊","🍇","🥝"],
-    mnemonic: "Most fruits are sweet and feminine — die rules the basket.",
-    words: [w("die","Banane","banana"), w("die","Orange","orange"), w("die","Traube","grape"), w("die","Kirsche","cherry"), w("die","Pflaume","plum"), w("der","Apfel","apple"), w("der","Pfirsich","peach"), w("der","Mais","corn"), w("das","Obst","fruit (general)")],
-  },
-  {
-    title: "The Fashion Show", tone: "die",
-    illustration: ["👗","👠","👒","🧣","🎀"],
-    mnemonic: "Fashion is feminine — die runs the runway.",
-    words: [w("die","Bluse","blouse"), w("die","Hose","trousers"), w("die","Jacke","jacket"), w("die","Mütze","cap"), w("die","Tasche","bag"), w("der","Rock","skirt"), w("der","Schuh","shoe"), w("der","Gürtel","belt"), w("der","Mantel","coat"), w("der","Hut","hat"), w("das","Hemd","shirt"), w("das","Kleid","dress"), w("das","T-Shirt","T-shirt")],
-  },
-  {
-    title: "The Body Map", tone: "der",
-    illustration: ["🧠","❤️","👁️","🦷","🦴"],
-    mnemonic: "The body has all three genders — learn it like a map!",
-    words: [
-      w("der","Arm","arm"), w("der","Bauch","belly"), w("der","Finger","finger"), w("der","Hals","neck"), w("der","Kopf","head"), w("der","Mund","mouth"), w("der","Rücken","back"),
-      w("die","Hand","hand"), w("die","Nase","nose"), w("die","Schulter","shoulder"), w("die","Stirn","forehead"), w("die","Zunge","tongue"), w("die","Brust","chest"), w("die","Lippe","lip"),
-      w("das","Auge","eye"), w("das","Bein","leg"), w("das","Gesicht","face"), w("das","Herz","heart"), w("das","Knie","knee"), w("das","Ohr","ear"),
-    ],
-  },
-  {
-    title: "The Zoo of Exceptions", tone: "die",
-    illustration: ["🐬","🦋","🦈","🐊","🐆"],
-    mnemonic: "At the zoo, some animals ignore the rules — meet the rebels!",
-    words: [
-      w("das","Pferd","horse (neuter despite size)"),
-      w("das","Kamel","camel"),
-      w("das","Nashorn","rhino"),
-      w("der","Delphin","dolphin (masc despite -in)"),
-      w("die","Maus","mouse (fem despite tiny)"),
-      w("die","Schlange","snake"),
-      w("der","Hai","shark"),
     ],
   },
 ];
@@ -514,7 +435,6 @@ export const PRACTICE_WORDS: Word[] = (() => {
       s.exceptions?.words?.forEach(push);
     });
   });
-  SCENES.forEach(s => s.words.forEach(push));
   MEMORY_SCENES.forEach(s => s.words.forEach(push));
   return all;
 })();

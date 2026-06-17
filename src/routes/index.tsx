@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BottomNav, type TabId } from "@/components/ddd/BottomNav";
 import { RulesView } from "@/components/ddd/RulesView";
-import { MnemonicsView } from "@/components/ddd/MnemonicsView";
 import { PracticeView } from "@/components/ddd/PracticeView";
 import { ProgressView } from "@/components/ddd/ProgressView";
 import { MemoryScenesView } from "@/components/ddd/MemoryScenesView";
@@ -46,7 +45,7 @@ function Index() {
         <header className="px-4 pt-5">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">🇩🇪</span>
+              <img src="/logo.png" alt="Der Die Das logo" className="h-8 w-8 rounded-md object-contain" />
               <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
                 Der · Die · Das
               </span>
@@ -75,7 +74,6 @@ function Index() {
             >
               {tab === "rules" && <RulesView />}
               {tab === "scenes" && <MemoryScenesView />}
-              {tab === "mnemonics" && <MnemonicsView />}
               {tab === "special" && <SpecialCasesView />}
               {tab === "practice" && <PracticeView />}
               {tab === "progress" && <ProgressView />}
