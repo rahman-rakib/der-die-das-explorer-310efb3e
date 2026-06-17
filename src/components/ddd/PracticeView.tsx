@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import confetti from "canvas-confetti";
-import { ARTICLE_META, PRACTICE_WORDS, SUFFIX_EXCEPTION_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
+import { ARTICLE_META, PRACTICE_WORDS_A1A2, PRACTICE_WORDS_B1B2, SUFFIX_EXCEPTION_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
 import { recordAnswer } from "@/lib/progress";
 import { ArticleBadge } from "./ArticleBadge";
 
@@ -53,10 +53,10 @@ function ArticleButtons({ onPick, disabled, correctReveal }: {
 }
 
 /* ---------- FLASHCARDS ---------- */
-function Flashcards({ onExit, exceptionsOnly }: { onExit: () => void; exceptionsOnly: boolean }) {
+function Flashcards({ onExit, exceptionsOnly, pool }: { onExit: () => void; exceptionsOnly: boolean; pool: Word[] }) {
   const deck = useMemo(
-    () => shuffle(exceptionsOnly ? SUFFIX_EXCEPTION_WORDS : PRACTICE_WORDS).slice(0, 10),
-    [exceptionsOnly],
+    () => shuffle(exceptionsOnly ? SUFFIX_EXCEPTION_WORDS : pool).slice(0, 10),
+    [exceptionsOnly, pool],
   );
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
@@ -134,11 +134,11 @@ function Flashcards({ onExit, exceptionsOnly }: { onExit: () => void; exceptions
 }
 
 /* ---------- SPEED ROUND ---------- */
-function SpeedRound({ onExit }: { onExit: () => void }) {
+function SpeedRound({ onExit, pool }: { onExit: () => void; pool: Word[] }) {
   const [time, setTime] = useState(30);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
-  const [word, setWord] = useState<Word>(() => PRACTICE_WORDS[Math.floor(Math.random() * PRACTICE_WORDS.length)]);
+  const [word, setWord] = useState<Word>(() => pool[Math.floor(Math.random() * pool.length)]);
   const [flash, setFlash] = useState<"good" | "bad" | null>(null);
   const tickRef = useRef<number | null>(null);
 
@@ -152,7 +152,7 @@ function SpeedRound({ onExit }: { onExit: () => void }) {
     return () => { if (tickRef.current) clearInterval(tickRef.current); };
   }, []);
 
-  const next = () => setWord(PRACTICE_WORDS[Math.floor(Math.random() * PRACTICE_WORDS.length)]);
+  const next = () => setWord(pool[Math.floor(Math.random() * pool.length)]);
 
   const pick = (a: Article) => {
     if (time === 0) return;
@@ -285,9 +285,12 @@ function FillGap({ onExit }: { onExit: () => void }) {
 export function PracticeView() {
   const [mode, setMode] = useState<Mode>(null);
   const [exceptionsOnly, setExceptionsOnly] = useState(false);
+  const [level, setLevel] = useState<"a" | "b">("a");
+  // The selected CEFR band feeds Flashcards & Speed Round (not the exceptions drill).
+  const pool = level === "a" ? PRACTICE_WORDS_A1A2 : PRACTICE_WORDS_B1B2;
 
-  if (mode === "flash") return <Wrap><Flashcards onExit={() => setMode(null)} exceptionsOnly={exceptionsOnly} /></Wrap>;
-  if (mode === "speed") return <Wrap><SpeedRound onExit={() => setMode(null)} /></Wrap>;
+  if (mode === "flash") return <Wrap><Flashcards onExit={() => setMode(null)} exceptionsOnly={exceptionsOnly} pool={pool} /></Wrap>;
+  if (mode === "speed") return <Wrap><SpeedRound onExit={() => setMode(null)} pool={pool} /></Wrap>;
   if (mode === "fill") return <Wrap><FillGap onExit={() => setMode(null)} /></Wrap>;
 
   const tiles: { id: Exclude<Mode, null>; emoji: string; title: string; sub: string; bg: string }[] = [
@@ -300,6 +303,26 @@ export function PracticeView() {
     <div className="px-4 pb-8 pt-6">
       <h1 className="text-3xl font-extrabold">Practice</h1>
       <p className="mt-1 text-sm text-muted-foreground">Pick a game and get those genders right.</p>
+
+      <div className="mt-4 flex rounded-2xl border bg-card p-1 text-sm font-bold">
+        {([["a", "A1–A2"], ["b", "B1–B2"]] as const).map(([id, lbl]) => (
+          <button
+            key={id}
+            onClick={() => setLevel(id)}
+            className="flex-1 rounded-xl py-2 transition"
+            style={
+              level === id
+                ? { backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }
+                : { color: "var(--muted-foreground)" }
+            }
+          >
+            {lbl}
+          </button>
+        ))}
+      </div>
+      <p className="mt-1.5 text-center text-[11px] text-muted-foreground">
+        Level {level === "a" ? "A1–A2" : "B1–B2"} · {pool.length} words in the pool
+      </p>
 
       <label className="mt-4 flex cursor-pointer items-center justify-between rounded-2xl border bg-amber-50 px-4 py-3">
         <span className="flex flex-col">
