@@ -24,6 +24,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
     narrativeEn:
       "A child and a girl have breakfast on the roof. A tipped-over glass lies there, and water has spilled from it across the roof. In front of them lie a knife, a fresh loaf of bread, an egg, raw meat with a little blood, salt and oil. The girl's long hair hides her face. The child has big eyes and big ears.",
     words: [
+      w("das", "Frühstück", "breakfast"),
       w("das", "Dach", "roof"),
       w("das", "Kind", "child"),
       w("das", "Mädchen", "girl"),
