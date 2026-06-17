@@ -37,10 +37,24 @@ export interface PackResult {
   scale: number;
 }
 
-export const MIN_FS = 12;
-export const MAX_FS = 26;
+// Endings use their OWN font band, independent of the compound cloud. It is
+// intentionally COMPRESSED (13→19, vs the compounds' wider range): the busy
+// genders (die/der carry ~16 endings, several of them wide) get shrunk by the
+// fit-to-disk `scale` below, so a tall band crushed die down to ~8px — too
+// small to read. A lower MAX shrinks each bubble's footprint, letting die/der
+// pack at a much higher scale (die 0.60→0.84) so their bubbles grow to match
+// das, while a raised MIN keeps the smallest ending legible. Relative size
+// within a gender still tracks frequency (font ∝ sizeWeight) — only the
+// absolute band changed, for aesthetics.
+export const MIN_FS = 13;
+export const MAX_FS = 19;
 
-const R_MAX = 148; // largest inner radius (keeps the disk within a phone's width)
+// Largest inner radius. Sized to stay within the narrowest mainstream phone
+// (≈360px wide minus the px-4 page padding → ~328px), because the disk SIZE is
+// 2*(radius+6) and fonts are absolute px while bubble positions are %: if the
+// disk had to clamp to a narrower container the bubbles would overflow. The
+// extra room over the old 148 lets die/der pack at a higher scale.
+const R_MAX = 158;
 const SPREAD = 0.82; // how far rows reach toward the disk edge (1 = the very edge)
 const DPAD = 8; // padding between the outermost bubble and the drawn disk edge
 

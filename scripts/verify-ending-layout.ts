@@ -53,9 +53,25 @@ for (const art of ["der", "die", "das"]) {
     else if (Math.abs(pos[i].cy - pos[i - 1].cy) <= T && pos[i].cx < pos[i - 1].cx - T) orderViol++; // backwards within a row
   }
   const rows = new Set(pos.map(p => Math.round(p.cy / 40))).size; // bucket by ~row spacing
-  const ok = outside === 0 && overlaps === 0 && orderViol === 0;
+
+  // (d) frequency preserved: within a gender, a higher sizeWeight must never
+  // render at a smaller font than a lower one (font ∝ weight, monotonic).
+  let freqViol = 0;
+  const byWeight = [...arr].sort((a, b) => a.sizeWeight - b.sizeWeight);
+  for (let i = 1; i < byWeight.length; i++) {
+    const prev = endingBox(byWeight[i - 1].sizeWeight, byWeight[i - 1].suffix.length, out.scale);
+    const cur = endingBox(byWeight[i].sizeWeight, byWeight[i].suffix.length, out.scale);
+    if (cur.fontSize < prev.fontSize - 1e-6) freqViol++;
+  }
+
+  // (e) legibility: even after the fit-to-disk shrink, the smallest bubble in
+  // every gender stays readable (the original complaint was die crushed to ~8px).
+  const minFont = Math.min(...boxes.map(b => b.fontSize));
+  const legible = minFont >= 10;
+
+  const ok = outside === 0 && overlaps === 0 && orderViol === 0 && freqViol === 0 && legible;
   if (!ok) failures++;
-  console.log(`${art}: ${boxes.length} bubbles, ${rows} rows | inside ✓=${outside === 0} (maxReach ${maxReach.toFixed(1)}/${R}) | no-overlap=${overlaps === 0} | order=${orderViol === 0} ${ok ? "PASS" : "FAIL"}`);
+  console.log(`${art}: ${boxes.length} bubbles, ${rows} rows | scale ${out.scale.toFixed(2)} | font ${minFont.toFixed(1)}–${Math.max(...boxes.map(b => b.fontSize)).toFixed(1)}px | inside=${outside === 0} | no-overlap=${overlaps === 0} | order=${orderViol === 0} | freq=${freqViol === 0} | legible=${legible} ${ok ? "PASS" : "FAIL"}`);
 }
 console.log(failures === 0 ? "\nALL PASS ✓" : `\n${failures} FAILED`);
 process.exit(failures === 0 ? 0 : 1);
