@@ -1,8 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { useState } from "react";
 import rulesData from "@/data/rules.json";
 import compoundData from "@/data/compound_heads.json";
 import { ARTICLE_META, RULES as THEMATIC_RULES, type Article } from "@/data/words";
+import { endingBox, packEndings } from "@/lib/endingLayout";
 import { ArticleBadge } from "./ArticleBadge";
 
 type Tier = "ironclad" | "strong" | "moderate" | "weak";
@@ -473,6 +474,7 @@ const BUBBLE_PALETTE = [
 function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHead[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const dragControls = useDragControls();
   const sortedHeads = [...heads].sort((a, b) =>
     a.head.localeCompare(b.head, "de", { sensitivity: "base" }),
   );
@@ -559,33 +561,41 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                 onClick={() => setActiveIdx(null)}
                  className="absolute inset-0 z-10 rounded-[3rem] bg-background/70 backdrop-blur-[3px]"
               />
-              <motion.div
-                key={active.head}
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
-                className="absolute left-1/2 top-1/2 z-20 w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
-                style={{ borderColor: `var(--${meta.color})` }}
-              >
-                <div
-                  className="flex items-center justify-between gap-2 px-4 py-2.5"
-                  style={{ backgroundColor: `var(--${meta.soft})` }}
+              <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center p-2">
+                <motion.div
+                  key={active.head}
+                  drag
+                  dragControls={dragControls}
+                  dragListener={false}
+                  dragMomentum={false}
+                  dragElastic={0.12}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
+                  className="pointer-events-auto w-[90%] max-w-xs overflow-hidden rounded-3xl border bg-card shadow-2xl"
+                  style={{ borderColor: `var(--${meta.color})` }}
                 >
-                  <div className="flex items-center gap-2">
-                    <ArticleBadge article={article} size="sm" />
-                    <span className="text-base font-extrabold">{active.head}</span>
-                    <span className="text-xs text-muted-foreground">· {active.meaning}</span>
-                  </div>
-                  <button
-                    onClick={() => setActiveIdx(null)}
-                    className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
-                    aria-label="Close"
+                  <div
+                    onPointerDown={(e) => dragControls.start(e)}
+                    className="flex touch-none cursor-grab select-none items-center justify-between gap-2 px-4 py-2.5 active:cursor-grabbing"
+                    style={{ backgroundColor: `var(--${meta.soft})` }}
                   >
-                    ✕
-                  </button>
-                </div>
-                <div className="space-y-2 p-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground" aria-hidden>⠿</span>
+                      <ArticleBadge article={article} size="sm" />
+                      <span className="text-base font-extrabold">{active.head}</span>
+                      <span className="text-xs text-muted-foreground">· {active.meaning}</span>
+                    </div>
+                    <button
+                      onClick={() => setActiveIdx(null)}
+                      className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
+                      aria-label="Close"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="space-y-2 p-3">
                   <div className="flex flex-wrap gap-1.5">
                     {active.examples.map(ex => (
                       <span
@@ -606,8 +616,9 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
                       ⚠️ {active.exceptions}
                     </p>
                   )}
-                </div>
-              </motion.div>
+                  </div>
+                </motion.div>
+              </div>
             </>
           )}
         </AnimatePresence>
@@ -619,6 +630,7 @@ function CompoundHeads({ article, heads }: { article: Article; heads: CompoundHe
 function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) {
   const meta = ARTICLE_META[article];
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const dragControls = useDragControls();
   // Near-alphabetic order: sort, then randomly swap some adjacent pairs (deterministic per render set)
   const sortedRules = (() => {
     const arr = [...rules].sort((a, b) =>
@@ -650,87 +662,14 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
 
   const active = activeIdx !== null ? sortedRules[activeIdx] : null;
 
-  // Pack bubbles inside the circle without overlap.
+  // Lay the bubbles out in centred rows that fill the circular background:
+  // alphabetical reading flow (top→bottom, left→right), narrow rows at the
+  // top/bottom of the disk and wide rows through the middle. Deterministic
+  // (SSR-safe) and geometry-tested in scripts/verify-ending-layout.ts.
   const SIZE = 320; // px (max-w-xs)
-  const R = SIZE / 2 - 6; // inner radius (account for border)
-  const MIN_FS = 11;
-  const MAX_FS = 26;
-  const GAP = 4;
-
-  const packed = (() => {
-    type Item = {
-      idx: number;
-      w: number;
-      h: number;
-      fontSize: number;
-      padV: number;
-      padH: number;
-      rot: number;
-      cx: number;
-      cy: number;
-    };
-    const items: Item[] = sortedRules.map((r, idx) => {
-      const fontSize = MIN_FS + r.sizeWeight * (MAX_FS - MIN_FS);
-      const padV = Math.round(3 + r.sizeWeight * 4);
-      const padH = Math.round(7 + r.sizeWeight * 8);
-      const w = r.suffix.length * fontSize * 0.62 + 2 * padH + 4;
-      const h = fontSize * 1.15 + 2 * padV + 4;
-      return { idx, w, h, fontSize, padV, padH, rot: 0, cx: 0, cy: 0 };
-    });
-    // Place in alphabetical order so reading flow is preserved (clockwise from top).
-    const order = items;
-    const placed: Item[] = [];
-    // seed
-    let seed = 1337;
-    for (const r of sortedRules) for (let k = 0; k < r.suffix.length; k++) seed = (seed * 31 + r.suffix.charCodeAt(k)) >>> 0;
-    const rand = () => {
-      seed = (seed * 1664525 + 1013904223) >>> 0;
-      return seed / 0xffffffff;
-    };
-    const N = order.length;
-    for (let i = 0; i < N; i++) {
-      const it = order[i];
-      const halfDiag = Math.sqrt(it.w * it.w + it.h * it.h) / 2;
-      const maxR = Math.max(0, R - halfDiag);
-      // Target angle: clockwise from top, alphabetic order
-      const targetAngle = -Math.PI / 2 + (i / N) * Math.PI * 2;
-      let bestCx = 0, bestCy = 0, bestScore = -Infinity, found = false;
-      // Allowed angular deviation shrinks placement search to a sector for ordering
-      const angleSpread = Math.PI / N + 0.35; // small wedge per bubble + slack
-      for (let attempt = 0; attempt < 800; attempt++) {
-        const t = targetAngle + (rand() * 2 - 1) * angleSpread;
-        // bias radius to fill the disk: use varying distance from center
-        const rr = (0.15 + rand() * 0.85) * maxR;
-        const cx = Math.cos(t) * rr;
-        const cy = Math.sin(t) * rr;
-        let ok = true;
-        let minDist = Infinity;
-        for (const p of placed) {
-          const dx = Math.abs(cx - p.cx) - (it.w + p.w) / 2 - GAP;
-          const dy = Math.abs(cy - p.cy) - (it.h + p.h) / 2 - GAP;
-          if (dx < 0 && dy < 0) { ok = false; break; }
-          const d = Math.max(dx, dy);
-          if (d < minDist) minDist = d;
-        }
-        if (ok) {
-          // prefer scatter: reward LARGER min distance from neighbours
-          const score = minDist;
-          if (score > bestScore) {
-            bestScore = score; bestCx = cx; bestCy = cy; found = true;
-          }
-        }
-      }
-      if (!found) {
-        // fallback: place at target angle at mid radius
-        bestCx = Math.cos(targetAngle) * maxR * 0.7;
-        bestCy = Math.sin(targetAngle) * maxR * 0.7;
-      }
-      it.cx = bestCx; it.cy = bestCy;
-      it.rot = (rand() * 8) - 4;
-      placed.push(it);
-    }
-    return items;
-  })();
+  const R = SIZE / 2 - 6; // inner radius (inside the 2px border)
+  const boxes = sortedRules.map(r => endingBox(r.sizeWeight, r.suffix.length));
+  const packed = packEndings(boxes.map(b => ({ w: b.w, h: b.h })), R, 6);
 
 
   return (
@@ -759,6 +698,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
         {sortedRules.map((r, i) => {
           const isActive = activeIdx === i;
           const p = packed[i];
+          const b = boxes[i];
           const leftPct = ((SIZE / 2 + p.cx) / SIZE) * 100;
           const topPct = ((SIZE / 2 + p.cy) / SIZE) * 100;
           return (
@@ -771,7 +711,7 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                 position: "absolute",
                 left: `${leftPct}%`,
                 top: `${topPct}%`,
-                transform: `translate(-50%, -50%) rotate(${p.rot}deg)`,
+                transform: "translate(-50%, -50%)",
                 zIndex: isActive ? 5 : 1,
               }}
             >
@@ -784,8 +724,8 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                   backgroundColor: `var(--${meta.soft})`,
                   color: `var(--${meta.color})`,
                   border: `1.5px solid var(--${meta.color})`,
-                  fontSize: p.fontSize,
-                  padding: `${p.padV}px ${p.padH}px`,
+                  fontSize: b.fontSize,
+                  padding: `${b.padV}px ${b.padH}px`,
                   boxShadow: isActive
                     ? `0 0 0 3px var(--${meta.color}), 0 8px 20px var(--${meta.soft})`
                     : `0 3px 8px var(--${meta.color})33, inset 0 -4px 8px rgba(0,0,0,0.06), inset 0 4px 8px rgba(255,255,255,0.25)`,
@@ -809,35 +749,44 @@ function SuffixBubbles({ article, rules }: { article: Article; rules: Rule[] }) 
                 onClick={() => setActiveIdx(null)}
                 className="absolute inset-0 z-10 rounded-full bg-background/70 backdrop-blur-[3px]"
               />
-              <motion.div
-                key={active.suffix}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.92 }}
-                transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
-                className="absolute left-1/2 top-1/2 z-20 max-h-[85vh] w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border bg-card shadow-2xl"
-                style={{ borderColor: `var(--${meta.color})` }}
-              >
-                <div
-                  className="flex items-center justify-between gap-2 px-4 py-2.5"
-                  style={{ backgroundColor: `var(--${meta.soft})` }}
+              <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center p-2">
+                <motion.div
+                  key={active.suffix}
+                  drag
+                  dragControls={dragControls}
+                  dragListener={false}
+                  dragMomentum={false}
+                  dragElastic={0.12}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  transition={{ duration: 0.18, type: "spring", stiffness: 320, damping: 24 }}
+                  className="pointer-events-auto max-h-[85vh] w-[90%] max-w-xs overflow-hidden rounded-3xl border bg-card shadow-2xl"
+                  style={{ borderColor: `var(--${meta.color})` }}
                 >
-                  <div className="flex items-center gap-2">
-                    <ArticleBadge article={article} size="sm" />
-                    <span className="text-base font-extrabold">{active.suffix}</span>
-                  </div>
-                  <button
-                    onClick={() => setActiveIdx(null)}
-                    className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
-                    aria-label="Close"
+                  <div
+                    onPointerDown={(e) => dragControls.start(e)}
+                    className="flex touch-none cursor-grab select-none items-center justify-between gap-2 px-4 py-2.5 active:cursor-grabbing"
+                    style={{ backgroundColor: `var(--${meta.soft})` }}
                   >
-                    ✕
-                  </button>
-                </div>
-                <div className="max-h-[70vh] overflow-y-auto">
-                  <RuleCard rule={active} embedded />
-                </div>
-              </motion.div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground" aria-hidden>⠿</span>
+                      <ArticleBadge article={article} size="sm" />
+                      <span className="text-base font-extrabold">{active.suffix}</span>
+                    </div>
+                    <button
+                      onClick={() => setActiveIdx(null)}
+                      className="rounded-full bg-card/70 px-2 py-0.5 text-xs font-bold text-muted-foreground hover:bg-card"
+                      aria-label="Close"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="max-h-[70vh] overflow-y-auto">
+                    <RuleCard rule={active} embedded />
+                  </div>
+                </motion.div>
+              </div>
             </>
           )}
         </AnimatePresence>
