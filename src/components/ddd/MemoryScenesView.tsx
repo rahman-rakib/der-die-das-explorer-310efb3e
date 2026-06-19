@@ -35,8 +35,15 @@ let speechKeepAlive: ReturnType<typeof setInterval> | null = null;
 let speechTimer: ReturnType<typeof setTimeout> | null = null;
 let speechGen = 0;
 
-function stopSpeech() {
-  if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel();
+// iOS Safari quirks: (a) calling resume() on a non-paused queue can stall later
+// utterances, and (b) cancel() in the same tick as speak() on an empty queue
+// silently drops the new utterance. Detect once.
+const IS_IOS =
+  typeof navigator !== "undefined" &&
+  (/iP(hone|ad|od)/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && (navigator as Navigator).maxTouchPoints > 1));
+
+function clearSpeechTimers() {
   if (speechKeepAlive) {
     clearInterval(speechKeepAlive);
     speechKeepAlive = null;
@@ -47,11 +54,27 @@ function stopSpeech() {
   }
 }
 
+function stopSpeech() {
+  if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel();
+  clearSpeechTimers();
+}
+
 function playSegments(segments: SpeechSegment[]) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   const synth = window.speechSynthesis;
   const gen = ++speechGen; // invalidate any in-flight sequence
-  stopSpeech();
+
+  // Only cancel if something is actually queued — iOS Safari drops the next
+  // speak() if cancel() is called on an empty queue in the same gesture tick.
+  if (synth.speaking || synth.pending) synth.cancel();
+  clearSpeechTimers();
+
+  // Synchronous warmup utterance: claims the audio context inside the user
+  // gesture on iOS, so the real chunks that follow are allowed to play.
+  const warmup = new SpeechSynthesisUtterance(" ");
+  warmup.volume = 0;
+  warmup.lang = "de-DE";
+  synth.speak(warmup);
 
   let i = 0;
   const next = () => {
@@ -71,16 +94,26 @@ function playSegments(segments: SpeechSegment[]) {
     const u = new SpeechSynthesisUtterance(seg.text);
     u.lang = "de-DE";
     u.rate = seg.rate ?? 0.95; // word readout plays a touch slower
-    u.onend = next;
-    u.onerror = next; // never get stuck on a failed chunk
+    // iOS occasionally fires both end and error for the same utterance — only
+    // advance once so we don't skip the following segment.
+    let advanced = false;
+    const advance = () => {
+      if (advanced) return;
+      advanced = true;
+      next();
+    };
+    u.onend = advance;
+    u.onerror = advance;
     synth.speak(u);
   };
 
-  // resume() is a no-op unless the engine paused itself; calling it every few
-  // seconds revives the queue after Chrome's ~15s auto-pause.
-  speechKeepAlive = setInterval(() => {
-    if (synth.speaking) synth.resume();
-  }, 5000);
+  // resume() is a Chrome-desktop workaround for its ~15s auto-pause. iOS
+  // Safari has no such cutoff, and calling resume() there can stall the queue.
+  if (!IS_IOS) {
+    speechKeepAlive = setInterval(() => {
+      if (synth.speaking) synth.resume();
+    }, 5000);
+  }
   next();
 }
 
