@@ -20,7 +20,7 @@ export function HomeView() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="-mt-2 max-w-[420px] px-6 text-center"
+        className="mt-4 max-w-[420px] px-6 text-center"
       >
         <p className="text-base font-bold leading-snug">
           Master the one thing every German learner dreads — der, die, das.
