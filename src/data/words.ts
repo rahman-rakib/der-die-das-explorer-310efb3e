@@ -439,7 +439,7 @@ export const FILL_SENTENCES: FillSentence[] = [
   { before: "", word: w("das","Kind","child","🧒"), after: " spielt im Garten." },
   { before: "", word: w("der","Mann","man","🧔"), after: " liest die Zeitung." },
   { before: "", word: w("die","Frau","woman","👩"), after: " trinkt Kaffee." },
-  { before: "", word: w("das","Auto","car","🚙"), after: " ist rot." },
+  { before: "", word: w("das","Auto","car","🚙"), after: " ist blau." },
   { before: "", word: w("der","Lehrer","teacher","👨‍🏫"), after: " erklärt es gut." },
   { before: "", word: w("die","Sonne","sun","☀️"), after: " scheint hell." },
   { before: "", word: w("das","Mädchen","girl","👧"), after: " lacht laut." },
