@@ -15,7 +15,7 @@ import { loadProgress, markSceneMastered, recordAnswer } from "@/lib/progress";
 import { buildSceneSpeech, type SpeechSegment } from "@/lib/speech";
 import { orderByDifficulty } from "@/lib/sceneOrder";
 
-const TABS: Article[] = ["das", "der", "die"];
+const TABS: Article[] = ["der", "die", "das"];
 
 function shuffle<T>(a: T[]): T[] {
   const r = [...a];
@@ -404,7 +404,7 @@ function SceneDrill({
 }
 
 export function MemoryScenesView() {
-  const [tab, setTab] = useState<Article | "shuffle">("das");
+  const [tab, setTab] = useState<Article | "shuffle">("der");
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [drilling, setDrilling] = useState<MemoryScene | null>(null);
