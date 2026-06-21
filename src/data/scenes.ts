@@ -20,13 +20,12 @@ export const MEMORY_SCENES: MemoryScene[] = [
     title: "Frühstück auf dem Dach",
     image: "/scenes/das-1-dach.webp",
     narrativeDe:
-      "Ein Kind und ein Mädchen frühstücken auf dem Dach. Ein umgekipptes Glas liegt da, und Wasser ist daraus über das Dach verschüttet. Vor ihnen liegen ein Messer, ein frisches Brot, ein Ei, rohes Fleisch mit etwas Blut, Salz und Öl. Das lange Haar des Mädchens verdeckt ihr Gesicht. Das Kind hat große Augen und große Ohren.",
+      "Zwei Mädchen frühstücken auf dem Dach. Ein umgekipptes Glas liegt da, und Wasser ist daraus über das Dach verschüttet. Vor ihnen liegen ein Messer, ein frisches Brot, ein Ei, rohes Fleisch mit etwas Blut, Salz und Öl. Das Haar des einen Mädchens verdeckt ihr Gesicht; das andere hat große Augen und große Ohren.",
     narrativeEn:
-      "A child and a girl have breakfast on the roof. A tipped-over glass lies there, and water has spilled from it across the roof. In front of them lie a knife, a fresh loaf of bread, an egg, raw meat with a little blood, salt and oil. The girl's long hair hides her face. The child has big eyes and big ears.",
+      "Two girls have breakfast on the roof. A tipped-over glass lies there, and water has spilled from it across the roof. In front of them lie a knife, a fresh loaf of bread, an egg, raw meat with a little blood, salt and oil. One girl's hair hides her face; the other has big eyes and big ears.",
     words: [
       w("das", "Frühstück", "breakfast"),
       w("das", "Dach", "roof"),
-      w("das", "Kind", "child"),
       w("das", "Mädchen", "girl"),
       w("das", "Glas", "glass"),
       w("das", "Wasser", "water"),
