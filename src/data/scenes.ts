@@ -402,6 +402,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       "At the traffic light a cow waits. A goose sits on the cow, and a mouse sits on the goose. High above a blackbird flies with a fork. Beside the cow lies a ball studded with many needles, and the sun shines.",
     words: [
       w("die", "Ampel", "traffic light"),
+      w("die", "Straße", "street"),
       w("die", "Kuh", "cow"),
       w("die", "Gans", "goose"),
       w("die", "Maus", "mouse"),
