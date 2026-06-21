@@ -20,9 +20,9 @@ export const MEMORY_SCENES: MemoryScene[] = [
     title: "Frühstück auf dem Dach",
     image: "/scenes/das-1-dach.webp",
     narrativeDe:
-      "Zwei Mädchen frühstücken auf dem Dach. Ein umgekipptes Glas liegt da, und Wasser ist daraus über das Dach verschüttet. Vor ihnen liegen ein Messer, ein frisches Brot, ein Ei, rohes Fleisch mit etwas Blut, Salz und Öl. Das Haar des einen Mädchens verdeckt ihr Gesicht; das andere hat große Augen und große Ohren.",
+      "Ein Mädchen mit großen Augen und großen Ohren macht Frühstück auf dem Dach, zusammen mit einem anderen Mädchen, dessen Haar ihr Gesicht verdeckt. Ein umgekipptes Glas liegt da, und Wasser ist daraus über das Dach verschüttet. Vor ihnen liegen ein Messer, ein frisches Brot, ein Ei, rohes Fleisch mit etwas Blut, Salz und Öl.",
     narrativeEn:
-      "Two girls have breakfast on the roof. A tipped-over glass lies there, and water has spilled from it across the roof. In front of them lie a knife, a fresh loaf of bread, an egg, raw meat with a little blood, salt and oil. One girl's hair hides her face; the other has big eyes and big ears.",
+      "One girl with big eyes and big ears is having breakfast on the roof with another girl, whose hair is hiding her face. A tipped-over glass lies there, and water has spilled from it across the roof. In front of them lie a knife, a fresh loaf of bread, an egg, raw meat with a little blood, salt and oil.",
     words: [
       w("das", "Frühstück", "breakfast"),
       w("das", "Dach", "roof"),
@@ -397,9 +397,9 @@ export const MEMORY_SCENES: MemoryScene[] = [
     title: "An der Ampel",
     image: "/scenes/die-6-ampel.webp",
     narrativeDe:
-      "An der Ampel wartet eine Kuh. Die Ampel steht an einer Straße. Eine Gans sitzt auf der Kuh, und eine Maus sitzt auf der Gans. Hoch oben fliegt eine Amsel mit einer Gabel. Neben der Kuh liegt eine Kugel, gespickt mit vielen Nadeln, und die Sonne scheint. Am Rand der Straße steht eine Bank.",
+      "An der Ampel wartet eine Kuh. Die Ampel steht an einer Straße. Eine Gans sitzt auf der Kuh, und eine Maus sitzt auf der Gans. Hoch oben fliegt eine Amsel mit einer Gabel. Neben der Kuh liegt eine Kugel, gespickt mit vielen Nadeln, und die Sonne scheint. An der Straße steht auch eine Bank.",
     narrativeEn:
-      "At the traffic light a cow waits. The traffic light stands on a street. A goose sits on the cow, and a mouse sits on the goose. High above a blackbird flies with a fork. Beside the cow lies a ball studded with many needles, and the sun shines. At the edge of the street stands a bank.",
+      "At the traffic light a cow waits. The traffic light stands on a street. A goose sits on the cow, and a mouse sits on the goose. High above a blackbird flies with a fork. Beside the cow lies a ball studded with many needles, and the sun shines. A bank also stands by the street.",
     words: [
       w("die", "Ampel", "traffic light"),
       w("die", "Straße", "street"),
