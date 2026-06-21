@@ -9,6 +9,8 @@ import {
   type Word,
 } from "@/data/words";
 import { ArticleBadge, WordPill } from "./ArticleBadge";
+import { ReviewList } from "./ReviewList";
+import type { ReviewItem } from "@/lib/review";
 import { loadProgress, markSceneMastered, recordAnswer } from "@/lib/progress";
 import { buildSceneSpeech, type SpeechSegment } from "@/lib/speech";
 import { orderByDifficulty } from "@/lib/sceneOrder";
@@ -301,6 +303,7 @@ function SceneDrill({
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
   const [reveal, setReveal] = useState<Article | null>(null);
+  const [log, setLog] = useState<ReviewItem[]>([]);
   const word: Word | undefined = deck[i];
   const done = i >= deck.length;
   const m = ARTICLE_META[scene.tone];
@@ -309,6 +312,7 @@ function SceneDrill({
     if (!word || reveal) return;
     const correct = a === word.article;
     setReveal(word.article);
+    setLog(l => [...l, { prompt: word.word, picked: a, correct: word.article, isCorrect: correct }]);
     recordAnswer(word.article, word.word, correct);
     if (correct) {
       setScore(s => s + 1);
@@ -336,6 +340,7 @@ function SceneDrill({
         <p className="mt-2 text-muted-foreground">
           {score} / {deck.length} correct on <b>{scene.title}</b>.
         </p>
+        <ReviewList items={log} />
         <button
           onClick={() => onExit(perfect)}
           className="mt-6 rounded-full px-6 py-3 font-bold text-white shadow-md"

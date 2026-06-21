@@ -1,7 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ArticleBadge } from "./ArticleBadge";
+import { ReviewList } from "./ReviewList";
 import type { Article } from "@/data/words";
+import type { ReviewItem } from "@/lib/review";
 
 interface MeaningRow {
   word: string;
@@ -240,11 +242,13 @@ function Quiz() {
   const [picked, setPicked] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+  const [log, setLog] = useState<ReviewItem[]>([]);
   const q = QUIZ[idx];
 
   function pick(i: number) {
     if (picked !== null) return;
     setPicked(i);
+    setLog(l => [...l, { prompt: q.q, picked: q.options[i], correct: q.options[q.answer], isCorrect: i === q.answer }]);
     if (i === q.answer) setScore(s => s + 1);
   }
   function next() {
@@ -253,7 +257,7 @@ function Quiz() {
     setPicked(null);
   }
   function restart() {
-    setIdx(0); setPicked(null); setScore(0); setDone(false);
+    setIdx(0); setPicked(null); setScore(0); setDone(false); setLog([]);
   }
 
   if (done) {
@@ -268,6 +272,7 @@ function Quiz() {
         <p className="mt-1 text-sm text-muted-foreground">
           You scored <b>{score}</b> / {QUIZ.length}
         </p>
+        <ReviewList items={log} />
         <button
           onClick={restart}
           className="mt-4 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-md transition active:scale-95"

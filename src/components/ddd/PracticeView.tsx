@@ -4,6 +4,8 @@ import confetti from "canvas-confetti";
 import { ARTICLE_META, PRACTICE_WORDS_A1A2, PRACTICE_WORDS_B1B2, SUFFIX_EXCEPTION_WORDS, FILL_SENTENCES, type Article, type Word } from "@/data/words";
 import { recordAnswer } from "@/lib/progress";
 import { ArticleBadge } from "./ArticleBadge";
+import { ReviewList } from "./ReviewList";
+import type { ReviewItem } from "@/lib/review";
 
 type Mode = null | "flash" | "speed" | "fill";
 
@@ -62,6 +64,7 @@ function Flashcards({ onExit, exceptionsOnly, pool }: { onExit: () => void; exce
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState<"right" | "wrong" | null>(null);
   const [reveal, setReveal] = useState<Article | null>(null);
+  const [log, setLog] = useState<ReviewItem[]>([]);
   const word = deck[i];
   const done = i >= deck.length;
 
@@ -70,6 +73,7 @@ function Flashcards({ onExit, exceptionsOnly, pool }: { onExit: () => void; exce
     const correct = a === word.article;
     setFeedback(correct ? "right" : "wrong");
     setReveal(word.article);
+    setLog(l => [...l, { prompt: word.word, emoji: word.emoji, picked: a, correct: word.article, isCorrect: correct }]);
     recordAnswer(word.article, word.word, correct);
     if (correct) { setScore(s => s + 1); fireConfetti(); }
     setTimeout(() => {
@@ -83,6 +87,7 @@ function Flashcards({ onExit, exceptionsOnly, pool }: { onExit: () => void; exce
         <div className="text-6xl">🎉</div>
         <h2 className="mt-3 text-2xl font-extrabold">Round complete!</h2>
         <p className="mt-2 text-muted-foreground">You got <b>{score}</b> / {deck.length} correct.</p>
+        <ReviewList items={log} />
         <button onClick={onExit} className="mt-6 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground shadow-md">
           Back to practice
         </button>
@@ -140,6 +145,7 @@ function SpeedRound({ onExit, pool }: { onExit: () => void; pool: Word[] }) {
   const [streak, setStreak] = useState(0);
   const [word, setWord] = useState<Word>(() => pool[Math.floor(Math.random() * pool.length)]);
   const [flash, setFlash] = useState<"good" | "bad" | null>(null);
+  const [log, setLog] = useState<ReviewItem[]>([]);
   const tickRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -157,6 +163,7 @@ function SpeedRound({ onExit, pool }: { onExit: () => void; pool: Word[] }) {
   const pick = (a: Article) => {
     if (time === 0) return;
     const correct = a === word.article;
+    setLog(l => [...l, { prompt: word.word, emoji: word.emoji, picked: a, correct: word.article, isCorrect: correct }]);
     recordAnswer(word.article, word.word, correct);
     if (correct) {
       const newStreak = streak + 1;
@@ -177,6 +184,7 @@ function SpeedRound({ onExit, pool }: { onExit: () => void; pool: Word[] }) {
         <div className="text-6xl">⚡</div>
         <h2 className="mt-3 text-2xl font-extrabold">Time's up!</h2>
         <p className="mt-2 text-muted-foreground">Final score: <b className="text-2xl">{score}</b></p>
+        <ReviewList items={log} />
         <button onClick={onExit} className="mt-6 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground shadow-md">
           Back to practice
         </button>
@@ -225,12 +233,14 @@ function FillGap({ onExit }: { onExit: () => void }) {
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
   const [reveal, setReveal] = useState<Article | null>(null);
+  const [log, setLog] = useState<ReviewItem[]>([]);
   const s = sents[i];
   const done = i >= sents.length;
 
   const pick = (a: Article) => {
     if (reveal) return;
     const correct = a === s.word.article;
+    setLog(l => [...l, { prompt: s.word.word, emoji: s.word.emoji, picked: a, correct: s.word.article, isCorrect: correct }]);
     recordAnswer(s.word.article, s.word.word, correct);
     setReveal(s.word.article);
     if (correct) { setScore(x => x + 1); fireConfetti(); }
@@ -243,6 +253,7 @@ function FillGap({ onExit }: { onExit: () => void }) {
         <div className="text-6xl">🧩</div>
         <h2 className="mt-3 text-2xl font-extrabold">Done!</h2>
         <p className="mt-2 text-muted-foreground">{score} / {sents.length} correct.</p>
+        <ReviewList items={log} />
         <button onClick={onExit} className="mt-6 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground shadow-md">
           Back to practice
         </button>
