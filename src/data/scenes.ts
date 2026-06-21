@@ -397,12 +397,13 @@ export const MEMORY_SCENES: MemoryScene[] = [
     title: "An der Ampel",
     image: "/scenes/die-6-ampel.webp",
     narrativeDe:
-      "An der Ampel wartet eine Kuh. Eine Gans sitzt auf der Kuh, und eine Maus sitzt auf der Gans. Hoch oben fliegt eine Amsel mit einer Gabel. Neben der Kuh liegt eine Kugel, gespickt mit vielen Nadeln, und die Sonne scheint.",
+      "An der Ampel wartet eine Kuh. Die Ampel steht an einer Straße. Eine Gans sitzt auf der Kuh, und eine Maus sitzt auf der Gans. Hoch oben fliegt eine Amsel mit einer Gabel. Neben der Kuh liegt eine Kugel, gespickt mit vielen Nadeln, und die Sonne scheint. Am Rand der Straße steht eine Bank voller Geld.",
     narrativeEn:
-      "At the traffic light a cow waits. A goose sits on the cow, and a mouse sits on the goose. High above a blackbird flies with a fork. Beside the cow lies a ball studded with many needles, and the sun shines.",
+      "At the traffic light a cow waits. The traffic light stands on a street. A goose sits on the cow, and a mouse sits on the goose. High above a blackbird flies with a fork. Beside the cow lies a ball studded with many needles, and the sun shines. At the edge of the street stands a bank full of money.",
     words: [
       w("die", "Ampel", "traffic light"),
       w("die", "Straße", "street"),
+      w("die", "Bank", "bank (financial)"),
       w("die", "Kuh", "cow"),
       w("die", "Gans", "goose"),
       w("die", "Maus", "mouse"),
