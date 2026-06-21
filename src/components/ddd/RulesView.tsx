@@ -85,7 +85,7 @@ const TABS: Article[] = ["der", "die", "das"];
 const ENDING_OPTS: Record<Article, LayoutOpts> = {
   der: {},
   die: { shiftX: -8 },
-  das: { fill: 0.85 },
+  das: { fill: 0.85, rowGap: 24 },
 };
 
 const ENDING_SCALE = sharedEndingScale(

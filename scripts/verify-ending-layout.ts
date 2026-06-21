@@ -28,10 +28,10 @@ function displayOrder(art: string) {
 const ORDERED: Record<string, any[]> = Object.fromEntries(ARTS.map(art => [art, displayOrder(art)]));
 
 // Per-gender layout options — must match RulesView's ENDING_OPTS.
-const OPTS: Record<string, { fill?: number; shiftX?: number }> = {
+const OPTS: Record<string, { fill?: number; shiftX?: number; rowGap?: number }> = {
   der: {},
   die: { shiftX: -8 },
-  das: { fill: 0.85 },
+  das: { fill: 0.85, rowGap: 24 },
 };
 
 // One shared scale across all three genders — exactly what the component computes,

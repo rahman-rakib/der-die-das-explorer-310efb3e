@@ -98,7 +98,7 @@ const jit = (i: number) => ({
  * (with jitter) if and only if ALL bubbles fit their row's chord — otherwise
  * null, so the caller can shrink the font and retry.
  */
-function tryPack(items: Box[], R: number): Pos[] | null {
+function tryPack(items: Box[], R: number, vGap: number = gap): Pos[] | null {
   const N = items.length;
   const rowH = Math.max(...items.map(b => b.h));
   const margin = Math.ceil(jitter * 1.6) + 2;
@@ -107,8 +107,11 @@ function tryPack(items: Box[], R: number): Pos[] | null {
 
   const spreadHalf = Math.max(0, (usableR - rowH / 2) * SPREAD);
   // Row count from the SPREAD extent so adjacent row centres are always at least
-  // (rowH + gap) apart — otherwise rows would overlap vertically.
-  const nRows = Math.max(1, Math.floor((2 * spreadHalf) / (rowH + gap)) + 1);
+  // (rowH + vGap) apart — otherwise rows would overlap vertically. A larger vGap
+  // (per-gender rowGap) means FEWER rows over the same extent, so the rows sit
+  // further apart vertically (used by sparse das, which otherwise stacks many
+  // near-empty rows close together).
+  const nRows = Math.max(1, Math.floor((2 * spreadHalf) / (rowH + vGap)) + 1);
   const centers: number[] = [];
   for (let k = 0; k < nRows; k++) {
     centers.push(nRows === 1 ? 0 : -spreadHalf + (k * (2 * spreadHalf)) / (nRows - 1));
@@ -165,7 +168,7 @@ function tryPack(items: Box[], R: number): Pos[] | null {
  * can't hold its assigned bubbles — the caller then falls back to {@link tryPack}
  * (a gender too busy to spread out already fills the disk densely on its own).
  */
-function spreadPack(items: Box[], R: number, fill: number): Pos[] | null {
+function spreadPack(items: Box[], R: number, fill: number, vGap: number = gap): Pos[] | null {
   const N = items.length;
   const rowH = Math.max(...items.map(b => b.h));
   const margin = Math.ceil(jitter * 1.6) + 2;
@@ -173,7 +176,7 @@ function spreadPack(items: Box[], R: number, fill: number): Pos[] | null {
   if (usableR <= rowH / 2) return null;
 
   const spreadHalf = Math.max(0, (usableR - rowH / 2) * SPREAD);
-  const nRows = Math.max(1, Math.floor((2 * spreadHalf) / (rowH + gap)) + 1);
+  const nRows = Math.max(1, Math.floor((2 * spreadHalf) / (rowH + vGap)) + 1);
   const centers: number[] = [];
   for (let k = 0; k < nRows; k++) {
     centers.push(nRows === 1 ? 0 : -spreadHalf + (k * (2 * spreadHalf)) / (nRows - 1));
@@ -244,6 +247,10 @@ function spreadPack(items: Box[], R: number, fill: number): Pos[] | null {
 export interface LayoutOpts {
   fill?: number;
   shiftX?: number;
+  /** Extra vertical spacing used for the row-count (default {@link gap}). Larger =
+   * fewer rows spread further apart, so a sparse gender doesn't look vertically
+   * crammed while justified wide horizontally. */
+  rowGap?: number;
 }
 
 /**
@@ -255,7 +262,8 @@ export interface LayoutOpts {
  */
 function layout(scaledBoxes: Box[], opts: LayoutOpts = {}): Pos[] {
   const N = scaledBoxes.length;
-  const positions = spreadPack(scaledBoxes, R_MAX, opts.fill ?? FILL) ?? tryPack(scaledBoxes, R_MAX) ?? scaledBoxes.map(() => ({ cx: 0, cy: 0 }));
+  const vGap = opts.rowGap ?? gap;
+  const positions = spreadPack(scaledBoxes, R_MAX, opts.fill ?? FILL, vGap) ?? tryPack(scaledBoxes, R_MAX, vGap) ?? scaledBoxes.map(() => ({ cx: 0, cy: 0 }));
   // Vertical-centre so any leftover slack splits evenly top/bottom.
   let minY = Infinity;
   let maxY = -Infinity;
