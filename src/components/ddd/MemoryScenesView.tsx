@@ -238,8 +238,8 @@ function SceneCard({
           </p>
           <button
             onClick={() => speakScene(scene)}
-            aria-label="Anhören"
-            title="Anhören"
+            aria-label="Listen"
+            title="Listen"
             className="shrink-0 rounded-full border bg-card p-2 text-base shadow-sm"
             style={{ borderColor: `var(--${m.color})` }}
           >
@@ -285,7 +285,7 @@ function SceneCard({
           className="w-full rounded-full py-3 text-sm font-extrabold text-white shadow-md"
           style={{ backgroundColor: `var(--${m.color})` }}
         >
-          🔍 Diese Szene üben
+          🔍 Practice this scene
         </button>
       </div>
     </article>
