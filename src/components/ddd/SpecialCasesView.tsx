@@ -61,6 +61,30 @@ const MEANING_ROWS: MeaningRow[] = [
       { article: "das", meaning: "piece / component / item", emoji: "⚙️", example: "Das Teil passt nicht in die Maschine.", exampleEn: "The part doesn't fit in the machine." },
     ],
   },
+  {
+    word: "Schild",
+    meanings: [
+      { article: "der", meaning: "shield", emoji: "🛡️", example: "Der Ritter hebt seinen Schild.", exampleEn: "The knight raises his shield." },
+      { article: "das", meaning: "sign / nameplate", emoji: "🪧", example: "Das Schild zeigt zum Bahnhof.", exampleEn: "The sign points to the station." },
+    ],
+  },
+  {
+    word: "Kiefer",
+    meanings: [
+      { article: "der", meaning: "jaw / jawbone", emoji: "🦷", example: "Der Kiefer knackt beim Kauen.", exampleEn: "The jaw clicks when chewing." },
+      // A tree, so this one follows the app's own "flowers, trees & plants → die" theme.
+      { article: "die", meaning: "pine (tree)", emoji: "🌲", example: "Die Kiefer wächst im Sand.", exampleEn: "The pine grows in the sand." },
+    ],
+  },
+  {
+    word: "Tor",
+    meanings: [
+      // A person, so this follows the "male humans" theme — der Tor is literary
+      // and weak-masculine (den Toren), which is why it feels unfamiliar.
+      { article: "der", meaning: "fool", emoji: "🤡", example: "Der Tor glaubt jedes Wort.", exampleEn: "The fool believes every word." },
+      { article: "das", meaning: "gate / goal", emoji: "🥅", example: "Das Tor ist weit offen.", exampleEn: "The gate is wide open." },
+    ],
+  },
 ];
 
 const FLEXIBLE: { word: string; articles: Article[]; english: string; emoji: string; note?: string }[] = [
