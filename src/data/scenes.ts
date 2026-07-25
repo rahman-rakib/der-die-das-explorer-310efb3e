@@ -64,7 +64,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
   {
     id: "das-farmyard",
     tone: "das",
-    title: "Der Bauernhof",
+    title: "Das Kalb und das Küken",
     image: "/scenes/das-3-bauernhof.webp",
     narrativeDe:
       "Alle jungen Tiere stehen zusammen auf dem Feld. Ein Schaf, ein Schwein, ein Huhn, ein Kalb, ein Küken und ein Reh schauen nach oben. Kein Tier weiß, welches Geschlecht es hat.",
@@ -81,7 +81,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Feld", "field"),
       w("das", "Geschlecht", "gender/sex"),
     ],
-    note: "Junge Tiere → fast immer DAS",
+    note: "Young animals → almost always DAS",
   },
   {
     id: "das-poisoned-gift",
@@ -102,7 +102,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Kind", "child"),
       w("das", "Glas", "glass"),
     ],
-    note: "⚠️ das Gift = poison (nicht 'gift'!)",
+    note: "⚠️ das Gift = poison, not 'gift'!",
   },
   {
     id: "der-stormy-wanderer",
@@ -128,7 +128,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
   {
     id: "der-strange-cafe",
     tone: "der",
-    title: "Das seltsame Café",
+    title: "Der seltsame Ort",
     image: "/scenes/der-3-cafe.webp",
     narrativeDe:
       "An einem seltsamen Ort sitzt ein Stein auf einem Stuhl. Ein Schlüssel hängt an einem Haken. Ein Preis steht auf einem Zettel. Ein Beutel voller Taler liegt auf dem Boden. Der Kellner ist ein riesiger Löffel. Niemand findet das seltsam.",
@@ -191,7 +191,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("die", "Wand", "wall"),
       w("die", "Decke", "ceiling"),
     ],
-    note: "Mutter, Tochter, Schwester, Butter und Leiter enden auf -er — aber alle sind DIE",
+    note: "Mutter, Tochter, Schwester, Butter and Leiter all end in -er — but every one is DIE",
   },
   {
     id: "die-body-alarm",
@@ -212,7 +212,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("die", "Wange", "cheek"),
       w("die", "Frau", "woman"),
     ],
-    note: "Harte Fälle: DIE ohne -e-Endung (Hand, Brust, Stirn, Haut) — die -e-Körperteile wie Nase/Lippe sind einfach",
+    note: "The hard ones: DIE without an -e ending (Hand, Brust, Stirn, Haut) — the -e body parts like Nase and Lippe are the easy ones",
   },
   {
     id: "die-clockwork-city",
@@ -255,7 +255,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Sofa", "sofa"),
       w("das", "Fenster", "window"),
     ],
-    note: "Lehnwörter auf -o, -é, -eau → meist DAS",
+    note: "Loanwords ending in -o, -é, -eau → usually DAS",
   },
   {
     id: "das-fortune",
@@ -276,12 +276,12 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Spiel", "game"),
       w("das", "Kleeblatt", "clover"),
     ],
-    note: "Wörter rund um Glück und Spiel sind oft DAS",
+    note: "Words about luck and chance are often DAS",
   },
   {
     id: "der-landscape",
     tone: "der",
-    title: "Die Bergwanderung",
+    title: "Der Weg auf den Berg",
     image: "/scenes/der-5-landschaft.webp",
     narrativeDe:
       "Ein Mann wandert den schmalen Weg den Hügel hinauf. Links rauscht ein Bach, rechts beginnt der dunkle Wald. Weit hinten ragt der Berg steil empor, und unten glänzt der Fluss.",
@@ -296,7 +296,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("der", "Berg", "mountain"),
       w("der", "Fluss", "river"),
     ],
-    note: "Landschaftsformen — Weg, Berg, Wald, Fluss → meist DER",
+    note: "Landscape features — Weg, Berg, Wald, Fluss → usually DER",
   },
   {
     id: "das-seaside",
@@ -317,7 +317,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Ufer", "shore"),
       w("das", "Wasser", "water"),
     ],
-    note: "das Meer endet auf -er, ist aber DAS (kein Täter-Wort)",
+    note: "das Meer ends in -er but is DAS — it names no agent",
   },
   {
     id: "die-italian-villa",
@@ -336,7 +336,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("die", "Pizza", "pizza"),
       w("die", "Kamera", "camera"),
     ],
-    note: "Wörter auf -a sind meist DIE (Achtung: -ma sieht nach DAS aus, z.B. das Thema)",
+    note: "Words ending in -a are usually DIE (careful: -ma looks like DAS, e.g. das Thema)",
   },
   {
     id: "das-collectives",
@@ -355,12 +355,12 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Getreide", "grain"),
       w("das", "Gelände", "grounds/terrain"),
     ],
-    note: "ge-…-e Sammelwörter enden auf -e, sind aber DAS (Gebäude, Gemälde, Gemüse)",
+    note: "ge-…-e collective nouns end in -e but are DAS (Gebäude, Gemälde, Gemüse)",
   },
   {
     id: "der-forest-rescue",
     tone: "der",
-    title: "Die Rettung im Wald",
+    title: "Der Löwe und der Riese",
     image: "/scenes/der-7-tiere.webp",
     narrativeDe:
       "Ein Löwe packt den Riesen am Fuß. Ein Elefant schlingt seinen Rüssel um ihn. Gemeinsam wollen sie den Affen, den Hasen, den Papagei, den Raben und den Spatz retten, die der Riese aus dem Wald forträgt. Der Rabe klemmt dabei den Käse in seinem Schnabel. Doch die Gefangenen sitzen in den Armen des Riesen. Der Bart des Riesen ist zu einem Zopf geflochten, und ein Nagel hält den Zopf zusammen. Am Gürtel hängen viele Schlüssel. Hoch am Himmel leuchtet der Mond.",
@@ -389,7 +389,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("der", "Himmel", "sky"),
       w("der", "Mond", "moon"),
     ],
-    note: "Diese Wörter sind DER — auf -e (Löwe, Affe, Rabe, Riese, Käse), -ei (Papagei) und -el (Nagel, Schlüssel)",
+    note: "These are all DER — in -e (Löwe, Affe, Rabe, Riese, Käse), -ei (Papagei) and -el (Nagel, Schlüssel)",
   },
   {
     id: "die-animal-tower",
@@ -413,7 +413,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("die", "Nadel", "needle"),
       w("die", "Sonne", "sun"),
     ],
-    note: "Diese Tiere sind DIE — und Gabel, Kugel, Nadel zeigen: nicht jedes -el ist DER (vgl. der Nagel!)",
+    note: "These animals are DIE — and Gabel, Kugel, Nadel show that not every -el is DER (compare der Nagel!)",
   },
   {
     id: "das-bodyparts",
@@ -433,7 +433,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Ziel", "goal/finish line"),
       w("das", "Kind", "child"),
     ],
-    note: "Körperteile haben keine Regel — diese sind DAS",
+    note: "Body parts follow no rule — these ones are DAS",
   },
   {
     id: "der-bodyparts",
@@ -452,12 +452,12 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("der", "Arm", "arm"),
       w("der", "Finger", "finger"),
     ],
-    note: "Körperteile haben keine Regel — diese sind DER",
+    note: "Body parts follow no rule — these ones are DER",
   },
   {
     id: "das-zoo",
     tone: "das",
-    title: "Die Tiere im Gehege",
+    title: "Das Pferd im Gehege",
     image: "/scenes/das-11-zoo.webp",
     narrativeDe:
       "Im Gehege steht das Pferd neben dem Kamel. Ein Lama spuckt. Ein Zebra trabt vorbei, ein Pony wiehert. Hinter dem Gitter liegt das Krokodil und reißt sein Maul weit auf. Das Nashorn senkt sein Horn.",
@@ -476,7 +476,7 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("das", "Horn", "horn"),
       w("das", "Gehege", "enclosure"),
     ],
-    note: "Viele exotische Tiere sind DAS",
+    note: "Many exotic animals are DAS",
   },
   {
     id: "der-exotic-zoo",
@@ -499,6 +499,6 @@ export const MEMORY_SCENES: MemoryScene[] = [
       w("der", "Teich", "pond"),
       w("der", "Zoo", "zoo"),
     ],
-    note: "Exotische Tiere sind oft DER — auch die -in-Fallen (Pinguin, Delfin sehen nach DIE aus)",
+    note: "Exotic animals are often DER — including the -in traps (Pinguin and Delfin look DIE)",
   },
 ];
