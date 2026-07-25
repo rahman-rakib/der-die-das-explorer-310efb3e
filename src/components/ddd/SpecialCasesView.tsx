@@ -109,6 +109,11 @@ const QUIZ: Quiz[] = [
   { q: "Which Lama is the animal?", options: ["der Lama", "das Lama"], answer: 1, hint: "Das Lama spuckt! 🦙" },
   { q: "Which Kiwi is the fruit?", options: ["der Kiwi", "die Kiwi"], answer: 1, hint: "Die Kiwi — the fruit is feminine 🥝" },
   { q: "Which Teil means an individual piece or component?", options: ["der Teil", "das Teil"], answer: 1, hint: "das Teil = a single piece/component ⚙️; der Teil = a portion of a whole 🧩" },
+  { q: "Which Schild is a road sign?", options: ["der Schild", "die Schild", "das Schild"], answer: 2, hint: "das Schild = sign/nameplate 🪧; der Schild is a knight's shield 🛡️" },
+  // Both hints below name the rule behind the answer, so the "wrong-looking"
+  // article turns out to be derivable rather than something to memorise.
+  { q: "Which Kiefer is a tree?", options: ["der Kiefer", "die Kiefer", "das Kiefer"], answer: 1, hint: "die Kiefer = pine 🌲 — trees are die; der Kiefer is your jaw 🦷" },
+  { q: "Which Tor is a gate or a goal?", options: ["der Tor", "die Tor", "das Tor"], answer: 2, hint: "das Tor = gate/goal 🥅; der Tor is a fool 🤡 — a person, so der" },
 ];
 
 export function SpecialCasesView() {
