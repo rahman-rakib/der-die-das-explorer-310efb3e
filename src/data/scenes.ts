@@ -240,15 +240,16 @@ export const MEMORY_SCENES: MemoryScene[] = [
     title: "Das gemütliche Café",
     image: "/scenes/das-6-coffeeshop.webp",
     narrativeDe:
-      "In einem gemütlichen Café sitzt ein Kind. Ein warmes Feuer brennt und macht alles gemütlich. Das Radio spielt leise, während jemand aus dem Büro auf einem weichen Sofa einschläft. Durch das Fenster sieht man das Kino und ein ruhiges Hotel. Das Restaurant nebenan duftet warm.",
+      "In einem gemütlichen Café sitzt ein Kind. Ein warmes Feuer brennt und macht alles gemütlich. Das Radio spielt leise, während jemand aus dem Büro auf einem weichen Sofa einschläft. Durch das Fenster sieht man das Kino und ein ruhiges Hotel mit einem hohen, gewölbten Tor. Das Restaurant nebenan duftet warm.",
     narrativeEn:
-      "In a cosy café a child sits. A warm fire burns in the fireplace and makes everything snug. The radio plays softly while someone from the office falls asleep on a soft sofa. Through the window you see the cinema and a quiet hotel. The restaurant next door smells warm.",
+      "In a cosy café a child sits. A warm fire burns in the fireplace and makes everything snug. The radio plays softly while someone from the office falls asleep on a soft sofa. Through the window you see the cinema and a quiet hotel with a tall arched gate. The restaurant next door smells warm.",
     words: [
       w("das", "Kind", "child"),
       w("das", "Café", "café"),
       w("das", "Feuer", "fire"),
       w("das", "Restaurant", "restaurant"),
       w("das", "Hotel", "hotel"),
+      w("das", "Tor", "gate"),
       w("das", "Büro", "office"),
       w("das", "Radio", "radio"),
       w("das", "Kino", "cinema"),
